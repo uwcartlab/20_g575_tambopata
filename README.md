@@ -4,7 +4,8 @@
 
 ### Team Members:
 
-1. Kyle McNair 
+1. Kyle McNair
+2. Ashley Kuehl
 
 ### Final Proposal:
 1. Persona/Schema
@@ -14,6 +15,3 @@
     1. Representation
     2. Interactions
 3. Wireframes
-
-
-
