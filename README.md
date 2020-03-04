@@ -7,7 +7,7 @@
 1. Kyle McNair
 2. Ashley Kuehl
 3. Vincent Cunningham
-4. Matthew Laska 
+4. Matthew Laskae
 
 ### Final Proposal:
 1. Persona/Schema
