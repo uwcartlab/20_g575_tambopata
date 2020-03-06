@@ -5,7 +5,7 @@
 ### Team Members:
 
 1. Kyle McNair
-2. Ashley Kuehl
+2. Ashley Kuehl 
 3. Vincent Cunningham
 4. Matthew Laska
 
