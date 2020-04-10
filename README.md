@@ -18,7 +18,8 @@
 
     2. Schema
 
-    User Case Scenario
+    User Case Scenario:
+
     Upon entering the website, the student sees an “About Tambopata” pop-up page displaying a description of the academic use of the site, the assignment, and a tutorial of how to navigate. After exiting the pop-up, the “Stakeholder List Page” appears with character images shown on the landing page. The student, assigned the Colonist Farmer stakeholder, selects the relevant stakeholder image and is redirected to the “Stakeholder Page”. On arrival, the student views an image and description of the character. As the student scrolls through the description, they notice an embedded video and callout glossary terms that can be retrieved, references that link to other stakeholder character pages for easy comparison, and a link to the map proposal page. The student also notices they can retrieve a “Menu Bar” on all pages, indicated with an information icon. The menu contains links to all the pages, making the site easy to navigate. The student finds the menu is easily minimized when not in use. Now that the student has a good understanding of the many stakeholders of Tambopata, they use the menu bar to navigate to the “Proposals Page” where they find four interactive maps. Here, the student views each proposal individually. The student then sees a slider widget allowing the comparison of two selected proposals at a time. An overlay widget allows the student to select between three basemaps, and an opacity overlay slider of zoned areas provides additional comparison opportunities. Noticing which zoned areas differ between proposals, the student zooms and pans to different features of the map to gain further insight. By clicking on an area of interest on the legend or map, the student retrieves a description of the area’s land use. Through these interactions, the student is able to move towards their goal of comparing the maps and deciding which best suits the interests of their stakeholder. Having thoroughly explored the map proposals, the student next finds the “Acknowledgements Page” containing information on the exercise creators, cartographers, website administrators, and information regarding the promotion and use of the website. Concluding the project, the TA provides a password to access the Tambopata Outcome’s page so that students can view information on the actual zoning results along two slider maps. These maps give sequence and overlay of two identical locations, but different temporal dates. This page uses a scrollytelling method of providing further description. 
 
 2. Requirements Document
@@ -109,25 +110,33 @@
     
 #### Project Management/Organizational Lead (Kyle/Ashley)
 -Time management (setting realistic goals)
+
 -Checking in with stakeholders
+
 -Setting up meetings
+
 -Documenting milestones 
 
 #### Aesthetics Lead (Group working collaboratively)
 -Design style guide and design look and feel
+
 -Watch for forward facing design
 
 #### Functionality Lead (Vincent)
 -Quality control, programming 
+
 -Documenting code (group)
 
 #### Narrative/Copy editor Lead (Matt)
 -Flow of content/narrative
+
 -Grammar
+
 -Typography
 
 #### Mobile/Desktop
 -2 focus on mobile (Kyle, Ashley)
+
 -2 focus on desktop (Vincent, Matt) 
 
 #### Map Proposals Lead (Group working Collaboratively)
