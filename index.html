@@ -4,10 +4,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-            <title>Lesson 2</title>
+            <title>Tambopata</title>
 
         <!--put your external stylesheet links here-->
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+        <link rel="stylesheet" href="lib/leaflet/leaflet.css">
         <!--[if IE<9]>
             <link rel="stylesheet" href="css/style.ie.css">
         <![endif]-->
@@ -19,12 +21,19 @@
 
     <body>
         <!--put your initial page content here-->
-        <div id=mydiv></div>
+        <div id="map"></div>
         <!--you can also use this space for internal scripts;
         place these within <script> tags-->
 
         <!--put your external script links here-->
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+  crossorigin=""></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC16YyHigbjvhKwGL_IkX5kFm1yAOHC2dQ" async defer></script>
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+  <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
+        <script type="text/javascript" src="lib/leaflet/leaflet.js"></script>
         <script type="text/javascript" src="lib/jquery-3.4.1.js"></script>
-        <script type="text/javascript" src="js/main_with_debug.js"></script>
+        <script type="text/javascript" src="js/zone_colors.js"></script>
     </body>
 </html>
