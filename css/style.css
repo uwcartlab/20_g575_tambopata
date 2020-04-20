@@ -1,6 +1,104 @@
 
 /* Stylesheet by Kyle McNair, 2020 */
-#map{
-    height: 1000px;
-    width: 1000px;
+html, body, #map {
+    height: 100%;
+    width: 100%;
+}
+.range-slider{
+    -webkit-appearance: none;
+    width: 80%;
+    height: 15px;
+    background-color: #e7efea;
+    border: solid #186c3f 1px;
+    border-radius: 25px;
+    outline: none;
+}
+.range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #186c3f;
+    border: solid #e7efea 1px;
+    cursor: pointer;
+}
+
+.opacity_slider_control{
+    top: 150px;
+    right: -150px;
+    width: 350px;
+    height: 45px;
+    padding: 10px;
+    transform: rotate(270deg);
+}
+.nav-item {
+    background-color: #186c3f;
+    text-align: center;
+}
+li {
+    display: list-item;
+    text-align: left;
+    content: "\2022";
+    color: #ceced0;
+    font-size: 1.0rem;
+}
+.fixed-top {
+    width: 100%;
+    height: 70px;
+    z-index: 1;
+}
+.legendFrame{
+    height: 60%;
+    width: 50%;
+    background-color: #e7efea;
+    border: solid #186c3f 1px;
+    padding: 25px;
+    border-radius: 10%;
+}
+
+.legendtxt{
+    position: absolute;
+    margin-left: 55px;
+    margin-top: 10px;
+    font-size: 1.3em;
+}
+.legend{
+    height: 20px;
+    width: 30px;
+    margin-top: 15px;
+    margin-left: 15px;
+    border: 1px solid black;
+}
+.legendHeader{
+    font-size: 2.5em;
+    font-weight: 700;
+    text-align: center;
+}
+#bufferZone{
+    background-color: #527a2b;
+}
+#communityReserve{
+    background-color: #b29d77;
+}
+#strictProtection{
+    background-color: #f5aa1c;
+}
+#wildlands{
+    background-color: #005c50;
+}
+#nativeCommunities{
+    background-color: #c4cc5c;
+}
+#Tourism{
+    background-color: #35a649;
+}
+#forestUse{
+    background-color: #94c660;
+}
+#Restoration{
+    background-color: #d87bb1;
+}
+#nationalPark{
+    background-color: forestgreen;
 }
