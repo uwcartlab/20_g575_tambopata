@@ -190,13 +190,13 @@ function style(feature){
 			color = "#005c50";
 		}
 		else if(zoneName == "Tourism"){
-            color = "#35a649";
+			color = "#35a649";
         }
 		else if(zoneName == "Restoration"){
 			color = "#d87bb1";
 		}
 		else if(zoneName == "Bahuaja-Sonene National Park"){
-            color = "ForestGreen";
+			color = "ForestGreen";
 		}
 		else if(zoneName == "Direct Use"){
 			color = "#125e1d";
