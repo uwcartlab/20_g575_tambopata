@@ -1,11 +1,13 @@
-
+var config = {
+  "node_size": 100
+}
 	
 function redirect(path){
 	window.location.href= path;
 }
 
 window.onload = function(){
-	var w = 900, h = 500;
+	var w = 700, h = 500;
 	
 	var container = d3.select("#graph-container")
 		.append("svg")
@@ -15,36 +17,59 @@ window.onload = function(){
 		.attr("class", "container")
         .style("background-color", "rgba(0,0,0,0.2)");
 		
+	var defs = container.append('svg:defs');
+		
+	data = [{
+		posx: 275,
+		posy: 100,
+		id: "brazil-nut-harvester",
+		img: "img/brazil-nut.jpg"
+		},
+		{
+		posx: 150,
+		posy: 300,
+		id: "wildlife-ecologist",
+		img: "img/test1.jpg"
+		}
+		,
+		{
+		posx: 400,
+		posy: 300,
+		id: "small-miner",
+		img: "img/pickaxe.jpg"
+		}
+	]
 	
-	container.append('g')
-		.append("circle")
-			.attr("id", "brazil-nut-harvester-node")
-			.attr("cx", 100)
-			.attr("cy", 100)
-			.attr("r", 25)
-			.attr("fill", "#fff")
-			.attr("stroke", "black")
+	data.forEach(function(d, i) {
+		defs.append("svg:pattern")
+			.attr("id", "node-" + d.id)
+			.attr("width", config.node_size)
+			.attr("height", config.node_size)
+			.attr("patternUnits", "userSpaceOnUse")
+		.append("svg:image")
+			.attr("xlink:href", d.img)
+			.attr("width", config.node_size)
+			.attr("height", config.node_size)
+			.attr("x", 0)
+			.attr("y", 0);
+
+		var circle = container.append("circle")
+			.attr("id", d.id + "-node")
+			.attr("transform", "translate(" + d.posx + "," + d.posy + ")")
+			.attr("cx", config.node_size / 2)
+			.attr("cy", config.node_size / 2)
+			.attr("r", config.node_size / 2)
+			.style("fill", "#fff")
+			.style("fill", "url(#node-" + d.id + ")")
+			.attr('stroke', 'black')
+			.attr('stroke-width', 1)
 			.on("click", function(){
-				showSpecific('brazil-nut-harvester');
-			})
-			.append("svg:image")
-				.attr("xlink:href", "img/test.jpg");
-				
-	container.select('g')
-			.append("circle")
-			.attr("id", "wildlife-ecologist-node")
-			.attr("cx", 150)
-			.attr("cy", 250)
-			.attr("r", 25)
-			.attr("fill", "#fff")
-			.attr("stroke", "black")
-			.on("click", function(){
-				console.log("click");
-				showSpecific('wildlife-ecologist');
-			})
-			.append("svg:image")
-				.attr("xlink:href", "img/test.jpg");
-			
+				console.log(d.id)
+				showSpecific(d.id);
+			});
+
+	})
+
 }
 
 function showGraph(prev){
