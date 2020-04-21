@@ -197,7 +197,6 @@ function style(feature){
 		}
 		else if(zoneName == "Bahuaja-Sonene National Park"){
             color = "ForestGreen";
-            opacity = 0.2;
 		}
 		else if(zoneName == "Direct Use"){
 			color = "#125e1d";
