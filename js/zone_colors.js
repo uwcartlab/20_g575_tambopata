@@ -13,7 +13,7 @@ function setMap(zones) {
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 	}).addTo(map);
-	
+
 	getData();
 	// createProposalNav()
 	createOpacityControls()
@@ -36,9 +36,9 @@ function createProposalNav(){
 			$(nav).append('<li class="nav-item">Proposal 3</li>');
 			$(nav).append('<li class="nav-item">Proposal 4</li>');
 			return nav;
-			
+
 		}
-		
+
 	});
 	map.addControl(new navBar());
 };
@@ -66,6 +66,8 @@ function createLegend(){
 			$(container).append('<div class="legend" id="Tourism" ></div>');
 			$(container).append('<p class="legendtxt">Low Impact Non-Timber Forest Use</p>');
 			$(container).append('<div class="legend" id="forestUse" ></div>');
+            $(container).append('<p class="legendtxt">Direct Use</p>');
+			$(container).append('<div class="legend" id="directUse" ></div>');
 			$(container).append('<p class="legendtxt">Restoration</p>');
 			$(container).append('<div class="legend" id="Restoration" ></div>');
 			$(container).append('<p class="legendtxt">Bahuaja-Sonene National Park</p>');
@@ -90,11 +92,11 @@ function createOpacityControls(){
 
 			// ... initialize other DOM elements
 			$(container).append('<input class="range-slider" type="range">');
-            //if you double click on the div, it will not have the map zoom. 
+            //if you double click on the div, it will not have the map zoom.
             L.DomEvent.disableClickPropagation(container);
 
 			return container;
-			
+
         }
     });
 
@@ -175,9 +177,9 @@ function getData(){
         success: function(response){
 			createZones(response)
         }
-    
+
 	});
-	
+
 };
 //call the initialize function when the document has loaded
 $(document).ready(setMap);

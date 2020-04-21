@@ -99,6 +99,16 @@ li {
 #Restoration{
     background-color: #d87bb1;
 }
+#directUse{
+    background-color: #125e1d
+}
 #nationalPark{
-    background-color: forestgreen;
+background-color: forestgreen;
+background: repeating-linear-gradient(
+  135deg,
+  forestgreen,
+  forestgreen 3px,
+  darkgreen 6px
+);
+/* other way to add texture in legend: background-image: url("https://www.transparenttextures.com/patterns/grid-noise.png"); */
 }
