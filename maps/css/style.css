@@ -1,0 +1,134 @@
+
+/* Stylesheet by Kyle McNair, 2020 */
+html, body, #map {
+    height: 100%;
+    width: 100%;
+}
+.range-slider{
+    -webkit-appearance: none;
+    width: 80%;
+    height: 15px;
+    margin-left: 15px;
+    background-color: #e7efea;
+    border: solid #186c3f 1px;
+    border-radius: 25px;
+    outline: none;
+}
+.range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #186c3f;
+    border: solid #e7efea 1px;
+    cursor: pointer;
+}
+
+.opacity_slider_control{
+    top: 150px;
+    right: -150px;
+    width: 350px;
+    height: 45px;
+    padding-top: 10px;
+    transform: rotate(270deg);
+    border: solid #186c3f 2px;
+    background-color: #e7efea;
+    border-radius: 20px;
+}
+.opacityTxt{
+    transform: rotate(90deg);
+    text-align: center;
+    font-size: 1em;
+    font-weight: 700;
+    color: #186c3f;
+}
+.proposal-container{
+    width: 50vw;
+    top: -15mm;
+    left: 50%;
+    background-color: #186c3f;
+}
+.proposal{
+    width: auto;
+    height: 3.5vh;
+    float: left;
+    text-align: center;
+    border: solid #e7efea 2px;
+    color: #e7efea; 
+    overflow: hidden;
+    font-size: 1.5em;
+    font-weight: 800;
+}
+.active {
+    background-color: #e7efea ;
+    color: #186c3f;
+    border: solid #186c3f 2px;
+  }
+.row{
+    background-color: #e7efea;
+}
+.legendFrame{
+    height: 45vh;
+    width: 20vw;
+    background-color: #e7efea;
+    border: solid #186c3f 2px;
+    padding: 25px;
+    border-radius: 10%;
+}
+
+.legendtxt{
+    position: absolute;
+    margin-left: 55px;
+    margin-top: 10px;
+    font-size: 1.3vh;
+}
+.legend{
+    height: 2vh;
+    width: 2vw;
+    margin-top: 15px;
+    margin-left: 10px;
+    border: 1px solid black;
+}
+.legendHeader{
+    font-size: 2.5em;
+    font-weight: 700;
+    text-align: center;
+}
+#bufferZone{
+    background-color: #527a2b;
+}
+#communityReserve{
+    background-color: #b29d77;
+}
+#strictProtection{
+    background-color: #f5aa1c;
+}
+#wildlands{
+    background-color: #005c50;
+}
+#nativeCommunities{
+    background-color: #c4cc5c;
+}
+#Tourism{
+    background-color: #35a649;
+}
+#forestUse{
+    background-color: #94c660;
+}
+#Restoration{
+    background-color: #d87bb1;
+}
+#directUse{
+    background-color: #125e1d
+}
+#nationalPark{
+background-color: forestgreen;
+background: repeating-linear-gradient(
+  135deg,
+  forestgreen,
+  forestgreen 3px,
+  darkgreen 6px
+);
+/* other way to add texture in legend: background-image: url("https://www.transparenttextures.com/patterns/grid-noise.png"); */
+}
