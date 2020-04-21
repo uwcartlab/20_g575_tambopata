@@ -37,7 +37,26 @@ function setMap(zones) {
 	createOpacityControls()
 	createLegend()
 	
+	createHomeButton();
 };
+
+// quick home button to get back to the home page
+function createHomeButton(){
+	var home = L.Control.extend({
+		options: {
+            position: 'bottomleft'
+        },
+		onAdd: function(){
+			var homeButton = L.DomUtil.create('div', 'homeDiv');
+			
+			$(homeButton).append('<button onclick="redirect(\'..\')">Home</button>');
+			
+			return homeButton;
+		}
+	});
+	map.addControl(new home());
+}
+
 function createProposals(){
 	var rowBar = L.Control.extend({
         options: {
