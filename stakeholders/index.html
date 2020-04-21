@@ -9,19 +9,24 @@
         
     </head>
 
-    <body>  
+    <body>
+		<!-- Always shown for now to signal what page is loaded -->
 		<h1>Stakeholders</h1>
 		
 		<div id="meta-container">
+			<!-- This div holds the entire graph -->
 			<div id="graph-container">
 				<h2>Click a stakeholder to learn more about them!</h2>
 				
 			</div>
 			
+			<!-- This div holds all of the stakeholders as separate divs -->
+			<!-- They start hidden and will display after a circle is clicked in the graph -->
 			<div id="specific-container" style="display:none">
 				<div id="brazil-nut-harvester" style="display:none">
 					<h2>Brazil Nut Harvester</h2>
 					<p>Maria Silva has harvested Brazil nuts since she was a child. Her family holds a 40-year concession for harvesting Brazil nuts in 500 hectares of old growth forest in the northeastern part of the Tambopata National Reserve.</p>
+					<!-- Pass the id of this div to tell the graph which one to hide -->
 					<button onclick="showGraph('brazil-nut-harvester')">Back to selection</button>
 				</div>
 				<div id="wildlife-ecologist" style="display:none">
@@ -37,6 +42,8 @@
 			</div>
 		</div>
 		
+		<!-- Each button calls the basic JS method with the path you want to go to -->
+		<!-- See method in main.js for info on how to format the arg -->
 		<p><b>Basic Navigation:</b></p>
 		<button onclick="redirect('../maps')">Maps Page</button>
 		<button onclick="redirect('..')">Initial Page</button>

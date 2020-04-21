@@ -1,14 +1,21 @@
+
+// this stores globals for creating the stakeholder circles
 var config = {
+	// used to define the radius of the circle and the size of the image inside it
   "node_size": 100
 }
-	
+
+// basic relative redirect until we have a nav-menu
+// since this is a subfolder the method should be passed either '..' to go home or '../SUB_FOLDER_NMAE'
 function redirect(path){
 	window.location.href= path;
 }
 
+// do these on page start
 window.onload = function(){
-	var w = 700, h = 500;
 	
+	// dimensions and definition of the graph container
+	var w = 700, h = 500;
 	var container = d3.select("#graph-container")
 		.append("svg")
 		.attr("width", w)
@@ -16,9 +23,12 @@ window.onload = function(){
         .attr("class", "container")
 		.attr("class", "container")
         .style("background-color", "rgba(0,0,0,0.2)");
-		
+	
+	// this is for creating the images
 	var defs = container.append('svg:defs');
-		
+	
+	// the hard-coded information for each stakeholder and their image
+	// posx and posy start at 0 in the top-left of the container svg
 	data = [{
 		posx: 275,
 		posy: 100,
@@ -40,6 +50,7 @@ window.onload = function(){
 		}
 	]
 	
+	// for each of the stakeholders create a pattern with the image and then append a circle filled with it
 	data.forEach(function(d, i) {
 		defs.append("svg:pattern")
 			.attr("id", "node-" + d.id)
@@ -63,7 +74,7 @@ window.onload = function(){
 			.style("fill", "url(#node-" + d.id + ")")
 			.attr('stroke', 'black')
 			.attr('stroke-width', 1)
-			.on("click", function(){
+			.on("click", function(){ // this allows for calling with only the specific stakeholder we want to show
 				console.log(d.id)
 				showSpecific(d.id);
 			});
@@ -72,6 +83,7 @@ window.onload = function(){
 
 }
 
+// basic function for showing the graph and hiding the specific div(passed by the return button)
 function showGraph(prev){
 	console.log("show graph: hide", prev);
 	document.getElementById(prev).style.display = "none";
@@ -79,6 +91,7 @@ function showGraph(prev){
 	document.getElementById("graph-container").style.display = "block";
 }
 
+// basic function to hid graph and display specific stakeholder(passed by clicking a circle)
 function showSpecific(select){
 	console.log("show specific:", select);
 	document.getElementById("graph-container").style.display = "none";
