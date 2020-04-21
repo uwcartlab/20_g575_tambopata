@@ -8,6 +8,7 @@ html, body, #map {
     -webkit-appearance: none;
     width: 80%;
     height: 15px;
+    margin-left: 15px;
     background-color: #e7efea;
     border: solid #186c3f 1px;
     border-radius: 25px;
@@ -29,30 +30,49 @@ html, body, #map {
     right: -150px;
     width: 350px;
     height: 45px;
-    padding: 10px;
+    padding-top: 10px;
     transform: rotate(270deg);
+    border: solid #186c3f 2px;
+    background-color: #e7efea;
+    border-radius: 20px;
 }
-.nav-item {
-    background-color: #186c3f;
+.opacityTxt{
+    transform: rotate(90deg);
     text-align: center;
+    font-size: 1em;
+    font-weight: 700;
+    color: #186c3f;
 }
-li {
-    display: list-item;
-    text-align: left;
-    content: "\2022";
-    color: #ceced0;
-    font-size: 1.0rem;
+.proposal-container{
+    width: 50vw;
+    top: -15mm;
+    left: 50%;
+    background-color: #186c3f;
 }
-.fixed-top {
-    width: 100%;
-    height: 70px;
-    z-index: 1;
+.proposal{
+    width: auto;
+    height: 3.5vh;
+    float: left;
+    text-align: center;
+    border: solid #e7efea 2px;
+    color: #e7efea; 
+    overflow: hidden;
+    font-size: 1.5em;
+    font-weight: 800;
+}
+.active {
+    background-color: #e7efea ;
+    color: #186c3f;
+    border: solid #186c3f 2px;
+  }
+.row{
+    background-color: #e7efea;
 }
 .legendFrame{
-    height: 60%;
-    width: 50%;
+    height: 45vh;
+    width: 20vw;
     background-color: #e7efea;
-    border: solid #186c3f 1px;
+    border: solid #186c3f 2px;
     padding: 25px;
     border-radius: 10%;
 }
@@ -61,13 +81,13 @@ li {
     position: absolute;
     margin-left: 55px;
     margin-top: 10px;
-    font-size: 1.3em;
+    font-size: 1.3vh;
 }
 .legend{
-    height: 20px;
-    width: 30px;
+    height: 2vh;
+    width: 2vw;
     margin-top: 15px;
-    margin-left: 15px;
+    margin-left: 10px;
     border: 1px solid black;
 }
 .legendHeader{
@@ -99,6 +119,16 @@ li {
 #Restoration{
     background-color: #d87bb1;
 }
+#directUse{
+    background-color: #125e1d
+}
 #nationalPark{
-    background-color: forestgreen;
+background-color: forestgreen;
+background: repeating-linear-gradient(
+  135deg,
+  forestgreen,
+  forestgreen 3px,
+  darkgreen 6px
+);
+/* other way to add texture in legend: background-image: url("https://www.transparenttextures.com/patterns/grid-noise.png"); */
 }
