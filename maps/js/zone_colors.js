@@ -16,19 +16,25 @@ function setMap(zones) {
 
 	});
 	
-    var earth = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-	});
-
-
+    // var earth = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    //     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+	// });
+	
+	var hybrid  = L.gridLayer.googleMutant({
+		type: 'hybrid'
+	}) // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'})
+	var earth = L.gridLayer.googleMutant({
+		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+	})
 	const baseMaps = {
 		"Roads": roads,
 		"Satellite": earth,
+		"Hybrid": hybrid
 	};
 	var images = L.control.layers(
 		baseMaps,null,{collapsed:false,position: 'topleft'});
 	
-
+	
 	var deFault = "data/proposal1.geojson"
 	getData(deFault)
 
@@ -39,7 +45,6 @@ function setMap(zones) {
 	
 	createHomeButton();
 };
-
 // quick home button to get back to the home page
 function createHomeButton(){
 	var home = L.Control.extend({
@@ -244,14 +249,10 @@ function createZones(data){
 	return zones
 };
 function onEachFeature(feature, layer){
-	var popupContent = "";
-    if (feature.properties) {
-        //loop to add feature property names and values to html string
-        for (var property in feature.properties){
-            popupContent += "<p>" + property + ": " + feature.properties[property] + "</p>";
-        }
-        layer.bindPopup(popupContent);
-    };
+	var popupContent = ('<p style = "text-align: center";><b>'+ feature.properties.ZONES + '</b></p>');
+    popupContent += '<p>'+feature.properties.Zone_Description+'</p>';
+    //bind the popup to the circle marker
+    layer.bindPopup(popupContent);
 };
 function removeZones(zones){
 	map.removeLayer(zones)
