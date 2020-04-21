@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-            <title>Tambopata Mockup</title>
+            <title>Stakeholders</title>
 
         <link rel="stylesheet" href="css/style.css">
         
@@ -12,10 +12,31 @@
     <body>  
 		<h1>Stakeholders</h1>
 		
-		<p>Basic Navigation:</p>
-		<button onclick="redirect('maps')">Maps Page</button>
+		<div id="meta-container">
+			<div id="graph-container">
+				<h2>Click a stakeholder to learn more about them!</h2>
+				
+			</div>
+			
+			<div id="specific-container" style="display:none">
+				<div id="brazil-nut-harvester" style="display:none">
+					<h2>Brazil Nut Harvester</h2>
+					<p>Maria Silva has harvested Brazil nuts since she was a child. Her family holds a 40-year concession for harvesting Brazil nuts in 500 hectares of old growth forest in the northeastern part of the Tambopata National Reserve.</p>
+					<button onclick="showGraph('brazil-nut-harvester')">Back to selection</button>
+				</div>
+				<div id="wildlife-ecologist" style="display:none">
+					<h2>Wildlife Ecologist</h2>
+					<p>Dr. Natalia Ortiz is a Peruvian scientist who studies the ecology of Giant River Otters (Pteronura brasiliensis) in Tambopata, one of the last strongholds for this endangered species.</p>
+					<button onclick="showGraph('wildlife-ecologist')">Back to selection</button>
+				</div>
+			</div>
+		</div>
+		
+		<p><b>Basic Navigation:</b></p>
+		<button onclick="redirect('../maps')">Maps Page</button>
 		<button onclick="redirect('..')">Initial Page</button>
 		
+		<script src="lib/d3/d3.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>

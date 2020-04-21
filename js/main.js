@@ -1,5 +1,5 @@
 
 	
 function redirect(path){
-	window.location.href= path + "/index.html";
+	window.location.href= path;
 }
