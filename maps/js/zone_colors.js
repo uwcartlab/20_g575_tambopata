@@ -39,7 +39,7 @@ function setMap(zones) {
 	getData(deFault)
 	createProposals()
 	images.addTo(map);
-	createLegend()
+	createLegend(roads, earth, hybrid)
 };
 function createProposals(){
 	var rowBar = L.Control.extend({
@@ -95,7 +95,7 @@ function createProposals(){
 
 	});
 };
-function createLegend(){
+function createLegend(roads, earth, hybrid){
 	var LegendControl = L.Control.extend({
         options: {
             position: 'bottomleft'
@@ -103,7 +103,11 @@ function createLegend(){
         onAdd: function () {
             // create the control container with a particular class name
 			var container = L.DomUtil.create('div', 'legendFrame');
-
+			
+			
+			$(container).append('<div><input type = "radio" class = "leaflet-controls-layers-selector"><span>Road</span></div>')
+			$(container).append('<div><input type = "radio" class = "leaflet-controls-layers-selector"><span>Satellite</span></div>')
+			$(container).append('<div><input type = "radio" class = "leaflet-controls-layers-selector"><span>Hybrid</span></div>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
 			$(container).append('<span class = "opacityTxt">100%</span>')
@@ -134,8 +138,8 @@ function createLegend(){
 			L.DomEvent.disableClickPropagation(container)
             return container;
         }
-    });
-    //adds the legend to the map.
+	});
+    // adds the legend to the map.
 	map.addControl(new LegendControl());
 	$('.range-slider').attr({
         max: 1,
