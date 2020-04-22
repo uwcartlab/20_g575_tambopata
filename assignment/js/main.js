@@ -4,3 +4,5 @@
 function redirect(path){
 	window.location.href= path;
 }
+
+window.onload(redirect("../"));

@@ -8,6 +8,15 @@ function redirect(path){
 	window.location.href= path;
 }
 
+function checkVisited(){
+	var ls = sessionStorage.getItem('namespace.visited');
+	if (ls != null) {
+		overlayOff();
+	}else{
+		sessionStorage.setItem('namespace.visited', 1)
+	}
+}
+
 function overlayOff(){
 	document.getElementById("overlay").style.display = "none";
 }
@@ -27,3 +36,5 @@ function overlayShowNext(){
 		overlayTrigger = false;
 	}
 }
+
+window.onload(checkVisited());

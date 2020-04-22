@@ -30,6 +30,10 @@
   color: white;
 }
 
+li {
+  padding-top: 5px;
+}
+
 #overlay {
   position: fixed;
   display: block;
@@ -51,6 +55,7 @@
   background-color: white;
   transform: translate(50%,20%);
   -ms-transform: translate(50%,50%);
+  overflow-y: auto;
 }
 
 #overlay-buttons-close {
@@ -60,9 +65,10 @@
 }
 
 #overlay-buttons-next {
-	position: absolute;
-	top: 475px;
-	left: 300px;
+	position: auto;
+	
+	margin-bottom: 10px;
+	margin-left: 45%;
 }
 
 #assign-overlay-text {
