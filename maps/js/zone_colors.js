@@ -37,13 +37,10 @@ function setMap(zones) {
 
 	var deFault = "data/proposal1.geojson"
 	getData(deFault)
-
 	createProposals()
 	images.addTo(map);
-	createOpacityControls()
 	createLegend()
 };
-
 function createProposals(){
 	var rowBar = L.Control.extend({
         options: {
@@ -108,7 +105,7 @@ function createLegend(){
             // create the control container with a particular class name
 			var container = L.DomUtil.create('div', 'legendFrame');
 
-			$(container).append('<span class = "opacityTxt">0%</span>');
+			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
 			$(container).append('<span class = "opacityTxt">100%</span>')
 			$(container).append('<br><br>')
@@ -147,48 +144,6 @@ function createLegend(){
         value: 1,
 		step: 0.01,
 	});
-	$('.range-slider').on('input',function(){
-		zones.setStyle({
-			opacity: this.value,
-			fillOpacity: this.value,
-			animate: "fast",
-		});
-		opacity=this.value
-	});
-
-};
-function createOpacityControls(){
-	var opacityBar = L.Control.extend({
-        options: {
-            position: 'bottomleft'
-        },
-
-        onAdd: function () {
-            // create the control container div with a particular class name
-            var slider = L.DomUtil.create('div', 'opacity_slider_control');
-
-			// ... initialize other DOM elements
-			$(slider).append('<span class = "opacityTxt" style="float:left;">0%</span>');
-			$(slider).append('<input class="range-slider" type="range">');
-			$(slider).append('<span class = "opacityTxt" style="float:right; margin-right: -5px;">100%</span>');
-
-
-            //if you double click on the div, it will not have the map zoom.
-            L.DomEvent.disableClickPropagation(slider);
-
-			return slider;
-
-        }
-    });
-
-	map.addControl(new opacityBar());
-	$('.range-slider').attr({
-        max: 1,
-        min: 0,
-        value: 1,
-		step: 0.01,
-	});
-	console.log(zones)
 	$('.range-slider').on('input',function(){
 		zones.setStyle({
 			opacity: this.value,
