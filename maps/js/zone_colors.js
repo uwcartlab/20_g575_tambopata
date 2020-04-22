@@ -12,10 +12,14 @@ function setMap(zones) {
 		center: [-13.2, -69.5],
 		zoom: 9,
 		minZoom: 8,
-		layers: [roads]
+		layers: [roads],
+		maxBounds: ([
+			[-9.2,-73.5],
+			[-17.2, -65.5]
+		])
 
 	});
-	
+
 	var hybrid  = L.gridLayer.googleMutant({
 		type: 'hybrid'
 	}) // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'})
@@ -29,8 +33,8 @@ function setMap(zones) {
 	};
 	var images = L.control.layers(
 		baseMaps,null,{collapsed:false,position: 'topleft'});
-	
-	
+
+
 	var deFault = "data/proposal1.geojson"
 	getData(deFault)
 
@@ -38,7 +42,7 @@ function setMap(zones) {
 	images.addTo(map);
 	createOpacityControls()
 	createLegend()
-	
+
 	createHomeButton();
 };
 // quick home button to get back to the home page
@@ -49,9 +53,9 @@ function createHomeButton(){
         },
 		onAdd: function(){
 			var homeButton = L.DomUtil.create('div', 'homeDiv');
-			
+
 			$(homeButton).append('<button onclick="redirect(\'..\')">Home</button>');
-			
+
 			return homeButton;
 		}
 	});
@@ -79,9 +83,9 @@ function createProposals(){
 			$(row).append('</div>');
 
 			return row;
-			
+
 		}
-		
+
 	});
 	map.addControl(new rowBar());
 	$('.proposal').click(function(){
@@ -109,7 +113,7 @@ function createProposals(){
 			$(this).addClass('active');
 			getData(zone);
 		}
-		
+
 	});
 };
 function createLegend(){
@@ -164,13 +168,13 @@ function createOpacityControls(){
 			$(container).append('<span class = "opacityTxt" style="float:left;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
 			$(container).append('<span class = "opacityTxt" style="float:right; margin-right: -5px;">100%</span>');
-			
-			
-            //if you double click on the div, it will not have the map zoom. 
+
+
+            //if you double click on the div, it will not have the map zoom.
             L.DomEvent.disableClickPropagation(container);
 
 			return container;
-			
+
         }
     });
 
@@ -260,9 +264,9 @@ function getData(zone){
         success: function(response){
 			createZones(response)
         }
-    
+
 	});
-	
+
 };
 //call the initialize function when the document has loaded
 $(document).ready(setMap);
