@@ -16,10 +16,6 @@ function setMap(zones) {
 
 	});
 	
-    // var earth = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    //     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-	// });
-	
 	var hybrid  = L.gridLayer.googleMutant({
 		type: 'hybrid'
 	}) // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'})
@@ -167,7 +163,7 @@ function createOpacityControls(){
 			// ... initialize other DOM elements
 			$(container).append('<span class = "opacityTxt" style="float:left;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
-			$(container).append('<span class = "opacityTxt" style="float:right;">100%</span>');
+			$(container).append('<span class = "opacityTxt" style="float:right; margin-right: -5px;">100%</span>');
 			
 			
             //if you double click on the div, it will not have the map zoom. 
