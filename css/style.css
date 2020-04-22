@@ -29,3 +29,57 @@
   background-color: #4CAF50;
   color: white;
 }
+
+#overlay {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#overlay-div {
+  position: auto;
+  width: 50%;
+  height: 75%;
+  background-color: white;
+  transform: translate(50%,20%);
+  -ms-transform: translate(50%,50%);
+}
+
+#overlay-buttons-close {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+#overlay-buttons-next {
+	position: absolute;
+	top: 475px;
+	left: 300px;
+}
+
+#assign-overlay-text {
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 12px;
+  color: black;
+  padding: 10px;
+}
+
+#tambopata-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 12px;
+  color: black;
+  padding: 10px;
+}
