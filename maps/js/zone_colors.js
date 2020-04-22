@@ -10,8 +10,8 @@ function setMap(zones) {
 
     map = L.map('map', {
 		center: [-13.2, -69.5],
-		zoom: 9,
-		minZoom: 8,
+		zoom: 10,
+		minZoom: 9,
 		layers: [roads],
 		maxBounds: ([
 			[-9.2,-73.5],
@@ -32,18 +32,15 @@ function setMap(zones) {
 		"Hybrid": hybrid
 	};
 	var images = L.control.layers(
-		baseMaps,null,{collapsed:false,position: 'topleft'});
+		baseMaps,null,{collapsed:false});
 
 
 	var deFault = "data/proposal1.geojson"
 	getData(deFault)
-
 	createProposals()
 	images.addTo(map);
-	createOpacityControls()
 	createLegend()
 };
-
 function createProposals(){
 	var rowBar = L.Control.extend({
         options: {
@@ -101,13 +98,17 @@ function createProposals(){
 function createLegend(){
 	var LegendControl = L.Control.extend({
         options: {
-            position: 'bottomright'
+            position: 'bottomleft'
         },
-
         onAdd: function () {
             // create the control container with a particular class name
-            var container = L.DomUtil.create('div', 'legendFrame');
-            $(container).append('<h1 class = "legendHeader">Proposed Zones</h1>')
+			var container = L.DomUtil.create('div', 'legendFrame');
+
+			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
+			$(container).append('<input class="range-slider" type="range">');
+			$(container).append('<span class = "opacityTxt">100%</span>')
+			$(container).append('<br><br>')
+
 			$(container).append('<p class="legendtxt">Buffer Zone</p>');
 			$(container).append('<div class="legend" id="bufferZone" ></div>');
 			$(container).append('<p class="legendtxt">Community Reserve</p>');
@@ -129,45 +130,19 @@ function createLegend(){
 			$(container).append('<p class="legendtxt">Bahuaja-Sonene National Park</p>');
 			$(container).append('<div class="legend" id="nationalPark" ></div>');
 
-            // $(container).append(legendItems)
+			// $(container).append(legendItems)
+			L.DomEvent.disableClickPropagation(container)
             return container;
         }
     });
     //adds the legend to the map.
-    map.addControl(new LegendControl());
-};
-function createOpacityControls(){
-	var opacityBar = L.Control.extend({
-        options: {
-            position: 'topright'
-        },
-
-        onAdd: function () {
-            // create the control container div with a particular class name
-            var container = L.DomUtil.create('div', 'opacity_slider_control');
-
-			// ... initialize other DOM elements
-			$(container).append('<span class = "opacityTxt" style="float:left;">0%</span>');
-			$(container).append('<input class="range-slider" type="range">');
-			$(container).append('<span class = "opacityTxt" style="float:right; margin-right: -5px;">100%</span>');
-
-
-            //if you double click on the div, it will not have the map zoom.
-            L.DomEvent.disableClickPropagation(container);
-
-			return container;
-
-        }
-    });
-
-	map.addControl(new opacityBar());
+	map.addControl(new LegendControl());
 	$('.range-slider').attr({
         max: 1,
         min: 0,
         value: 1,
 		step: 0.01,
 	});
-	console.log(zones)
 	$('.range-slider').on('input',function(){
 		zones.setStyle({
 			opacity: this.value,
