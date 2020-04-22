@@ -32,7 +32,7 @@ function setMap(zones) {
 		"Hybrid": hybrid
 	};
 	var images = L.control.layers(
-		baseMaps,null,{collapsed:false,position: 'topleft'});
+		baseMaps,null,{collapsed:false});
 
 
 	var deFault = "data/proposal1.geojson"
@@ -100,7 +100,6 @@ function createLegend(){
         options: {
             position: 'bottomleft'
         },
-
         onAdd: function () {
             // create the control container with a particular class name
 			var container = L.DomUtil.create('div', 'legendFrame');
