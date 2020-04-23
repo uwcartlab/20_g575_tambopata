@@ -132,6 +132,13 @@ function createLegend(roads, earth, hybrid){
 	});
     // adds the legend to the map.
 	map.addControl(new LegendControl());
+	$('.roads').on('input',function(){
+		if(document.getElementById("pointsOfInterest").checked == true){
+			getRoads(roadsPOI)
+		} else if(document.getElementById("pointsOfInterest").checked == false){
+			removeRoads(roadsPOI)
+		}
+	});
 	$('.baseMap').on('input',function(){
 		if ($(this).attr('id') == 'Road'){
 			document.getElementById("Satellite").checked = false;
@@ -155,18 +162,6 @@ function createLegend(roads, earth, hybrid){
 			hybrid.addTo(map)
 		}
 	});
-	$('.roads').on('input',function(){
-		if(document.getElementById("pointsOfInterest").checked == true){
-			getRoads(roadsPOI)
-		} else if(document.getElementById("pointsOfInterest").checked == false){
-			removeRoads(roadsPOI)
-		}
-	});
-	$('.roads').off('input',function(){
-		if(document.getElementById("pointsOfInterest").checked == false){
-			removeRoads(roadsPOI)
-		}
-	});
 	$('.range-slider').attr({
         max: 1,
         min: 0,
@@ -182,7 +177,6 @@ function createLegend(roads, earth, hybrid){
 		opacity=this.value
 	});
 };
-
 function roadsStyle(feature) {
 	return{
 		fillColor: "#000000",
@@ -191,7 +185,6 @@ function roadsStyle(feature) {
 		opacity: 1
 	}
 };
-
 function style(feature){
 	// sets the style of the zones
     var opacity = 1.0;
@@ -289,7 +282,6 @@ function removeZones(zones){
 function removeRoads(roadsPOI){
 	map.removeLayer(roadsPOI)
 }
-
 function createAddRoads(data) {
 	roadsPOI = L.geoJson(data, {
 		style: roadsStyle

@@ -99,8 +99,8 @@ html, body, #map {
     background-color: #e7efea;
 }
 .legendFrame{
-    height: 465px;
-    width: 20vw;
+    padding: 10px 10px 10px 10px;
+    width: 300px;
     background-color: #e7efea;
     border: solid #186c3f 2px;
     padding: 5px;
