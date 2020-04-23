@@ -33,6 +33,7 @@ function setMap(zones) {
 	createLegend(roads, earth, hybrid)
 	buttonCount()
 	
+	
 };
 function createProposals(){
 	var rowBar = L.Control.extend({
@@ -172,6 +173,7 @@ function createLegend(roads, earth, hybrid){
 		});
 		opacity=this.value
 	});
+	
 
 };
 function style(feature){
