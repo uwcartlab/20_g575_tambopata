@@ -40,6 +40,11 @@ html, body, #map {
     margin-left: 10%;
     margin-top: 2%;
 }
+.roads{
+    margin-left: 10%;
+    margin-top: 3%;
+}
+
 .range-slider{
     margin-top: 15px;
     -webkit-appearance: none;
@@ -79,7 +84,7 @@ html, body, #map {
     float: left;
     text-align: center;
     border: solid #e7efea 2px;
-    color: #e7efea; 
+    color: #e7efea;
     background-color: #186c3f;
     overflow: hidden;
     font-size: 1.5em;
@@ -94,7 +99,7 @@ html, body, #map {
     background-color: #e7efea;
 }
 .legendFrame{
-    height: 500px;
+    height: 465px;
     width: 20vw;
     background-color: #e7efea;
     border: solid #186c3f 2px;

@@ -9,8 +9,8 @@ function setMap(zones) {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
 
     map = L.map('map', {
-		center: [-13.2, -69.5],
-		zoom: 10,
+		center: [-12.9, -69.5],
+		zoom: 9,
 		minZoom: 9,
 		layers: [roads],
 		maxBounds: ([
@@ -27,12 +27,14 @@ function setMap(zones) {
 	var earth = L.gridLayer.googleMutant({
 		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
 	})
+
 	var deFault = "data/proposal1.geojson"
 	getData(deFault)
+	getData2()
 	createProposals()
 	createLegend(roads, earth, hybrid)
 	buttonCount()
-	
+
 };
 function createProposals(){
 	var rowBar = L.Control.extend({
@@ -96,11 +98,12 @@ function createLegend(roads, earth, hybrid){
         onAdd: function () {
             // create the control container with a particular class name
 			var container = L.DomUtil.create('div', 'legendFrame');
-			
-			
+
+
 			$(container).append('<input id = "Road" type = "radio" class = "baseMap" checked><span>Road</span><br>')
 			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span>Satellite</span><br>')
 			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span>Hybrid</span><br>')
+			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads"><span>Additional Roads<span><br>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
 			$(container).append('<span class = "opacityTxt">100%</span>')
@@ -124,8 +127,9 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<div class="legend" id="directUse" ></div>');
 			$(container).append('<p class="legendtxt">Restoration</p>');
 			$(container).append('<div class="legend" id="Restoration" ></div>');
-			$(container).append('<p class="legendtxt">Bahuaja-Sonene National Park</p>');
-			$(container).append('<div class="legend" id="nationalPark" ></div>');
+		//Lisa & Nicolle mentioned taking this out of the legend?
+			// $(container).append('<p class="legendtxt">Bahuaja-Sonene National Park</p>');
+			// $(container).append('<div class="legend" id="nationalPark" ></div>');
 
 			// $(container).append(legendItems)
 			L.DomEvent.disableClickPropagation(container)
@@ -141,7 +145,7 @@ function createLegend(roads, earth, hybrid){
 			map.removeLayer(Satellite);
 			map.removeLayer(Hybrid);
 			roads.addTo(map)
-		}	
+		}
 		else if($(this).attr('id') == 'Satellite') {
 			document.getElementById("Road").checked = false;
 			document.getElementById("Hybrid").checked = false;
@@ -158,6 +162,9 @@ function createLegend(roads, earth, hybrid){
 		}
 
 	});
+
+
+
 	$('.range-slider').attr({
         max: 1,
         min: 0,
@@ -174,6 +181,16 @@ function createLegend(roads, earth, hybrid){
 	});
 
 };
+
+function roadsStyle(feature) {
+	return{
+		fillColor: "#000000",
+		color: "#000000",
+		weight: 1,
+		opacity: 1
+	}
+};
+
 function style(feature){
 	// sets the style of the zones
     var opacity = 1.0;
@@ -269,7 +286,24 @@ function buttonCount(){
 function removeZones(zones){
 	map.removeLayer(zones)
 }
+
+function createAddRoads(data) {
+	roadsPOI = L.geoJson(data, {
+		style: roadsStyle
+	}).addTo(map);
+
+	return roadsPOI;
+};
+function getData2() {
+	$.ajax("data/additionalRoads.geojson", {
+        dataType: "json",
+        success: function(response){
+			createAddRoads(response)
+		}
+	});
+}
 function getData(zone){
+
     //load the geoJson
     $.ajax(zone, {
         dataType: "json",
