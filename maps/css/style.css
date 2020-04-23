@@ -36,6 +36,10 @@ html, body, #map {
     height: 100%;
     width: 100%;
 }
+.baseMap{
+    margin-left: 10%;
+    margin-top: 2%;
+}
 .range-slider{
     margin-top: 15px;
     -webkit-appearance: none;
@@ -71,16 +75,17 @@ html, body, #map {
 }
 .proposal{
     width: auto;
-    height: 3.5vh;
+    height: 35px;
     float: left;
     text-align: center;
     border: solid #e7efea 2px;
     color: #e7efea; 
+    background-color: #186c3f;
     overflow: hidden;
     font-size: 1.5em;
     font-weight: 800;
 }
-.active {
+.active, button:hover {
     background-color: #e7efea ;
     color: #186c3f;
     border: solid #186c3f 2px;
@@ -89,12 +94,11 @@ html, body, #map {
     background-color: #e7efea;
 }
 .legendFrame{
-    height: 50vh;
+    height: 500px;
     width: 20vw;
     background-color: #e7efea;
     border: solid #186c3f 2px;
     padding: 5px;
-    border-radius: 10%;
 }
 
 .legendtxt{

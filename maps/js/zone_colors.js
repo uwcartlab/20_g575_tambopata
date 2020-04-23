@@ -20,26 +20,19 @@ function setMap(zones) {
 
 	});
 
+
 	var hybrid  = L.gridLayer.googleMutant({
 		type: 'hybrid'
 	}) // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'})
 	var earth = L.gridLayer.googleMutant({
 		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
 	})
-	const baseMaps = {
-		"Roads": roads,
-		"Satellite": earth,
-		"Hybrid": hybrid
-	};
-	var images = L.control.layers(
-		baseMaps,null,{collapsed:false});
-
-
 	var deFault = "data/proposal1.geojson"
 	getData(deFault)
 	createProposals()
-	images.addTo(map);
 	createLegend(roads, earth, hybrid)
+	buttonCount()
+	
 };
 function createProposals(){
 	var rowBar = L.Control.extend({
@@ -54,10 +47,10 @@ function createProposals(){
 			// ... initialize other DOM elements
 			$(row).append('<div class="container-fluid" align = "center">');
 			$(row).append('<div class="row">');
-			$(row).append('<div id = "proposal1" class="active proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</div>');
-			$(row).append('<div id = "proposal2" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</div>');
-			$(row).append('<div id = "proposal3" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</div>');
-			$(row).append('<div id = "proposal4" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</div>');
+			$(row).append('<button id = "proposal1" class="active proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</button>');
+			$(row).append('<button id = "proposal2" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</button>');
+			$(row).append('<button id = "proposal3" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</button>');
+			$(row).append('<button id = "proposal4" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</button>');
 			$(row).append('</div>');
 			$(row).append('</div>');
 
@@ -105,9 +98,9 @@ function createLegend(roads, earth, hybrid){
 			var container = L.DomUtil.create('div', 'legendFrame');
 			
 			
-			$(container).append('<div><input type = "radio" class = "leaflet-controls-layers-selector"><span>Road</span></div>')
-			$(container).append('<div><input type = "radio" class = "leaflet-controls-layers-selector"><span>Satellite</span></div>')
-			$(container).append('<div><input type = "radio" class = "leaflet-controls-layers-selector"><span>Hybrid</span></div>')
+			$(container).append('<input id = "Road" type = "radio" class = "baseMap" checked><span>Road</span><br>')
+			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span>Satellite</span><br>')
+			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span>Hybrid</span><br>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
 			$(container).append('<span class = "opacityTxt">100%</span>')
@@ -141,6 +134,30 @@ function createLegend(roads, earth, hybrid){
 	});
     // adds the legend to the map.
 	map.addControl(new LegendControl());
+	$('.baseMap').on('input',function(){
+		if ($(this).attr('id') == 'Road'){
+			document.getElementById("Satellite").checked = false;
+			document.getElementById("Hybrid").checked = false;
+			map.removeLayer(Satellite);
+			map.removeLayer(Hybrid);
+			roads.addTo(map)
+		}	
+		else if($(this).attr('id') == 'Satellite') {
+			document.getElementById("Road").checked = false;
+			document.getElementById("Hybrid").checked = false;
+			map.removeLayer(roads);
+			map.removeLayer(hybrid);
+			earth.addTo(map)
+		}
+		else if($(this).attr('id') == 'Hybrid') {
+			document.getElementById("Road").checked = false;
+			document.getElementById("Satellite").checked = false;
+			map.removeLayer(roads);
+			map.removeLayer(earth);
+			hybrid.addTo(map)
+		}
+
+	});
 	$('.range-slider').attr({
         max: 1,
         min: 0,
@@ -164,39 +181,69 @@ function style(feature){
     var zoneName = feature.properties.ZONES
 	if(zoneName == "Buffer Zone"){ // if it's the buffer zone, make it Powder blue
 	color = "#527a2b";
+	lineWidth = 0.3;
+	lineColor = "Black";
+	fillop = opacity
 		}
 		else if(zoneName == "Strict Protection"){
 			color = "#f5aa1c";
+			lineWidth = 0.3;
+			lineColor = "Black";
+			fillop = opacity
 		}
 		else if(zoneName == "Ese’eja and Harakmbut Territories"){
 			color = "#c4cc5c";
+			lineWidth = 0.3;
+			lineColor = "Black";
+			fillop = opacity
 		}
 		else if(zoneName == "Wildlands"){
 			color = "#005c50";
+			lineWidth = 0.3;
+			lineColor = "Black";
+			fillop = opacity
 		}
 		else if(zoneName == "Tourism"){
 			color = "#35a649";
+			lineWidth = 0.3;
+			lineColor = "Black";
+			fillop = opacity
         }
 		else if(zoneName == "Restoration"){
 			color = "#d87bb1";
+			lineWidth = 0.3;
+			lineColor = "Black";
+			fillop = opacity
 		}
 		else if(zoneName == "Bahuaja-Sonene National Park"){
-			color = "ForestGreen";
+			color = "None";
+			lineWidth = 4;
+			lineColor = "ForestGreen";
+			fillop = 0
 		}
 		else if(zoneName == "Direct Use"){
 			color = "#125e1d";
+			lineWidth = 0.3;
+			lineColor = "Black";
+			fillop = opacity;
 		}
 		else if(zoneName == "Low Impact Non-Timber Forest Use"){
 			color = "#94c660";
+			lineWidth = 0.3;
+			lineColor = "Black";
+			fillop = opacity;
 		}
 		else if(zoneName == "Community Reserve"){
 			color = "#b29d77";
+			lineWidth = 0.3;
+			lineColor = "Black";
+			fillop = opacity;
 		}
 		return{
             fillColor: color, // set color according to zone name
-            fillOpacity: opacity, //start as partially opaque
-			color: "black", // black border
-            weight: 0.3,
+            fillOpacity: fillop, //start as partially opaque
+			color: lineColor, // black border
+            weight: lineWidth,
             opacity: opacity,
 			pane: 'overlayPane'
 		}
@@ -205,7 +252,8 @@ function createZones(data){
     zones = L.geoJson(data, {
         //point to layer with the features and the list containing the geoJson attributes
 		style: style,
-		onEachFeature: onEachFeature
+		pane: 'left',
+		onEachFeature: onEachFeature,
 	}).addTo(map);
 	return zones
 };
@@ -215,6 +263,9 @@ function onEachFeature(feature, layer){
     //bind the popup to the circle marker
     layer.bindPopup(popupContent);
 };
+function buttonCount(){
+
+}
 function removeZones(zones){
 	map.removeLayer(zones)
 }
