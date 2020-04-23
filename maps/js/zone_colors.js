@@ -2,6 +2,7 @@
 //create map
 var map;
 var zones;
+var roadsPOI;
 
 function setMap(zones) {
     //<- initialize()
@@ -29,8 +30,7 @@ function setMap(zones) {
 	})
 
 	var deFault = "data/proposal1.geojson"
-	getData(deFault)
-	getData2()
+	getZones(deFault)
 	createProposals()
 	createLegend(roads, earth, hybrid)
 	buttonCount()
@@ -67,24 +67,24 @@ function createProposals(){
 			removeZones(zones)
 			var zone = "data/proposal1.geojson";
 			$(this).addClass('active');
-			getData(zone);
+			getZones(zone);
 		} else if ($(this).attr('id') == 'proposal2'){
 			removeZones(zones)
 			var zone = "data/proposal2.geojson";
 			$(this).addClass('active');
-			getData(zone);
+			getZones(zone);
 		}
 		else if ($(this).attr('id') == 'proposal3'){
 			removeZones(zones)
 			var zone = "data/proposal3.geojson";
 			$(this).addClass('active');
-			getData(zone);
+			getZones(zone);
 		}
 		else if ($(this).attr('id') == 'proposal4'){
 			removeZones(zones)
 			var zone = "data/proposal4.geojson";
 			$(this).addClass('active');
-			getData(zone);
+			getZones(zone);
 		}
 
 	});
@@ -102,7 +102,7 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<input id = "Road" type = "radio" class = "baseMap" checked><span>Road</span><br>')
 			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span>Satellite</span><br>')
 			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span>Hybrid</span><br>')
-			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads"><span>Additional Roads<span><br>')
+			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads" unchecked><span>Additional Roads<span><br>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
 			$(container).append('<span class = "opacityTxt">100%</span>')
@@ -126,11 +126,6 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<div class="legend" id="directUse" ></div>');
 			$(container).append('<p class="legendtxt">Restoration</p>');
 			$(container).append('<div class="legend" id="Restoration" ></div>');
-		//Lisa & Nicolle mentioned taking this out of the legend?
-			// $(container).append('<p class="legendtxt">Bahuaja-Sonene National Park</p>');
-			// $(container).append('<div class="legend" id="nationalPark" ></div>');
-
-			// $(container).append(legendItems)
 			L.DomEvent.disableClickPropagation(container)
             return container;
         }
@@ -159,11 +154,19 @@ function createLegend(roads, earth, hybrid){
 			map.removeLayer(earth);
 			hybrid.addTo(map)
 		}
-
 	});
-
-
-
+	$('.roads').on('input',function(){
+		if(document.getElementById("pointsOfInterest").checked == true){
+			getRoads(roadsPOI)
+		} else if(document.getElementById("pointsOfInterest").checked == false){
+			removeRoads(roadsPOI)
+		}
+	});
+	$('.roads').off('input',function(){
+		if(document.getElementById("pointsOfInterest").checked == false){
+			removeRoads(roadsPOI)
+		}
+	});
 	$('.range-slider').attr({
         max: 1,
         min: 0,
@@ -178,8 +181,6 @@ function createLegend(roads, earth, hybrid){
 		});
 		opacity=this.value
 	});
-	
-
 };
 
 function roadsStyle(feature) {
@@ -269,7 +270,6 @@ function createZones(data){
     zones = L.geoJson(data, {
         //point to layer with the features and the list containing the geoJson attributes
 		style: style,
-		pane: 'left',
 		onEachFeature: onEachFeature,
 	}).addTo(map);
 	return zones
@@ -286,6 +286,9 @@ function buttonCount(){
 function removeZones(zones){
 	map.removeLayer(zones)
 }
+function removeRoads(roadsPOI){
+	map.removeLayer(roadsPOI)
+}
 
 function createAddRoads(data) {
 	roadsPOI = L.geoJson(data, {
@@ -294,15 +297,15 @@ function createAddRoads(data) {
 
 	return roadsPOI;
 };
-function getData2() {
-	$.ajax("data/additionalRoads.geojson", {
+function getRoads() {
+	$.ajax("data/Additional_Roads.geojson", {
         dataType: "json",
         success: function(response){
 			createAddRoads(response)
 		}
 	});
 }
-function getData(zone){
+function getZones(zone){
 
     //load the geoJson
     $.ajax(zone, {
