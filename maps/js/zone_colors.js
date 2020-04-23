@@ -191,7 +191,7 @@ function style(feature){
 	var color; // color of the zone
     var zoneName = feature.properties.ZONES
 	if(zoneName == "Buffer Zone"){ // if it's the buffer zone, make it Powder blue
-	color = "#527a2b";
+	color = "#9B8917";
 	lineWidth = 0.3;
 	lineColor = "Black";
 	fillop = opacity
@@ -203,7 +203,7 @@ function style(feature){
 			fillop = opacity
 		}
 		else if(zoneName == "Ese’eja and Harakmbut Territories"){
-			color = "#c4cc5c";
+			color = "#C1A76A";
 			lineWidth = 0.3;
 			lineColor = "Black";
 			fillop = opacity
@@ -221,7 +221,7 @@ function style(feature){
 			fillop = opacity
         }
 		else if(zoneName == "Restoration"){
-			color = "#d87bb1";
+			color = "#D194B6";
 			lineWidth = 0.3;
 			lineColor = "Black";
 			fillop = opacity
@@ -233,7 +233,8 @@ function style(feature){
 			fillop = 0
 		}
 		else if(zoneName == "Direct Use"){
-			color = "#125e1d";
+			color = "#59B798";
+			//color = "#125e1d";
 			lineWidth = 0.3;
 			lineColor = "Black";
 			fillop = opacity;
@@ -245,7 +246,7 @@ function style(feature){
 			fillop = opacity;
 		}
 		else if(zoneName == "Community Reserve"){
-			color = "#b29d77";
+			color = "#c4cc5c";
 			lineWidth = 0.3;
 			lineColor = "Black";
 			fillop = opacity;
