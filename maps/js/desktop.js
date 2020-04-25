@@ -1,8 +1,12 @@
-//initialize function called when the script loads
+function desktop(){
 //create map
 var map;
 var zones;
 var roadsPOI;
+var view1;
+var view2;
+var zone2;
+var swipe;
 
 function setMap(zones) {
     //<- initialize()
@@ -21,7 +25,6 @@ function setMap(zones) {
 
 	});
 
-
 	var hybrid  = L.gridLayer.googleMutant({
 		type: 'hybrid'
 	}) // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'})
@@ -32,8 +35,7 @@ function setMap(zones) {
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
 	createProposals()
-	createLegend(roads, earth, hybrid)
-	buttonCount()
+	createLegend(roads, earth, hybrid, view1, view2)
 };
 function createProposals(){
 	var rowBar = L.Control.extend({
@@ -103,6 +105,7 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span>Satellite</span><br>')
 			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span>Hybrid</span><br>')
 			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads" unchecked><span>Additional Roads<span><br>')
+			$(container).append('<input id = "Compare" type = "checkbox" class = "Compare" unchecked><span>Compare Proposals<span><br>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
 			$(container).append('<span class = "opacityTxt">100%</span>')
@@ -138,6 +141,32 @@ function createLegend(roads, earth, hybrid){
 		} else if(document.getElementById("pointsOfInterest").checked == false){
 			removeRoads(roadsPOI)
 		}
+	});
+	$('.Compare').on('input',function(){
+		if(document.getElementById("Compare").checked == true){
+			map.createPane('left');
+			map.createPane('right');
+			map.removeLayer(zones);
+			$('.proposal').removeClass('active');
+			if ($('.proposal').attr('id') == 'proposal1'){
+				var lZone = "data/proposal1.geojson";
+				$('#proposal1').addClass('active');
+				$('#proposal3').addClass('active');
+				getLeftZones(lZone)};
+			if ($('.proposal').attr('id') == 'proposal2'){$('#proposal2').removeClass('active');};
+			if ($('.proposal').attr('id') == 'proposal3'){
+				var rZone = "data/proposal3.geojson";
+				$('#proposal3').addClass('active');
+				getRightZones(rZone);};
+			if ($('.proposal').attr('id') == 'proposal4'){$('#proposal4').removeClass('active');};
+			swipe = L.control.sideBySide(view1, view2).addTo(map);
+			}
+		else if(document.getElementById("Compare").checked == false){
+			$('.proposal').removeClass('active');
+			map.removeLayer(view1);
+			map.removeControl(swipe)
+			}
+
 	});
 	$('.baseMap').on('input',function(){
 		if ($(this).attr('id') == 'Road'){
@@ -177,6 +206,10 @@ function createLegend(roads, earth, hybrid){
 		opacity=this.value
 	});
 };
+function removeSwipe(swipe){
+	map.removeLayer(swipe);
+}
+
 function roadsStyle(feature) {
 	return{
 		fillColor: "#000000",
@@ -260,6 +293,22 @@ function style(feature){
 			pane: 'overlayPane'
 		}
 };
+function createLeftZone(data){
+    view1 = L.geoJson(data, {
+		style: style,
+		pane: 'left',
+		onEachFeature: onEachFeature,
+	}).addTo(map);
+	return view1
+};
+function createRightZone(data){
+    view2 = L.geoJson(data, {
+		style: style,
+		pane: 'right',
+		onEachFeature: onEachFeature,
+	}).addTo(map);
+	return view2
+};
 function createZones(data){
     zones = L.geoJson(data, {
         //point to layer with the features and the list containing the geoJson attributes
@@ -274,9 +323,6 @@ function onEachFeature(feature, layer){
     //bind the popup to the circle marker
     layer.bindPopup(popupContent);
 };
-function buttonCount(){
-
-}
 function removeZones(zones){
 	map.removeLayer(zones)
 }
@@ -298,8 +344,24 @@ function getRoads() {
 		}
 	});
 }
-function getZones(zone){
+function getLeftZones(leftZone){
+	$.ajax(leftZone, {
+		dataType: "json",
+		success: function(response){
+			createLeftZone(response)
+		}
+	});
+};
+function getRightZones(rightZone){
+	$.ajax(rightZone, {
+		dataType: "json",
+		success: function(response){
+			createRightZone(response)
+		}
+	});
+};
 
+function getZones(zone){
     //load the geoJson
     $.ajax(zone, {
         dataType: "json",
@@ -311,4 +373,4 @@ function getZones(zone){
 
 };
 //call the initialize function when the document has loaded
-$(document).ready(setMap);
+$(document).ready(setMap);}
