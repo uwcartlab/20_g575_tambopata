@@ -9,14 +9,17 @@ var zone2;
 var swipe;
 var lZone;
 var rZone;
-
+$('html').css("padding-bottom","25px");
+$('.navbar1').remove();
 var bottomNav = $("<div id = 'navbar2'></div>")
+
 bottomNav.appendTo($("body"));
-$('#navbar2').append('<button id = "mProposal1" class="active proposalM col-sm-2.4 col-xs-2.4">1</button>');
+$(bottomNav).append('<button id = "mProposal1" class="active proposalM col-sm-2.4 col-xs-2.4">1</button>');
 $(bottomNav).append('<button id = "mProposal2" class="proposalM col-sm-2.4 col-xs-2.4">2</button>');
 $(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-xs-2.4">3</button>');
 $(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4">4</button>');
-$(bottomNav).append('<button id = "mLegend" class="proposalM col-sm-2.4 col-xs-2.4"></button>');
+
+
 
 function setMap(zones) {
     //<- initialize()
@@ -25,27 +28,96 @@ function setMap(zones) {
 
     map = L.map('map', {
 		center: [-12.9, -69.5],
-		zoom: 9,
+		zoom: 7,
 		minZoom: 9,
 		layers: [roads],
 		maxBounds: ([
-			[-9.2,-73.5],
+			[-10.2,-73.5],
 			[-17.2, -65.5]
 		])
 
 	});
+	map.removeControl(map.zoomControl);
 	var hybrid  = L.gridLayer.googleMutant({
 		type: 'hybrid'
 	}) // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'})
 	var earth = L.gridLayer.googleMutant({
 		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
 	})
-
+	const baseMaps = {
+		"Roads": roads,
+		"Satellite": earth,
+		"Hybrid": hybrid
+	};
+	var images = L.control.layers(
+		baseMaps);
+	images.addTo(map)
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
+	switchProposals()
+	createLegend()
 };
+function switchProposals(){
+	$('.proposalM').click(function(){
+		$('.proposalM').removeClass('active');
+		if ($(this).attr('id') == 'mProposal1'){
+			removeZones(zones)
+			var zone = "data/proposal1.geojson";
+			$(this).addClass('active');
+			getZones(zone);
+		} else if ($(this).attr('id') == 'mProposal2'){
+			removeZones(zones)
+			var zone = "data/proposal2.geojson";
+			$(this).addClass('active');
+			getZones(zone);
+		}
+		else if ($(this).attr('id') == 'mProposal3'){
+			removeZones(zones)
+			var zone = "data/proposal3.geojson";
+			$(this).addClass('active');
+			getZones(zone);
+		}
+		else if ($(this).attr('id') == 'mProposal4'){
+			removeZones(zones)
+			var zone = "data/proposal4.geojson";
+			$(this).addClass('active');
+			getZones(zone);
+		}
+	});
+}
+function createLegend(){
+	$(bottomNav).append('<button data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="proposalM col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></button>');
 
+	var legend = L.Control.extend({
+        options: {
+            position: 'bottomright'
+        },
 
+        onAdd: function () {
+            // create the control container div with a particular class name
+			var legendItems = L.DomUtil.create('div', 'mLegend');
+			var accordion = $("<div id = 'accordion'></div>")
+			accordion.appendTo($(legendItems));
+
+			// ... initialize other DOM elements
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseOne"><div class="mLegendItem" id="bufferZone" ></div><p class="mLegendTxt">Buffer Zone</p></a></div><div id="collapseOne" class="collapse" data-parent="#accordion"><div class="card-body">This zone is meant to buffer the Tambopata National Reserve from the negative environmental impacts of human activities in the surrounding area. Any activity is allowed in the Buffer Zone provided it does not harm the Tambopata Reserve. Mining, and commercial agriculture, logging, or tourism must first conduct an environmental impact assessment, receive approval from the Peruvian Park Service, and obtain a legal concession before initiating approved activities. No government agency is officially designated with monitoring and managing the buffer zone.</div></div>');
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseTwo"><div class="mLegendItem" id="communityReserve" ></div><p class="mLegendTxt">Community Reserve</p></a></div><div id="collapseTwo" class="collapse" data-parent="#accordion"><div class="card-body">A zoning category invented and promoted by a group of local citizens involved in the participatory zoning process. It was not originally part of the formal zoning options presented to the roundtable by the Peruvian government. As proposed, this zone would allow all activities permitted in the buffer zone but only by local Tambopata residents.</div></div>');
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseThree"><div class="mLegendItem" id="strictProtection" ></div><p class="mLegendTxt">Strict Protection</p></a></div><div id="collapseThree" class="collapse" data-parent="#accordion"><div class="card-body">No human use, no roads, no buildings allowed.<div></div>');
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseFour"><div class="mLegendItem" id="wildlands" ></div><p class="mLegendTxt">Wildlands</p></a></div><div id="collapseFour" class="collapse" data-parent="#accordion"><div class="card-body">Similar restrictions to Strict Protection Zone with one exception: Ese’eja and Harakmbut indigenous peoples are allowed to hunt, fish, and collect non-timber forest products for subsistence.<div></div>');
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseFive"><div class="mLegendItem" id="nativeCommunities" ></div><p class="mLegendTxt">Eseeja and Harakmbut Territories</p></a></div><div id="collapseFive" class="collapse" data-parent="#accordion"><div class="card-body">Only Ese’eja and Harakmbut peoples have right to reside in this zone and use the land as they wish, including for agriculture. They can also hunt, fish, and harvest forest resources. Local Ese’eja and Harakmbut residents can mine, log and/or run tourism businesses if they have appropriate concession permits.<div></div>');
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseSix"><div class="mLegendItem" id="Tourism" ></div><p class="mLegendTxt">Tourism</p></a></div><div id="collapseSix" class="collapse" data-parent="#accordion"><div class="card-body">Tourism operators can operate in this zone with appropriate concession permit. Tourism lodges, cabins, and paths are allowed. Hunting and non-timber forest extraction are also allowed for subsistence or commercial purposes but only with appropriate permit. However, hunting endangered species is strictly forbidden (for everyone, including indigenous peoples).</div></div>');
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseSeven"><div class="mLegendItem" id="forestUse" ></div><p class="mLegendTxt">Low Impact Non-Timber Forest Use</p></a></div><div id="collapseSeven" class="collapse" data-parent="#accordion"><div class="card-body">Only Brazil nut harvest concessions, Brazil nut-related tourism, and subsistence hunting of non-endangered species is allowed.<div></div>');
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseEight"><div class="mLegendItem" id="directUse" ></div><p class="mLegendTxt">Direct Use</p></a></div><div id="collapseEight" class="collapse" data-parent="#accordion"><div class="card-body">Hunting, fishing, and agriculture are allowed. Tourism, and commercial agriculture, mining, and logging are permitted after first conducting an environmental impact assessment, receiving Park Service approval, and obtaining a legal concession.<div></div>');
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseNine"><div class="mLegendItem" id="Restoration" ></div><p class="mLegendTxt">Restoration</p></a></div><div id="collapseNine" class="collapse" data-parent="#accordion"><div class="card-body">A 1 million hectar park off limits to extraction. No new zoning within the park is being officially considered.<div></div>');
+			L.DomEvent.disableClickPropagation(legendItems)
+			return legendItems;
+
+		}
+
+	});
+	map.addControl(new legend());
+	
+};
 function roadsStyle(feature) {
 	return{
 		fillColor: "#000000",

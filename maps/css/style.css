@@ -43,13 +43,31 @@
   background-color: #4CAF50;
   color: white;
 }
-
-
 html, body, #map {
-    padding-bottom: 78px;
+    padding-bottom: 33px;
     height: 100%;
     width: 100%;
 }
+.mLegend{
+    height: 400px;
+    width: 100%;
+    right: -10px;
+    bottom: -10px;
+    background-color: #e7efea;
+    border: solid #186c3f 1px;
+}
+#collapseLegend{
+    position: absolute;
+    z-index: 1;
+    background-color: #e7efea;
+    border: solid #186c3f 1px;
+    height: 100px;
+    width: auto;
+    bottom: 0px;
+}
+.content {
+    position: relative;
+  }
 .baseMap{
     margin-left: 10%;
     margin-top: 2%;
@@ -94,7 +112,7 @@ html, body, #map {
 }
 .proposalM{
     width: 20%;
-    height: 45px;
+    height: 55px;
     float: left;
     text-align: center;
     border: solid #e7efea 2px;
@@ -138,6 +156,18 @@ html, body, #map {
     margin-left: 55px;
     margin-top: 5px;
     font-size: 1em;
+}
+.mLegendItem{
+    height: 2vh;
+    width: 4vw;
+    border: 1px solid black;
+}
+.mLegendTxt{
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    margin-left: 20px;
+    font-size: 1.5em;
 }
 .legend{
     height: 2vh;
@@ -188,4 +218,7 @@ background: repeating-linear-gradient(
   darkgreen 6px
 );
 /* other way to add texture in legend: background-image: url("https://www.transparenttextures.com/patterns/grid-noise.png"); */
+}
+.fa-list-ul:before {
+    content: "\f099";
 }
