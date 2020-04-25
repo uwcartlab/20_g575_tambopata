@@ -1,14 +1,12 @@
-
-function desktop(){
+//initialize function called when the script loads
+//create map
 var map;
 var zones;
 var roadsPOI;
 var view1;
 var view2;
 var zone2;
-var swipe;
-var lZone;
-var rZone;
+
 function setMap(zones) {
     //<- initialize()
 	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
@@ -36,7 +34,7 @@ function setMap(zones) {
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
 	createProposals()
-	createLegend(roads, earth, hybrid, view1, view2, swipe)
+	createLegend(roads, earth, hybrid, view1, view2)
 };
 function createProposals(){
 	var rowBar = L.Control.extend({
@@ -120,7 +118,7 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<div class="legend" id="strictProtection" ></div>');
 			$(container).append('<p class="legendtxt">Wildlands</p>');
 			$(container).append('<div class="legend" id="wildlands" ></div>');
-			$(container).append('<p class="legendtxt">Eseeja and Harakmbut Territories</p>');
+			$(container).append('<p class="legendtxt">Eseeja and Harakmbut Territiroes</p>');
 			$(container).append('<div class="legend" id="nativeCommunities" ></div>');
 			$(container).append('<p class="legendtxt">Tourism</p>');
 			$(container).append('<div class="legend" id="Tourism" ></div>');
@@ -145,31 +143,17 @@ function createLegend(roads, earth, hybrid){
 	});
 	$('.Compare').on('input',function(){
 		if(document.getElementById("Compare").checked == true){
-			map.removeLayer(zones);
-			$('.proposal').removeClass('active');
-			if ($('.proposal').attr('id') == 'proposal1'){
-				var lZone = "data/proposal1.geojson";
-				$('#proposal1').addClass('active');
-				$('#proposal3').addClass('active');
-				getLeftZones(lZone)
-				getRightZones(rZone)
-			}
-			if ($('.proposal').attr('id') == 'proposal2'){$('#proposal2').removeClass('active');}
-			if ($('.proposal').attr('id') == 'proposal3'){
-				var rZone = "data/proposal3.geojson";
-				$('#proposal3').addClass('active');
-				getRightZones(rZone)
-			}
-			if ($('.proposal').attr('id') == 'proposal4'){$('#proposal4').removeClass('active');};
-			swipe = L.control.sideBySide(view1, view2);
-			swipe.addTo(map);
+			map.createPane('left');
+    		map.createPane('right');
+			compare()
+			var swipe = L.control.sideBySide(view1, view2).addTo(map);
 			}
 		else if(document.getElementById("Compare").checked == false){
-			$('.proposal').removeClass('active');
-			map.removeControl(swipe);
-			map.removeLayer(view1);
-			map.removeLayer(view2);
+				removeSwipe(swipe)
 			}
+		// } else if(document.getElementById("pointsOfInterest").checked == false){
+		// 	removeRoads(roadsPOI)
+		// }
 	});
 	$('.baseMap').on('input',function(){
 		if ($(this).attr('id') == 'Road'){
@@ -209,6 +193,23 @@ function createLegend(roads, earth, hybrid){
 		opacity=this.value
 	});
 };
+function removeSwipe(swipe){
+	map.removeLayer(swipe);
+}
+function compare(){
+	map.removeLayer(zones);
+	$('.proposal').removeClass('active');
+	if ($('.proposal').attr('id') == 'proposal1'){
+		var lZone = "data/proposal1.geojson";
+		$('#proposal1').addClass('active');
+		getLeftZones(lZone)};
+	if ($('.proposal').attr('id') == 'proposal2'){$('#proposal2').removeClass('active');};
+	if ($('.proposal').attr('id') == 'proposal3'){
+		var rZone = "data/proposal3.geojson";
+		$('#proposal3').addClass('active');
+		getRightZones(rZone);};
+	if ($('.proposal').attr('id') == 'proposal4'){$('#proposal4').removeClass('active');};
+}
 function roadsStyle(feature) {
 	return{
 		fillColor: "#000000",
@@ -332,6 +333,7 @@ function createAddRoads(data) {
 	roadsPOI = L.geoJson(data, {
 		style: roadsStyle
 	}).addTo(map);
+
 	return roadsPOI;
 };
 function getRoads() {
@@ -371,4 +373,4 @@ function getZones(zone){
 
 };
 //call the initialize function when the document has loaded
-$(document).ready(setMap);}
+$(document).ready(setMap);

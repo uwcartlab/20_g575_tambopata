@@ -3,9 +3,3 @@
 function redirect(path){
 	window.location.href= path;
 }
-if(window.innerWidth > 780){
-	desktop()
-}
-else {
-	mobile()
-}
