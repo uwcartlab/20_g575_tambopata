@@ -5,7 +5,6 @@ function redirect(path){
 }
 if(window.innerWidth > 780){
 	desktop()
-}
-else {
+}else{
 	mobile()
 }

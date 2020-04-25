@@ -1,5 +1,5 @@
-
 function desktop(){
+//create map
 var map;
 var zones;
 var roadsPOI;
@@ -7,8 +7,7 @@ var view1;
 var view2;
 var zone2;
 var swipe;
-var lZone;
-var rZone;
+
 function setMap(zones) {
     //<- initialize()
 	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
@@ -145,31 +144,29 @@ function createLegend(roads, earth, hybrid){
 	});
 	$('.Compare').on('input',function(){
 		if(document.getElementById("Compare").checked == true){
+			map.createPane('left');
+			map.createPane('right');
 			map.removeLayer(zones);
 			$('.proposal').removeClass('active');
 			if ($('.proposal').attr('id') == 'proposal1'){
 				var lZone = "data/proposal1.geojson";
 				$('#proposal1').addClass('active');
 				$('#proposal3').addClass('active');
-				getLeftZones(lZone)
-				getRightZones(rZone)
-			}
-			if ($('.proposal').attr('id') == 'proposal2'){$('#proposal2').removeClass('active');}
+				getLeftZones(lZone)};
+			if ($('.proposal').attr('id') == 'proposal2'){$('#proposal2').removeClass('active');};
 			if ($('.proposal').attr('id') == 'proposal3'){
 				var rZone = "data/proposal3.geojson";
 				$('#proposal3').addClass('active');
-				getRightZones(rZone)
-			}
+				getRightZones(rZone);};
 			if ($('.proposal').attr('id') == 'proposal4'){$('#proposal4').removeClass('active');};
-			swipe = L.control.sideBySide(view1, view2);
-			swipe.addTo(map);
+			swipe = L.control.sideBySide(view1, view2).addTo(map);
 			}
 		else if(document.getElementById("Compare").checked == false){
 			$('.proposal').removeClass('active');
-			map.removeControl(swipe);
 			map.removeLayer(view1);
-			map.removeLayer(view2);
+			map.removeControl(swipe)
 			}
+
 	});
 	$('.baseMap').on('input',function(){
 		if ($(this).attr('id') == 'Road'){
@@ -209,6 +206,10 @@ function createLegend(roads, earth, hybrid){
 		opacity=this.value
 	});
 };
+function removeSwipe(swipe){
+	map.removeLayer(swipe);
+}
+
 function roadsStyle(feature) {
 	return{
 		fillColor: "#000000",
