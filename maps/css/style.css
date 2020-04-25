@@ -110,13 +110,13 @@ html, body, #map {
     position: absolute;
     display: inline-block;
     margin-left: 55px;
-    margin-top: 15px;
+    margin-top: 10px;
     font-size: 1em;
 }
 .legend{
     height: 2vh;
     width: 2vw;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-left: 10px;
     border: 1px solid black;
 }
