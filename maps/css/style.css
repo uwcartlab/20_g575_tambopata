@@ -107,7 +107,6 @@ html, body, #map {
 }
 .mLegend{
     background-color: #e7efea;
-    border: solid #186c3f 2px;
     height: 300px;
     width: 100% ;
     bottom: -10px;
@@ -117,7 +116,22 @@ html, body, #map {
     position: absolute;
     display: inline-block;
     font-size: 1em;
-    margin-top: -10px;
+    margin-top: -15px;
+    margin-left: 35px;
+    color: #186c3f;
+    font-weight: 600;
+}
+.card-header{
+    background-color: #e7efea;
+    border: solid #186c3f 2px; 
+    height: 25px;
+}
+.mLegendItem{
+    height: 15px;
+    width: 25px;
+    margin-top: 10px;
+    margin-left: 1px;
+    border: 1px solid black;
 }
 .legendtxt{
     position: absolute;
