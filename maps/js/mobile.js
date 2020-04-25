@@ -112,7 +112,7 @@ function createLegend(){
 	});
 
 	map.addControl(new legend());
-	
+
 };
 function roadsStyle(feature) {
 	return{

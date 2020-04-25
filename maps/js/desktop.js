@@ -35,7 +35,7 @@ function setMap(zones) {
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
 	createProposals()
-	createLegend(roads, earth, hybrid, view1, view2)
+	createLegend(roads, earth, hybrid, view1, view2, swipe)
 };
 function createProposals(){
 	var rowBar = L.Control.extend({
@@ -119,7 +119,7 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<div class="legend" id="strictProtection" ></div>');
 			$(container).append('<p class="legendtxt">Wildlands</p>');
 			$(container).append('<div class="legend" id="wildlands" ></div>');
-			$(container).append('<p class="legendtxt">Eseeja and Harakmbut Territiroes</p>');
+			$(container).append('<p class="legendtxt">Eseeja and Harakmbut Territories</p>');
 			$(container).append('<div class="legend" id="nativeCommunities" ></div>');
 			$(container).append('<p class="legendtxt">Tourism</p>');
 			$(container).append('<div class="legend" id="Tourism" ></div>');
@@ -333,7 +333,6 @@ function createAddRoads(data) {
 	roadsPOI = L.geoJson(data, {
 		style: roadsStyle
 	}).addTo(map);
-
 	return roadsPOI;
 };
 function getRoads() {
