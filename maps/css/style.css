@@ -173,7 +173,7 @@ html, body, #map {
     font-size: 1em;
     margin-left: 10px;
     color: #186c3f;
-    font-weight: 600;
+    font-weight: 800;
 
 }
 .card-header{
@@ -194,18 +194,6 @@ html, body, #map {
     margin-left: 55px;
     margin-top: 10px;
     font-size: 1em;
-}
-.mLegendItem{
-    height: 2vh;
-    width: 4vw;
-    border: 1px solid black;
-}
-.mLegendTxt{
-    position: absolute;
-    display: inline-block;
-    text-align: center;
-    margin-left: 20px;
-    font-size: 1.5em;
 }
 .legend{
     height: 2vh;
