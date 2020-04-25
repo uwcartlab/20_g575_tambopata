@@ -1,4 +1,4 @@
-//initialize function called when the script loads
+function desktop(){
 //create map
 var map;
 var zones;
@@ -373,4 +373,4 @@ function getZones(zone){
 
 };
 //call the initialize function when the document has loaded
-$(document).ready(setMap);
+$(document).ready(setMap);}
