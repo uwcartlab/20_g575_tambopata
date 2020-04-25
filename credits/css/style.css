@@ -42,3 +42,24 @@
 .arimo{
     font-family: 'Arimo';
 }
+
+.fa-twitter {
+    margin-right: 10px;
+    text-align: center;
+}
+.fa-link{
+	margin-right: 5px;
+    text-align: center;
+}
+.fa-envelope{
+	margin-right: 10px;
+	text-align: center;
+}
+.fa {
+    margin: 5px;
+    font-size: 35px;
+    border-radius: 35%;
+    width: 20px;
+	margin-bottom: 5px;
+	color: #CFC397;
+}
