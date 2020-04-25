@@ -6,6 +6,7 @@ var roadsPOI;
 var view1;
 var view2;
 var zone2;
+var swipe;
 
 function setMap(zones) {
     //<- initialize()
@@ -144,16 +145,28 @@ function createLegend(roads, earth, hybrid){
 	$('.Compare').on('input',function(){
 		if(document.getElementById("Compare").checked == true){
 			map.createPane('left');
-    		map.createPane('right');
-			compare()
-			var swipe = L.control.sideBySide(view1, view2).addTo(map);
+			map.createPane('right');
+			map.removeLayer(zones);
+			$('.proposal').removeClass('active');
+			if ($('.proposal').attr('id') == 'proposal1'){
+				var lZone = "data/proposal1.geojson";
+				$('#proposal1').addClass('active');
+				$('#proposal3').addClass('active');
+				getLeftZones(lZone)};
+			if ($('.proposal').attr('id') == 'proposal2'){$('#proposal2').removeClass('active');};
+			if ($('.proposal').attr('id') == 'proposal3'){
+				var rZone = "data/proposal3.geojson";
+				$('#proposal3').addClass('active');
+				getRightZones(rZone);};
+			if ($('.proposal').attr('id') == 'proposal4'){$('#proposal4').removeClass('active');};
+			swipe = L.control.sideBySide(view1, view2).addTo(map);
 			}
 		else if(document.getElementById("Compare").checked == false){
-				removeSwipe(swipe)
+			$('.proposal').removeClass('active');
+			map.removeLayer(view1);
+			map.removeControl(swipe)
 			}
-		// } else if(document.getElementById("pointsOfInterest").checked == false){
-		// 	removeRoads(roadsPOI)
-		// }
+
 	});
 	$('.baseMap').on('input',function(){
 		if ($(this).attr('id') == 'Road'){
@@ -196,20 +209,7 @@ function createLegend(roads, earth, hybrid){
 function removeSwipe(swipe){
 	map.removeLayer(swipe);
 }
-function compare(){
-	map.removeLayer(zones);
-	$('.proposal').removeClass('active');
-	if ($('.proposal').attr('id') == 'proposal1'){
-		var lZone = "data/proposal1.geojson";
-		$('#proposal1').addClass('active');
-		getLeftZones(lZone)};
-	if ($('.proposal').attr('id') == 'proposal2'){$('#proposal2').removeClass('active');};
-	if ($('.proposal').attr('id') == 'proposal3'){
-		var rZone = "data/proposal3.geojson";
-		$('#proposal3').addClass('active');
-		getRightZones(rZone);};
-	if ($('.proposal').attr('id') == 'proposal4'){$('#proposal4').removeClass('active');};
-}
+
 function roadsStyle(feature) {
 	return{
 		fillColor: "#000000",
