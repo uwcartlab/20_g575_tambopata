@@ -105,7 +105,20 @@ html, body, #map {
     border: solid #186c3f 2px;
     padding: 5px;
 }
-
+.mLegend{
+    background-color: #e7efea;
+    border: solid #186c3f 2px;
+    height: 300px;
+    width: 100% ;
+    bottom: -10px;
+    right: -10px;
+}
+.mLegendTxt{
+    position: absolute;
+    display: inline-block;
+    font-size: 1em;
+    margin-top: -10px;
+}
 .legendtxt{
     position: absolute;
     display: inline-block;
