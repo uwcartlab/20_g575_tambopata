@@ -74,7 +74,7 @@
 /* The actual popup (appears on top) */
 .popup .popupText {
   visibility: hidden;
-  width: 160px;
+  width: 360px;
   background-color: #555;
   color: #fff;
   text-align: center;

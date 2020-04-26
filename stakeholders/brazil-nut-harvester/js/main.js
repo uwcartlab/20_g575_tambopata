@@ -101,8 +101,33 @@ function showSpecific(select){
 
 // <script>
 // When the user clicks on <div>, open the popup
-function popupFunction() {
-  var popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
+function popupHec() {
+  var popup1 = document.getElementById("myPopup1");
+    popup1.classList.toggle("show");
+};
+
+function popupFad() {
+  var popup2 = document.getElementById("myPopup2");
+    popup2.classList.toggle("show");
+};
+
+function popupWE() {
+  var popup3 = document.getElementById("myPopup3");
+    popup3.classList.toggle("show");
+};
+
+function popupLog() {
+  var popup4 = document.getElementById("myPopup4");
+    popup4.classList.toggle("show");
+};
+
+function popupCon() {
+  var popup5 = document.getElementById("myPopup5");
+    popup5.classList.toggle("show");
+};
+
+function popupREDD() {
+  var popup6 = document.getElementById("myPopup6");
+    popup6.classList.toggle("show");
 };
 // </script>
