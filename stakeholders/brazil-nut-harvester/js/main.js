@@ -99,7 +99,7 @@ function showSpecific(select){
 	document.getElementById(select).style.display = "block";
 }
 
-// <script>
+
 // When the user clicks on <div>, open the popup
 function popupHec() {
   var popup1 = document.getElementById("myPopup1");
