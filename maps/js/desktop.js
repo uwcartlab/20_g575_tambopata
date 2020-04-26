@@ -121,7 +121,7 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<div class="legend" id="strictProtection" ></div>');
 			$(container).append('<p class="legendtxt">Wildlands</p>');
 			$(container).append('<div class="legend" id="wildlands" ></div>');
-			$(container).append('<p class="legendtxt">Eseeja and Harakmbut Territories</p>');
+			$(container).append('<p class="legendtxt">Ese\'eja and Harakmbut Territories</p>');
 			$(container).append('<div class="legend" id="nativeCommunities" ></div>');
 			$(container).append('<p class="legendtxt">Tourism</p>');
 			$(container).append('<div class="legend" id="Tourism" ></div>');

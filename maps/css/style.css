@@ -161,9 +161,12 @@ html, body, #map {
     border: solid #186c3f 2px;
     padding: 5px;
 }
+#accordion{
+    overflow-y: scroll;
+}
 .mLegend{
     background-color: #e7efea;
-    height: 300px;
+    height: 400px;
     width: 100% ;
     bottom: -10px;
     right: -10px;
