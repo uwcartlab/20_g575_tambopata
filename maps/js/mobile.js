@@ -49,7 +49,7 @@ function setMap(zones) {
 		});
 		return roadsPOI
 	};
-	
+
 	$.ajax("data/Additional_Roads.geojson", {
 		dataType: "json",
 		success: function(response){
@@ -73,7 +73,8 @@ function setMap(zones) {
 	layers.addTo(map);
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
-	
+
+	getPOIs()
 	switchProposals()
 	createLegend()
 };
@@ -106,7 +107,7 @@ function switchProposals(){
 	});
 }
 function createLegend(){
-	
+
 	legend = L.Control.extend({
         options: {
             position: 'bottomright'
@@ -130,7 +131,7 @@ function createLegend(){
 		}
 	});
 	map.addControl(new legend());
-	$("#mLegend").click(function() { 
+	$("#mLegend").click(function() {
 		$(".mLegend").toggle("slow");
 	});
 };
@@ -247,6 +248,12 @@ function onEachFeature(feature, layer){
     //bind the popup to the circle marker
     layer.bindPopup(popupContent);
 };
+function onEachPOI(feature, layer) {
+	var popupContent = ('<p style = "text-align: center"><b>' + feature.properties.poiName + '</b></p>');
+	popupContent += '<p>'+feature.properties.infoPOI+'</p>';
+	//bind the popup to the circle marker
+    layer.bindPopup(popupContent);
+}
 function removeZones(zones){
 	map.removeLayer(zones)
 }
@@ -256,6 +263,12 @@ function removeZones(zones){
 // 	});
 // 	return roadsPOI
 // };
+function createAddPOIs(data) {
+	layerPOI = L.geoJson(data, {
+		onEachFeature: onEachPOI
+	}).addTo(map);
+	return layerPOI;
+}
 function getRoads() {
 	$.ajax("data/Additional_Roads.geojson", {
         dataType: "json",
@@ -264,6 +277,14 @@ function getRoads() {
 		}
 	});
 }
+function getPOIs() {
+	$.ajax("data/pointsOfInterest.geojson", {
+		dataType: "json",
+		success: function(response){
+			createAddPOIs(response)
+		}
+	});
+};
 function getLeftZones(leftZone){
 	$.ajax(leftZone, {
 		dataType: "json",
