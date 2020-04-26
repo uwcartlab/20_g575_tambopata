@@ -13,7 +13,7 @@ function redirect(path){
 
 // do these on page start
 window.onload = function(){
-	
+
 	// dimensions and definition of the graph container
 	var w = 700, h = 500;
 	var container = d3.select("#graph-container")
@@ -23,10 +23,10 @@ window.onload = function(){
         .attr("class", "container")
 		.attr("class", "container")
         .style("background-color", "rgba(0,0,0,0.2)");
-	
+
 	// this is for creating the images
 	var defs = container.append('svg:defs');
-	
+
 	// the hard-coded information for each stakeholder and their image
 	// posx and posy start at 0 in the top-left of the container svg
 	data = [{
@@ -49,7 +49,7 @@ window.onload = function(){
 		img: "img/pickaxe.jpg"
 		}
 	]
-	
+
 	// for each of the stakeholders create a pattern with the image and then append a circle filled with it
 	data.forEach(function(d, i) {
 		defs.append("svg:pattern")
@@ -98,3 +98,39 @@ function showSpecific(select){
 	document.getElementById("specific-container").style.display = "block";
 	document.getElementById(select).style.display = "block";
 }
+
+// When the user clicks on <div>, open the popup
+function popupNut() {
+  var popup1 = document.getElementById("myPopup1");
+    popup1.classList.toggle("show");
+};
+
+function popupFarm() {
+  var popup2 = document.getElementById("myPopup2");
+    popup2.classList.toggle("show");
+};
+
+function popupMine() {
+  var popup3 = document.getElementById("myPopup3");
+    popup3.classList.toggle("show");
+};
+
+function popupMadre() {
+  var popup4 = document.getElementById("myPopup4");
+    popup4.classList.toggle("show");
+};
+
+function popupEse() {
+  var popup5 = document.getElementById("myPopup5");
+    popup5.classList.toggle("show");
+};
+
+function popupREDD() {
+  var popup6 = document.getElementById("myPopup6");
+    popup6.classList.toggle("show");
+};
+
+function popupEco() {
+  var popup7 = document.getElementById("myPopup7");
+    popup7.classList.toggle("show");
+};
