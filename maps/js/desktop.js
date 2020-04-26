@@ -7,6 +7,7 @@ var view1;
 var view2;
 var zone2;
 var swipe;
+var pointsPOI;
 
 function setMap(zones) {
     //<- initialize()
@@ -34,6 +35,7 @@ function setMap(zones) {
 
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
+	getPOIs()
 	createProposals()
 	createLegend(roads, earth, hybrid, view1, view2, swipe)
 };
@@ -323,6 +325,12 @@ function onEachFeature(feature, layer){
     //bind the popup to the circle marker
     layer.bindPopup(popupContent);
 };
+function onEachPOI(feature, layer) {
+	var popupContent = ('<p style = "text-align: center"><b>' + feature.properties.poiName + '</b></p>');
+	popupContent += '<p>'+feature.properties.infoPOI+'</p>';
+	//bind the popup to the circle marker
+    layer.bindPopup(popupContent);
+}
 function removeZones(zones){
 	map.removeLayer(zones)
 }
@@ -335,6 +343,13 @@ function createAddRoads(data) {
 	}).addTo(map);
 	return roadsPOI;
 };
+function createAddPOIs(data) {
+	layerPOI = L.geoJson(data, {
+		onEachFeature: onEachPOI
+	}).addTo(map);
+	return layerPOI;
+}
+//way to combine getRoads and getPOIs??
 function getRoads() {
 	$.ajax("data/Additional_Roads.geojson", {
         dataType: "json",
@@ -342,7 +357,15 @@ function getRoads() {
 			createAddRoads(response)
 		}
 	});
-}
+};
+function getPOIs() {
+	$.ajax("data/pointsOfInterest.geojson", {
+		dataType: "json",
+		success: function(response){
+			createAddPOIs(response)
+		}
+	});
+};
 function getLeftZones(leftZone){
 	$.ajax(leftZone, {
 		dataType: "json",
