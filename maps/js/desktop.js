@@ -103,7 +103,7 @@ function createLegend(roads, earth, hybrid){
 			var container = L.DomUtil.create('div', 'legendFrame');
 
 
-			$(container).append('<input id = "Road" type = "radio" class = "baseMap" checked><span>Road</span><br>')
+			$(container).append('<input id = "Road" type = "radio" class = "baseMap" checked><span>Roads</span><br>')
 			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span>Satellite</span><br>')
 			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span>Hybrid</span><br>')
 			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads" unchecked><span>Additional Roads<span><br>')

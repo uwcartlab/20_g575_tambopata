@@ -1,13 +1,8 @@
 .container-stakeholder {
-  margin-top: 10px;
   max-width: 1000px;
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
   display: inherit;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 .header{
@@ -118,6 +113,5 @@ li {
 .img-bground {
   height: auto;
   min-width: 100%;
-  min-height: 100%;
-  overflow: hidden;
+  min-height: 70%;
 }
