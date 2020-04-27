@@ -8,7 +8,7 @@ var view2;
 var zone2;
 var swipe;
 var legend;
-$('html').css("padding-bottom","25px");
+$('html').css("padding-bottom","75px");
 $('.navbar1').remove();
 var bottomNav = $("<div id = 'navbar2'></div>")
 
@@ -19,6 +19,13 @@ $(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-x
 $(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4">4</button>');
 $(bottomNav).append('<button data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="proposalM col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></button>');
 
+var bottomNavBar = $("<div id = 'mobileNav'></div>")
+bottomNavBar.appendTo($("body"));
+$(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="overlayOn()"><img src="img/NavbarImg/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""></button>');
+$(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4"><img src="img/NavbarImg/person.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
+$(bottomNavBar).append('<button id = "bottomNav" class="active col-sm-2.4 col-xs-2.4"><img src="img/NavbarImg/map.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
+$(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'secret\')"><img src="img/NavbarImg/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
+$(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'credits\')"><img src="img/NavbarImg/info.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
 
 function setMap(zones) {
     //<- initialize()
@@ -43,34 +50,12 @@ function setMap(zones) {
 	var earth = L.gridLayer.googleMutant({
 		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
 	})
-	function createAddRoads(data) {
-		var roadsPOI = L.geoJson(data, {
-			style: roadsStyle
-		});
-		return roadsPOI
-	};
 
-	$.ajax("data/Additional_Roads.geojson", {
-		dataType: "json",
-		success: function(response){
-			var roadsPOI = L.geoJson(response, {
-				style: roadsStyle
-			});
-			return roadsPOI
-		}
-		});
-	const baseLayer = {
-		"Additional Roads": roadsPOI
-	}
 	const baseMaps = {
 		"Roads": roads,
 		"Satellite": earth,
 		"Hybrid": hybrid
 	};
-
-	var layers = L.control.layers(
-		baseMaps,baseLayer);
-	layers.addTo(map);
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
 
