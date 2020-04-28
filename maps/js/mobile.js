@@ -3,6 +3,7 @@ function mobile(){
 var map;
 var zones;
 var legend;
+
 $('html').css("padding-bottom","75px");
 $('.navbar1').remove();
 var bottomNav = $("<div id = 'navbar2'></div>")
@@ -22,6 +23,8 @@ $(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" o
 $(bottomNavBar).append('<button id = "bottomNav" class="active col-sm-2.4 col-xs-2.4" onclick="redirect(\'../maps\')"><img src="img/NavbarImg/map.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
 $(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'../secret\')" ><img src="img/NavbarImg/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
 $(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'../credits\')"><img src="img/NavbarImg/info.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
+
+
 function setMap(zones) {
     //<- initialize()
 	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
@@ -29,13 +32,9 @@ function setMap(zones) {
 
     map = L.map('map', {
 		center: [-12.9, -69.5],
-		zoom: 7,
-		minZoom: 9,
+		zoom: 9,
+		minZoom: 8,
 		layers: [roads],
-		maxBounds: ([
-			[-10.2,-73.5],
-			[-17.2, -65.5]
-		])
 
 	});
 	map.removeControl(map.zoomControl);
@@ -46,15 +45,26 @@ function setMap(zones) {
 		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
 	})
 
+	var addRoads = L.geoJson(roadsPOI, {
+		style: roadsStyle
+	});
 	const baseMaps = {
 		"Roads": roads,
 		"Satellite": earth,
 		"Hybrid": hybrid
 	};
+	const vectorLayers = {
+		"Additional Roads": addRoads
+	}
+
+	var baseLayers = L.control.layers(baseMaps, vectorLayers, {position: 'topleft', collapsed: false});
+	baseLayers.addTo(map);
+
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
 
 	getPOIs()
+	
 	switchProposals()
 	createLegend()
 };
@@ -112,7 +122,7 @@ function createLegend(){
 	});
 	map.addControl(new legend());
 	$("#mLegend").click(function() {
-		$(".mLegend").toggle("slow");
+		$(".mLegend").toggle("fast");
 	});
 };
 function roadsStyle(feature) {
@@ -198,22 +208,6 @@ function style(feature){
 			pane: 'overlayPane'
 		}
 };
-function createLeftZone(data){
-    view1 = L.geoJson(data, {
-		style: style,
-		pane: 'left',
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return view1
-};
-function createRightZone(data){
-    view2 = L.geoJson(data, {
-		style: style,
-		pane: 'right',
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return view2
-};
 function createZones(data){
     zones = L.geoJson(data, {
         //point to layer with the features and the list containing the geoJson attributes
@@ -237,12 +231,13 @@ function onEachPOI(feature, layer) {
 function removeZones(zones){
 	map.removeLayer(zones)
 }
-// function createAddRoads(data) {
-// 	roadsPOI = L.geoJson(data, {
-// 		style: roadsStyle
-// 	});
-// 	return roadsPOI
-// };
+function createAddRoads(data) {
+	var roadsPOI = L.geoJson(data, {
+		style: roadsStyle
+	}).addTo(map);
+	console.log(roadsPOI)
+	return roadsPOI
+};
 function createAddPOIs(data) {
 	layerPOI = L.geoJson(data, {
 		onEachFeature: onEachPOI
@@ -262,22 +257,6 @@ function getPOIs() {
 		dataType: "json",
 		success: function(response){
 			createAddPOIs(response)
-		}
-	});
-};
-function getLeftZones(leftZone){
-	$.ajax(leftZone, {
-		dataType: "json",
-		success: function(response){
-			createLeftZone(response)
-		}
-	});
-};
-function getRightZones(rightZone){
-	$.ajax(rightZone, {
-		dataType: "json",
-		success: function(response){
-			createRightZone(response)
 		}
 	});
 };
