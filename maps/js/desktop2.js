@@ -4,7 +4,10 @@ function desktop(){
 
 //global variables
 var map;
-var zones;
+var proposal1;
+var proposal2;
+var proposal3;
+var proposal4;
 var roadsPOI;
 var view1;
 var view2;
@@ -35,9 +38,8 @@ function setMap(zones) {
 	var earth = L.gridLayer.googleMutant({
 		type: 'satellite' 
 	})
-	//when loading the page, it will by default load proposal 1
-	var deFault = "data/proposal1.geojson"
-	getZones(deFault)
+	map.createPane('left');
+	map.createPane('right');
 	//get POI onto the map.
 	getPOIs()
 	//createProposals is for loading each proposal map based on user's click
@@ -325,32 +327,8 @@ function style(feature){
             opacity: opacity
 		}
 };
-function createLeftZone(data){
-    view1 = L.geoJson(data, {
-		style: style,
-		pane: 'left',
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return view1
-};
-function createRightZone(data){
-    view2 = L.geoJson(data, {
-		style: style,
-		pane: 'right',
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return view2
-};
-//create zones loads in the data from the ajax function and uses
-//leaflets geoJson function to add it onto the map.
-function createZones(data){
-    zones = L.geoJson(data, {
-        //point to layer with the features and the list containing the geoJson attributes
-		style: style,
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return zones
-};
+
+
 //popup style for the zones
 function onEachFeature(feature, layer){
 	var popupContent = ('<p style = "text-align: center";><b>'+ feature.properties.ZONES + '</b></p>');
@@ -405,6 +383,22 @@ function getPOIs() {
 		}
 	});
 };
+function createLeftZone(data){
+    view1 = L.geoJson(data, {
+		style: style,
+		pane: 'left',
+		onEachFeature: onEachFeature,
+	}).addTo(map);
+	return view1
+};
+function createRightZone(data){
+    view2 = L.geoJson(data, {
+		style: style,
+		pane: 'right',
+		onEachFeature: onEachFeature,
+	}).addTo(map);
+	return view2
+};
 function getLeftZones(leftZone){
 	$.ajax(leftZone, {
 		dataType: "json",
@@ -420,6 +414,16 @@ function getRightZones(rightZone){
 			createRightZone(response)
 		}
 	});
+};
+//create zones loads in the data from the ajax function and uses
+//leaflets geoJson function to add it onto the map.
+function createZones(data){
+    zones = L.geoJson(data, {
+        //point to layer with the features and the list containing the geoJson attributes
+		style: style,
+		onEachFeature: onEachFeature,
+	}).addTo(map);
+	return zones
 };
 //get zone based on input or default load.
 //zone is the filepath of the geojson to be loaded onto the map. 
