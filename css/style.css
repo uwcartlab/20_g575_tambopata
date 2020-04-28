@@ -7,11 +7,10 @@
 }
 .header{
   background:#006d2c;
-  width:100%;
   color: white;
-  text-align: center;
-  font-size: 50px;
-  padding: 20px 20px;
+  text-align: left;
+  font-size: 35px;
+  padding: 0px 20px 0px 10px;
 }
 button p{
   float: right;
@@ -21,10 +20,13 @@ button p{
 /* Place the navbar at the top of the page, and make it stick */
 .navbar1 {
   background-color: #006d2c;
-  overflow: hidden;
+  /* overflow: hidden; */
   bottom: 0;
   width: 100%;
+
 }
+
+
 @media(max-width:50em){ /* Breakpoint only for mobile */
   .navbar1 {
       color: #186c3f;
@@ -52,19 +54,24 @@ button p{
       background-color: #4CAF50;
       color: white;
     }
+  .navbar1 span {
+    display:none;
+  }
 }
 /* Style the links inside the navigation bar */
-
 .navbar1 button {
   background-color: #006d2c;
-  float: left;
-  display: block;
+  border-style: none;
+  /* float:left; */
+  display:inline-block;
   color: #f2f2f2;
   text-align: center;
   padding: 20px 15px 20px 15px;
   text-decoration: none;
   font-size: 20px;
 }
+
+/* UW Logo placement */
 .navbar1 a{
   float: right;
   padding: 5px 20px 0px 0px;

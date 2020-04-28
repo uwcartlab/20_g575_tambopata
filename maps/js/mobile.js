@@ -13,11 +13,11 @@ var bottomNav = $("<div id = 'navbar2'></div>")
 
 bottomNav.appendTo($("body"));
 //appending the buttons to the html body, not on the actual map.
-$(bottomNav).append('<button id = "mProposal1" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM1" class="propM active"></div>1</button>');
-$(bottomNav).append('<button id = "mProposal2" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM2" class="propM"></div>2</button>');
-$(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM3" class="propM"></div>3</button>');
-$(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM4" class="propM"></div>4</button>');
-$(bottomNav).append('<button data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="propM proposalM col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></button>');
+$(bottomNav).append('<div type = "button" id = "mProposal1" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM1" class="propM active"></div>1</div>');
+$(bottomNav).append('<div type = "button" id = "mProposal2" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM2" class="propM"></div>2</div>');
+$(bottomNav).append('<div type = "button" id = "mProposal3" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM3" class="propM"></div>3</div>');
+$(bottomNav).append('<div type = "button" id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM4" class="propM"></div>4</div>');
+$(bottomNav).append('<div type = "button" data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="propM proposalM col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></div>');
 
 //create maps function
 function setMap(zones) {
@@ -60,7 +60,7 @@ function setMap(zones) {
 		"Additional Roads": addRoads
 	}
 	//adding the controls on top left and leaving it out
-	var baseLayers = L.control.layers(baseMaps, vectorLayers, {position: 'topleft', collapsed: false});
+	var baseLayers = L.control.layers(baseMaps, vectorLayers, {position: 'topleft', collapsed: true});
 	baseLayers.addTo(map);
 
 	//when loading the page, it will by default load proposal 1
@@ -145,7 +145,7 @@ function createLegend(){
 	//legend will be placed in bottom right of page, but will be dependent off the legend icon button.
 	legend = L.Control.extend({
         options: {
-            position: 'bottomright'
+            position: 'bottomleft'
         },
         onAdd: function () {
             // create the control container div with a particular class name
@@ -228,8 +228,8 @@ function style(feature){
 		}
 		else if(zoneName == "Bahuaja-Sonene National Park"){
 			color = "None";
-			lineWidth = 4;
-			lineColor = "ForestGreen";
+			lineWidth = 3;
+			lineColor = "White";
 			fillop = 0
 		}
 		else if(zoneName == "Direct Use"){
