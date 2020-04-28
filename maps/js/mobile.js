@@ -9,11 +9,11 @@ $('html').css("padding-bottom","80px");
 var bottomNav = $("<div id = 'navbar2'></div>")
 
 bottomNav.appendTo($("body"));
-$(bottomNav).append('<button id = "mProposal1" class="active proposalM col-sm-2.4 col-xs-2.4">1</button>');
-$(bottomNav).append('<button id = "mProposal2" class="proposalM col-sm-2.4 col-xs-2.4">2</button>');
-$(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-xs-2.4">3</button>');
-$(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4">4</button>');
-$(bottomNav).append('<button data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="proposalM col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></button>');
+$(bottomNav).append('<button id = "mProposal1" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM1" class="propM active"></div>1</button>');
+$(bottomNav).append('<button id = "mProposal2" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM2" class="propM"></div>2</button>');
+$(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM3" class="propM"></div>3</button>');
+$(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM4" class="propM"></div>4</button>');
+$(bottomNav).append('<button data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="propM proposalM col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></button>');
 
 // var bottomNavBar = $("<div id = 'mobileNav'></div>")
 // bottomNavBar.appendTo($("body"));
@@ -62,36 +62,44 @@ function setMap(zones) {
 
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
-
 	getPOIs()
-	
 	switchProposals()
 	createLegend()
 };
+function opacityBar (){
+	opacityBar = L.Control.extend({
+		options: {
+			position: 'topright'
+		},
+		onAdd: function(){
+
+		}
+	})
+}
 function switchProposals(){
 	$('.proposalM').click(function(){
-		$('.proposalM').removeClass('active');
+		$('.propM').removeClass('active');
 		if ($(this).attr('id') == 'mProposal1'){
 			removeZones(zones)
 			var zone = "data/proposal1.geojson";
-			$(this).addClass('active');
+			$("#propM1").addClass('active');
 			getZones(zone);
 		} else if ($(this).attr('id') == 'mProposal2'){
 			removeZones(zones)
 			var zone = "data/proposal2.geojson";
-			$(this).addClass('active');
+			$("#propM2").addClass('active');
 			getZones(zone);
 		}
 		else if ($(this).attr('id') == 'mProposal3'){
 			removeZones(zones)
 			var zone = "data/proposal3.geojson";
-			$(this).addClass('active');
+			$("#propM3").addClass('active');
 			getZones(zone);
 		}
 		else if ($(this).attr('id') == 'mProposal4'){
 			removeZones(zones)
 			var zone = "data/proposal4.geojson";
-			$(this).addClass('active');
+			$("#propM4").addClass('active');
 			getZones(zone);
 		}
 	});
@@ -231,26 +239,11 @@ function onEachPOI(feature, layer) {
 function removeZones(zones){
 	map.removeLayer(zones)
 }
-function createAddRoads(data) {
-	var roadsPOI = L.geoJson(data, {
-		style: roadsStyle
-	}).addTo(map);
-	console.log(roadsPOI)
-	return roadsPOI
-};
 function createAddPOIs(data) {
 	layerPOI = L.geoJson(data, {
 		onEachFeature: onEachPOI
 	}).addTo(map);
 	return layerPOI;
-}
-function getRoads() {
-	$.ajax("data/Additional_Roads.geojson", {
-        dataType: "json",
-        success: function(response){
-			createAddRoads(response)
-		}
-	});
 }
 function getPOIs() {
 	$.ajax("data/pointsOfInterest.geojson", {
@@ -268,9 +261,7 @@ function getZones(zone){
         success: function(response){
 			createZones(response)
         }
-
 	});
-
 };
 //call the initialize function when the document has loaded
 $(document).ready(setMap);}

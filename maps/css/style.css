@@ -6,8 +6,9 @@
   width: 100%;
 }
 button p{
+    float: right;
     margin: 0;
-    padding: 0;
+    padding-left: 10px;
 }
 @media(max-width:50em){ /* Breakpoint only for mobile */
     .navbar1 {
@@ -34,6 +35,12 @@ button p{
         background-color: #4CAF50;
         color: white;
       }
+      .active, button:hover {
+        background-color: #e7efea ;
+        color: #186c3f;
+        border: solid #186c3f 2px;
+        box-shadow: 0 8px 6px -6px #186c3f;
+      }
   }
 
 /* Style the links inside the navigation bar */
@@ -47,19 +54,6 @@ button p{
   text-decoration: none;
   font-size: 20px;
 }
-
-.proposalM {
-    background-color:  #186c3f;;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    float: left;
-    font-size: 1.5em;
-    width: 20%;
-    height: 55px;
-    font-weight: 600;
-}
-
 /* Change the color of links on hover */
 .navbar1 button:hover {
   background-color: #ddd;
@@ -143,9 +137,9 @@ html, body, #map {
     height: 55px;
     float: left;
     text-align: center;
-    border: solid #e7efea 0.5px;
-    color: #e7efea;
-    background-color: #186c3f;
+    border: solid #186c3f 0.5px;
+    color: #186c3f;
+    background-color: #e7efea;;
     overflow: hidden;
     font-size: 1.5em;
     font-weight: 800;
