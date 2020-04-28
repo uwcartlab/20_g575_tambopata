@@ -1,3 +1,8 @@
+button p{
+  float: right;
+  margin: 0;
+  padding-left: 10px;
+}
 /* Place the navbar at the top of the page, and make it stick */
 .navbar1 {
   background-color: #006d2c;
@@ -5,17 +10,49 @@
   bottom: 0;
   width: 100%;
 }
-
+@media(max-width:50em){ /* Breakpoint only for mobile */
+  .navbar1 {
+      color: #186c3f;
+      overflow: hidden;
+      height: 60px;
+      width: 100%;
+      bottom: 0;
+      position: fixed;
+      z-index: 5;
+    }
+  button p{
+      visibility: hidden;
+  }
+  .navbar1 button {
+      background-color: #006d2c;
+      display: block;
+      color: #f2f2f2;
+      border: solid #f2f2f2 1px;
+      width: 20%;
+      text-align: center;
+      float: left;
+      margin-top: -5px;
+    }
+  .nabvar1 button.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+}
 /* Style the links inside the navigation bar */
+
 .navbar1 button {
   background-color: #006d2c;
   float: left;
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 16px 16px;
+  padding: 20px 15px 20px 15px;
   text-decoration: none;
   font-size: 20px;
+}
+.navbar1 a{
+  float: right;
+  padding: 5px 20px 0px 0px;
 }
 
 /* Change the color of links on hover */
@@ -29,6 +66,11 @@
   background-color: #4CAF50;
   color: white;
 }
+
+li {
+  padding-top: 5px;
+}
+
 
 .arimo{
     font-family: 'Arimo';
@@ -98,4 +140,9 @@
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity:1 ;}
+}
+
+
+.stakeholder-container{
+  /* put a max length on it */
 }
