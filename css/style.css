@@ -13,7 +13,11 @@
   font-size: 50px;
   padding: 20px 20px;
 }
-
+button p{
+  float: right;
+  margin: 0;
+  padding-left: 10px;
+}
 /* Place the navbar at the top of the page, and make it stick */
 .navbar1 {
   background-color: #006d2c;
@@ -21,12 +25,36 @@
   bottom: 0;
   width: 100%;
 }
-#navbar2{
-  position: fixed; /* Set the navbar to fixed position */
-  bottom: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
+@media(max-width:50em){ /* Breakpoint only for mobile */
+  .navbar1 {
+      color: #186c3f;
+      overflow: hidden;
+      height: 60px;
+      width: 100%;
+      bottom: 0;
+      position: fixed;
+      z-index: 5;
+    }
+  button p{
+      visibility: hidden;
+  }
+  .navbar1 button {
+      background-color: #006d2c;
+      display: block;
+      color: #f2f2f2;
+      border: solid #f2f2f2 1px;
+      width: 20%;
+      text-align: center;
+      float: left;
+      margin-top: -5px;
+    }
+  .nabvar1 button.active {
+      background-color: #4CAF50;
+      color: white;
+    }
 }
 /* Style the links inside the navigation bar */
+
 .navbar1 button {
   background-color: #006d2c;
   float: left;
@@ -36,15 +64,6 @@
   padding: 20px 15px 20px 15px;
   text-decoration: none;
   font-size: 20px;
-}
-#navbar2 button {
-  background-color: #006d2c;
-  display: block;
-  color: #f2f2f2;
-  width: 20%;
-  text-align: center;
-  float: left;
-  padding: 10px 10px 10px 10px;
 }
 .navbar1 a{
   float: right;
@@ -59,10 +78,6 @@
 
 /* Add a color to the active/current link */
 .navbar1 button.active {
-  background-color: #4CAF50;
-  color: white;
-}
-#navbar2 button.active {
   background-color: #4CAF50;
   color: white;
 }
