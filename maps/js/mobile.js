@@ -2,14 +2,10 @@ function mobile(){
 
 var map;
 var zones;
-
-var view1;
-var view2;
-var zone2;
-var swipe;
 var legend;
-$('html').css("padding-bottom","75px");
-$('.navbar1').remove();
+
+$('html').css("padding-bottom","80px");
+// $('.navbar1').remove();
 var bottomNav = $("<div id = 'navbar2'></div>")
 
 bottomNav.appendTo($("body"));
@@ -19,13 +15,15 @@ $(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-x
 $(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4">4</button>');
 $(bottomNav).append('<button data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="proposalM col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></button>');
 
-var bottomNavBar = $("<div id = 'mobileNav'></div>")
-bottomNavBar.appendTo($("body"));
-$(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="overlayOn()"><img src="img/NavbarImg/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""></button>');
-$(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4"><img src="img/NavbarImg/person.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
-$(bottomNavBar).append('<button id = "bottomNav" class="active col-sm-2.4 col-xs-2.4"><img src="img/NavbarImg/map.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
-$(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'secret\')"><img src="img/NavbarImg/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
-$(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'credits\')"><img src="img/NavbarImg/info.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
+// var bottomNavBar = $("<div id = 'mobileNav'></div>")
+// bottomNavBar.appendTo($("body"));
+// bottomNavBar.appendTo($("body"));
+// $(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'../assignment\')"><img src="img/NavbarImg/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""></button>');
+// $(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'../\')"><img src="img/NavbarImg/person.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
+// $(bottomNavBar).append('<button id = "bottomNav" class="active col-sm-2.4 col-xs-2.4" onclick="redirect(\'../maps\')"><img src="img/NavbarImg/map.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
+// $(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'../secret\')" ><img src="img/NavbarImg/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
+// $(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'../credits\')"><img src="img/NavbarImg/info.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
+
 
 function setMap(zones) {
     //<- initialize()
@@ -34,13 +32,9 @@ function setMap(zones) {
 
     map = L.map('map', {
 		center: [-12.9, -69.5],
-		zoom: 7,
-		minZoom: 9,
+		zoom: 9,
+		minZoom: 8,
 		layers: [roads],
-		maxBounds: ([
-			[-10.2,-73.5],
-			[-17.2, -65.5]
-		])
 
 	});
 	map.removeControl(map.zoomControl);
@@ -51,15 +45,26 @@ function setMap(zones) {
 		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
 	})
 
+	var addRoads = L.geoJson(roadsPOI, {
+		style: roadsStyle
+	});
 	const baseMaps = {
 		"Roads": roads,
 		"Satellite": earth,
 		"Hybrid": hybrid
 	};
+	const vectorLayers = {
+		"Additional Roads": addRoads
+	}
+
+	var baseLayers = L.control.layers(baseMaps, vectorLayers, {position: 'topleft', collapsed: false});
+	baseLayers.addTo(map);
+
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
 
 	getPOIs()
+	
 	switchProposals()
 	createLegend()
 };
@@ -117,7 +122,7 @@ function createLegend(){
 	});
 	map.addControl(new legend());
 	$("#mLegend").click(function() {
-		$(".mLegend").toggle("slow");
+		$(".mLegend").toggle("fast");
 	});
 };
 function roadsStyle(feature) {
@@ -203,22 +208,6 @@ function style(feature){
 			pane: 'overlayPane'
 		}
 };
-function createLeftZone(data){
-    view1 = L.geoJson(data, {
-		style: style,
-		pane: 'left',
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return view1
-};
-function createRightZone(data){
-    view2 = L.geoJson(data, {
-		style: style,
-		pane: 'right',
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return view2
-};
 function createZones(data){
     zones = L.geoJson(data, {
         //point to layer with the features and the list containing the geoJson attributes
@@ -242,12 +231,13 @@ function onEachPOI(feature, layer) {
 function removeZones(zones){
 	map.removeLayer(zones)
 }
-// function createAddRoads(data) {
-// 	roadsPOI = L.geoJson(data, {
-// 		style: roadsStyle
-// 	});
-// 	return roadsPOI
-// };
+function createAddRoads(data) {
+	var roadsPOI = L.geoJson(data, {
+		style: roadsStyle
+	}).addTo(map);
+	console.log(roadsPOI)
+	return roadsPOI
+};
 function createAddPOIs(data) {
 	layerPOI = L.geoJson(data, {
 		onEachFeature: onEachPOI
@@ -267,22 +257,6 @@ function getPOIs() {
 		dataType: "json",
 		success: function(response){
 			createAddPOIs(response)
-		}
-	});
-};
-function getLeftZones(leftZone){
-	$.ajax(leftZone, {
-		dataType: "json",
-		success: function(response){
-			createLeftZone(response)
-		}
-	});
-};
-function getRightZones(rightZone){
-	$.ajax(rightZone, {
-		dataType: "json",
-		success: function(response){
-			createRightZone(response)
 		}
 	});
 };
