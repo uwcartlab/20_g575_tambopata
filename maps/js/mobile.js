@@ -83,8 +83,8 @@ function opacityBar (){
 		},
 		onAdd: function(){
 			//mSlider is the div that contains the input slider and the labeling
-			var sliderDiv = L.DomUtil.create('div','mSlider')
-			$(sliderDiv).append('<span class = "opacityTxtM">0%</span>');
+			var sliderDiv = L.DomUtil.create('div','mSlider ui-slider-vertical')
+			$(sliderDiv).append('<span class = "opacityTxtM" style = "margin-left: 10px;">0%</span>');
 			$(sliderDiv).append('<input class="range-sliderM" type="range">');
 			$(sliderDiv).append('<span class = "opacityTxtM">100%</span>');
 			L.DomEvent.disableClickPropagation(sliderDiv)
