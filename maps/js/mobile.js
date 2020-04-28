@@ -1,35 +1,31 @@
+//function mobile is for mobile view
 function mobile(){
 
+//global variables 
 var map;
 var zones;
 var legend;
 
+//padding for there to be two bottom navigation bars
 $('html').css("padding-bottom","80px");
-// $('.navbar1').remove();
+//create navbar2 - proposal map buttons
 var bottomNav = $("<div id = 'navbar2'></div>")
 
 bottomNav.appendTo($("body"));
+//appending the buttons to the html body, not on the actual map.
 $(bottomNav).append('<button id = "mProposal1" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM1" class="propM active"></div>1</button>');
 $(bottomNav).append('<button id = "mProposal2" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM2" class="propM"></div>2</button>');
 $(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM3" class="propM"></div>3</button>');
 $(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM4" class="propM"></div>4</button>');
 $(bottomNav).append('<button data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="propM proposalM col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></button>');
 
-// var bottomNavBar = $("<div id = 'mobileNav'></div>")
-// bottomNavBar.appendTo($("body"));
-// bottomNavBar.appendTo($("body"));
-// $(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'../assignment\')"><img src="img/NavbarImg/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""></button>');
-// $(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'../\')"><img src="img/NavbarImg/person.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
-// $(bottomNavBar).append('<button id = "bottomNav" class="active col-sm-2.4 col-xs-2.4" onclick="redirect(\'../maps\')"><img src="img/NavbarImg/map.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
-// $(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'../secret\')" ><img src="img/NavbarImg/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
-// $(bottomNavBar).append('<button id = "bottomNav" class="col-sm-2.4 col-xs-2.4" onclick="redirect(\'../credits\')"><img src="img/NavbarImg/info.png" width="30" height="30" class="d-inline-block align-top"alt=""></button>');
-
-
+//create maps function
 function setMap(zones) {
-    //<- initialize()
+    //roads tile layer from ArcGIS online
 	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
 
+	//create the map with its center coordinates and have roads be default layer.
     map = L.map('map', {
 		center: [-12.9, -69.5],
 		zoom: 9,
@@ -37,44 +33,58 @@ function setMap(zones) {
 		layers: [roads],
 
 	});
+	//removing the zoom control in mobile view. 
 	map.removeControl(map.zoomControl);
+
+	//hybrid has both satellite imagery with labels
 	var hybrid  = L.gridLayer.googleMutant({
 		type: 'hybrid'
-	}) // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'})
+	}) 
+	//earth is just satellite imagery
 	var earth = L.gridLayer.googleMutant({
 		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
 	})
 
+	//roads are called from Additional_Roads.js, where the variable is just roadsPOI = geojson
 	var addRoads = L.geoJson(roadsPOI, {
-		style: roadsStyle
+		style: roadsStyle //roadStyle function
 	});
+	//listing out the basemaps
 	const baseMaps = {
 		"Roads": roads,
 		"Satellite": earth,
 		"Hybrid": hybrid
 	};
+	//vectorLayers are just addRoads
 	const vectorLayers = {
 		"Additional Roads": addRoads
 	}
-
+	//adding the controls on top left and leaving it out
 	var baseLayers = L.control.layers(baseMaps, vectorLayers, {position: 'topleft', collapsed: false});
 	baseLayers.addTo(map);
 
+	//when loading the page, it will by default load proposal 1
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
+	//get the POI points
 	getPOIs()
+	//swith proposals based off which proposal you click on
 	switchProposals()
+	//creates the legend
 	createLegend()
+	//opacity bar is added
 	opacityBar ()
 };
 function opacityBar (){
+	//add the opacity bar control to the map
 	opacityBar = L.Control.extend({
 		options: {
 			position: 'bottomright'
 		},
 		onAdd: function(){
+			//mSlider is the div that contains the input slider and the labeling
 			var sliderDiv = L.DomUtil.create('div','mSlider')
-			$(sliderDiv).append('<span class = "opacityTxtM" style="margin-left: 10px;">0%</span>');
+			$(sliderDiv).append('<span class = "opacityTxtM">0%</span>');
 			$(sliderDiv).append('<input class="range-sliderM" type="range">');
 			$(sliderDiv).append('<span class = "opacityTxtM">100%</span>');
 			L.DomEvent.disableClickPropagation(sliderDiv)
@@ -82,12 +92,14 @@ function opacityBar (){
 		}
 	});
 	map.addControl(new opacityBar)
+	//slider attributes
 	$('.range-sliderM').attr({
         max: 1,
         min: 0,
         value: 1,
 		step: 0.01,
 	});
+	//based on slider range, the opacity will change
 	$('.range-sliderM').on('input',function(){
 		zones.setStyle({
 			opacity: this.value,
@@ -98,12 +110,16 @@ function opacityBar (){
 	});
 }
 function switchProposals(){
+	//.proposalM is the class for all 4 proposal map buttons.
+	//whichever button is pressed, this function will be called
 	$('.proposalM').click(function(){
+		//first thing the function does is removes the current 'active' button and will assign the 'active' button to where it is clicked.
 		$('.propM').removeClass('active');
+		//if the id is mProposal#, then it will remove the current zone, and call in the zone it is clicked on.
 		if ($(this).attr('id') == 'mProposal1'){
 			removeZones(zones)
 			var zone = "data/proposal1.geojson";
-			$("#propM1").addClass('active');
+			$("#propM1").addClass('active'); //adds the active class to this button
 			getZones(zone);
 		} else if ($(this).attr('id') == 'mProposal2'){
 			removeZones(zones)
@@ -126,16 +142,19 @@ function switchProposals(){
 	});
 }
 function createLegend(){
-
+	//legend will be placed in bottom right of page, but will be dependent off the legend icon button.
 	legend = L.Control.extend({
         options: {
             position: 'bottomright'
         },
         onAdd: function () {
             // create the control container div with a particular class name
+			//mLegend contains the all the legend buttons inside
 			var legendItems = L.DomUtil.create('div', 'mLegend');
+			//accordion is used to have the data be collapsable
 			var accordion = $("<div id = 'accordion'></div>")
 			accordion.appendTo($(legendItems));
+			//each button has a card header which is used to collapse in the accordion, the legend box item, the zone type, and the zone description.
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseOne"><div class="mLegendItem" id="bufferZone" ></div><p class="mLegendTxt">Buffer Zone</p></a></div><div id="collapseOne" class="collapse" data-parent="#accordion"><div class="card-body">This zone is meant to buffer the Tambopata National Reserve from the negative environmental impacts of human activities in the surrounding area. Any activity is allowed in the Buffer Zone provided it does not harm the Tambopata Reserve. Mining, and commercial agriculture, logging, or tourism must first conduct an environmental impact assessment, receive approval from the Peruvian Park Service, and obtain a legal concession before initiating approved activities. No government agency is officially designated with monitoring and managing the buffer zone.</div></div>');
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseTwo"><div class="mLegendItem" id="communityReserve" ></div><p class="mLegendTxt">Community Reserve</p></a></div><div id="collapseTwo" class="collapse" data-parent="#accordion"><div class="card-body">A zoning category invented and promoted by a group of local citizens involved in the participatory zoning process. It was not originally part of the formal zoning options presented to the roundtable by the Peruvian government. As proposed, this zone would allow all activities permitted in the buffer zone but only by local Tambopata residents.</div></div>');
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseThree"><div class="mLegendItem" id="strictProtection" ></div><p class="mLegendTxt">Strict Protection</p></a></div><div id="collapseThree" class="collapse" data-parent="#accordion"><div class="card-body">No human use, no roads, no buildings allowed.<div></div>');
@@ -150,10 +169,13 @@ function createLegend(){
 		}
 	});
 	map.addControl(new legend());
+	//when clicking on the zone icon, it will toggle in and out.
+	//right now, the legend will appear on the page by default when loading, this will have to be fixed. 
 	$("#mLegend").click(function() {
 		$(".mLegend").toggle("fast");
 	});
 };
+//default road style
 function roadsStyle(feature) {
 	return{
 		fillColor: "#000000",
@@ -162,9 +184,10 @@ function roadsStyle(feature) {
 		opacity: 1
 	}
 };
+//current style for the proposal maps.
 function style(feature){
 	// sets the style of the zones
-    var opacity = 1.0;
+    var opacity = 1.0; //default opacity
 	var color; // color of the zone
     var zoneName = feature.properties.ZONES
 	if(zoneName == "Buffer Zone"){ // if it's the buffer zone, make it Powder blue
@@ -237,6 +260,7 @@ function style(feature){
 			pane: 'overlayPane'
 		}
 };
+//called from swithProposals, where the data is the data path of the proposal geoJSON
 function createZones(data){
     zones = L.geoJson(data, {
         //point to layer with the features and the list containing the geoJson attributes
@@ -245,27 +269,32 @@ function createZones(data){
 	}).addTo(map);
 	return zones
 };
+//onEachFeature is for the popups for the zones
 function onEachFeature(feature, layer){
 	var popupContent = ('<p style = "text-align: center";><b>'+ feature.properties.ZONES + '</b></p>');
     popupContent += '<p>'+feature.properties.Zone_Description+'</p>';
     //bind the popup to the circle marker
     layer.bindPopup(popupContent);
 };
+//function for popups on the POI
 function onEachPOI(feature, layer) {
 	var popupContent = ('<p style = "text-align: center"><b>' + feature.properties.poiName + '</b></p>');
 	popupContent += '<p>'+feature.properties.infoPOI+'</p>';
 	//bind the popup to the circle marker
     layer.bindPopup(popupContent);
 }
+//removes current zone from map before adding the new selected zone.
 function removeZones(zones){
 	map.removeLayer(zones)
 }
+//create POI from L.geoJson
 function createAddPOIs(data) {
 	layerPOI = L.geoJson(data, {
 		onEachFeature: onEachPOI
 	}).addTo(map);
 	return layerPOI;
 }
+//using ajax to get POI from data folder
 function getPOIs() {
 	$.ajax("data/pointsOfInterest.geojson", {
 		dataType: "json",
@@ -274,7 +303,8 @@ function getPOIs() {
 		}
 	});
 };
-
+//using ajax to get zones from the data folder
+//zone is the variable input based on selected proposal
 function getZones(zone){
     //load the geoJson
     $.ajax(zone, {
