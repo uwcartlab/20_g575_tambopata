@@ -65,16 +65,37 @@ function setMap(zones) {
 	getPOIs()
 	switchProposals()
 	createLegend()
+	opacityBar ()
 };
 function opacityBar (){
 	opacityBar = L.Control.extend({
 		options: {
-			position: 'topright'
+			position: 'bottomright'
 		},
 		onAdd: function(){
-
+			var sliderDiv = L.DomUtil.create('div','mSlider')
+			$(sliderDiv).append('<span class = "opacityTxtM" style="margin-left: 10px;">0%</span>');
+			$(sliderDiv).append('<input class="range-sliderM" type="range">');
+			$(sliderDiv).append('<span class = "opacityTxtM">100%</span>');
+			L.DomEvent.disableClickPropagation(sliderDiv)
+			return sliderDiv;
 		}
-	})
+	});
+	map.addControl(new opacityBar)
+	$('.range-sliderM').attr({
+        max: 1,
+        min: 0,
+        value: 1,
+		step: 0.01,
+	});
+	$('.range-sliderM').on('input',function(){
+		zones.setStyle({
+			opacity: this.value,
+			fillOpacity: this.value,
+			animate: "fast",
+		});
+		opacity=this.value
+	});
 }
 function switchProposals(){
 	$('.proposalM').click(function(){
