@@ -8,7 +8,9 @@ var zones;
 var roadsPOI;
 var view1;
 var view2;
+var zone2;
 var swipe;
+var pointsPOI;
 
 //create the map
 function setMap(zones) {
@@ -62,10 +64,10 @@ function createProposals(){
 			//each button has an id based on proposal number and all have "proposal" class
 			$(row).append('<div class="container-fluid" align = "center">');
 			$(row).append('<div class="row">');
-			$(row).append('<div id = "proposal1" type = "button" class="active proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</div>');
-			$(row).append('<div  id = "proposal2" type = "button" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</div>');
-			$(row).append('<div  id = "proposal3" type = "button" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</div>');
-			$(row).append('<div  id = "proposal4" type = "button" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</div>');
+			$(row).append('<button id = "proposal1" class="active proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</button>');
+			$(row).append('<button id = "proposal2" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</button>');
+			$(row).append('<button id = "proposal3" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</button>');
+			$(row).append('<button id = "proposal4" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</button>');
 			$(row).append('</div>');
 			$(row).append('</div>');
 
@@ -184,7 +186,6 @@ function createLegend(roads, earth, hybrid){
 				getRightZones(rZone);};
 			if ($('.proposal').attr('id') == 'proposal4'){$('#proposal4').removeClass('active');};
 			swipe = L.control.sideBySide(view1, view2).addTo(map);
-			console.log(view1)
 			}
 		else if(document.getElementById("Compare").checked == false){
 			$('.proposal').removeClass('active');
@@ -294,8 +295,8 @@ function style(feature){
 		}
 		else if(zoneName == "Bahuaja-Sonene National Park"){
 			color = "None";
-			lineWidth = 3;
-			lineColor = "White";
+			lineWidth = 4;
+			lineColor = "ForestGreen";
 			fillop = 0
 		}
 		else if(zoneName == "Direct Use"){
@@ -322,7 +323,8 @@ function style(feature){
             fillOpacity: fillop, //start as partially opaque
 			color: lineColor, // black border
             weight: lineWidth,
-            opacity: opacity
+            opacity: opacity,
+			pane: 'overlayPane'
 		}
 };
 function createLeftZone(data){
