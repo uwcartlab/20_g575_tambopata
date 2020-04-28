@@ -25,6 +25,8 @@ button p{
   width: 100%;
 
 }
+
+
 @media(max-width:50em){ /* Breakpoint only for mobile */
   .navbar1 {
       color: #186c3f;
@@ -52,6 +54,9 @@ button p{
       background-color: #4CAF50;
       color: white;
     }
+  .navbar1 span {
+    display:none;
+  }
 }
 /* Style the links inside the navigation bar */
 .navbar1 button {
