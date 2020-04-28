@@ -1,5 +1,8 @@
+//desktop function is for desktop view.
+
 function desktop(){
-//create map
+
+//global variables
 var map;
 var zones;
 var roadsPOI;
@@ -9,11 +12,12 @@ var zone2;
 var swipe;
 var pointsPOI;
 
+//create the map
 function setMap(zones) {
-    //<- initialize()
+    //roads tile layer from ArcGIS online
 	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
-
+	//create the map with its center coordinates and have roads be default layer.
     map = L.map('map', {
 		center: [-12.9, -69.5],
 		zoom: 9,
@@ -25,31 +29,39 @@ function setMap(zones) {
 		])
 
 	});
-
+	//hybrid has both satellite imagery with labels
 	var hybrid  = L.gridLayer.googleMutant({
 		type: 'hybrid'
-	}) // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'})
-	var earth = L.gridLayer.googleMutant({
-		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
 	})
-
+	//earth is just satellite imagery
+	var earth = L.gridLayer.googleMutant({
+		type: 'satellite' 
+	})
+	//when loading the page, it will by default load proposal 1
 	var deFault = "data/proposal1.geojson"
 	getZones(deFault)
+	//get POI onto the map.
 	getPOIs()
+	//createProposals is for loading each proposal map based on user's click
 	createProposals()
+	//creates custom legend control onto the map.
 	createLegend(roads, earth, hybrid, view1, view2, swipe)
 };
+
 function createProposals(){
+	//adding a proposal div and button onto the map.
 	var rowBar = L.Control.extend({
         options: {
             position: 'topleft'
         },
 
         onAdd: function () {
-            // create the control container div with a particular class name
+            // .proposal-container will contain the buttons and have bootstrap classes
             var row = L.DomUtil.create('div', 'proposal-container');
 
-			// ... initialize other DOM elements
+			//bootstrap classes for the div and buttons
+			//adding them onto the .proposal-container div
+			//each button has an id based on proposal number and all have "proposal" class
 			$(row).append('<div class="container-fluid" align = "center">');
 			$(row).append('<div class="row">');
 			$(row).append('<button id = "proposal1" class="active proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</button>');
@@ -65,12 +77,15 @@ function createProposals(){
 
 	});
 	map.addControl(new rowBar());
+	//whichever button is pressed, this function will be called
 	$('.proposal').click(function(){
+		//first thing the function does is removes the current 'active' button and will assign the 'active' button to where it is clicked.
 		$('.proposal').removeClass('active');
+		//if the id is proposal#, then it will remove the current zone, and call in the zone it is clicked on.
 		if ($(this).attr('id') == 'proposal1'){
 			removeZones(zones)
 			var zone = "data/proposal1.geojson";
-			$(this).addClass('active');
+			$(this).addClass('active');//adds the active class to this button
 			getZones(zone);
 		} else if ($(this).attr('id') == 'proposal2'){
 			removeZones(zones)
@@ -94,15 +109,19 @@ function createProposals(){
 	});
 };
 function createLegend(roads, earth, hybrid){
+	//createing the legend control
+	//roads, earth, and hybrid basemap tilelayers called into this.
 	var LegendControl = L.Control.extend({
         options: {
             position: 'bottomleft'
         },
         onAdd: function () {
-            // create the control container with a particular class name
+            //.legendFrame is the main div where all controls will be appended inot
 			var container = L.DomUtil.create('div', 'legendFrame');
 
-
+			//basemap layers will be inputs as "Radio" buttons
+			//additonal roads and compare proposals will be checkboxes
+			//opacity slider bar also added
 			$(container).append('<input id = "Road" type = "radio" class = "baseMap" checked><span>Roads</span><br>')
 			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span>Satellite</span><br>')
 			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span>Hybrid</span><br>')
@@ -113,6 +132,7 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<span class = "opacityTxt">100%</span>')
 			$(container).append('<br><br>')
 
+			//zone color and name
 			$(container).append('<p class="legendtxt">Buffer Zone</p>');
 			$(container).append('<div class="legend" id="bufferZone" ></div>');
 			$(container).append('<p class="legendtxt">Community Reserve</p>');
@@ -137,13 +157,17 @@ function createLegend(roads, earth, hybrid){
 	});
     // adds the legend to the map.
 	map.addControl(new LegendControl());
+	//adding the roads on and off the map
 	$('.roads').on('input',function(){
+		//if checkbox is checked, the roads will be added onto the map
+		//if not checked, it will remove the roads
 		if(document.getElementById("pointsOfInterest").checked == true){
 			getRoads(roadsPOI)
 		} else if(document.getElementById("pointsOfInterest").checked == false){
 			removeRoads(roadsPOI)
 		}
 	});
+	//preliminary testing of the overlay widget
 	$('.Compare').on('input',function(){
 		if(document.getElementById("Compare").checked == true){
 			map.createPane('left');
@@ -170,7 +194,12 @@ function createLegend(roads, earth, hybrid){
 			}
 
 	});
+	//basemap implementation...similar workflow to proposal buttons
 	$('.baseMap').on('input',function(){
+		//if this radio button is clicked on and checked, it will 
+		//load that basemap and make sure the other radio buttons are
+		//checked off. It will also remove the previous basemap and
+		//load in the new one.
 		if ($(this).attr('id') == 'Road'){
 			document.getElementById("Satellite").checked = false;
 			document.getElementById("Hybrid").checked = false;
@@ -193,12 +222,14 @@ function createLegend(roads, earth, hybrid){
 			hybrid.addTo(map)
 		}
 	});
+	//slider bar attributes
 	$('.range-slider').attr({
         max: 1,
         min: 0,
         value: 1,
 		step: 0.01,
 	});
+	//slider bar function
 	$('.range-slider').on('input',function(){
 		zones.setStyle({
 			opacity: this.value,
@@ -211,7 +242,7 @@ function createLegend(roads, earth, hybrid){
 function removeSwipe(swipe){
 	map.removeLayer(swipe);
 }
-
+//set road style
 function roadsStyle(feature) {
 	return{
 		fillColor: "#000000",
@@ -220,6 +251,7 @@ function roadsStyle(feature) {
 		opacity: 1
 	}
 };
+//styling for the proposal zones
 function style(feature){
 	// sets the style of the zones
     var opacity = 1.0;
@@ -311,6 +343,8 @@ function createRightZone(data){
 	}).addTo(map);
 	return view2
 };
+//create zones loads in the data from the ajax function and uses
+//leaflets geoJson function to add it onto the map.
 function createZones(data){
     zones = L.geoJson(data, {
         //point to layer with the features and the list containing the geoJson attributes
@@ -319,37 +353,43 @@ function createZones(data){
 	}).addTo(map);
 	return zones
 };
+//popup style for the zones
 function onEachFeature(feature, layer){
 	var popupContent = ('<p style = "text-align: center";><b>'+ feature.properties.ZONES + '</b></p>');
     popupContent += '<p>'+feature.properties.Zone_Description+'</p>';
     //bind the popup to the circle marker
     layer.bindPopup(popupContent);
 };
+//popup style for the POI markers
 function onEachPOI(feature, layer) {
 	var popupContent = ('<p style = "text-align: center"><b>' + feature.properties.poiName + '</b></p>');
 	popupContent += '<p>'+feature.properties.infoPOI+'</p>';
 	//bind the popup to the circle marker
     layer.bindPopup(popupContent);
 }
+//remove zones based on the proposal button inputs.
 function removeZones(zones){
 	map.removeLayer(zones)
 }
+//function to remove roads from map if the checkmark is unchecked.
 function removeRoads(roadsPOI){
 	map.removeLayer(roadsPOI)
 }
+//adds the roads onto the map when called.
 function createAddRoads(data) {
 	roadsPOI = L.geoJson(data, {
 		style: roadsStyle
 	}).addTo(map);
 	return roadsPOI;
 };
+//adding the POI markers to the map.
 function createAddPOIs(data) {
 	layerPOI = L.geoJson(data, {
 		onEachFeature: onEachPOI
 	}).addTo(map);
 	return layerPOI;
 }
-//way to combine getRoads and getPOIs??
+//way to getPOIs
 function getRoads() {
 	$.ajax("data/Additional_Roads.geojson", {
         dataType: "json",
@@ -358,6 +398,7 @@ function getRoads() {
 		}
 	});
 };
+//using ajax to get POI geojson from the data folder
 function getPOIs() {
 	$.ajax("data/pointsOfInterest.geojson", {
 		dataType: "json",
@@ -382,7 +423,8 @@ function getRightZones(rightZone){
 		}
 	});
 };
-
+//get zone based on input or default load.
+//zone is the filepath of the geojson to be loaded onto the map. 
 function getZones(zone){
     //load the geoJson
     $.ajax(zone, {
