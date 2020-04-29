@@ -48,7 +48,7 @@ button p{
       float: left;
       margin-top: -5px;
     }
-  .nabvar1 button.active {
+  .navbar1 button.active {
       background-color: #4CAF50;
       color: white;
     }
