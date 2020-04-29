@@ -171,6 +171,10 @@ button p{
   padding: 10px;
 }
 
+h2 {
+    text-align: center;
+}
+
 .img-bground {
   height: auto;
   min-width: 100%;
