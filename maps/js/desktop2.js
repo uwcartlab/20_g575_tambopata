@@ -2,7 +2,7 @@
 
 function desktop(){
 //global variables
-var map, roads, satellite, hybrid;
+var map;
 var proposal2_right;
 var proposal3_right;
 var proposal4_right;
@@ -18,7 +18,7 @@ var swipeList = [];
 //create the map
 function setMap() {
     //roads tile layer from ArcGIS online
-	roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
 	//create the map with its center coordinates and have roads be default layer.
     map = L.map('map', {
@@ -33,9 +33,9 @@ function setMap() {
 
 	});
 	//hybrid has both satellite imagery with labels
-	hybrid  = L.esri.basemapLayer('ImageryLabels').addTo(map);
+	var hybrid  = L.esri.basemapLayer('ImageryLabels').addTo(map);
 	//earth is just satellite imagery
-	earth =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	var earth =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 	});
     getPOIs()
@@ -59,7 +59,7 @@ function setMap() {
         view3 =data[2];
         view4 = data[3];
 		createProposals(view1, view2, view3, view4)
-		// createLegend(roads, earth, hybrid)
+		createLegend(roads, earth, hybrid)
 	}
 
 };
@@ -169,6 +169,7 @@ function createProposals(){
 			map.removeLayer(proposal2_right);
             map.removeControl(swipe);
         }else{
+			map.removeControl(swipe);
             $('.proposal').each(function(){
                 if($(this).hasClass('active')){
 					swipeList.length = 0
@@ -176,34 +177,28 @@ function createProposals(){
                     value = value.split("proposal")[1]
                     value = Number(value)
                     if(value < 2){
-                        var newValue = "proposal"+value+"_left"
-                    }else{
-                        var newValue = "proposal"+value+"_right"
-                    }
-                    for(var key in wholeList){
-                        if(newValue == key){
-                            var match = wholeList[key]
-                        }
-                    }
-					if(match == proposal4_right){
-						swipeList.push(proposal2_left)
-						swipeList.push(match)
-						swipe = L.control.sideBySide(proposal2_left.addTo(map), match.addTo(map)).addTo(map);
-					}
-					else if(match == proposal3_right){
-						swipeList.push(proposal2_left)
-						swipeList.push(match)
-						swipe = L.control.sideBySide(proposal2_left.addTo(map), match.addTo(map)).addTo(map);
-					}
-					else{
-						map.removeLayer(proposal2_right)
-						map.removeLayer(proposal2_left)
+						var newValue = "proposal"+value+"_left"
 						swipeList.push(proposal1_left)
 						swipeList.push(proposal2_right)
 						swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
-					}    
-                }
+                    }else{
+						console.log(value)
+						var newValue = "proposal"+value+"_right";
+						console.log(newValue)
+						for(var key in wholeList){
+							console.log(key)
+							if(newValue == key){
+								var match = wholeList[key]
+								console.log(match)
+								swipeList.push(proposal2_left)
+								swipeList.push(match)
+								swipe = L.control.sideBySide(proposal2_left.addTo(map), match.addTo(map)).addTo(map);
+							}
+						
+                    }   
+                }}
                 else{
+					map.removeLayer(proposal2_right)
 					swipeList.length = 0
 					swipeList.push(proposal2_right)
                     proposal2_right.addTo(map)
@@ -225,32 +220,21 @@ function createProposals(){
                         value = value.split("proposal")[1]
                         value = Number(value)
     	                if(value < 3){
-                            var newValue = "proposal"+value+"_left"
+							var newValue = "proposal"+value+"_left"
+							for(var key in wholeList){
+								if(newValue == key){
+									var match = wholeList[key]
+									swipeList.push(match)
+									swipeList.push(proposal3_right)
+									swipe = L.control.sideBySide(match.addTo(map), proposal3_right.addTo(map)).addTo(map);
+								}
+							}
                         }else{
-                            var newValue = "proposal"+value+"_right"
-                        }
-                        for(var key in wholeList){
-                            if(newValue == key){
-                                var match = wholeList[key]
-                            }
-						}
-						if(match == proposal1_left){
-							swipeList.push(match)
-							swipeList.push(proposal3_right)
-							swipe = L.control.sideBySide(match.addTo(map), proposal3_right.addTo(map)).addTo(map);
-						}
-						else if(match == proposal2_left){
-							swipeList.push(match)
-							swipeList.push(proposal3_right)
-							swipe = L.control.sideBySide(match.addTo(map), proposal3_right.addTo(map)).addTo(map);
-						}
-						else{
+							var newValue = "proposal"+value+"_right"
 							swipeList.push(proposal3_left)
 							swipeList.push(match)
-							map.removeLayer(proposal3_right);
-							map.removeLayer(proposal4_right);
 							swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-						}
+                        }
                     }
                     else{
 						swipeList.length = 0
@@ -261,7 +245,6 @@ function createProposals(){
 				$(this).addClass('active')
             }})
     $('#proposal4').on('click',function(){
-		console.log(swipeList)
         if($(this).hasClass('active')){
 			$(this).removeClass('active');
 			map.removeLayer(proposal4_right);
@@ -289,7 +272,7 @@ function createProposals(){
             })
 			$(this).addClass('active')
         }})
-	createLegend(roads, earth, hybrid, swipeList) 
+
 };
 function createLegend(roads, earth, hybrid){
 	//createing the legend control
