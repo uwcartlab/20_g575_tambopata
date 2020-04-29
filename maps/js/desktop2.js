@@ -1,7 +1,6 @@
 //desktop function is for desktop view.
 
 function desktop(){
-
 //global variables
 var map;
 var proposal1;
@@ -12,9 +11,11 @@ var roadsPOI;
 var view1;
 var view2;
 var swipe;
+var view1Data;
+var view2Data;
 
 //create the map
-function setMap(zones) {
+function setMap() {
     //roads tile layer from ArcGIS online
 	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
@@ -38,16 +39,26 @@ function setMap(zones) {
 	var earth = L.gridLayer.googleMutant({
 		type: 'satellite' 
 	})
-	map.createPane('left');
-	map.createPane('right');
+	
 	//get POI onto the map.
 	getPOIs()
 	//createProposals is for loading each proposal map based on user's click
-	createProposals()
+    
+    map.createPane('left');
+    map.createPane('right');
+    preloadData()
+    view1 = proposal1.addTo(map)
+    view2 = proposal3.addTo(map)
+    swipe = L.control.sideBySide(view1, view2).addTo(map);
+    // createSwipe()
+    createProposals()
 	//creates custom legend control onto the map.
-	createLegend(roads, earth, hybrid, view1, view2, swipe)
+	createLegend(roads, earth, hybrid)
 };
-
+function createSwipe(){
+    
+    
+}
 function createProposals(){
 	//adding a proposal div and button onto the map.
 	var rowBar = L.Control.extend({
@@ -66,7 +77,7 @@ function createProposals(){
 			$(row).append('<div class="row">');
 			$(row).append('<div id = "proposal1" type = "button" class="active proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</div>');
 			$(row).append('<div  id = "proposal2" type = "button" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</div>');
-			$(row).append('<div  id = "proposal3" type = "button" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</div>');
+			$(row).append('<div  id = "proposal3" type = "button" class="active proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</div>');
 			$(row).append('<div  id = "proposal4" type = "button" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</div>');
 			$(row).append('</div>');
 			$(row).append('</div>');
@@ -126,7 +137,6 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span>Satellite</span><br>')
 			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span>Hybrid</span><br>')
 			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads" unchecked><span>Additional Roads<span><br>')
-			$(container).append('<input id = "Compare" type = "checkbox" class = "Compare" unchecked><span>Compare Proposals<span><br>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
 			$(container).append('<span class = "opacityTxt">100%</span>')
@@ -168,33 +178,7 @@ function createLegend(roads, earth, hybrid){
 		}
 	});
 	//preliminary testing of the overlay widget
-	$('.Compare').on('input',function(){
-		if(document.getElementById("Compare").checked == true){
-			map.createPane('left');
-			map.createPane('right');
-			map.removeLayer(zones);
-			$('.proposal').removeClass('active');
-			if ($('.proposal').attr('id') == 'proposal1'){
-				var lZone = "data/proposal1.geojson";
-				$('#proposal1').addClass('active');
-				$('#proposal3').addClass('active');
-				getLeftZones(lZone)};
-			if ($('.proposal').attr('id') == 'proposal2'){$('#proposal2').removeClass('active');};
-			if ($('.proposal').attr('id') == 'proposal3'){
-				var rZone = "data/proposal3.geojson";
-				$('#proposal3').addClass('active');
-				getRightZones(rZone);};
-			if ($('.proposal').attr('id') == 'proposal4'){$('#proposal4').removeClass('active');};
-			swipe = L.control.sideBySide(view1, view2).addTo(map);
-			console.log(view1)
-			}
-		else if(document.getElementById("Compare").checked == false){
-			$('.proposal').removeClass('active');
-			map.removeLayer(view1);
-			map.removeControl(swipe)
-			}
 
-	});
 	//basemap implementation...similar workflow to proposal buttons
 	$('.baseMap').on('input',function(){
 		//if this radio button is clicked on and checked, it will 
@@ -383,60 +367,68 @@ function getPOIs() {
 		}
 	});
 };
-function createLeftZone(data){
-    view1 = L.geoJson(data, {
-		style: style,
-		pane: 'left',
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return view1
-};
-function createRightZone(data){
-    view2 = L.geoJson(data, {
-		style: style,
-		pane: 'right',
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return view2
-};
-function getLeftZones(leftZone){
-	$.ajax(leftZone, {
-		dataType: "json",
-		success: function(response){
-			createLeftZone(response)
-		}
-	});
-};
-function getRightZones(rightZone){
-	$.ajax(rightZone, {
-		dataType: "json",
-		success: function(response){
-			createRightZone(response)
-		}
-	});
-};
 //create zones loads in the data from the ajax function and uses
 //leaflets geoJson function to add it onto the map.
-function createZones(data){
-    zones = L.geoJson(data, {
+function getProposal1(data){
+    proposal1 = L.geoJson(data, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'left',
+		onEachFeature: onEachFeature,
+    });
+	return proposal1
+};
+function getProposal2(data){
+    proposal2 = L.geoJson(data, {
         //point to layer with the features and the list containing the geoJson attributes
 		style: style,
 		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return zones
+    });
+	return proposal2
 };
-//get zone based on input or default load.
-//zone is the filepath of the geojson to be loaded onto the map. 
-function getZones(zone){
-    //load the geoJson
-    $.ajax(zone, {
+function getProposal3(data){
+    proposal3 = L.geoJson(data, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'right',
+		onEachFeature: onEachFeature,
+    });
+	return proposal3
+};
+function getProposal4(data){
+    proposal4 = L.geoJson(data, {
+        //point to layer with the features and the list containing the geoJson attributes
+		style: style,
+		onEachFeature: onEachFeature,
+    });
+	return proposal4
+};
+function preloadData(){
+    //basic jQuery ajax method
+    $.ajax("data/proposal1.geojson", {
         dataType: "json",
         success: function(response){
-			createZones(response)
-        }
-
-	});
-
+            getProposal1(response);
+        },
+    });
+    $.ajax("data/proposal1.geojson", {
+        dataType: "json",
+        success: function(response){
+            getProposal2(response);
+        },
+    });
+    $.ajax("data/proposal1.geojson", {
+        dataType: "json",
+        success: function(response){
+            getProposal3(response);
+        },
+    });
+    $.ajax("data/proposal1.geojson", {
+        dataType: "json",
+        success: function(response){
+            getProposal4(response);
+        },
+    });
 };
 //call the initialize function when the document has loaded
 $(document).ready(setMap);}

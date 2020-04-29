@@ -94,3 +94,11 @@ button p{
 	margin-bottom: 5px;
 	color: #CFC397;
 }
+
+li {
+	padding-left: 15px;
+}
+
+#container {
+	padding-left: 10px;
+}

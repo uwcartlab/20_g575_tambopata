@@ -7,10 +7,11 @@
 }
 .header{
   background:#006d2c;
+  width:100%;
   color: white;
   text-align: left;
   font-size: 35px;
-  padding: 0px 20px 0px 10px;
+  padding: 0px 20px 0px 20px;
 }
 button p{
   float: right;
@@ -23,10 +24,7 @@ button p{
   /* overflow: hidden; */
   bottom: 0;
   width: 100%;
-
 }
-
-
 @media(max-width:50em){ /* Breakpoint only for mobile */
   .navbar1 {
       color: #186c3f;
@@ -54,24 +52,24 @@ button p{
       background-color: #4CAF50;
       color: white;
     }
-  .navbar1 span {
-    display:none;
+  .navbar1 span{
+    display: none;
   }
 }
 /* Style the links inside the navigation bar */
+
 .navbar1 button {
   background-color: #006d2c;
   border-style: none;
-  /* float:left; */
+  /* float: left; */
   display:inline-block;
   color: #f2f2f2;
   text-align: center;
   padding: 20px 15px 20px 15px;
   text-decoration: none;
+  border-color: none;
   font-size: 20px;
 }
-
-/* UW Logo placement */
 .navbar1 a{
   float: right;
   padding: 5px 20px 0px 0px;
@@ -89,6 +87,8 @@ button p{
   color: white;
 }
 
+
+
 li {
   padding-top: 5px;
 }
@@ -104,7 +104,6 @@ li {
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
   z-index: 2;
-  cursor: pointer;
 }
 
 #overlay-div {
@@ -117,24 +116,29 @@ li {
   overflow-y: auto;
 }
 
-#overlay-buttons-close {
-	position: absolute;
+#navbar2 {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
 	top: 0px;
-	right: 0px;
+
+	background-color: #006d2c;
 }
 
-#overlay-buttons-next {
-	position: auto;
+#navbar2 button {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	text-decoration: none;
+}
 
-	margin-bottom: 10px;
-	margin-left: 45%;
+#overlay-buttons-close {
+	float: right;
 }
 
 #assign-overlay-text {
   position: auto;
   top: 50%;
   left: 10%;
-  font-size: 12px;
+  font-size: 14px;
   color: black;
   padding: 10px;
 }
@@ -144,10 +148,31 @@ li {
   position: auto;
   top: 50%;
   left: 10%;
-  font-size: 12px;
+  font-size: 14px;
   color: black;
   padding: 10px;
 }
+
+#glossary-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 14px;
+  color: black;
+  padding: 10px;
+}
+
+#events-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 14px;
+  color: black;
+  padding: 10px;
+}
+
 .img-bground {
   height: auto;
   min-width: 100%;
