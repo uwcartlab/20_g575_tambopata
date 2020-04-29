@@ -6,37 +6,55 @@
             <title>Stakeholders</title>
 
         <link rel="stylesheet" href="css/style.css">
-        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+            <link rel="stylesheet" href="css\bootstrap.min.css"/>
     </head>
 
     <body>
-	    <!-- Each button calls the basic JS method with the path you want to go to -->
-		<div class="navbar1">
-			<!-- Assignment will be the About pop-up -->
-			<button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""> Assignment</button>
-			<button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""> Stakeholders</button>
-			<button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""> Proposals</button>
-			<!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-			<button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""> Secrets Page</button>
-			<button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""> Credits</button>
-		</div>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <ul class="header"><span>Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Secrets Page</p></button>
+        <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+        </ul>
+      </div>
 
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Co-Founder of Rainforest Expeditions</h1>
+        </div>
+      </div>
 
-		<div id="basic-desc">
-      <div class="arimo">
-				<h2>Co-Founder of Rainforest Expeditions:</h2>
-        <img src="expeditions.jpg" alt=" " width="50%">
+      <!-- Stakeholder Description contents-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+
+        <!-- image and photo credit -->
+          <img src="expeditions.jpg" alt=" " width="50%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <p class="mb-0">Picture of Rainforest Expeditions owner (blurred to protect anonymity).</p>
+            <footer class="blockquote-footer">Photo credit: John Poole, <cite title="Source Title">NPR</cite></footer>
+          </blockquote>
+
+		      <!-- <div id="basic-desc"> -->
+
           <p>
             Oscar Perez is a Peruvian who is passionate about biodiversity conservation but believes that saving the rainforest must be profitable to be successful.
             To this end, he built Rainforest Expeditions, a high-end
             <!--retrieve glossary term Eco-tourism & link to gloassary -->
-            <a class="popup" onclick="popupEco()">ecotourism
+            <span class="popup" onclick="popupEco()">ecotourism
               <span class="popupText" id="myPopup3">A form of nature-based tourism in which tourist impacts on the environment
-              are mitigated.</span>
-            </a>
+              are mitigated.
+                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+              </span>
+            </span>
             company that is committed to sharing revenue with indigenous peoples living in
             the forest. Oscar’s company built a luxurious lodge in the
             <!--retrieve glossary term Ese’eja & link to gloassary -->
@@ -55,8 +73,10 @@
             and the company co-manage the lodge and share the lodge’s profits. Several Infierno community members (as well as some family members of
             <!--retrieve pop-up with description and link to Brazil Nut harvester  -->
             <span class="popup" onclick="popupNut()">Brazil Nut harvesters)
-              <span class="popupText" id="myPopup2">Description of Brazil nut harvester here...
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/brazil-nut-harvester/"target="_blank"> Brazil Nut Harvester</a>
+              <span class="popupText" id="myPopup2"><u>Brazil Nut Harvester</u>: Maria is a Brazil nut harvester and her livelihood depends on access to the old growth forests.
+                Brazil nut trees take decades to start producing nuts and cannot be cultivated in plantations. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/brazil-nut-harvester/"target="_blank"> Brazil Nut Harvester</a>to learn how Maria is engaging with other stakeholders
+                to address the changing landscape.
               </span>
             </span>
             have full-time jobs at the lodge. Perez has taken the time to train Ese’eja employees, and some have gone on to start their own independent lodges.
@@ -73,17 +93,20 @@
           <p>
             Ultimately, Oscar is optimistic that tourism will continue to grow in Tambopata and play a significant role in protecting forests and providing jobs.
           </p>
-
-          <!-- Ecotourism Youtube video -->
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/CNXXmyaJjQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
+        </div>
       </div>
-		</div>
 
-		<!-- <button onclick="redirect('../../')">Return to Selection</button> -->
+          <!-- Youtube video -->
+          <div class = "iframe-container" align="center" style="margin-bottom:100px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/CNXXmyaJjQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
 
-		<script src="lib/d3/d3.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+		<!-- <script src="lib/d3/d3.js"></script>
+        <script type="text/javascript" src="js/main.js"></script> -->
+
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
     </body>
 </html>
