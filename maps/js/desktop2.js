@@ -39,7 +39,7 @@ function setMap() {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 	});
     getPOIs()
-    
+
 	var promises = [];
     //promises will use d3 to push the csv and topojson files of Chicago neighborhood boundaries,
     //Lake Michigan, and the Illinois/Indiana state boundaries.
@@ -272,7 +272,6 @@ function createProposals(){
             })
 			$(this).addClass('active')
         }})
-
 };
 function createLegend(roads, earth, hybrid){
 	//createing the legend control
@@ -383,13 +382,27 @@ function createLegend(roads, earth, hybrid){
 				})
 			opacity=this.value
 	})
-	
+
 };
 //set road style
 function roadsStyle(feature) {
+	var color = "#000000" //road color
+
+//attempting to change color of Additional_Roads geojson based on the basedmap selected
+	//white road is being shown, so its reading the basemap id, but its not updating when a different basemap is seleceted
+	//also, the satellite and hybrid basemaps disappear after a few clicks
+
+	// if ($('.baseMap').attr('id') == 'Road') {
+	// 	color = "#ffffff";
+	// }
+	// else if ($('.baseMap').attr('id') == 'Satellite') {
+	// 	color = "#D194B6";
+	// }
+	// else if ($('.baseMap').attr('id') == 'Hybrid') {
+	// 	color = "#9B8917";
+	// }
 	return{
-		fillColor: "#000000",
-		color: "#000000",
+		color: color,
 		weight: 1,
 		opacity: 1
 	}
@@ -441,6 +454,8 @@ function style(feature){
 			lineWidth = 3;
 			lineColor = "White";
 			fillop = 0
+			//can change opacity based on Tanya's suggestion, but would need to change colors based on the basemap used
+			opacity = 1;
 		}
 		else if(zoneName == "Direct Use"){
 			color = "#59B798";
