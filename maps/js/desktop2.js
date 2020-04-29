@@ -44,7 +44,7 @@ function setMap() {
 	})
 	//earth is just satellite imagery
 	var earth = L.gridLayer.googleMutant({
-		type: 'satellite' 
+		type: 'satellite'
     })
     getPOIs()
     createLegend(roads, earth, hybrid)
@@ -57,7 +57,7 @@ function setMap() {
     promises.push($.getJSON("data/proposal4.geojson"));
     //list of promises goes and has the callback function be called
     Promise.all(promises).then(callback);
-    
+
     //callback brings in the data
     function callback(data){
         //these 4 variables list are from the promise list
@@ -70,11 +70,11 @@ function setMap() {
     }
 
 	//get POI onto the map.
-	
+
 	//createProposals is for loading each proposal map based on user's click
-    
+
 	//creates custom legend control onto the map.
-	
+
 };
 function createProposals(){
     var left = map.createPane('left');
@@ -316,7 +316,7 @@ function createLegend(roads, earth, hybrid){
 
 	//basemap implementation...similar workflow to proposal buttons
 	$('.baseMap').on('input',function(){
-		//if this radio button is clicked on and checked, it will 
+		//if this radio button is clicked on and checked, it will
 		//load that basemap and make sure the other radio buttons are
 		//checked off. It will also remove the previous basemap and
 		//load in the new one.
@@ -489,10 +489,15 @@ function removeRoads(roadsPOI){
 }
 //adds the roads onto the map when called.
 function createAddRoads(data) {
+	//create pane for additional roads layer to always be 'above' the other geojson layers
+	map.createPane('roadsPane');
+	map.getPane('roadsPane').style.zIndex=450;
+	map.getPane('roadsPane').style.pointerEvents = 'none';
+
 	roadsPOI = L.geoJson(data, {
-		style: roadsStyle
-    }).addTo(map);
-    roadsPOI.setZIndex(5)
+		style: roadsStyle,
+		pane: 'roadsPane'
+	}).addTo(map);
 	return roadsPOI;
 };
 //adding the POI markers to the map.
@@ -529,7 +534,7 @@ function getProposal1(data){
         pane: 'left',
 		onEachFeature: onEachFeature,
     });
-	
+
 };
 function getProposal2(data){
     proposal2 = L.geoJson(data, {
@@ -546,7 +551,7 @@ function getProposal3(data){
         pane: 'right',
 		onEachFeature: onEachFeature,
     })
-	
+
 };
 function getProposal4(data){
     proposal4 = L.geoJson(data, {
@@ -559,7 +564,7 @@ function getProposal4(data){
 var prop1;
 
 $.getJSON("data/proposal1.geojson", function(response){
-    prop1 = response  
+    prop1 = response
 });
  console.log(prop1)
 $.getJSON("data/proposal3.geojson", function(response){

@@ -6,29 +6,45 @@
             <title>Stakeholders</title>
 
         <link rel="stylesheet" href="css/style.css">
-        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+            <link rel="stylesheet" href="css\bootstrap.min.css"/>
     </head>
 
     <body>
-	    <!-- Each button calls the basic JS method with the path you want to go to -->
-		<div class="navbar1">
-			<!-- Assignment will be the About pop-up -->
-			<button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""> Assignment</button>
-			<button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""> Stakeholders</button>
-			<button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""> Proposals</button>
-			<!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-			<button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""> Secrets Page</button>
-			<button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""> Credits</button>
-		</div>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <ul class="header"><span>Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Secrets Page</p></button>
+        <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </ul>
+      </div>
+
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Leader of the Federation of Native Peoples (FENAMAD)</h1>
+        </div>
+      </div>
+
+      <!-- Stakeholder Description contents-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <!-- image and photo credit -->
+          <img src="fenamad.jpg" alt=" " width="50%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <p class="mb-0">Picture of a FENAMAD leader sitting in front of a map and looking at a laptop screen (blurred to protect anonymity).</p>
+            <footer class="blockquote-footer">Photo credit: John Poole, <cite title="Source Title">NPR</cite></footer>
+          </blockquote>
 
 
-		<div id="basic-desc">
-      <div class="arimo">
-				<h2>Leader of the Federation of Native Peoples (FENAMAD):</h2>
-        <img src="fenamad.jpg" alt=" " width="50%">
+		      <!-- <div id="basic-desc"> -->
+
           <p>
             Agustin Achuni leads FENAMAD, a grassroots political organization of indigenous peoples. FENAMAD’s mission is to defend indigenous ancestral lands
             from outside interests and gain authority to manage their legally recognized territories as they choose. Many indigenous communities in this region
@@ -73,16 +89,19 @@
           <p>
             Similarly, FENAMAD members are divided in their opinion of forest carbon projects – like those referred to as
             <!--retrieve glossary term REDD+ & link to gloassary -->
-            <a class="popup" onclick="popupREDD()">REDD+
+            <span class="popup" onclick="popupREDD()">REDD+
               <span class="popupText" id="myPopup5">"Reduced Emissions from Deforestation and Forest Degradation", is an
               incentive-based mechanism for reducing greenhouse gas emissions through improved forest management in developing
-              countries.</span>
-            </a>
+              countries.
+                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+              </span>
+            </span>
             (Reduced Emissions from Deforestation and Forest Degradation) and promoted by the Peruvian conservation company
             <!-- retrieve BAM description and link  -->
             <span class="popup" onclick="popupBAM()"><i>Bosques Amazónicos</i>
-              <span class="popupText" id="myPopup3">Description of BAM here...
+              <span class="popupText" id="myPopup3">A for-profit organization facilitating a REDD+ project in Tambopata. Click
                 <a href="http://www.bosques-amazonicos.com/en/our-projects/redd-in-the-bahuaja-sonene-national-park-and-tambopata-national-reserve"target="_blank"> BAM</a>
+                for more information.
               </span>
             </span>
             – that promise to pay indigenous communities not to cut forest on their land for many years. However, other FENAMAD members strongly oppose forest carbon projects,
@@ -96,8 +115,10 @@
             happen, it should directly benefit indigenous peoples. FENAMAD leaders are considering joining the
             <!-- retrieve Fedemin description and link  -->
             <span class="popup" onclick="popupFedemin()">Mining Federation
-              <span class="popupText" id="myPopup4">Description of Fedemin here...
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fedemin/"target="_blank">Fedemin</a>
+              <span class="popupText" id="myPopup4">Miguel is a gold miner and is thrilled that gold prices are rising. But he’s troubled that labor conditions for miners in
+                Tambopata have gotten more dangerous in recent years. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fedemin/"target="_blank">Fedemin</a> to learn why Miguel is confident that mining is the best path
+                for local economic development.
               </span>
             </span>
             in their public protests against the Peruvian government’s newly imposed mining restrictions.
@@ -109,17 +130,23 @@
             Peruvian Amazon.
           </p>
 
-          <p>
+          <!-- <p>
             Click here (first video), and here (second video) to watch a video interview with a FENAMAD leader.
-          </p>
+          </p> -->
 
       </div>
 		</div>
 
-    <!-- older Fedemad video here -->
+    <!-- older Fedemad video here.Click here (first video), and here (second video) to watch a video interview with a
+    FENAMAD leader.-->
 
 
-		<script src="lib/d3/d3.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+		<!-- <script src="lib/d3/d3.js"></script>
+        <script type="text/javascript" src="js/main.js"></script> -->
+
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
     </body>
 </html>

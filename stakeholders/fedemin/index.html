@@ -6,29 +6,44 @@
             <title>Stakeholders</title>
 
         <link rel="stylesheet" href="css/style.css">
-        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+            <link rel="stylesheet" href="css\bootstrap.min.css"/>
     </head>
 
     <body>
-	    <!-- Each button calls the basic JS method with the path you want to go to -->
-		<div class="navbar1">
-			<!-- Assignment will be the About pop-up -->
-			<button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""> Assignment</button>
-			<button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""> Stakeholders</button>
-			<button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""> Proposals</button>
-			<!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-			<button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""> Secrets Page</button>
-			<button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""> Credits</button>
-		</div>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <ul class="header"><span>Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Secrets Page</p></button>
+        <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </ul>
+      </div>
 
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Leader of the Mining Federation (FEDEMIN)</h1>
+        </div>
+      </div>
 
-		<div id="basic-desc">
-      <div class="arimo">
-				<h2>Leader of Mining Federation (FEDEMIN)</h2>
-        <img src="Fedemin.jpg" alt=" " width="50%">
+      <!-- Stakeholder Description contents-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <!-- image and photo credit -->
+          <img src="Fedemin.jpg" alt=" " width="50%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <p class="mb-0">Picture of a mining leader standing in front of a blue lunch counter (blurred to protect anonymity).</p>
+            <footer class="blockquote-footer">Photo credit: John Poole, <cite title="Source Title">NPR</cite></footer>
+          </blockquote>
+
+		      <!-- <div id="basic-desc"> -->
+
           <p>
             Miguel Yallico is disgusted by the poverty he sees in Tambopata, especially because he knows there are millions of dollars of gold lying buried in the
             region’s soils. Miguel mines gold in three places in Tambopata, but like &gt;90% of local miners, he operates illegally. He is not afraid of punishment
@@ -49,17 +64,21 @@
             interests of global northern countries. He asks, "who is polluting more: us
             <!--retrieve pop-up with description and link to gold miner  -->
             <span class="popup" onclick="popupMine()">poor miners
-              <span class="popupText" id="myPopup1">Description of gold miners and link here...
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/gold-miner/"target="_blank"> Gold Miner</a>
+              <span class="popupText" id="myPopup1"><u>Small-Scale Gold Miner</u>: Pedro is a long-time resident of Tambopata and a gold miner. Given the rising global demand for gold, Pedro thinks it
+                is impossible to stop mining in Tambopata but he’s also concerned about the impact mining has on his community and environment. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/gold-miner/"target="_blank">Gold Miner </a>to learn about
+                the future or mining Pedro envisions.
               </span>
             </span>
             , or big rich countries in the North who fill the sky with CO<sub>2</sub>?" He urges his fellow miners to disregard the rules about applying for legal mining
             <!--retrieve glossary term concessions & link to gloassary -->
-            <a class="popup" onclick="popupCon()">concessions.
+            <span class="popup" onclick="popupCon()">concessions.
               <span class="popupText" id="myPopup3">A formal permit issued by the government for a certain activity
               (e.g. mining, logging, ecotourism) for a specified period of time (usually several years, although not
-              permanent).</span>
-            </a>
+              permanent).
+                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+              </span>
+            </span>
             These rules are unreasonable and interfere with the basic principle that every Peruvian has the right to mine – after all, mining has historically been part
             of their identity and dignity. He thinks mining is also the best option for
             <!--retrieve glossary term Ese’eja & link to gloassary -->
@@ -74,12 +93,15 @@
             in areas damaged by mining. In the meantime, if any environmentalist wants to pay for more sustainable mining equipment, that’s fine, just don’t ask the poor
             miners to make any more sacrifices. They are doing back-breaking, dangerous work.
           </p>
-      </div>
-		</div>
+        <!-- </div> -->
+		   </div>
 
-		<!-- <button onclick="redirect('../../')">Return to Selection</button> -->
+		<!-- <script src="lib/d3/d3.js"></script>
+        <script type="text/javascript" src="js/main.js"></script> -->
 
-		<script src="lib/d3/d3.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
     </body>
 </html>

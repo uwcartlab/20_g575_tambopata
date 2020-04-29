@@ -6,37 +6,56 @@
             <title>Stakeholders</title>
 
         <link rel="stylesheet" href="css/style.css">
-        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+            <link rel="stylesheet" href="css\bootstrap.min.css"/>
     </head>
 
     <body>
-	    <!-- Each button calls the basic JS method with the path you want to go to -->
-		<div class="navbar1">
-			<!-- Assignment will be the About pop-up -->
-			<button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""> Assignment</button>
-			<button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""> Stakeholders</button>
-			<button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""> Proposals</button>
-			<!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-			<button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""> Secrets Page</button>
-			<button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""> Credits</button>
-		</div>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <ul class="header"><span>Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Secrets Page</p></button>
+        <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </ul>
+      </div>
 
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Development Officer of <i>Palmas del Peru</i> (a Peruvian oil palm company)</h1>
+        </div>
+      </div>
 
-		<div id="basic-desc">
-      <div class="arimo">
-				<h2>Development Officer for <i>Palmas del Peru</i> (a Peruvian oil palm company)</h2>
-        <img src="oilpalmofficer(adjusted).jpg" alt=" " width="50%" class="image-center">
+      <!-- Stakeholder Description contents-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+
+        <!-- image and photo credit -->
+          <img src="oilpalmofficer(adjusted).jpg" alt=" " width="50%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <!-- need a caption for this photo -->
+            <!-- <p class="mb-0">A picture of an Ese’eja indigenous person (blurred to protect anonymity).</p> -->
+            <footer class="blockquote-footer">Photo credit: John Poole, <cite title="Source Title">NPR</cite></footer>
+          </blockquote>
+
+		      <!-- <div id="basic-desc"> -->
+
           <p>
             Mariella Silva works for <i>Palmas del Peru</i>, a leading company in Peru’s growing oil palm industry. Oil palm production is booming in the Peruvian
             Amazon, especially in San Martin and Ucayali. Mariella’s job is to find new regions in Peru to promote oil palm production. In fact, a large area
             <!--retrieve glossary term Hectares & link to gloassary -->
-            <a class="popup" onclick="popupHec()">(~1.5 million hectares)
+            <span class="popup" onclick="popupHec()">(~1.5 million hectares)
               <span class="popupText" id="myPopup3">Hectare: A 100 x 100 m unit of land (1 hectare = 2.3 acres).
-                Abbreviated “ha". Most Tambopata farms are ~40 ha.</span>
-            </a>
+                Abbreviated “ha". Most Tambopata farms are ~40 ha.
+                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+              </span>
+            </span>
             of Peru is suitable for oil palm production. She hopes to convince people in Tambopata of the advantages of oil palm by pointing
             to the high global demand for palm oil and the big profits made by producers in other areas. Although oil palm producers have been criticized for
             displacing smallholder farmers, Mariella’s company is committed to working <i>with</i> smallholders.
@@ -47,17 +66,19 @@
             companies will buy land from local farmers growing food, thus forcing them to clear forest elsewhere for new agricultural fields. Other opponents
             point out that oil palm plantations need to be large (~1,000 ha) to be profitable. Mariella defends her company on the grounds that they are
             committed to transparency and sustainability, and she sees
-            <!-- retrieve Sustainable oil palm description and link  -->
+            <!-- retrieve Sustainable oil palm description and link  ................... Definition needed yet, also needs to be added to glossary-->
             <span class="popup" onclick="popupPalm()">sustainable oil palm production
-              <span class="popupText" id="myPopup1">Description of sustainable oil palm production here...
+              <span class="popupText" id="myPopup1">Description of sustainable oil palm production... coming soon
                 <a href="https://www.palmas.com.pe/sostenibilidad"target="_blank"> Palmas</a>
               </span>
             </span>
             as a key way for Tambopata to develop and diversify its economy. <i>Palmas del Peru</i> is looking to partner with
             <!--retrieve pop-up with description and link to colonist farmer  -->
             <span class="popup" onclick="popupFarm()">smallholder farmers,
-              <span class="popupText" id="myPopup2">Description of colonist farmer and link here...
+              <span class="popupText" id="myPopup2"><u>Colonist Farmer</u>: Jose and his family work hard farming land near the Tambopata National Reserve. Every year, Jose and his family
+                plant rice and corn in fields cleared in the forest until the soil becomes ‘tired’ and less productive. Click
                 <a href="http://localhost:8848/20_g575_tambopata/stakeholders/colonist-farmer/"target="_blank">Colonist Farmer</a>
+                to learn about the different types of opportunities Jose is entertaining to provide a standard income for his family.
               </span>
             </span>
             farming cooperatives, and other third-party suppliers who can commit to not
@@ -73,9 +94,12 @@
       </div>
 		</div>
 
-		<!-- <button onclick="redirect('../../')">Return to Selection</button> -->
+		<!-- <script src="lib/d3/d3.js"></script>
+        <script type="text/javascript" src="js/main.js"></script> -->
 
-		<script src="lib/d3/d3.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
     </body>
 </html>
