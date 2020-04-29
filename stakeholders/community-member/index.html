@@ -6,49 +6,64 @@
             <title>Stakeholders</title>
 
         <link rel="stylesheet" href="css/style.css">
-        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+            <link rel="stylesheet" href="css\bootstrap.min.css"/>
     </head>
 
     <body>
-	    <!-- Each button calls the basic JS method with the path you want to go to -->
-		<div class="navbar1">
-			<!-- Assignment will be the About pop-up -->
-			<button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""> Assignment</button>
-			<button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""> Stakeholders</button>
-			<button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""> Proposals</button>
-			<!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-			<button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""> Secrets Page</button>
-			<button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""> Credits</button>
-		</div>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <ul class="header"><span>Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Secrets Page</p></button>
+        <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </ul>
+      </div>
 
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Indigenous Ese'eja Community Member</h1>
+        </div>
+      </div>
 
-		<div id="basic-desc">
-      <div class="arimo">
-				<h2>Indigenous Ese’eja Community Member:</h2>
-        <img src="eseeja.jpg" alt=" " width="50%">
+      <!-- Stakeholder Description contents-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+
+        <!-- image and photo credit -->
+          <img src="eseeja.jpg" alt=" " width="50%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <p class="mb-0">A picture of an Ese’eja indigenous person (blurred to protect anonymity).</p>
+            <footer class="blockquote-footer">Photo credit: John Poole, <cite title="Source Title">NPR</cite></footer>
+          </blockquote>
+
           <p>Ramon Mishaja is from the
           <!--retrieve glossary term Ese’eja & link to gloassary -->
-          <a class="popup" onclick="popupEse()">Ese’eja Indigenous Territory of Infierno,
+          <span class="popup" onclick="popupEse()">Ese’eja Indigenous Territory of Infierno,
             <span class="popupText" id="myPopup6">The largest group of indigenous people in the region, numbering ~600 today,
             some estimate ~10,000 before 1890.
+              <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
             </span>
-          </a>
-             an indigenous community with recognized
-            land rights lying adjacent to the Tambopata National Reserve. The Ese’eja were originally a nomadic community
-            living in the region around Tambopata for centuries. They have deep ecological knowledge and a strong spiritual
+          </span>
+            an indigenous community with recognized land rights lying adjacent to the Tambopata National Reserve. The Ese’eja were originally
+            a nomadic community living in the region around Tambopata for centuries. They have deep ecological knowledge and a strong spiritual
             connection to Amazonian ecosystems. Though individual communities like the one at Infierno won legal communal
             title to certain lands in 1974, the Ese’eja have lost access to many of their sacred sites and to areas they
             once relied on for hunting, fishing, and gathering. Today the Ese’eja Indigenous Territory of Infierno covers
             only 9,558
             <!--retrieve glossary term Hectares & link to gloassary -->
-            <a class="popup" onclick="popupHec()">hectares,
+            <span class="popup" onclick="popupHec()">hectares,
               <span class="popupText" id="myPopup1">A 100 x 100 m unit of land (1 hectare = 2.3 acres).
                 Abbreviated “ha". Most Tambopata farms are ~40 ha.
+                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
               </span>
-            </a>
+            </span>
              an area significantly smaller than their original homeland.
           </p>
 
@@ -57,8 +72,12 @@
             consulting leaders in the Federation of Native Peoples
             <!-- retrieve Fademad description and link  -->
             <span class="popup" onclick="popupFad()">(FADEMAD).
-              <span class="popupText" id="myPopup2">Description of FADEMAD here...
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fademad/"target="_blank"> FADEMAD</a>
+              <span class="popupText" id="myPopup2"><u>Leader of the Agrarian Federation(FADEMAD)</u> Alan leads FADEMAD, a grassroots political
+                organization that represents ~5000 small farmers in the Madre de Dios region. FADEMAD’s goal is to improve the quality of life of its members,
+                 both long-time residents and more-recently settled colonists. Alan believes that poor farmers’ quality of life
+                 depends on a healthy environment. Thus, he tries to defend local farmers AND the forest. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fademad/">FADEMAD </a>to learn how
+                Alan weighs the costs and benefits of land management practices of his varied constituents are interested in pursuing.
               </span>
             </span>
 
@@ -68,15 +87,20 @@
           <p> He is also thinking about different ways that his home Ese’eja community in Infierno can secure more income. His
             community has an
             <!--retrieve glossary term Eco-tourism & link to gloassary -->
-            <a class="popup" onclick="popupEco()">eco-tourism
+            <span class="popup" onclick="popupEco()">eco-tourism
               <span class="popupText" id="myPopup7">A form of nature-based tourism in which tourist impacts on the environment
-              are mitigated.</span>
-            </a>
+              are mitigated.
+                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+              </span>
+            </span>
              partnership with the tourism company
             <!-- retrieve Rainforest Expeditions description and link  -->
             <span class="popup" onclick="popupRE()"><i>Rainforest Expeditions</i>.
-              <span class="popupText" id="myPopup3">Description of Rainforest Expeditions here...
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/rainforest-expeditions/"target="_blank"> Rainforest Expeditions</a>
+              <span class="popupText" id="myPopup3"><u>Co-Founder of Rainforest Expeditions</u> Oscar is passionate about biodiversity conservation but believes that
+                saving the rainforest must be profitable to be successful. To this end, he built Rainforest Expeditions, a high-end ecotourism company. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/rainforest-expeditions/"target="_blank"> Rainforest Expeditions</a> to learn how Oscar
+                collaborates with other interest groups to conserve the rainforest and bring economic support to the area while grappling with other challenges in
+                participatory land use management.
               </span>
             </span>
             The Ese’eja own the tourism lodge built by the company in Infierno, and <i>Rainforest Expeditions</i> handles the marketing and management. Together,
@@ -95,8 +119,9 @@
             (Reduced Emissions from Deforestation and Forest Degradation).
             <!-- retrieve BAM description and link  -->
             <span class="popup" onclick="popupBAM()"><i>Bosques Amazónicos</i>,
-              <span class="popupText" id="myPopup5">Description of BAM here...
+              <span class="popupText" id="myPopup5">A for-profit organization facilitating a REDD+ project in Tambopata. Click
                 <a href="http://www.bosques-amazonicos.com/en/our-projects/redd-in-the-bahuaja-sonene-national-park-and-tambopata-national-reserve"target="_blank"> BAM</a>
+                for more information.
               </span>
             </span>
             a Peruvian conservation company, has REDD projects that pay communities to
@@ -104,21 +129,24 @@
             will benefit native communities. Meanwhile, Ramon is troubled by reports that a third Tambopata-adjacent Ese’eja Indigenous
             territory to the east (Palma Real) has suffered invasions by outside miners and loggers, some of whom are violent.
           </p>
+        </div>
+      </div>
 
           <!-- <p>
-            Click here and here to watch a video interview with a FENAMAD leader.
+            Click here and here to watch a video interview with a FENAMAD leader. .......Older video was here
           </p> -->
 
-          <!-- Youtube video of the Ese'je Community -->
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/Z2KYpDSWUlU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <!-- Youtube video Brazil Nut Harvester-->
+          <div class = "iframe-container" align="center" style="margin-bottom:100px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Z2KYpDSWUlU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
 
+		<!-- <script src="lib/d3/d3.js"></script>
+        <script type="text/javascript" src="js/main.js"></script> -->
 
-      </div>
-		</div>
-
-		<!-- <button onclick="redirect('../../')">Return to Selection</button> -->
-
-		<script src="lib/d3/d3.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+        <script src = "lib\jquery-3.4.1.js"></script>
+    		<script type= "text/javascript" src="js/main.js"></script>
+    		<script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
     </body>
 </html>
