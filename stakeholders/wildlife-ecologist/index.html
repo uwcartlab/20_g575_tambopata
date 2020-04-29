@@ -6,29 +6,45 @@
             <title>Stakeholders</title>
 
         <link rel="stylesheet" href="css/style.css">
-        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+            <link rel="stylesheet" href="css\bootstrap.min.css"/>
     </head>
 
     <body>
-	    <!-- Each button calls the basic JS method with the path you want to go to -->
-		<div class="navbar1">
-			<!-- Assignment will be the About pop-up -->
-			<button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""> Assignment</button>
-			<button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""> Stakeholders</button>
-			<button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""> Proposals</button>
-			<!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-			<button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""> Secrets Page</button>
-			<button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""> Credits</button>
-		</div>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <ul class="header"><span>Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Secrets Page</p></button>
+        <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </ul>
+      </div>
 
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Widlife Ecologist</h1>
+        </div>
+      </div>
 
-		<div id="basic-desc">
-      <div class="arimo">
-				<h2>Wildlife Ecologist:</h2>
-        <img src="ecologist.jpg" alt=" " width="50%">
+      <!-- Stakeholder Description contents-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+
+        <!-- image and photo credit -->
+          <img src="ecologist.jpg" alt=" " width="50%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <p class="mb-0">picture of a wildlife ecologist standing in front of the base of a very large tree (blurred to protect anonymity).</p>
+            <footer class="blockquote-footer">Photo credit: John Poole, <cite title="Source Title">NPR</cite></footer>
+          </blockquote>
+
+		      <!-- <div id="basic-desc"> -->
+
           <p>
             Dr. Natalia Ortiz is a Peruvian scientist who studies the ecology of Giant River Otters (<i>Pteronura brasiliensis</i>) in Tambopata, one of the last
             strongholds for this endangered species. She thinks giant otters are magical animals – for one, they are enormous (up to 6 feet long) and live
@@ -56,8 +72,10 @@
             another way to sustain otter habitat is by protecting the forest through forest carbon projects that pay environmental stewards like
             <!--retrieve pop-up with description and link to Brazil Nut harvester  -->
             <span class="popup" onclick="popupNut()">Brazil nut harvesters
-              <span class="popupText" id="myPopup2">Description of Brazil nut harvester here...
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/brazil-nut-harvester/"target="_blank"> Brazil Nut Harvester</a>
+              <span class="popupText" id="myPopup2"><u>Brazil Nut Harvester</u>: Maria is a Brazil nut harvester and her livelihood depends on access to the old growth forests.
+                Brazil nut trees take decades to start producing nuts and cannot be cultivated in plantations. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/brazil-nut-harvester/"target="_blank"> Brazil Nut Harvester</a> to learn how Maria is engaging with other stakeholders
+                to address the changing landscape.
               </span>
             </span>
             to conserve their land. Last, she has tried to convince people to save otter habitat as a means to protect the sources of clean drinking water. Ultimately she
@@ -65,13 +83,15 @@
             as having deep intrinsic value, deserving protection beyond human interests. She sees hope in the rising concern for environmental protection among Peruvian
             citizens, including those living in large cities like Lima. She is fighting to protect wildlife for all Peruvians, including future generations.
           </p>
-
-      </div>
+      <!-- </div> -->
 		</div>
 
-		<!-- <button onclick="redirect('../../')">Return to Selection</button> -->
+		<!-- <script src="lib/d3/d3.js"></script>
+        <script type="text/javascript" src="js/main.js"></script> -->
 
-		<script src="lib/d3/d3.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
     </body>
 </html>
