@@ -7,6 +7,12 @@ var proposal1;
 var proposal2;
 var proposal3;
 var proposal4;
+var proposal2_right;
+var proposal3_right;
+var proposal4_right;
+var proposal1_left;
+var proposal2_left;
+var proposal3_left;
 var roadsPOI;
 var view1;
 var view2;
@@ -71,21 +77,46 @@ function setMap() {
 	
 };
 function createProposals(){
-    map.createPane('left');
-    map.createPane('right');
-    proposal1 = L.geoJson(view1, {
+    var left = map.createPane('left');
+    var right = map.createPane('right');
+    proposal1_left = L.geoJson(view1, {
         //point to layer with the features and the list containing the geoJson attributes
         style: style,
         pane: 'left',
 		onEachFeature: onEachFeature,
-    }).addTo(map);
-    proposal3 = L.geoJson(view3, {
+    });
+    proposal2_left = L.geoJson(view2, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'left',
+		onEachFeature: onEachFeature,
+    });
+    proposal3_left = L.geoJson(view3, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'left',
+		onEachFeature: onEachFeature,
+    });
+    proposal2_right = L.geoJson(view2, {
         //point to layer with the features and the list containing the geoJson attributes
         style: style,
         pane: 'right',
 		onEachFeature: onEachFeature,
-    }).addTo(map);
-    swipe = L.control.sideBySide(proposal1, proposal3).addTo(map);
+    });
+    proposal3_right = L.geoJson(view3, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'right',
+		onEachFeature: onEachFeature,
+    });
+    proposal4_right = L.geoJson(view4, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'right',
+		onEachFeature: onEachFeature,
+    });
+    var wholeList = {"proposal1_left": proposal1_left,"proposal2_left": proposal2_left,"proposal3_left": proposal3_left,"proposal2_right": proposal2_right,"proposal3_right": proposal3_right,"proposal4_right": proposal4_right}
+    var swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
 	//adding a proposal div and button onto the map.
 	var rowBar = L.Control.extend({
         options: {
@@ -100,10 +131,10 @@ function createProposals(){
 			//each button has an id based on proposal number and all have "proposal" class
 			$(row).append('<div class="container-fluid" align = "center">');
 			$(row).append('<div class="row">');
-			$(row).append('<div id = "proposal1" type = "button" class="active proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</div>');
-			$(row).append('<div  id = "proposal2" type = "button" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</div>');
-			$(row).append('<div  id = "proposal3" type = "button" class="active proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</div>');
-			$(row).append('<div  id = "proposal4" type = "button" class="proposal col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</div>');
+			$(row).append('<button id = "proposal1"  type = "button" class="active proposal pr1 col-lg-3 col-md-3 col-sm-3 col-xs-3" checked>Proposal 1</button>');
+			$(row).append('<button  id = "proposal2" type = "button" class="proposal pr2 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</button>');
+			$(row).append('<button  id = "proposal3" type = "button" class="active proposal pr3 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</button>');
+			$(row).append('<button  id = "proposal4" type = "button" class="proposal pr4 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</button>');
 			$(row).append('</div>');
 			$(row).append('</div>');
 
@@ -111,35 +142,117 @@ function createProposals(){
 
 		}
 	});
-	map.addControl(new rowBar());
-	//whichever button is pressed, this function will be called
-	$('.proposal').click(function(){
-		//if the id is proposal#, then it will remove the current zone, and call in the zone it is clicked on.
-		if ($(this).attr('id') == 'proposal1'){
-			$(this).addClass('active');//adds the active class to this button
-			getZones(zone);
-		} else if ($(this).attr('id') == 'proposal2'){
-			removeZones(zones)
-			var zone = "data/proposal2.geojson";
-			$(this).addClass('active');
-			getZones(zone);
-		}
-		else if ($(this).attr('id') == 'proposal3'){
-			removeZones(zones)
-			var zone = "data/proposal3.geojson";
-			$(this).addClass('active');
-			getZones(zone);
-		}
-		else if ($(this).attr('id') == 'proposal4'){
-			removeZones(zones)
-			var zone = "data/proposal4.geojson";
-			$(this).addClass('active');
-			getZones(zone);
-		}
-
-    });
-    proposalList = [proposal3, proposal1]
-    return proposalList
+    map.addControl(new rowBar());
+    console.log("||")
+    //whichever button is pressed, this function will be called
+    $('#proposal1').on('click',function(){
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
+            map.removeControl(swipe);
+            map.removeLayer(proposal1_left);
+        }else{
+            $('.proposal').each(function(){
+                if($(this).hasClass('active')){
+                    var value = (this.id)
+                    console.log(value.split("proposal"))
+                    var newValue = value + "_right"
+                    for(var key in wholeList){
+                        if(newValue == key){
+                            var match = wholeList[key]
+                        }
+                    }
+                    swipe = L.control.sideBySide(proposal1_left.addTo(map), match.addTo(map)).addTo(map);
+                }
+                else{
+                    proposal1_left.addTo(map)
+                }
+            })
+            $(this).addClass('active')
+        }})
+        $('#proposal2').on('click',function(){
+            if($(this).hasClass('active')){
+                $(this).removeClass('active');
+                map.removeControl(swipe);
+                map.removeLayer(proposal2_left);
+            }else{
+                $('.proposal').each(function(){
+                    if($(this).hasClass('active')){
+                        var value = (this.id)
+                        value = value.split("proposal")[1]
+                        value = Number(value)
+                        if(value < 2){
+                            var newValue = "proposal"+value+"_left"
+                        }else{
+                            var newValue = "proposal"+value+"_right"
+                        }
+                        console.log(newValue)
+                        for(var key in wholeList){
+                            if(newValue == key){
+                                var match = wholeList[key]
+                            }
+                        }
+                        swipe = L.control.sideBySide(proposal2_left.addTo(map), match.addTo(map)).addTo(map);
+                    }
+                    else{
+                        proposal2_left.addTo(map)
+                    }
+                })
+                $(this).addClass('active')
+            }})
+        $('#proposal3').on('click',function(){
+                if($(this).hasClass('active')){
+                    $(this).removeClass('active');
+                    map.removeControl(swipe);
+                    map.removeLayer(proposal3_right);
+                }else{
+                    $('.proposal').each(function(){
+                        if($(this).hasClass('active')){
+                            var value = (this.id)
+                            value = value.split("proposal")[1]
+                            value = Number(value)
+                            if(value < 2){
+                                var newValue = "proposal"+value+"_left"
+                            }else{
+                                var newValue = "proposal"+value+"_right"
+                            }
+                            for(var key in wholeList){
+                                if(newValue == key){
+                                    var match = wholeList[key]
+                                }
+                            }
+                            swipe = L.control.sideBySide(match.addTo(map), proposal3_right.addTo(map)).addTo(map);
+                        }
+                        else{
+                            proposal3_right.addTo(map)
+                        }
+                    })
+                    $(this).addClass('active')
+                }})
+    $('#proposal4').on('click',function(){
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
+            map.removeControl(swipe);
+            map.removeLayer(proposal4_right);
+        }else{
+            $('.proposal').each(function(){
+                if($(this).hasClass('active')){
+                    var value = (this.id)
+                    var newValue = value + "_left"
+                    for(var key in wholeList){
+                        if(newValue == key){
+                            var match = wholeList[key]
+                            console.log(match)
+                        }
+                    }
+                    swipe = L.control.sideBySide(match.addTo(map), proposal4_right.addTo(map)).addTo(map);
+                }
+                else{
+                    proposal4_right.addTo(map)
+                }
+            })
+            $(this).addClass('active')
+        }})
+    
 };
 function createLegend(roads, earth, hybrid){
 	//createing the legend control
@@ -238,11 +351,13 @@ function createLegend(roads, earth, hybrid){
 	});
 	//slider bar function
 	$('.range-slider').on('input',function(){
+        if(proposal1){
         proposal1.setStyle({
 			opacity: this.value,
 			fillOpacity: this.value,
 			animate: "fast",
-        });
+        });}
+        else{
         proposal2.setStyle({
 			opacity: this.value,
 			fillOpacity: this.value,
@@ -257,7 +372,7 @@ function createLegend(roads, earth, hybrid){
 			opacity: this.value,
 			fillOpacity: this.value,
 			animate: "fast",
-        });
+        });}
 		opacity=this.value
 	});
 };
@@ -376,7 +491,8 @@ function removeRoads(roadsPOI){
 function createAddRoads(data) {
 	roadsPOI = L.geoJson(data, {
 		style: roadsStyle
-	}).addTo(map);
+    }).addTo(map);
+    roadsPOI.setZIndex(5)
 	return roadsPOI;
 };
 //adding the POI markers to the map.

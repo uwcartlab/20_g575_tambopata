@@ -150,6 +150,7 @@ html, body, #map {
     height: 35px;
     float: left;
     text-align: center;
+    border-style: none;
     border: solid #186c3f 2px;
     color: #e7efea;
     background-color: #186c3f;
