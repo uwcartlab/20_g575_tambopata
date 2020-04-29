@@ -20,6 +20,7 @@ var swipe;
 var view1Data;
 var view2Data;
 var proposalList;
+var swipeList = [];
 
 //create the map
 function setMap() {
@@ -47,7 +48,7 @@ function setMap() {
 		type: 'satellite'
     })
     getPOIs()
-    createLegend(roads, earth, hybrid)
+    
 	var promises = [];
     //promises will use d3 to push the csv and topojson files of Chicago neighborhood boundaries,
     //Lake Michigan, and the Illinois/Indiana state boundaries.
@@ -66,14 +67,9 @@ function setMap() {
         view2 = data[1];
         view3 =data[2];
         view4 = data[3];
-        createProposals(view1, view2, view3, view4)
-    }
-
-	//get POI onto the map.
-
-	//createProposals is for loading each proposal map based on user's click
-
-	//creates custom legend control onto the map.
+		createProposals(view1, view2, view3, view4)
+		createLegend(roads, earth, hybrid)
+	}
 
 };
 function createProposals(){
@@ -115,7 +111,10 @@ function createProposals(){
         pane: 'right',
 		onEachFeature: onEachFeature,
     });
-    var wholeList = {"proposal1_left": proposal1_left,"proposal2_left": proposal2_left,"proposal3_left": proposal3_left,"proposal2_right": proposal2_right,"proposal3_right": proposal3_right,"proposal4_right": proposal4_right}
+	var wholeList = {"proposal1_left": proposal1_left,"proposal2_left": proposal2_left,"proposal3_left": proposal3_left,"proposal2_right": proposal2_right,"proposal3_right": proposal3_right,"proposal4_right": proposal4_right}
+	swipeList.push(proposal1_left)
+	swipeList.push(proposal3_right)
+	console.log(swipeList)
     var swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
 	//adding a proposal div and button onto the map.
 	var rowBar = L.Control.extend({
@@ -147,29 +146,38 @@ function createProposals(){
     //whichever button is pressed, this function will be called
     $('#proposal1').on('click',function(){
         if($(this).hasClass('active')){
+			swipeList.length = 0
+			console.log(swipeList)
             $(this).removeClass('active');
             map.removeControl(swipe);
             map.removeLayer(proposal1_left);
         }else{
             $('.proposal').each(function(){
                 if($(this).hasClass('active')){
+					swipeList.length = 0
                     var value = (this.id)
-                    console.log(value.split("proposal"))
                     var newValue = value + "_right"
                     for(var key in wholeList){
                         if(newValue == key){
                             var match = wholeList[key]
                         }
-                    }
+					}
+					swipeList.push(match)
+					swipeList.push(proposal1_left)
+					console.log(swipeList)
                     swipe = L.control.sideBySide(proposal1_left.addTo(map), match.addTo(map)).addTo(map);
                 }
                 else{
-                    proposal1_left.addTo(map)
+					swipeList.length = 0
+					swipeList.push(proposal1_left)
+					proposal1_left.addTo(map)
+					console.log(swipeList)
                 }
             })
             $(this).addClass('active')
         }})
         $('#proposal2').on('click',function(){
+			swipeList = []
             if($(this).hasClass('active')){
                 $(this).removeClass('active');
                 map.removeControl(swipe);
@@ -200,6 +208,7 @@ function createProposals(){
                 $(this).addClass('active')
             }})
         $('#proposal3').on('click',function(){
+			swipeList = []
                 if($(this).hasClass('active')){
                     $(this).removeClass('active');
                     map.removeControl(swipe);
@@ -229,6 +238,7 @@ function createProposals(){
                     $(this).addClass('active')
                 }})
     $('#proposal4').on('click',function(){
+		swipeList = []
         if($(this).hasClass('active')){
             $(this).removeClass('active');
             map.removeControl(swipe);
@@ -252,9 +262,10 @@ function createProposals(){
             })
             $(this).addClass('active')
         }})
-    
+    return swipeList
 };
 function createLegend(roads, earth, hybrid){
+	console.log(swipeList)
 	//createing the legend control
 	//roads, earth, and hybrid basemap tilelayers called into this.
 	var LegendControl = L.Control.extend({
@@ -342,39 +353,29 @@ function createLegend(roads, earth, hybrid){
 			hybrid.addTo(map)
 		}
 	});
-	//slider bar attributes
+	
+	var range1 = swipeList[0]
+	var range2 = swipeList[1]
 	$('.range-slider').attr({
-        max: 1,
-        min: 0,
-        value: 1,
+		max: 1,
+		min: 0,
+		value: 1,
 		step: 0.01,
 	});
-	//slider bar function
 	$('.range-slider').on('input',function(){
-        if(proposal1){
-        proposal1.setStyle({
+			range1.setStyle({
 			opacity: this.value,
 			fillOpacity: this.value,
 			animate: "fast",
-        });}
-        else{
-        proposal2.setStyle({
-			opacity: this.value,
-			fillOpacity: this.value,
-			animate: "fast",
-        });
-        proposal3.setStyle({
-			opacity: this.value,
-			fillOpacity: this.value,
-			animate: "fast",
-        });
-        proposal4.setStyle({
-			opacity: this.value,
-			fillOpacity: this.value,
-			animate: "fast",
-        });}
-		opacity=this.value
-	});
+			});
+			range2.setStyle({
+				opacity: this.value,
+				fillOpacity: this.value,
+				animate: "fast",
+				})
+			opacity=this.value
+	})
+	
 };
 //set road style
 function roadsStyle(feature) {
@@ -474,10 +475,7 @@ function onEachPOI(feature, layer) {
 	//bind the popup to the circle marker
     layer.bindPopup(popupContent);
 }
-//remove zones based on the proposal button inputs.
-function removeZones(zones){
-	map.removeLayer(zones)
-}
+
 //function to remove roads from map if the checkmark is unchecked.
 function removeRoads(roadsPOI){
 	map.removeLayer(roadsPOI)
