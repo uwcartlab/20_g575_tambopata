@@ -12,28 +12,31 @@
     </head>
 
     <body>
-	    <!-- Each button calls the basic JS method with the path you want to go to -->
-		<div class="navbar1">
-			<!-- Assignment will be the About pop-up -->
-			<button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""> Assignment</button>
-			<button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""> Stakeholders</button>
-			<button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""> Proposals</button>
-			<!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-			<button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""> Secrets Page</button>
-			<button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""> Credits</button>
-		</div>
+    <!-- Navigation bar -->
+    <div class="navbar1" id = "navbar1">
+      <ul class="header"><span>Tambopata</span>
+      <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+      <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+      <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+      <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+      <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Secrets Page</p></button>
+      <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+      <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+    </ul>
+    </div>
 
-
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container" align="center" style="color:#006d2c">
+    <!-- Page Title -->
+    <div class="jumbotron jumbotron">
+      <div class="container-fluid" align="center" style="color:#006d2c">
         <h1 class="display-4">Brazil Nut Harvester</h1>
       </div>
     </div>
 
+    <!-- Stakeholder Description contents-->
     <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
 
       <!-- image and photo credit -->
-      <img src="brazilnut.jpg" alt=" " width="50%" class="image-center">
+        <img src="brazilnut.jpg" alt=" " width="50%" class="image-center">
         <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
           <p class="mb-0">Brazil Nut Harvester (blurred to protect anonymity)</p>
           <footer class="blockquote-footer">Photo credit: John Poole, <cite title="Source Title">NPR</cite></footer>
@@ -41,23 +44,31 @@
 
 				    <p>Maria Silva has harvested Brazil nuts since she was a child. Her family holds a 40-year
               <!--retrieve glossary term concessions & link to gloassary -->
-              <a class="popup" onclick="popupCon()">concession
+              <span class="popup" onclick="popupCon()">concession
                 <span class="popupText" id="myPopup5">A formal permit issued by the government for a certain activity
                 (e.g. mining, logging, ecotourism) for a specified period of time (usually several years, although not
-                permanent).</span>
-              </a>
+                permanent).
+                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+                </span>
+              </span>
               for harvesting Brazil nuts in 500
                <!--retrieve glossary term Hectares & link to gloassary -->
-               <a class="popup" onclick="popupHec()">hectares
+               <span class="popup" onclick="popupHec()">hectares
                  <span class="popupText" id="myPopup1">A 100 x 100 m unit of land (1 hectare = 2.3 acres).
-                   Abbreviated “ha". Most Tambopata farms are ~40 ha.</span>
-               </a>
+                   Abbreviated “ha". Most Tambopata farms are ~40 ha.
+                   <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+                 </span>
+               </span>
               of old growth forest in the northeastern
               part of the Tambopata National Reserve. As a member of the local Agrarian Federation
               <!-- retrieve Fademad description and link  -->
               <span class="popup" onclick="popupFad()">(FADEMAD),
-                <span class="popupText" id="myPopup2">Description of FADEMAD here...
-                  <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fademad/"target="_blank"> FADEMAD</a>
+                <span class="popupText" id="myPopup2">Alan leads FADEMAD, a grassroots political organization that represents
+                   ~5000 small farmers in the Madre de Dios region. FADEMAD’s goal is to improve the quality of life of its members,
+                   both long-time residents and more-recently settled colonists. Alan believes that poor farmers’ quality of life
+                   depends on a healthy environment. Thus, he tries to defend local farmers AND the forest. Click
+                  <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fademad/">FADEMAD </a>to learn how
+                  Alan weighs the costs and benefits of land management practices of his varied constituents are interested in pursuing.
                 </span>
               </span>
               Maria strongly believes that local poor citizens should have priority to use natural resources
@@ -75,8 +86,10 @@
               also a
               <!--retrieve pop-up with description and link to wildlife ecologist  -->
               <span class="popup" onclick="popupWE()">keystone species.
-                <span class="popupText" id="myPopup3">Description of wildlife ecologist here...
-                  <a href="http://localhost:8848/20_g575_tambopata/stakeholders/wildlife-ecologist/"target="_blank"> Wildlife Ecologist</a>
+                <span class="popupText" id="myPopup3">Dr. Natalia Ortiz is a Peruvian scientist who studies the ecology of Giant River Otters
+                  in Tambopata. She is fighting to protect wildlife for all Peruvians, including future generations. Click
+                  <a href="http://localhost:8848/20_g575_tambopata/stakeholders/wildlife-ecologist/"target="_blank"> Wildlife Ecologist </a>
+                  to learn how Dr. Ortiz views conservation work as an important aspect for the success of this region of Peru.
                 </span>
               </span>
             </p>
@@ -94,8 +107,11 @@
               are partnering with
               <!--retrieve pop-up with description and link to Big Timber  -->
               <span class="popup" onclick="popupLog()">loggers
-                <span class="popupText" id="myPopup4">Description of logging owner and link here...
-                  <a href="http://localhost:8848/20_g575_tambopata/stakeholders/logging-owner/"target="_blank"> Big Timber</a>
+                <span class="popupText" id="myPopup4">Vicente owns Madera Grande, a large Peruvian logging company. He’s eager
+                  to expand his logging company’s operations. Click
+                  <a href="http://localhost:8848/20_g575_tambopata/stakeholders/logging-owner/"target="_blank"> Logging </a>to
+                  learn how Vicente is working with other interest groups to make logging profitable and sustainable business practice
+                  in the Tambopata region.
                 </span>
               </span>
               who claim to be using methods that extract timber without damaging Brazil nut trees. Logging is currently not allowed in the Brazil nut
@@ -107,18 +123,20 @@
               has also promised to build a Brazil nut processing plant. The payments come from a forest carbon fund
               associated with global climate change mitigation efforts known as
               <!--retrieve glossary term REDD+ & link to gloassary -->
-              <a class="popup" onclick="popupREDD()">REDD+.
+              <span class="popup" onclick="popupREDD()">REDD+.
                 <span class="popupText" id="myPopup6">"Reduced Emissions from Deforestation and Forest Degradation", is an
                 incentive-based mechanism for reducing greenhouse gas emissions through improved forest management in developing
-                countries.</span>
-              </a>
+                countries.
+                  <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+                </span>
+              </span>
                Maria thinks these are all promising opportunities; but, above all, what Brazil nut harvesters lack the most is access
               to a better Brazil nut processing plant.
             </p>
 		</div>
 
     <!-- Youtube video Brazil Nut Harvester-->
-    <div class = "container" class="arimo" align="center">
+    <div class = "iframe-container" align="center" style="margin-bottom:100px;">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/Q43OWclfPHw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 

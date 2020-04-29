@@ -55,6 +55,9 @@ button p{
   .navbar1 span{
     display: none;
   }
+  .navbar1 a{
+    display:none;
+  }
 
 }
 /* Style the links inside the navigation bar */
@@ -86,6 +89,7 @@ button p{
   background-color: #4CAF50;
   color: white;
 }
+
 
 #overlay {
   position: fixed;
