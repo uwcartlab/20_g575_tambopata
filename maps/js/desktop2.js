@@ -13,6 +13,7 @@ var view2;
 var swipe;
 var view1Data;
 var view2Data;
+var proposalList;
 
 //create the map
 function setMap() {
@@ -59,13 +60,7 @@ function setMap() {
         view2 = data[1];
         view3 =data[2];
         view4 = data[3];
-        proposal1 = L.geoJson(view1, {
-            style:style,
-            onEachFeature: onEachPOI
-        });
-        proposal1.addTo(map)
         createProposals(view1, view2, view3, view4)
-        return proposal1
     }
 
 	//get POI onto the map.
@@ -75,18 +70,27 @@ function setMap() {
 	//creates custom legend control onto the map.
 	
 };
-function createSwipe(){
+function createProposals(){
     map.createPane('left');
     map.createPane('right');
+    proposal1 = L.geoJson(view1, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'left',
+		onEachFeature: onEachFeature,
+    }).addTo(map);
+    proposal3 = L.geoJson(view3, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'right',
+		onEachFeature: onEachFeature,
+    }).addTo(map);
     swipe = L.control.sideBySide(proposal1, proposal3).addTo(map);
-}
-function createProposals(){
 	//adding a proposal div and button onto the map.
 	var rowBar = L.Control.extend({
         options: {
             position: 'topleft'
         },
-
         onAdd: function () {
             // .proposal-container will contain the buttons and have bootstrap classes
             var row = L.DomUtil.create('div', 'proposal-container');
@@ -106,17 +110,12 @@ function createProposals(){
 			return row;
 
 		}
-
 	});
 	map.addControl(new rowBar());
 	//whichever button is pressed, this function will be called
 	$('.proposal').click(function(){
-		//first thing the function does is removes the current 'active' button and will assign the 'active' button to where it is clicked.
-		$('.proposal').removeClass('active');
 		//if the id is proposal#, then it will remove the current zone, and call in the zone it is clicked on.
 		if ($(this).attr('id') == 'proposal1'){
-			removeZones(zones)
-			var zone = "data/proposal1.geojson";
 			$(this).addClass('active');//adds the active class to this button
 			getZones(zone);
 		} else if ($(this).attr('id') == 'proposal2'){
@@ -138,7 +137,9 @@ function createProposals(){
 			getZones(zone);
 		}
 
-	});
+    });
+    proposalList = [proposal3, proposal1]
+    return proposalList
 };
 function createLegend(roads, earth, hybrid){
 	//createing the legend control
@@ -237,11 +238,26 @@ function createLegend(roads, earth, hybrid){
 	});
 	//slider bar function
 	$('.range-slider').on('input',function(){
-		zones.setStyle({
+        proposal1.setStyle({
 			opacity: this.value,
 			fillOpacity: this.value,
 			animate: "fast",
-		});
+        });
+        proposal2.setStyle({
+			opacity: this.value,
+			fillOpacity: this.value,
+			animate: "fast",
+        });
+        proposal3.setStyle({
+			opacity: this.value,
+			fillOpacity: this.value,
+			animate: "fast",
+        });
+        proposal4.setStyle({
+			opacity: this.value,
+			fillOpacity: this.value,
+			animate: "fast",
+        });
 		opacity=this.value
 	});
 };
