@@ -38,26 +38,47 @@ function setMap() {
 	//earth is just satellite imagery
 	var earth = L.gridLayer.googleMutant({
 		type: 'satellite' 
-	})
-	
+    })
+    getPOIs()
+    createLegend(roads, earth, hybrid)
+	var promises = [];
+    //promises will use d3 to push the csv and topojson files of Chicago neighborhood boundaries,
+    //Lake Michigan, and the Illinois/Indiana state boundaries.
+    promises.push($.getJSON("data/proposal1.geojson"));
+    promises.push($.getJSON("data/proposal2.geojson"));
+    promises.push($.getJSON("data/proposal3.geojson"));
+    promises.push($.getJSON("data/proposal4.geojson"));
+    //list of promises goes and has the callback function be called
+    Promise.all(promises).then(callback);
+    
+    //callback brings in the data
+    function callback(data){
+        //these 4 variables list are from the promise list
+        //this will be used for the topojson work.
+        view1 = data[0];
+        view2 = data[1];
+        view3 =data[2];
+        view4 = data[3];
+        proposal1 = L.geoJson(view1, {
+            style:style,
+            onEachFeature: onEachPOI
+        });
+        proposal1.addTo(map)
+        createProposals(view1, view2, view3, view4)
+        return proposal1
+    }
+
 	//get POI onto the map.
-	getPOIs()
+	
 	//createProposals is for loading each proposal map based on user's click
     
-    map.createPane('left');
-    map.createPane('right');
-    preloadData()
-    view1 = proposal1.addTo(map)
-    view2 = proposal3.addTo(map)
-    swipe = L.control.sideBySide(view1, view2).addTo(map);
-    // createSwipe()
-    createProposals()
 	//creates custom legend control onto the map.
-	createLegend(roads, earth, hybrid)
+	
 };
 function createSwipe(){
-    
-    
+    map.createPane('left');
+    map.createPane('right');
+    swipe = L.control.sideBySide(proposal1, proposal3).addTo(map);
 }
 function createProposals(){
 	//adding a proposal div and button onto the map.
@@ -376,7 +397,7 @@ function getProposal1(data){
         pane: 'left',
 		onEachFeature: onEachFeature,
     });
-	return proposal1
+	
 };
 function getProposal2(data){
     proposal2 = L.geoJson(data, {
@@ -392,8 +413,8 @@ function getProposal3(data){
         style: style,
         pane: 'right',
 		onEachFeature: onEachFeature,
-    });
-	return proposal3
+    })
+	
 };
 function getProposal4(data){
     proposal4 = L.geoJson(data, {
@@ -403,32 +424,39 @@ function getProposal4(data){
     });
 	return proposal4
 };
-function preloadData(){
-    //basic jQuery ajax method
-    $.ajax("data/proposal1.geojson", {
-        dataType: "json",
-        success: function(response){
-            getProposal1(response);
-        },
-    });
-    $.ajax("data/proposal1.geojson", {
-        dataType: "json",
-        success: function(response){
-            getProposal2(response);
-        },
-    });
-    $.ajax("data/proposal1.geojson", {
-        dataType: "json",
-        success: function(response){
-            getProposal3(response);
-        },
-    });
-    $.ajax("data/proposal1.geojson", {
-        dataType: "json",
-        success: function(response){
-            getProposal4(response);
-        },
-    });
-};
+var prop1;
+
+$.getJSON("data/proposal1.geojson", function(response){
+    prop1 = response  
+});
+ console.log(prop1)
+$.getJSON("data/proposal3.geojson", function(response){
+});
+    // //basic jQuery ajax method
+    // $.ajax("data/proposal1.geojson", {
+    //     dataType: "json",
+    //     success: function(response){
+    //         getProposal1(response);
+    //     },
+    // });
+    // $.ajax("data/proposal2.geojson", {
+    //     dataType: "json",
+    //     success: function(response){
+    //         getProposal2(response);
+    //     },
+    // });
+    // $.ajax("data/proposal3.geojson", {
+    //     dataType: "json",
+    //     success: function(response){
+    //         getProposal3(response);
+    //     },
+    // });
+    // $.ajax("data/proposal4.geojson", {
+    //     dataType: "json",
+    //     success: function(response){
+    //         getProposal4(response);
+    //     },
+    // });
+
 //call the initialize function when the document has loaded
 $(document).ready(setMap);}

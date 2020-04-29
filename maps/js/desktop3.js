@@ -314,7 +314,24 @@ function style(feature){
 			//pane: 'overlayPane'
 		}
 };
-
+function createLeftZone(data){
+	console.log("creating left! ", data)
+    view1 = L.geoJson(data, {
+		style: style,
+		pane: 'left',
+		onEachFeature: onEachFeature,
+	}).addTo(map);
+	return view1
+};
+function createRightZone(data){
+	console.log("creating right! ",data);
+    view2 = L.geoJson(data, {
+		style: style,
+		pane: 'right',
+		onEachFeature: onEachFeature,
+	}).addTo(map);
+	return view2
+};
 function createZones(data){
     zones = L.geoJson(data, {
         //point to layer with the features and the list containing the geoJson attributes
@@ -370,24 +387,6 @@ function getPOIs() {
 		}
 	});
 };
-function createLeftZone(data){
-	console.log("creating left! ", data)
-    view1 = L.geoJson(data, {
-		style: style,
-		pane: 'left',
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return view1
-};
-function createRightZone(data){
-	console.log("creating right! ",data);
-    view2 = L.geoJson(data, {
-		style: style,
-		pane: 'right',
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return view2
-};
 function getLeftZones(leftZone){
 	$.ajax("data/proposal1.geojson", {
 		dataType: "json",
@@ -417,23 +416,6 @@ function getZones(zone){
 
 	});
 
-};
-function preloadData(){
-    //define a variable to hold the data
-    var proposal1;
-
-    //basic jQuery ajax method
-    $.ajax("data/proposal1.geojson", {
-        dataType: "json",
-        success: function(response){
-            proposal1 = response;
-            //check the data
-            console.log(proposal1);
-        }
-    });
-
-    //check the data
-    console.log(proposal1);
 };
 //call the initialize function when the document has loaded
 $(document).ready(setMap);}
