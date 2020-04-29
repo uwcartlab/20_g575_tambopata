@@ -2,11 +2,7 @@
 
 function desktop(){
 //global variables
-var map;
-var proposal1;
-var proposal2;
-var proposal3;
-var proposal4;
+var map, roads, satellite, hybrid;
 var proposal2_right;
 var proposal3_right;
 var proposal4_right;
@@ -17,15 +13,12 @@ var roadsPOI;
 var view1;
 var view2;
 var swipe;
-var view1Data;
-var view2Data;
-var proposalList;
 var swipeList = [];
 
 //create the map
 function setMap() {
     //roads tile layer from ArcGIS online
-	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+	roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
 	//create the map with its center coordinates and have roads be default layer.
     map = L.map('map', {
@@ -40,13 +33,11 @@ function setMap() {
 
 	});
 	//hybrid has both satellite imagery with labels
-	var hybrid  = L.gridLayer.googleMutant({
-		type: 'hybrid'
-	})
+	hybrid  = L.esri.basemapLayer('ImageryLabels').addTo(map);
 	//earth is just satellite imagery
-	var earth = L.gridLayer.googleMutant({
-		type: 'satellite'
-    })
+	earth =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+	});
     getPOIs()
     
 	var promises = [];
@@ -68,13 +59,13 @@ function setMap() {
         view3 =data[2];
         view4 = data[3];
 		createProposals(view1, view2, view3, view4)
-		createLegend(roads, earth, hybrid)
+		// createLegend(roads, earth, hybrid)
 	}
 
 };
 function createProposals(){
-    var left = map.createPane('left');
-    var right = map.createPane('right');
+    map.createPane('left');
+    map.createPane('right');
     proposal1_left = L.geoJson(view1, {
         //point to layer with the features and the list containing the geoJson attributes
         style: style,
@@ -114,8 +105,7 @@ function createProposals(){
 	var wholeList = {"proposal1_left": proposal1_left,"proposal2_left": proposal2_left,"proposal3_left": proposal3_left,"proposal2_right": proposal2_right,"proposal3_right": proposal3_right,"proposal4_right": proposal4_right}
 	swipeList.push(proposal1_left)
 	swipeList.push(proposal3_right)
-	console.log(swipeList)
-    var swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
+    swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
 	//adding a proposal div and button onto the map.
 	var rowBar = L.Control.extend({
         options: {
@@ -146,11 +136,9 @@ function createProposals(){
     //whichever button is pressed, this function will be called
     $('#proposal1').on('click',function(){
         if($(this).hasClass('active')){
-			swipeList.length = 0
-			console.log(swipeList)
-            $(this).removeClass('active');
+			$(this).removeClass('active');
+			map.removeLayer(proposal1_left);
             map.removeControl(swipe);
-            map.removeLayer(proposal1_left);
         }else{
             $('.proposal').each(function(){
                 if($(this).hasClass('active')){
@@ -164,108 +152,146 @@ function createProposals(){
 					}
 					swipeList.push(match)
 					swipeList.push(proposal1_left)
-					console.log(swipeList)
                     swipe = L.control.sideBySide(proposal1_left.addTo(map), match.addTo(map)).addTo(map);
                 }
                 else{
 					swipeList.length = 0
 					swipeList.push(proposal1_left)
 					proposal1_left.addTo(map)
-					console.log(swipeList)
                 }
             })
-            $(this).addClass('active')
+			$(this).addClass('active')
         }})
-        $('#proposal2').on('click',function(){
-			swipeList = []
+    $('#proposal2').on('click',function(){
+        if($(this).hasClass('active')){
+			$(this).removeClass('active');
+			map.removeLayer(proposal2_left);
+			map.removeLayer(proposal2_right);
+            map.removeControl(swipe);
+        }else{
+            $('.proposal').each(function(){
+                if($(this).hasClass('active')){
+					swipeList.length = 0
+                    var value = (this.id)
+                    value = value.split("proposal")[1]
+                    value = Number(value)
+                    if(value < 2){
+                        var newValue = "proposal"+value+"_left"
+                    }else{
+                        var newValue = "proposal"+value+"_right"
+                    }
+                    for(var key in wholeList){
+                        if(newValue == key){
+                            var match = wholeList[key]
+                        }
+                    }
+					if(match == proposal4_right){
+						swipeList.push(proposal2_left)
+						swipeList.push(match)
+						swipe = L.control.sideBySide(proposal2_left.addTo(map), match.addTo(map)).addTo(map);
+					}
+					else if(match == proposal3_right){
+						swipeList.push(proposal2_left)
+						swipeList.push(match)
+						swipe = L.control.sideBySide(proposal2_left.addTo(map), match.addTo(map)).addTo(map);
+					}
+					else{
+						map.removeLayer(proposal2_right)
+						map.removeLayer(proposal2_left)
+						swipeList.push(proposal1_left)
+						swipeList.push(proposal2_right)
+						swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
+					}    
+                }
+                else{
+					swipeList.length = 0
+					swipeList.push(proposal2_right)
+                    proposal2_right.addTo(map)
+                }
+        })
+			$(this).addClass('active')
+        }})
+    $('#proposal3').on('click',function(){
             if($(this).hasClass('active')){
                 $(this).removeClass('active');
-                map.removeControl(swipe);
-                map.removeLayer(proposal2_left);
+				map.removeControl(swipe);
+				map.removeLayer(proposal3_right);
+				map.removeLayer(proposal3_left);
             }else{
                 $('.proposal').each(function(){
                     if($(this).hasClass('active')){
+						swipeList.length = 0
                         var value = (this.id)
                         value = value.split("proposal")[1]
                         value = Number(value)
-                        if(value < 2){
+    	                if(value < 3){
                             var newValue = "proposal"+value+"_left"
                         }else{
                             var newValue = "proposal"+value+"_right"
                         }
-                        console.log(newValue)
                         for(var key in wholeList){
                             if(newValue == key){
                                 var match = wholeList[key]
                             }
-                        }
-                        swipe = L.control.sideBySide(proposal2_left.addTo(map), match.addTo(map)).addTo(map);
+						}
+						if(match == proposal1_left){
+							swipeList.push(match)
+							swipeList.push(proposal3_right)
+							swipe = L.control.sideBySide(match.addTo(map), proposal3_right.addTo(map)).addTo(map);
+						}
+						else if(match == proposal2_left){
+							swipeList.push(match)
+							swipeList.push(proposal3_right)
+							swipe = L.control.sideBySide(match.addTo(map), proposal3_right.addTo(map)).addTo(map);
+						}
+						else{
+							swipeList.push(proposal3_left)
+							swipeList.push(match)
+							map.removeLayer(proposal3_right);
+							map.removeLayer(proposal4_right);
+							swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+						}
                     }
                     else{
-                        proposal2_left.addTo(map)
+						swipeList.length = 0
+						swipeList.push(proposal3_right)
+                        proposal3_right.addTo(map)
                     }
                 })
-                $(this).addClass('active')
+				$(this).addClass('active')
             }})
-        $('#proposal3').on('click',function(){
-			swipeList = []
-                if($(this).hasClass('active')){
-                    $(this).removeClass('active');
-                    map.removeControl(swipe);
-                    map.removeLayer(proposal3_right);
-                }else{
-                    $('.proposal').each(function(){
-                        if($(this).hasClass('active')){
-                            var value = (this.id)
-                            value = value.split("proposal")[1]
-                            value = Number(value)
-                            if(value < 2){
-                                var newValue = "proposal"+value+"_left"
-                            }else{
-                                var newValue = "proposal"+value+"_right"
-                            }
-                            for(var key in wholeList){
-                                if(newValue == key){
-                                    var match = wholeList[key]
-                                }
-                            }
-                            swipe = L.control.sideBySide(match.addTo(map), proposal3_right.addTo(map)).addTo(map);
-                        }
-                        else{
-                            proposal3_right.addTo(map)
-                        }
-                    })
-                    $(this).addClass('active')
-                }})
     $('#proposal4').on('click',function(){
-		swipeList = []
+		console.log(swipeList)
         if($(this).hasClass('active')){
-            $(this).removeClass('active');
+			$(this).removeClass('active');
+			map.removeLayer(proposal4_right);
             map.removeControl(swipe);
-            map.removeLayer(proposal4_right);
         }else{
             $('.proposal').each(function(){
                 if($(this).hasClass('active')){
+					swipeList.length = 0
                     var value = (this.id)
                     var newValue = value + "_left"
                     for(var key in wholeList){
                         if(newValue == key){
                             var match = wholeList[key]
-                            console.log(match)
                         }
-                    }
+					}
+					swipeList.push(match)
+					swipeList.push(proposal4_right)
                     swipe = L.control.sideBySide(match.addTo(map), proposal4_right.addTo(map)).addTo(map);
                 }
                 else{
+					swipeList.length = 0
+					swipeList.push(proposal4_right)
                     proposal4_right.addTo(map)
                 }
             })
-            $(this).addClass('active')
+			$(this).addClass('active')
         }})
-    return swipeList
+	createLegend(roads, earth, hybrid, swipeList) 
 };
 function createLegend(roads, earth, hybrid){
-	console.log(swipeList)
 	//createing the legend control
 	//roads, earth, and hybrid basemap tilelayers called into this.
 	var LegendControl = L.Control.extend({
@@ -349,11 +375,10 @@ function createLegend(roads, earth, hybrid){
 			document.getElementById("Road").checked = false;
 			document.getElementById("Satellite").checked = false;
 			map.removeLayer(roads);
-			map.removeLayer(earth);
+			// map.removeLayer(earth);
 			hybrid.addTo(map)
 		}
 	});
-	
 	var range1 = swipeList[0]
 	var range2 = swipeList[1]
 	$('.range-slider').attr({
