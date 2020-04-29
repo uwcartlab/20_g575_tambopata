@@ -47,6 +47,7 @@ button p{
 /* Style the links inside the navigation bar */
 .navbar1 button {
   background-color: #006d2c;
+  border-style: none;
   float: left;
   display: block;
   color: #f2f2f2;
