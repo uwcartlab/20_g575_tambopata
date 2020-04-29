@@ -15,6 +15,7 @@
     <!-- Navigation bar -->
     <div class="navbar1" id = "navbar1">
       <ul class="header"><span>Tambopata</span>
+      <!-- Each button calls the basic JS method with the path you want to go to -->
       <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
       <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
       <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
@@ -63,7 +64,7 @@
               part of the Tambopata National Reserve. As a member of the local Agrarian Federation
               <!-- retrieve Fademad description and link  -->
               <span class="popup" onclick="popupFad()">(FADEMAD),
-                <span class="popupText" id="myPopup2">Alan leads FADEMAD, a grassroots political organization that represents
+                <span class="popupText" id="myPopup2"><u>Leader of the Agrarian Federation(FADEMAD)</u> Alan leads FADEMAD, a grassroots political organization that represents
                    ~5000 small farmers in the Madre de Dios region. FADEMAD’s goal is to improve the quality of life of its members,
                    both long-time residents and more-recently settled colonists. Alan believes that poor farmers’ quality of life
                    depends on a healthy environment. Thus, he tries to defend local farmers AND the forest. Click
@@ -86,7 +87,7 @@
               also a
               <!--retrieve pop-up with description and link to wildlife ecologist  -->
               <span class="popup" onclick="popupWE()">keystone species.
-                <span class="popupText" id="myPopup3">Dr. Natalia Ortiz is a Peruvian scientist who studies the ecology of Giant River Otters
+                <span class="popupText" id="myPopup3"><u>Wildlife Ecologist</u> Dr. Natalia Ortiz is a Peruvian scientist who studies the ecology of Giant River Otters
                   in Tambopata. She is fighting to protect wildlife for all Peruvians, including future generations. Click
                   <a href="http://localhost:8848/20_g575_tambopata/stakeholders/wildlife-ecologist/"target="_blank"> Wildlife Ecologist </a>
                   to learn how Dr. Ortiz views conservation work as an important aspect for the success of this region of Peru.
@@ -107,7 +108,7 @@
               are partnering with
               <!--retrieve pop-up with description and link to Big Timber  -->
               <span class="popup" onclick="popupLog()">loggers
-                <span class="popupText" id="myPopup4">Vicente owns Madera Grande, a large Peruvian logging company. He’s eager
+                <span class="popupText" id="myPopup4"><u>Owner of Peruvian Logging Company</u> Vicente owns Madera Grande, a large Peruvian logging company. He’s eager
                   to expand his logging company’s operations. Click
                   <a href="http://localhost:8848/20_g575_tambopata/stakeholders/logging-owner/"target="_blank"> Logging </a>to
                   learn how Vicente is working with other interest groups to make logging profitable and sustainable business practice
@@ -140,8 +141,6 @@
       <iframe width="560" height="315" src="https://www.youtube.com/embed/Q43OWclfPHw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <!-- Don't need this button anymore -->
-		<!-- <button onclick="redirect('../../')">Return to Selection</button> -->
 
     <script src = "lib\jquery-3.4.1.js"></script>
 		<script type= "text/javascript" src="js/main.js"></script>
