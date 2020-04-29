@@ -61,6 +61,10 @@ button p{
   color: white;
 }
 
+#title {
+    padding-top: 10px;
+}
+
 .montserrat{
     font-family: 'Montserrat';
 }
@@ -99,6 +103,6 @@ li {
 	padding-left: 15px;
 }
 
-#container {
-	padding-left: 10px;
+.container {
+    background-color: 
 }
