@@ -23,9 +23,9 @@ button p{
 /* Place the navbar at the top of the page, and make it stick */
 .navbar1 {
   background-color: #006d2c;
-  /* overflow: hidden; */
   bottom: 0;
   width: 100%;
+  font-size: 0;
 }
 @media(max-width:50em){ /* Breakpoint only for mobile */
   .navbar1 {
@@ -56,9 +56,11 @@ button p{
     }
 }
 @media(max-width:80em){
+  /* Tambopata */
   .navbar1 span{
     display: none;
   }
+  /* UW Logo */
   .navbar1 a{
     display:none;
   }
@@ -68,7 +70,6 @@ button p{
 .navbar1 button {
   background-color: #006d2c;
   border-style: none;
-  /* float: left; */
   display:inline-block;
   color: #f2f2f2;
   text-align: center;
