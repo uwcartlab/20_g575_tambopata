@@ -9,9 +9,9 @@
   background:#006d2c;
   width:100%;
   color: white;
-  text-align: center;
-  font-size: 50px;
-  padding: 20px 20px;
+  text-align: left;
+  font-size: 35px;
+  padding: 0px 20px 0px 10px;
 }
 button p{
   float: right;
@@ -21,7 +21,7 @@ button p{
 /* Place the navbar at the top of the page, and make it stick */
 .navbar1 {
   background-color: #006d2c;
-  overflow: hidden;
+  /* overflow: hidden; */
   bottom: 0;
   width: 100%;
 }
@@ -52,6 +52,10 @@ button p{
       background-color: #4CAF50;
       color: white;
     }
+  .navbar1 span{
+    display: none;
+  }
+
 }
 /* Style the links inside the navigation bar */
 
@@ -64,7 +68,6 @@ button p{
   text-align: center;
   padding: 20px 15px 20px 15px;
   text-decoration: none;
-  border-color: none;
   font-size: 20px;
 }
 .navbar1 a{
