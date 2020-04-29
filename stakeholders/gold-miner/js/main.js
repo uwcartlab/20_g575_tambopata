@@ -99,6 +99,12 @@ function showSpecific(select){
 	document.getElementById(select).style.display = "block";
 }
 
+// popup functions
+function popupArt() {
+  var popup1 = document.getElementById("myPopup1");
+    popup1.classList.toggle("show");
+};
+
 function popupFad() {
   var popup2 = document.getElementById("myPopup2");
     popup2.classList.toggle("show");

@@ -6,33 +6,54 @@
             <title>Stakeholders</title>
 
         <link rel="stylesheet" href="css/style.css">
-        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+            <link rel="stylesheet" href="css\bootstrap.min.css"/>
     </head>
 
     <body>
-	    <!-- Each button calls the basic JS method with the path you want to go to -->
-		<div class="navbar1">
-			<!-- Assignment will be the About pop-up -->
-			<button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""> Assignment</button>
-			<button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""> Stakeholders</button>
-			<button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""> Proposals</button>
-			<!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-			<button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""> Secrets Page</button>
-			<button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""> Credits</button>
-		</div>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <ul class="header"><span>Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Secrets Page</p></button>
+        <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </ul>
+      </div>
 
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Small-Scale Gold Miner</h1>
+        </div>
+      </div>
 
-		<div id="basic-desc">
-      <div class="arimo">
-				<h2>Small-Scale Gold Miner:</h2>
-        <img src="miner.jpg" alt=" " width="50%">
+      <!-- Stakeholder Description contents-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <!-- image and photo credit -->
+          <img src="miner.jpg" alt=" " width="50%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <p class="mb-0">Picture of a gold miner in front of a riverbank (blurred to protect anonymity).</p>
+            <footer class="blockquote-footer">Photo credit: John Poole, <cite title="Source Title">NPR</cite></footer>
+          </blockquote>
+
           <p>
             Pedro Gomez is a long-time resident of Tambopata and a gold miner who has been mining the banks of the Malinowski river for 20 years. Pedro first turned
             to gold mining when his family was in an economic crisis and he desperately needed to make some cash fast. Like many of his mining friends, he calls himself
-            an ‘artisanal’ miner because he uses only modest equipment. He does not have a formal (legal) mining title or permit. Pedro submitted the initial paperwork
+            an
+            <!--retrieve pop-up with glossary term artisanal miner and link to gloassary -->
+            <span class="popup" onclick="popupArt()">'artisanal'
+              <span class="popupText" id="myPopup1">Artisanal mining: small-scale mining preformed by individuals, often on an informal/unofficial basis. technology used
+                has lower impact than industrial mining.
+                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+              </span>
+            </span>
+            miner because he uses only modest equipment. He does not have a formal (legal) mining title or permit. Pedro submitted the initial paperwork
             for a permit to Peru’s Ministry of Energy and Mines, but he can’t afford to pay for the environmental impact assessment a legal permit would require. As a
             result, Pedro, like the vast majority of the miners he knows, works at the margins of the law. Since Pedro has been operating illegally, the military has
             destroyed his mining equipment twice as part of their crackdown on illegal mining in the region. Now he must work for another miner who buys bigger equipment
@@ -40,16 +61,22 @@
             and taking turns at guard when they are at the riverbanks. Pedro has many friends in
             <!-- retrieve Fademad description and link  -->
             <span class="popup" onclick="popupFad()">FADEMAD
-              <span class="popupText" id="myPopup2">Description of FADEMAD here...
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fademad/"target="_blank"> FADEMAD</a>
+              <span class="popupText" id="myPopup2"><u>Leader of the Agrarian Federation(FADEMAD)</u> Alan leads FADEMAD, a grassroots political
+                organization that represents ~5000 small farmers in the Madre de Dios region. FADEMAD’s goal is to improve the quality of life of its members,
+                 both long-time residents and more-recently settled colonists. Alan believes that poor farmers’ quality of life
+                 depends on a healthy environment. Thus, he tries to defend local farmers AND the forest. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fademad/">FADEMAD </a>to learn how
+                Alan weighs the costs and benefits of land management practices of his varied constituents are interested in pursuing.
               </span>
             </span>
 
             and is also a member of the local Mining Federation
             <!-- retrieve FEDEMIN description and link  -->
             <span class="popup" onclick="popupFed()">(FEDEMIN),
-              <span class="popupText" id="myPopup3">Description of FEDEMIN here...
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fedemin/"target="_blank"> FEDEMIN</a>
+              <span class="popupText" id="myPopup3"><u>Leader of Mining Federation (FEDEMIN)</u>: Miguel is a gold miner and is thrilled that gold prices are
+                rising. But he’s troubled that labor conditions for miners in Tambopata have gotten more dangerous in recent years. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fedemin/"target="_blank"> FEDEMIN</a> to learn why Miguel is
+                confident that mining is the best path for local economic development.
               </span>
             </span>
             an organization that is fighting for the rights of miners. Mining has grown in Tambopata in recent years, and larger-scale miners have begun to push artisanal
