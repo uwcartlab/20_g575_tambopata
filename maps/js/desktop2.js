@@ -376,9 +376,6 @@ function createLegend(roads, earth, hybrid){
 		opacity=this.value
 	});
 };
-function removeSwipe(swipe){
-	map.removeLayer(swipe);
-}
 //set road style
 function roadsStyle(feature) {
 	return{
@@ -463,8 +460,6 @@ function style(feature){
             opacity: opacity
 		}
 };
-
-
 //popup style for the zones
 function onEachFeature(feature, layer){
 	var popupContent = ('<p style = "text-align: center";><b>'+ feature.properties.ZONES + '</b></p>');
@@ -525,75 +520,5 @@ function getPOIs() {
 		}
 	});
 };
-//create zones loads in the data from the ajax function and uses
-//leaflets geoJson function to add it onto the map.
-function getProposal1(data){
-    proposal1 = L.geoJson(data, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-        pane: 'left',
-		onEachFeature: onEachFeature,
-    });
-
-};
-function getProposal2(data){
-    proposal2 = L.geoJson(data, {
-        //point to layer with the features and the list containing the geoJson attributes
-		style: style,
-		onEachFeature: onEachFeature,
-    });
-	return proposal2
-};
-function getProposal3(data){
-    proposal3 = L.geoJson(data, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-        pane: 'right',
-		onEachFeature: onEachFeature,
-    })
-
-};
-function getProposal4(data){
-    proposal4 = L.geoJson(data, {
-        //point to layer with the features and the list containing the geoJson attributes
-		style: style,
-		onEachFeature: onEachFeature,
-    });
-	return proposal4
-};
-var prop1;
-
-$.getJSON("data/proposal1.geojson", function(response){
-    prop1 = response
-});
- console.log(prop1)
-$.getJSON("data/proposal3.geojson", function(response){
-});
-    // //basic jQuery ajax method
-    // $.ajax("data/proposal1.geojson", {
-    //     dataType: "json",
-    //     success: function(response){
-    //         getProposal1(response);
-    //     },
-    // });
-    // $.ajax("data/proposal2.geojson", {
-    //     dataType: "json",
-    //     success: function(response){
-    //         getProposal2(response);
-    //     },
-    // });
-    // $.ajax("data/proposal3.geojson", {
-    //     dataType: "json",
-    //     success: function(response){
-    //         getProposal3(response);
-    //     },
-    // });
-    // $.ajax("data/proposal4.geojson", {
-    //     dataType: "json",
-    //     success: function(response){
-    //         getProposal4(response);
-    //     },
-    // });
-
 //call the initialize function when the document has loaded
 $(document).ready(setMap);}
