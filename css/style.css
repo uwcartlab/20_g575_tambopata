@@ -1,3 +1,7 @@
+html {
+	overflow: hidden;
+}
+
 .container-stakeholder {
   max-width: 1000px;
   margin-right: auto;

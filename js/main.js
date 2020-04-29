@@ -1,19 +1,40 @@
 
 // basic relative redirect until we have a nav-menu
 // just subfolder name should be passed to this one
+var pass;
 
 function redirect(path){
-	window.location.href= path;
+	if(path != 'secret'){
+		window.location.href= path;	
+	} else {
+		secretAccess(path);
+	}
 }
 
 // checks the local session storage to see if we've added a var
 //     if we have: don't show popup, if we haven't: set the var
 function checkVisited(){
+	fetch('img/pass.txt')
+	.then(response => response.text())
+	.then((data) => {
+	  console.log(data);
+	  pass = data;
+	});
+	
 	var ls = sessionStorage.getItem('tambopata.visited');
 	if (ls != null) {
 		overlayOff();
 	}else{
 		sessionStorage.setItem('tambopata.visited', "visited")
+	}
+}
+
+function secretAccess(path){
+	console.log(pass);
+	
+	var userPass = prompt('Please enter the password your TA has provided');
+	if(userPass == pass){
+		window.location.href= path;
 	}
 }
 
