@@ -124,8 +124,9 @@ button p{
 .popup .popupText {
   visibility: hidden;
   width: 360px;
-  background-color:#969696;
-  color: #fff;
+  box-shadow: 2px 3px 5px #999;
+  background-color:#E7EFEA;
+  color: #186C3F;
   text-align: center;
   border-radius: 6px;
   padding: 10px 10px;
@@ -145,7 +146,7 @@ button p{
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #555 transparent transparent transparent;
+  border-color: #d5dbd7 transparent transparent transparent;
 }
 
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
