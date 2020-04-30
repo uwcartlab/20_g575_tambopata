@@ -60,7 +60,7 @@ function setMap(zones) {
 		"Additional Roads": addRoads
 	}
 	//adding the controls on top left and leaving it out
-	var baseLayers = L.control.layers(baseMaps, vectorLayers, {position: 'topleft', collapsed: false});
+	var baseLayers = L.control.layers(baseMaps, vectorLayers, {position: 'topleft', collapsed: true});
 	baseLayers.addTo(map);
 
 	//when loading the page, it will by default load proposal 1
@@ -114,30 +114,38 @@ function switchProposals(){
 	//whichever button is pressed, this function will be called
 	$('.proposalM').click(function(){
 		//first thing the function does is removes the current 'active' button and will assign the 'active' button to where it is clicked.
-		$('.propM').removeClass('active');
+		
 		//if the id is mProposal#, then it will remove the current zone, and call in the zone it is clicked on.
 		if ($(this).attr('id') == 'mProposal1'){
+			$('.propM').removeClass('active');
 			removeZones(zones)
 			var zone = "data/proposal1.geojson";
 			$("#propM1").addClass('active'); //adds the active class to this button
 			getZones(zone);
 		} else if ($(this).attr('id') == 'mProposal2'){
+			$('.propM').removeClass('active');
 			removeZones(zones)
 			var zone = "data/proposal2.geojson";
 			$("#propM2").addClass('active');
 			getZones(zone);
 		}
 		else if ($(this).attr('id') == 'mProposal3'){
+			$('.propM').removeClass('active');
 			removeZones(zones)
 			var zone = "data/proposal3.geojson";
 			$("#propM3").addClass('active');
 			getZones(zone);
 		}
 		else if ($(this).attr('id') == 'mProposal4'){
+			$('.propM').removeClass('active');
 			removeZones(zones)
 			var zone = "data/proposal4.geojson";
 			$("#propM4").addClass('active');
 			getZones(zone);
+		}
+		else if ($(this).attr('id') == 'mLegend'){
+			$('#mLegend').addClass('active');
+			$(".mLegend").toggle("fast");
 		}
 	});
 }
@@ -145,7 +153,7 @@ function createLegend(){
 	//legend will be placed in bottom right of page, but will be dependent off the legend icon button.
 	legend = L.Control.extend({
         options: {
-            position: 'bottomright'
+            position: 'bottomleft'
         },
         onAdd: function () {
             // create the control container div with a particular class name
@@ -171,9 +179,9 @@ function createLegend(){
 	map.addControl(new legend());
 	//when clicking on the zone icon, it will toggle in and out.
 	//right now, the legend will appear on the page by default when loading, this will have to be fixed. 
-	$("#mLegend").click(function() {
-		$(".mLegend").toggle("fast");
-	});
+	// $("#mLegend").click(function() {
+	// 	$(".mLegend").toggle("fast");
+	// });
 };
 //default road style
 function roadsStyle(feature) {

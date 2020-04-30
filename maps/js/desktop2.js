@@ -14,6 +14,8 @@ var left;
 var right;
 var swipe;
 var swipeList = [];
+var paneLeft = 'left'
+var paneRight = 'right'
 
 //create the map
 function setMap() {
@@ -38,6 +40,7 @@ function setMap() {
 	var earth =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 	});
+
     getPOIs()
 
 	var promises = [];
@@ -150,287 +153,301 @@ function createProposals(){
 	});
     map.addControl(new rowBar());
 	console.log("||")
-    $('#proposal1').click(function(){
-		console.log(left)
-		console.log(right)
-		var activeList = []
-		swipeList.length = 0
-		$('.proposal').each(function(i){
-			if($(this).hasClass('active')){
-			activeList.push(i)
-			}})
-		if((!$(this).hasClass('active') && (activeList.length > 1))){
-			alert("Too many active maps on! Can only have two at a time!")
-		}
-		else if(($(this).hasClass('active') && (activeList.length > 1))){
-			//alert("This is an active button!")
-			$(this).removeClass('active');
-			value = (this.id)
-			map.removeLayer(left)
-			map.removeControl(swipe);
-		}
-		else if(($(this).hasClass('active') && (activeList.length == 1))){
-			alert("Must keep a Proposal Layer Active!")
-		}
-		else if((!$(this).hasClass('active') && (activeList.length == 0))){
-			proposal1_left.addTo(map)
-			proposal1_right.addTo(map)
-			swipeList.push(proposal1_left)
-			$(this).addClass('active')
-		}
-		else if((!$(this).hasClass('active') && (activeList.length == 1))){
-			$(this).addClass('active')
-			left = proposal1_left
-			swipeList.push(left)
-			swipeList.push(right)
-			swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
-		}
-	})
-	$('#proposal2').click(function(){
-		var activeList = []
-		swipeList.length = 0
-		$('.proposal').each(function(i){
-			if($(this).hasClass('active')){
-			activeList.push(i)
-			}})
-		if((!$(this).hasClass('active') && (activeList.length > 1))){
-			alert("Too many active maps on! Can only have two at a time!")
-		}
-		else if(($(this).hasClass('active') && (activeList.length > 1))){
-			$(this).removeClass('active');
-			value = (this.id)
-			map.removeLayer(left)
-			map.removeControl(swipe);
-		}
-		else if(($(this).hasClass('active') && (activeList.length == 1))){
-			alert("Must keep a Proposal Layer Active!")
-		}
-		else if((!$(this).hasClass('active') && (activeList.length == 1))){
-			if(activeList[0]>1){
-				$(this).addClass('active')
-				left = proposal2_left
-				swipeList.push(left)
-				swipeList.push(right)
-				swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
-			}else{
-				$(this).addClass('active')
-				right = proposal3_right
-				swipeList.push(left)
-				swipeList.push(right)
-				swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
-			}	
-		}
-	})
-	$('#proposal3').click(function(){
-		var activeList = []
-		swipeList.length = 0
-		$('.proposal').each(function(i){
-			if($(this).hasClass('active')){
-			activeList.push(i)
-			}})
-		if((!$(this).hasClass('active') && (activeList.length > 1))){
-			alert("Too many active maps on! Can only have two at a time!")
-		}
-		else if(($(this).hasClass('active') && (activeList.length > 1))){
-			if(activeList[0]<2){
-				$(this).removeClass('active');
-				map.removeControl(swipe);
-				map.removeLayer(left)
-			}
-			else{
-				$(this).removeClass('active');
-				map.removeControl(swipe);
-				map.removeLayer(right)
-			}
-		}
-		else if(($(this).hasClass('active') && (activeList.length == 1))){
-			alert("Must keep a Proposal Layer Active!")
-		}
-		else if((!$(this).hasClass('active') && (activeList.length == 1))){
-			if(activeList[0]<2){
-				$(this).addClass('active')
-				left = proposal3_left
-				swipeList.push(left)
-				swipeList.push(right)
-				swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
-			}else{
-				$(this).addClass('active')
-				right = proposal3_right
-				swipeList.push(left)
-				swipeList.push(right)
-				swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
-			}	
-		}
-	})
-	$('#proposal4').click(function(){
-		var activeList = []
-		swipeList.length = 0
-		$('.proposal').each(function(i){
-			if($(this).hasClass('active')){
-			activeList.push(i)
-			}})
-		if((!$(this).hasClass('active') && (activeList.length > 1))){
-			alert("Too many active maps on! Can only have two at a time!")
-		}
-		else if(($(this).hasClass('active') && (activeList.length > 1))){
-			//alert("This is an active button!")
-			$(this).removeClass('active');
-			value = (this.id)
-			map.removeLayer(right)
-			map.removeControl(swipe);
-		}
-		else if(($(this).hasClass('active') && (activeList.length == 1))){
-			alert("Must keep a Proposal Layer Active!")
-		}
-		else if((!$(this).hasClass('active') && (activeList.length == 1))){
-			$(this).addClass('active')
-			right = proposal4_right
-			swipeList.push(left)
-			swipeList.push(right)
-			swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
-		}
-	})
-
-
-		// $('#proposal1').on('click',function(){
-		// 	console.log(swipeList)
-		// 	swipeList.length = 0
-		// 	if($(this).hasClass('active')){
-		// 		$(this).removeClass('active');
-		// 		map.removeLayer(proposal1_left);
-		// 		map.removeLayer(proposal1_right);
-		// 		map.removeControl(swipe);
-		// 	}else{
-		// 		$('.proposal').each(function(){
-		// 			if($(this).hasClass('active')){
-		// 				var value = (this.id)
-		// 				var newValue = value + "_right"
-		// 				for(var key in wholeList){
-		// 					if(newValue == key){
-		// 						var match = wholeList[key]
-		// 					}
-		// 				}
-		// 				swipeList.push(match)
-		// 				swipeList.push(proposal1_left)
-		// 				swipe = L.control.sideBySide(proposal1_left.addTo(map), match.addTo(map)).addTo(map);
-		// 				return swipe
-		// 			}
-		// 			else{
-		// 				swipeList.push(proposal1_left)
-		// 				swipeList.push(proposal1_right)
-		// 				proposal1_left.addTo(map)
-		// 			}
-		// 		})
-		// 		$(this).addClass('active')
-		// 	}})
-    // $('#proposal2').on('click',function(){
-    //     if($(this).hasClass('active')){
+    // $('#proposal1').click(function(){
+	// 	var activeList = []
+	// 	swipeList.length = 0
+	// 	$('.proposal').each(function(i){
+	// 		if($(this).hasClass('active')){
+	// 		activeList.push(i)
+	// 		}})
+	// 	console.log(activeList)
+	// 	if((!$(this).hasClass('active') && (activeList.length > 1))){
+	// 		alert("Too many active maps on! Can only have two at a time!")
+	// 	}
+	// 	else if(($(this).hasClass('active') && (activeList.length > 1))){
+	// 		//alert("This is an active button!")
 	// 		$(this).removeClass('active');
-	// 		map.removeLayer(proposal2_left);
-	// 		map.removeLayer(proposal2_right);
+	// 		value = (this.id)
+	// 		map.removeLayer(left)
 	// 		map.removeControl(swipe);
-    //     }else{
-    //         $('.proposal').each(function(){
-    //             if($(this).hasClass('active')){
-	// 				swipeList.length = 0
-    //                 var value = (this.id)
-    //                 value = value.split("proposal")[1]
-    //                 value = Number(value)
-    //                 if(value < 2){
-	// 					var newValue = "proposal"+value+"_left"
-	// 					swipeList.push(proposal1_left)
-	// 					swipeList.push(proposal2_right)
-	// 					swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
-	// 					return false;
-    //                 }else if(value > 2){
-	// 					var newValue = "proposal"+value+"_right";
-	// 					for(var key in wholeList){
-	// 						if(newValue == key){
-	// 							var match = wholeList[key]
-	// 							swipeList.push(proposal2_left)
-	// 							swipeList.push(match)
-	// 							swipe = L.control.sideBySide(proposal2_left.addTo(map), match.addTo(map)).addTo(map);
-	// 						}
-    //                 } return false;
-	// 			}}else{
-	// 				swipeList.length = 0
-	// 				swipeList.push(proposal2_left)
-    //                 proposal2_left.addTo(map)
-    //             }
-    //     })
+	// 	}
+	// 	else if(($(this).hasClass('active') && (activeList.length == 1))){
+	// 		alert("Must keep a Proposal Layer Active!")
+	// 	}
+	// 	else if((!$(this).hasClass('active') && (activeList.length == 1))){
 	// 		$(this).addClass('active')
-	// 	}})
-	// $('#proposal3').on('click',function(){
-	// 	console.log("Button 3 clicked")
-	// 	if($(this).hasClass('active')){
+	// 		left = L.geoJson(view1,{
+	// 			style: style,
+	// 			pane: paneLeft,
+	// 			onEachFeature: onEachFeature
+	// 		})
+	// 		swipeList.push(left)
+	// 		swipeList.push(right)
+	// 		swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+	// 	}
+	// })
+	// $('#proposal2').click(function(){
+	// 	var activeList = []
+	// 	swipeList.length = 0
+	// 	$('.proposal').each(function(i){
+	// 		if($(this).hasClass('active')){
+	// 		activeList.push(i)
+	// 		}})
+	// 	if((!$(this).hasClass('active') && (activeList.length > 1))){
+	// 		alert("Too many active maps on! Can only have two at a time!")
+	// 	}
+	// 	else if(($(this).hasClass('active') && (activeList.length > 1))){
 	// 		$(this).removeClass('active');
-	// 		map.removeLayer(proposal3_left);
-	// 		map.removeLayer(proposal3_right);
+	// 		if(activeList[0]==1){
+	// 			map.removeLayer(left)
+	// 			map.removeControl(swipe);
+	// 		}
+	// 		else{
+	// 			map.removeLayer(right)
+	// 			map.removeControl(swipe);
+	// 		}	
+	// 	}
+	// 	else if(($(this).hasClass('active') && (activeList.length == 1))){
+	// 		alert("Must keep a Proposal Layer Active!")
+	// 	}
+	// 	else if((!$(this).hasClass('active') && (activeList.length == 1))){
+	// 		if(activeList[0]>1){
+	// 			$(this).addClass('active')
+	// 			right = L.geoJson(view2,{
+	// 				style: style,
+	// 				pane: paneRight,
+	// 				onEachFeature: onEachFeature
+	// 			})
+	// 			swipeList.push(left)
+	// 			swipeList.push(right)
+	// 			swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+	// 			return left, right
+	// 		}else{
+	// 			$(this).addClass('active')
+	// 			left = L.geoJson(view2,{
+	// 				style: style,
+	// 				pane: paneLeft,
+	// 				onEachFeature: onEachFeature
+	// 			})
+	// 			swipeList.push(left)
+	// 			swipeList.push(right)
+	// 			swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+	// 			return left, right
+	// 		}	
+	// 	}
+	// })
+	// $('#proposal3').click(function(){
+	// 	var activeList = []
+	// 	swipeList.length = 0
+	// 	$('.proposal').each(function(i){
+	// 		if($(this).hasClass('active')){
+	// 		activeList.push(i)
+	// 		}})
+	// 		console.log(activeList)
+	// 	if((!$(this).hasClass('active') && (activeList.length > 1))){
+	// 		alert("Too many active maps on! Can only have two at a time!")
+	// 	}
+	// 	else if(($(this).hasClass('active') && (activeList.length > 1))){
+	// 		if(activeList[0]<2){
+	// 			$(this).removeClass('active');
+	// 			map.removeControl(swipe);
+	// 			map.removeLayer(right)
+	// 		}
+	// 		else{
+	// 			$(this).removeClass('active');
+	// 			map.removeControl(swipe);
+	// 			map.removeLayer(left)
+	// 		}
+	// 	}
+	// 	else if(($(this).hasClass('active') && (activeList.length == 1))){
+	// 		alert("Must keep a Proposal Layer Active!")
+	// 	}
+	// 	else if((!$(this).hasClass('active') && (activeList.length == 1))){
+	// 		if(activeList[0]<2){
+	// 			$(this).addClass('active')
+	// 			left = proposal3_left
+	// 			swipeList.push(left)
+	// 			swipeList.push(right)
+	// 			swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+	// 		}else{
+	// 			$(this).addClass('active')
+	// 			right = proposal3_right
+	// 			swipeList.push(left)
+	// 			swipeList.push(right)
+	// 			swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+	// 		}	
+	// 	}
+	// })
+	// $('#proposal4').click(function(){
+	// 	var activeList = []
+	// 	swipeList.length = 0
+	// 	$('.proposal').each(function(i){
+	// 		if($(this).hasClass('active')){
+	// 		activeList.push(i)
+	// 		}})
+	// 		console.log(activeList)
+	// 	if((!$(this).hasClass('active') && (activeList.length > 1))){
+	// 		alert("Too many active maps on! Can only have two at a time!")
+	// 	}
+	// 	else if(($(this).hasClass('active') && (activeList.length > 1))){
+	// 		//alert("This is an active button!")
+	// 		$(this).removeClass('active');
+	// 		value = (this.id)
+	// 		map.removeLayer(right)
 	// 		map.removeControl(swipe);
-	// 	}else{
-	// 		$('.proposal').each(function(i){
-	// 			console.log("Iterating at #"+(i+1))
-	// 			if($(this).hasClass('active')){
-	// 				console.log("Active Class found")
-	// 				var value = (this.id)
-	// 				console.log("ID = "+value)
-	// 				value = value.split("proposal")[1]
-	// 				value = Number(value)
-	// 				console.log("ID = "+value)
-	// 				if(value > 3){
-	// 					console.log("finding value for 4")
-	// 					var newValue = "proposal"+value+"_right"
-	// 					console.log(newValue)
-	// 					swipeList.push(proposal3_left)
-	// 					swipeList.push(proposal4_right)
-	// 					swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-	// 					console.log("swipe added")
-	// 				}else if(value < 3){
-	// 					console.log("goes through less than 3 if statement")
-	// 					var newValue = "proposal"+value+"_left";
-	// 					for(var key in wholeList){
-	// 						if(newValue == key){
-	// 							var match = wholeList[key]
-	// 							console.log(match)
-	// 							swipeList.push(match)
-	// 							swipeList.push(proposal3_right)
-	// 							swipe = L.control.sideBySide(match.addTo(map), proposal3_right.addTo(map)).addTo(map);
-	// 						}
-	// 				}}else{
-	// 					proposal3_right.addTo(map)
-	// 				}}
-	// 	})
-	// 	$(this).addClass('active')
-	// 	}})
-    // $('#proposal4').on('click',function(){
-    //     if($(this).hasClass('active')){
-	// 		$(this).removeClass('active');
-	// 		map.removeLayer(proposal4_right);
-    //         map.removeControl(swipe);
-    //     }else{
-	// 		$('.proposal').each(function(){
-    //             if($(this).hasClass('active')){
+	// 	}
+	// 	else if(($(this).hasClass('active') && (activeList.length == 1))){
+	// 		alert("Must keep a Proposal Layer Active!")
+	// 	}
+	// 	else if((!$(this).hasClass('active') && (activeList.length == 1))){
+	// 		$(this).addClass('active')
+	// 		right = proposal4_right
+	// 		swipeList.push(left)
+	// 		swipeList.push(right)
+	// 		swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+	// 	}
+	// })
+
+
+		$('#proposal1').on('click',function(){
+			console.log(swipeList)
+			swipeList.length = 0
+			if($(this).hasClass('active')){
+				$(this).removeClass('active');
+				map.removeLayer(proposal1_left);
+				map.removeLayer(proposal1_right);
+				map.removeControl(swipe);
+			}else{
+				$('.proposal').each(function(){
+					if($(this).hasClass('active')){
+						var value = (this.id)
+						var newValue = value + "_right"
+						for(var key in wholeList){
+							if(newValue == key){
+								var match = wholeList[key]
+							}
+						}
+						swipeList.push(match)
+						swipeList.push(proposal1_left)
+						swipe = L.control.sideBySide(proposal1_left.addTo(map), match.addTo(map)).addTo(map);
+						return swipe
+					}
+					else{
+						swipeList.push(proposal1_left)
+						swipeList.push(proposal1_right)
+						proposal1_left.addTo(map)
+					}
+				})
+				$(this).addClass('active')
+			}})
+    $('#proposal2').on('click',function(){
+        if($(this).hasClass('active')){
+			$(this).removeClass('active');
+			map.removeLayer(proposal2_left);
+			map.removeLayer(proposal2_right);
+			map.removeControl(swipe);
+        }else{
+            $('.proposal').each(function(){
+                if($(this).hasClass('active')){
+					swipeList.length = 0
+                    var value = (this.id)
+                    value = value.split("proposal")[1]
+                    value = Number(value)
+                    if(value < 2){
+						var newValue = "proposal"+value+"_left"
+						swipeList.push(proposal1_left)
+						swipeList.push(proposal2_right)
+						swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
+						return false;
+                    }else if(value > 2){
+						var newValue = "proposal"+value+"_right";
+						for(var key in wholeList){
+							if(newValue == key){
+								var match = wholeList[key]
+								swipeList.push(proposal2_left)
+								swipeList.push(match)
+								swipe = L.control.sideBySide(proposal2_left.addTo(map), match.addTo(map)).addTo(map);
+							}
+                    } return false;
+				}}else{
+					swipeList.length = 0
+					swipeList.push(proposal2_left)
+                    proposal2_left.addTo(map)
+                }
+        })
+			$(this).addClass('active')
+		}})
+	$('#proposal3').on('click',function(){
+		console.log("Button 3 clicked")
+		if($(this).hasClass('active')){
+			$(this).removeClass('active');
+			map.removeLayer(proposal3_left);
+			map.removeLayer(proposal3_right);
+			map.removeControl(swipe);
+		}else{
+			$('.proposal').each(function(i){
+				console.log("Iterating at #"+(i+1))
+				if($(this).hasClass('active')){
+					console.log("Active Class found")
+					var value = (this.id)
+					console.log("ID = "+value)
+					value = value.split("proposal")[1]
+					value = Number(value)
+					console.log("ID = "+value)
+					if(value > 3){
+						console.log("finding value for 4")
+						var newValue = "proposal"+value+"_right"
+						console.log(newValue)
+						swipeList.push(proposal3_left)
+						swipeList.push(proposal4_right)
+						swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+						console.log("swipe added")
+					}else if(value < 3){
+						console.log("goes through less than 3 if statement")
+						var newValue = "proposal"+value+"_left";
+						for(var key in wholeList){
+							if(newValue == key){
+								var match = wholeList[key]
+								console.log(match)
+								swipeList.push(match)
+								swipeList.push(proposal3_right)
+								swipe = L.control.sideBySide(match.addTo(map), proposal3_right.addTo(map)).addTo(map);
+							}
+					}}else{
+						proposal3_right.addTo(map)
+					}}
+		})
+		$(this).addClass('active')
+		}})
+    $('#proposal4').on('click',function(){
+        if($(this).hasClass('active')){
+			$(this).removeClass('active');
+			map.removeLayer(proposal4_right);
+            map.removeControl(swipe);
+        }else{
+			$('.proposal').each(function(){
+                if($(this).hasClass('active')){
 					
-    //                 var value = (this.id)
-    //                 var newValue = value + "_left"
-    //                 for(var key in wholeList){
-    //                     if(newValue == key){
-    //                         var match = wholeList[key]
-    //                     }
-	// 				}
-	// 				swipeList.push(match)
-	// 				swipeList.push(proposal4_right)
-	// 				swipe = L.control.sideBySide(match.addTo(map), proposal4_right.addTo(map)).addTo(map);
-	// 				return false;
-    //             }
-    //             else{
-	// 				swipeList.length = 0
-	// 				swipeList.push(proposal4_right)
-    //                 proposal4_right.addTo(map)
-    //             }
-    //         })
-	// 		$(this).addClass('active')
-	// 	}})
+                    var value = (this.id)
+                    var newValue = value + "_left"
+                    for(var key in wholeList){
+                        if(newValue == key){
+                            var match = wholeList[key]
+                        }
+					}
+					swipeList.push(match)
+					swipeList.push(proposal4_right)
+					swipe = L.control.sideBySide(match.addTo(map), proposal4_right.addTo(map)).addTo(map);
+					return false;
+                }
+                else{
+					swipeList.length = 0
+					swipeList.push(proposal4_right)
+                    proposal4_right.addTo(map)
+                }
+            })
+			$(this).addClass('active')
+		}})
 	
 };
 function createLegend(roads, earth, hybrid){
@@ -451,6 +468,7 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span>Satellite</span><br>')
 			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span>Hybrid</span><br>')
 			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads" unchecked><span>Additional Roads<span><br>')
+			$(container).append('<div id = "opacityTitle" class = "opacityTitle">Slide to Change Transparency on Zones</div>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
 			$(container).append('<span class = "opacityTxt">100%</span>')
@@ -465,16 +483,16 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<div class="legend" id="strictProtection" ></div>');
 			$(container).append('<p class="legendtxt">Wildlands</p>');
 			$(container).append('<div class="legend" id="wildlands" ></div>');
-			$(container).append('<p class="legendtxt">Ese\'eja and Harakmbut Territories</p>');
-			$(container).append('<div class="legend" id="nativeCommunities" ></div>');
 			$(container).append('<p class="legendtxt">Tourism</p>');
 			$(container).append('<div class="legend" id="Tourism" ></div>');
-			$(container).append('<p class="legendtxt">Low Impact Non-Timber Forest Use</p>');
-			$(container).append('<div class="legend" id="forestUse" ></div>');
 			$(container).append('<p class="legendtxt">Direct Use</p>');
 			$(container).append('<div class="legend" id="directUse" ></div>');
 			$(container).append('<p class="legendtxt">Restoration</p>');
 			$(container).append('<div class="legend" id="Restoration" ></div>');
+			$(container).append('<p class="legendtxt">Ese\'eja and Harakmbut Territories</p>');
+			$(container).append('<div class="legend" id="nativeCommunities" ></div>');
+			$(container).append('<p class="legendtxt">Low Impact Non-Timber Forest Use</p>');
+			$(container).append('<div class="legend" id="forestUse" ></div>');
 			L.DomEvent.disableClickPropagation(container)
             return container;
         }
