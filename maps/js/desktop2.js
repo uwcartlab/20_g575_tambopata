@@ -10,8 +10,8 @@ var proposal1_left;
 var proposal2_left;
 var proposal3_left;
 var roadsPOI;
-var view1;
-var view2;
+var left;
+var right;
 var swipe;
 var swipeList = [];
 
@@ -83,6 +83,18 @@ function createProposals(){
         style: style,
         pane: 'left',
 		onEachFeature: onEachFeature,
+	});
+	proposal4_left = L.geoJson(view4, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'left',
+		onEachFeature: onEachFeature,
+    });
+	proposal1_right = L.geoJson(view1, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'right',
+		onEachFeature: onEachFeature,
     });
     proposal2_right = L.geoJson(view2, {
         //point to layer with the features and the list containing the geoJson attributes
@@ -103,9 +115,14 @@ function createProposals(){
 		onEachFeature: onEachFeature,
     });
 	var wholeList = {"proposal1_left": proposal1_left,"proposal2_left": proposal2_left,"proposal3_left": proposal3_left,"proposal2_right": proposal2_right,"proposal3_right": proposal3_right,"proposal4_right": proposal4_right}
-	swipeList.push(proposal1_left)
-	swipeList.push(proposal3_right)
-    swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
+	// swipeList.push(proposal1_left)
+	// swipeList.push(proposal3_right)
+	
+	left = proposal1_left
+	right = proposal3_right
+	swipeList.push(left)
+	swipeList.push(right)
+	swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
 	//adding a proposal div and button onto the map.
 	var rowBar = L.Control.extend({
         options: {
@@ -132,146 +149,289 @@ function createProposals(){
 		}
 	});
     map.addControl(new rowBar());
-    console.log("||")
-    //whichever button is pressed, this function will be called
-    $('#proposal1').on('click',function(){
-        if($(this).hasClass('active')){
+	console.log("||")
+    $('#proposal1').click(function(){
+		console.log(left)
+		console.log(right)
+		var activeList = []
+		swipeList.length = 0
+		$('.proposal').each(function(i){
+			if($(this).hasClass('active')){
+			activeList.push(i)
+			}})
+		if((!$(this).hasClass('active') && (activeList.length > 1))){
+			alert("Too many active maps on! Can only have two at a time!")
+		}
+		else if(($(this).hasClass('active') && (activeList.length > 1))){
+			//alert("This is an active button!")
 			$(this).removeClass('active');
-			map.removeLayer(proposal1_left);
-            map.removeControl(swipe);
-        }else{
-            $('.proposal').each(function(){
-                if($(this).hasClass('active')){
-					swipeList.length = 0
-                    var value = (this.id)
-                    var newValue = value + "_right"
-                    for(var key in wholeList){
-                        if(newValue == key){
-                            var match = wholeList[key]
-                        }
-					}
-					swipeList.push(match)
-					swipeList.push(proposal1_left)
-                    swipe = L.control.sideBySide(proposal1_left.addTo(map), match.addTo(map)).addTo(map);
-                }
-                else{
-					swipeList.length = 0
-					swipeList.push(proposal1_left)
-					proposal1_left.addTo(map)
-                }
-            })
-			$(this).addClass('active')
-        }})
-    $('#proposal2').on('click',function(){
-        if($(this).hasClass('active')){
-			$(this).removeClass('active');
-			map.removeLayer(proposal2_left);
-			map.removeLayer(proposal2_right);
-            map.removeControl(swipe);
-        }else{
+			value = (this.id)
+			map.removeLayer(left)
 			map.removeControl(swipe);
-            $('.proposal').each(function(){
-                if($(this).hasClass('active')){
-					swipeList.length = 0
-                    var value = (this.id)
-                    value = value.split("proposal")[1]
-                    value = Number(value)
-                    if(value < 2){
-						var newValue = "proposal"+value+"_left"
-						swipeList.push(proposal1_left)
-						swipeList.push(proposal2_right)
-						swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
-                    }else{
-						console.log(value)
-						var newValue = "proposal"+value+"_right";
-						console.log(newValue)
-						for(var key in wholeList){
-							console.log(key)
-							if(newValue == key){
-								var match = wholeList[key]
-								console.log(match)
-								swipeList.push(proposal2_left)
-								swipeList.push(match)
-								swipe = L.control.sideBySide(proposal2_left.addTo(map), match.addTo(map)).addTo(map);
-							}
-						
-                    }   
-                }}
-                else{
-					map.removeLayer(proposal2_right)
-					swipeList.length = 0
-					swipeList.push(proposal2_right)
-                    proposal2_right.addTo(map)
-                }
-        })
+		}
+		else if(($(this).hasClass('active') && (activeList.length == 1))){
+			alert("Must keep a Proposal Layer Active!")
+		}
+		else if((!$(this).hasClass('active') && (activeList.length == 0))){
+			proposal1_left.addTo(map)
+			proposal1_right.addTo(map)
+			swipeList.push(proposal1_left)
 			$(this).addClass('active')
-        }})
-    $('#proposal3').on('click',function(){
-            if($(this).hasClass('active')){
-                $(this).removeClass('active');
-				map.removeControl(swipe);
-				map.removeLayer(proposal3_right);
-				map.removeLayer(proposal3_left);
-            }else{
-                $('.proposal').each(function(){
-                    if($(this).hasClass('active')){
-						swipeList.length = 0
-                        var value = (this.id)
-                        value = value.split("proposal")[1]
-                        value = Number(value)
-    	                if(value < 3){
-							var newValue = "proposal"+value+"_left"
-							for(var key in wholeList){
-								if(newValue == key){
-									var match = wholeList[key]
-									swipeList.push(match)
-									swipeList.push(proposal3_right)
-									swipe = L.control.sideBySide(match.addTo(map), proposal3_right.addTo(map)).addTo(map);
-								}
-							}
-                        }else{
-							var newValue = "proposal"+value+"_right"
-							swipeList.push(proposal3_left)
-							swipeList.push(match)
-							swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-                        }
-                    }
-                    else{
-						swipeList.length = 0
-						swipeList.push(proposal3_right)
-                        proposal3_right.addTo(map)
-                    }
-                })
-				$(this).addClass('active')
-            }})
-    $('#proposal4').on('click',function(){
-        if($(this).hasClass('active')){
+		}
+		else if((!$(this).hasClass('active') && (activeList.length == 1))){
+			$(this).addClass('active')
+			left = proposal1_left
+			swipeList.push(left)
+			swipeList.push(right)
+			swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+		}
+	})
+	$('#proposal2').click(function(){
+		var activeList = []
+		swipeList.length = 0
+		$('.proposal').each(function(i){
+			if($(this).hasClass('active')){
+			activeList.push(i)
+			}})
+		if((!$(this).hasClass('active') && (activeList.length > 1))){
+			alert("Too many active maps on! Can only have two at a time!")
+		}
+		else if(($(this).hasClass('active') && (activeList.length > 1))){
 			$(this).removeClass('active');
-			map.removeLayer(proposal4_right);
-            map.removeControl(swipe);
-        }else{
-            $('.proposal').each(function(){
-                if($(this).hasClass('active')){
-					swipeList.length = 0
-                    var value = (this.id)
-                    var newValue = value + "_left"
-                    for(var key in wholeList){
-                        if(newValue == key){
-                            var match = wholeList[key]
-                        }
-					}
-					swipeList.push(match)
-					swipeList.push(proposal4_right)
-                    swipe = L.control.sideBySide(match.addTo(map), proposal4_right.addTo(map)).addTo(map);
-                }
-                else{
-					swipeList.length = 0
-					swipeList.push(proposal4_right)
-                    proposal4_right.addTo(map)
-                }
-            })
+			value = (this.id)
+			map.removeLayer(left)
+			map.removeControl(swipe);
+		}
+		else if(($(this).hasClass('active') && (activeList.length == 1))){
+			alert("Must keep a Proposal Layer Active!")
+		}
+		else if((!$(this).hasClass('active') && (activeList.length == 1))){
+			if(activeList[0]>1){
+				$(this).addClass('active')
+				left = proposal2_left
+				swipeList.push(left)
+				swipeList.push(right)
+				swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+			}else{
+				$(this).addClass('active')
+				right = proposal3_right
+				swipeList.push(left)
+				swipeList.push(right)
+				swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+			}	
+		}
+	})
+	$('#proposal3').click(function(){
+		var activeList = []
+		swipeList.length = 0
+		$('.proposal').each(function(i){
+			if($(this).hasClass('active')){
+			activeList.push(i)
+			}})
+		if((!$(this).hasClass('active') && (activeList.length > 1))){
+			alert("Too many active maps on! Can only have two at a time!")
+		}
+		else if(($(this).hasClass('active') && (activeList.length > 1))){
+			if(activeList[0]<2){
+				$(this).removeClass('active');
+				map.removeControl(swipe);
+				map.removeLayer(left)
+			}
+			else{
+				$(this).removeClass('active');
+				map.removeControl(swipe);
+				map.removeLayer(right)
+			}
+		}
+		else if(($(this).hasClass('active') && (activeList.length == 1))){
+			alert("Must keep a Proposal Layer Active!")
+		}
+		else if((!$(this).hasClass('active') && (activeList.length == 1))){
+			if(activeList[0]<2){
+				$(this).addClass('active')
+				left = proposal3_left
+				swipeList.push(left)
+				swipeList.push(right)
+				swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+			}else{
+				$(this).addClass('active')
+				right = proposal3_right
+				swipeList.push(left)
+				swipeList.push(right)
+				swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+			}	
+		}
+	})
+	$('#proposal4').click(function(){
+		var activeList = []
+		swipeList.length = 0
+		$('.proposal').each(function(i){
+			if($(this).hasClass('active')){
+			activeList.push(i)
+			}})
+		if((!$(this).hasClass('active') && (activeList.length > 1))){
+			alert("Too many active maps on! Can only have two at a time!")
+		}
+		else if(($(this).hasClass('active') && (activeList.length > 1))){
+			//alert("This is an active button!")
+			$(this).removeClass('active');
+			value = (this.id)
+			map.removeLayer(right)
+			map.removeControl(swipe);
+		}
+		else if(($(this).hasClass('active') && (activeList.length == 1))){
+			alert("Must keep a Proposal Layer Active!")
+		}
+		else if((!$(this).hasClass('active') && (activeList.length == 1))){
 			$(this).addClass('active')
-        }})
+			right = proposal4_right
+			swipeList.push(left)
+			swipeList.push(right)
+			swipe = L.control.sideBySide(left.addTo(map), right.addTo(map)).addTo(map);
+		}
+	})
+
+
+		// $('#proposal1').on('click',function(){
+		// 	console.log(swipeList)
+		// 	swipeList.length = 0
+		// 	if($(this).hasClass('active')){
+		// 		$(this).removeClass('active');
+		// 		map.removeLayer(proposal1_left);
+		// 		map.removeLayer(proposal1_right);
+		// 		map.removeControl(swipe);
+		// 	}else{
+		// 		$('.proposal').each(function(){
+		// 			if($(this).hasClass('active')){
+		// 				var value = (this.id)
+		// 				var newValue = value + "_right"
+		// 				for(var key in wholeList){
+		// 					if(newValue == key){
+		// 						var match = wholeList[key]
+		// 					}
+		// 				}
+		// 				swipeList.push(match)
+		// 				swipeList.push(proposal1_left)
+		// 				swipe = L.control.sideBySide(proposal1_left.addTo(map), match.addTo(map)).addTo(map);
+		// 				return swipe
+		// 			}
+		// 			else{
+		// 				swipeList.push(proposal1_left)
+		// 				swipeList.push(proposal1_right)
+		// 				proposal1_left.addTo(map)
+		// 			}
+		// 		})
+		// 		$(this).addClass('active')
+		// 	}})
+    // $('#proposal2').on('click',function(){
+    //     if($(this).hasClass('active')){
+	// 		$(this).removeClass('active');
+	// 		map.removeLayer(proposal2_left);
+	// 		map.removeLayer(proposal2_right);
+	// 		map.removeControl(swipe);
+    //     }else{
+    //         $('.proposal').each(function(){
+    //             if($(this).hasClass('active')){
+	// 				swipeList.length = 0
+    //                 var value = (this.id)
+    //                 value = value.split("proposal")[1]
+    //                 value = Number(value)
+    //                 if(value < 2){
+	// 					var newValue = "proposal"+value+"_left"
+	// 					swipeList.push(proposal1_left)
+	// 					swipeList.push(proposal2_right)
+	// 					swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
+	// 					return false;
+    //                 }else if(value > 2){
+	// 					var newValue = "proposal"+value+"_right";
+	// 					for(var key in wholeList){
+	// 						if(newValue == key){
+	// 							var match = wholeList[key]
+	// 							swipeList.push(proposal2_left)
+	// 							swipeList.push(match)
+	// 							swipe = L.control.sideBySide(proposal2_left.addTo(map), match.addTo(map)).addTo(map);
+	// 						}
+    //                 } return false;
+	// 			}}else{
+	// 				swipeList.length = 0
+	// 				swipeList.push(proposal2_left)
+    //                 proposal2_left.addTo(map)
+    //             }
+    //     })
+	// 		$(this).addClass('active')
+	// 	}})
+	// $('#proposal3').on('click',function(){
+	// 	console.log("Button 3 clicked")
+	// 	if($(this).hasClass('active')){
+	// 		$(this).removeClass('active');
+	// 		map.removeLayer(proposal3_left);
+	// 		map.removeLayer(proposal3_right);
+	// 		map.removeControl(swipe);
+	// 	}else{
+	// 		$('.proposal').each(function(i){
+	// 			console.log("Iterating at #"+(i+1))
+	// 			if($(this).hasClass('active')){
+	// 				console.log("Active Class found")
+	// 				var value = (this.id)
+	// 				console.log("ID = "+value)
+	// 				value = value.split("proposal")[1]
+	// 				value = Number(value)
+	// 				console.log("ID = "+value)
+	// 				if(value > 3){
+	// 					console.log("finding value for 4")
+	// 					var newValue = "proposal"+value+"_right"
+	// 					console.log(newValue)
+	// 					swipeList.push(proposal3_left)
+	// 					swipeList.push(proposal4_right)
+	// 					swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+	// 					console.log("swipe added")
+	// 				}else if(value < 3){
+	// 					console.log("goes through less than 3 if statement")
+	// 					var newValue = "proposal"+value+"_left";
+	// 					for(var key in wholeList){
+	// 						if(newValue == key){
+	// 							var match = wholeList[key]
+	// 							console.log(match)
+	// 							swipeList.push(match)
+	// 							swipeList.push(proposal3_right)
+	// 							swipe = L.control.sideBySide(match.addTo(map), proposal3_right.addTo(map)).addTo(map);
+	// 						}
+	// 				}}else{
+	// 					proposal3_right.addTo(map)
+	// 				}}
+	// 	})
+	// 	$(this).addClass('active')
+	// 	}})
+    // $('#proposal4').on('click',function(){
+    //     if($(this).hasClass('active')){
+	// 		$(this).removeClass('active');
+	// 		map.removeLayer(proposal4_right);
+    //         map.removeControl(swipe);
+    //     }else{
+	// 		$('.proposal').each(function(){
+    //             if($(this).hasClass('active')){
+					
+    //                 var value = (this.id)
+    //                 var newValue = value + "_left"
+    //                 for(var key in wholeList){
+    //                     if(newValue == key){
+    //                         var match = wholeList[key]
+    //                     }
+	// 				}
+	// 				swipeList.push(match)
+	// 				swipeList.push(proposal4_right)
+	// 				swipe = L.control.sideBySide(match.addTo(map), proposal4_right.addTo(map)).addTo(map);
+	// 				return false;
+    //             }
+    //             else{
+	// 				swipeList.length = 0
+	// 				swipeList.push(proposal4_right)
+    //                 proposal4_right.addTo(map)
+    //             }
+    //         })
+	// 		$(this).addClass('active')
+	// 	}})
+	
 };
 function createLegend(roads, earth, hybrid){
 	//createing the legend control
