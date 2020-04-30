@@ -43,7 +43,7 @@ button p{
         box-shadow: 0 8px 6px -6px #186c3f;
       }
   }
-  @media screen and (orientation: landscape){ /* Breakpoint only for mobile */
+  @media (orientation: landscape)and(max-height: 10em){ /* Breakpoint only for mobile */
     .navbar1 {
         visibility: hidden;
       }
