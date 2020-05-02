@@ -110,7 +110,7 @@ button p{
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('../img/test1.png');
+  background-image: url('../img/river.png');
   background-size: cover;
   background-position: center;
   opacity: 0.80;
@@ -216,6 +216,11 @@ button p{
   font-size: 14px;
   color: black;
   padding: 10px;
+}
+
+#locator {
+	height: 500px;
+	width: 100%;
 }
 
 h2 {
