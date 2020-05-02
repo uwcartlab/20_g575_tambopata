@@ -185,6 +185,14 @@ h2 {
     text-align: center;
 }
 
+.heading {
+	color: #006d2c;
+	font-size: 1.755em;
+	font-weight: 600;
+	padding: 20px 0 20px 0;
+	background-color: #e9ecef;
+}
+
 .img-bground {
   min-width: 100%;
   min-height: 100%;
