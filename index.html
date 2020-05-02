@@ -19,14 +19,14 @@
 
     <body>
 		<!-- Write your comments here -->
-
+	<div id="overlay-img"></div>
 	<div id="overlay">
 		<div id="overlay-div">
 			<div class="navbar2" id="navbar2">
-				<button onclick="overlayShowNext('assign')">About Assignment</button>
-				<button onclick="overlayShowNext('tambopata')">About Tambopata</button>
-				<button onclick="overlayShowNext('glossary')">Glossary</button>
-				<button onclick="overlayShowNext('events')">Key Events</button>
+				<button id="tambopata-button" onclick="overlayShowNext('tambopata')">About Tambopata</button>
+				<button id="assign-button" onclick="overlayShowNext('assign')">About Assignment</button>
+				<button id="glossary-button" onclick="overlayShowNext('glossary')">Glossary</button>
+				<button id="events-button" onclick="overlayShowNext('events')">Key Events</button>
 
 				<button onclick="overlayOff()" id="overlay-buttons-close">X</button>
 			</div>
