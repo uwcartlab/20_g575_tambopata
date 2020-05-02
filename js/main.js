@@ -5,7 +5,7 @@ var pass;
 
 function redirect(path){
 	if(path != 'secret'){
-		window.location.href= path;	
+		window.location.href= path;
 	} else {
 		secretAccess(path);
 	}
@@ -20,7 +20,7 @@ function checkVisited(){
 	  console.log(data);
 	  pass = data;
 	});
-	
+
 	var ls = sessionStorage.getItem('tambopata.visited');
 	if (ls != null) {
 		overlayOff();
@@ -31,7 +31,7 @@ function checkVisited(){
 
 function secretAccess(path){
 	console.log(pass);
-	
+
 	var userPass = prompt('Please enter the password your TA has provided');
 	if(userPass == pass){
 		window.location.href= path;
@@ -77,4 +77,3 @@ function overlayShowNext(next){
 
 // This calls checkVisited on each load
 window.onload = checkVisited();
-
