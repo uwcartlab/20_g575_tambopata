@@ -100,6 +100,21 @@ button p{
   color: white;
 }
 
+#overlay-img {
+  z-index: 2;
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../img/river.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.80;
+}
 
 #overlay {
   position: fixed;
@@ -110,8 +125,7 @@ button p{
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 2;
+  z-index: 3;
 }
 
 #overlay-div {
@@ -122,27 +136,50 @@ button p{
   transform: translate(50%,20%);
   -ms-transform: translate(50%,50%);
   overflow-y: auto;
+  opacity: 1;
 }
 
 #navbar2 {
 	position: -webkit-sticky; /* Safari */
 	position: sticky;
 	top: 0px;
-
+	font-size: 0px;
 	background-color: #006d2c;
+	padding-left: 3px;
 }
 
 #navbar2 button {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	text-decoration: none;
+	border-style: none;
+	margin-left: 0px;
+	font-size: 18px;
+}
+
+#navbar2 button:hover {
+  background-color: white;
+  color: black;
+}
+
+#tambopata-button {
+	background-color: #05f765;
+	color: black;
+}
+
+#assign-button,#glossary-button,#events-button {
+	background-color: #00a642;
+	color: white;
 }
 
 #overlay-buttons-close {
 	float: right;
+	padding-left: 5px;
+	background-color: #4CAF50;
 }
 
 #assign-overlay-text {
+  display: none;
   position: auto;
   top: 50%;
   left: 10%;
@@ -152,7 +189,7 @@ button p{
 }
 
 #tambopata-overlay-text {
-  display: none;
+  display: block;
   position: auto;
   top: 50%;
   left: 10%;
@@ -179,6 +216,11 @@ button p{
   font-size: 14px;
   color: black;
   padding: 10px;
+}
+
+#locator {
+	height: 500px;
+	width: 100%;
 }
 
 h2 {

@@ -19,14 +19,14 @@
 
     <body>
 		<!-- Write your comments here -->
-
+	<div id="overlay-img"></div>
 	<div id="overlay">
 		<div id="overlay-div">
 			<div class="navbar2" id="navbar2">
-				<button onclick="overlayShowNext('assign')">About Assignment</button>
-				<button onclick="overlayShowNext('tambopata')">About Tambopata</button>
-				<button onclick="overlayShowNext('glossary')">Glossary</button>
-				<button onclick="overlayShowNext('events')">Key Events</button>
+				<button id="tambopata-button" onclick="overlayShowNext('tambopata')">About Tambopata</button>
+				<button id="assign-button" onclick="overlayShowNext('assign')">About Assignment</button>
+				<button id="glossary-button" onclick="overlayShowNext('glossary')">Glossary</button>
+				<button id="events-button" onclick="overlayShowNext('events')">Key Events</button>
 
 				<button onclick="overlayOff()" id="overlay-buttons-close">X</button>
 			</div>
@@ -60,10 +60,11 @@
 			<div id="tambopata-overlay-text">
 				<h2>About Tambopata</h2>
 				<p>
-					The Tambopata National Reserve (TNR) (Spanish: Reserva Nacional Tambopata) is a nature reserve in the Amazon Basin in Peru, South America. It was created on January 26, 1990, to protect the forests adjacent to the rivers.
+					The Tambopata National Reserve (TNR) (Spanish: Reserva Nacional Tambopata) is a nature reserve in the Amazon Basin in Peru, South America.It was created on January 26, 1990, to protect the forests adjacent to the rivers.
 					Inhabited by 165 species and 41 families of trees, 103 species of mammals, 1300 species of butterflies and 90 species of amphibians, the Reserve has important ecosystems and is noted for its biodiversity.
 					The Reserve can be accessed from Puerto Maldonado, via either: (1) Tambopata River; or (2) by car through the Puerto Maldonado–Cuzco road.
 				</p><p>
+				 <img id="locator" src="../img/locatormap.png">
 				<p>
 					Tambopata is one of the most biologically diverse and least disturbed areas on the planet. Ecologists want to save this wild area. Many indigenous people see their very survival threatened by development,
 					but most local residents see Tambopata as a poor region of Peru that contains untapped reserves of timber, gold, and farmland. To balance biodiversity protection with economic development,
@@ -72,7 +73,7 @@
 				<p>
 					Leading this zoning exercise is Peru’s Ministry of the Environment. The Ministry has invited certain stakeholders and groups to propose zoning maps and promote their map at a public roundtable.
 					The map selected at the roundtable will guide future management and influence funding decisions. Click here to read about the assignment.
-				</p><p>
+				</p>
 			</div>
 			<div id="glossary-overlay-text">
 				<h2>Glossary of useful terms</h2>
