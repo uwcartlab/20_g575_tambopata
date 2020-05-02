@@ -15,7 +15,6 @@ var proposal1, proposal2, proposal3, proposal4;
 var view1, view2, view3, view4;
 var roadsPOI;
 var swipe;
-var swipeList = [];
 
 //create the map
 function setMap() {
@@ -25,7 +24,7 @@ function setMap() {
 	//create the map with its center coordinates and have roads be default layer.
     map = L.map('map', {
 		center: [-12.9, -69.5],
-		zoom: 8,
+		zoom: 10,
 		minZoom: 9,
 		layers: [roads],
 		maxBounds: ([
@@ -34,8 +33,24 @@ function setMap() {
 		])
 
 	});
+	var parkLabel = new L.marker([-13.5, -69.5], { opacity: 0.01 }); //opacity may be set to zero
+	parkLabel.bindTooltip("Bahuaja-Sonene National Park", {direction: 'center', permanent: true, className: "parkLabel", interactive: false, offset: [0, 0] });
+	parkLabel.addTo(map);
+	map.on('zoomstart', function () {
+		var zoomLevel = map.getZoom();
+		var tooltip = $('.leaflet-tooltip');
+	
+		switch (zoomLevel) {
+			case 10:
+				tooltip.css('font-size', "2em");
+				break;
+			case 9:
+				tooltip.css('font-size', "2em");
+				break;
+		}
+	})
 	//hybrid has both satellite imagery with labels
-	var hybrid  = L.esri.basemapLayer('ImageryLabels').addTo(map);
+	var hybrid  = L.esri.basemapLayer('ImageryLabels');
 	//earth is just satellite imagery
 	var earth =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
@@ -46,7 +61,6 @@ function setMap() {
 
 	var promises = [];
     //promises will use d3 to push the csv and topojson files of Chicago neighborhood boundaries,
-    //Lake Michigan, and the Illinois/Indiana state boundaries.
     promises.push($.getJSON("data/proposal1.geojson"));
     promises.push($.getJSON("data/proposal2.geojson"));
     promises.push($.getJSON("data/proposal3.geojson"));
@@ -162,20 +176,16 @@ function createProposals(){
 		onEachFeature: onEachFeature,
     });
 	swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
+	var mainList = [proposal1, proposal2, proposal3, proposal4];
+	var paneList = [proposal1_left, proposal1_right, proposal2_left, proposal2_right, proposal3_left, proposal3_right, proposal4_right]
 	$('#proposal1').on('click',function(){
-		map.removeLayer(proposal1);
-		map.removeLayer(proposal2);
-		map.removeLayer(proposal3);
-		map.removeLayer(proposal4);
-		swipeList.length = 0
+		for(var i in mainList){map.removeLayer(mainList[i])}
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
 			map.removeLayer(proposal1_left);
 			map.removeLayer(proposal1_right);
 			map.removeControl(swipe);
-			$('#switch').removeClass('On');
-			$('#switch').text('OFF');
-			$('#switch').addClass('Off');
+			turnOff()
 		}else{
 			var value;
 			map.removeControl(swipe);
@@ -198,25 +208,17 @@ function createProposals(){
 				proposal1.addTo(map)
 				}
 			$(this).addClass('active')
-			$('#switch').removeClass('Off');
-			$('#switch').text('ON');
-			$('#switch').addClass('On');
+			turnOn()
 			}
 		})
 	$('#proposal2').on('click',function(){
-		map.removeLayer(proposal1);
-		map.removeLayer(proposal2);
-		map.removeLayer(proposal3);
-		map.removeLayer(proposal4);
-		swipeList.length = 0
+		for(var i in mainList){map.removeLayer(mainList[i])}
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
 			map.removeLayer(proposal2_left);
 			map.removeLayer(proposal2_right);
 			map.removeControl(swipe);
-			$('#switch').removeClass('On');
-			$('#switch').text('OFF');
-			$('#switch').addClass('Off');
+			turnOff()
 		}else{
 			var value;
 			map.removeControl(swipe);
@@ -239,24 +241,17 @@ function createProposals(){
 				proposal2.addTo(map)
 				}
 			$(this).addClass('active')
-			$('#switch').removeClass('Off');
-			$('#switch').text('ON');
-			$('#switch').addClass('On');
+			turnOn()
 		}		
 	})
 	$('#proposal3').on('click',function(){
-		map.removeLayer(proposal1);
-		map.removeLayer(proposal2);
-		map.removeLayer(proposal3);
-		map.removeLayer(proposal4);
+		for(var i in mainList){map.removeLayer(mainList[i])}
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
 			map.removeLayer(proposal3_left);
 			map.removeLayer(proposal3_right);
 			map.removeControl(swipe);
-			$('#switch').removeClass('On');
-			$('#switch').text('OFF');
-			$('#switch').addClass('Off');
+			turnOff()
 		}else{
 			var value;
 			map.removeControl(swipe);
@@ -279,52 +274,42 @@ function createProposals(){
 				proposal3.addTo(map)
 				}
 			$(this).addClass('active')
-			$('#switch').removeClass('Off');
-			$('#switch').text('ON');
-			$('#switch').addClass('On');
+			turnOn()
 			}
 				
 	})
 	$('#proposal4').on('click',function(){
-				map.removeLayer(proposal1);
-				map.removeLayer(proposal2);
-				map.removeLayer(proposal3);
-				map.removeLayer(proposal4);
-				swipeList.length = 0
+		for(var i in mainList){map.removeLayer(mainList[i])}
+		if($(this).hasClass('active')){
+			$(this).removeClass('active');
+			map.removeLayer(proposal4_left);
+			map.removeLayer(proposal4_right);
+			map.removeControl(swipe);
+			turnOff()
+		}else{
+			var value;
+			map.removeControl(swipe);
+			$('.proposal').each(function(){
 				if($(this).hasClass('active')){
-					$(this).removeClass('active');
-					map.removeLayer(proposal4_left);
-					map.removeLayer(proposal4_right);
-					map.removeControl(swipe);
-					$('#switch').removeClass('On');
-					$('#switch').text('OFF');
-					$('#switch').addClass('Off');
-				}else{
-					var value;
-					map.removeControl(swipe);
-					$('.proposal').each(function(){
-						if($(this).hasClass('active')){
-							value = (this.id)
-							value = value.split("proposal")[1]
-							value = Number(value)}
-					})
-					if(value == 1){
-						swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-						}
-					else if(value == 2){
-						swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-						}
-					else if(value == 3){
-						swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-						}
-					else if(value == null){
-						proposal4.addTo(map)
-						}
-					$(this).addClass('active')
-					$('#switch').removeClass('Off');
-					$('#switch').text('ON');
-					$('#switch').addClass('On');
-					}
+					value = (this.id)
+					value = value.split("proposal")[1]
+					value = Number(value)}
+			})
+			if(value == 1){
+				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				}
+			else if(value == 2){
+				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				}
+			else if(value == 3){
+				swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				}
+			else if(value == null){
+				proposal4.addTo(map)
+				}
+			$(this).addClass('active')
+			turnOn()
+			}
 						
 	})
 };
@@ -342,16 +327,16 @@ function createLegend(roads, earth, hybrid){
 			//basemap layers will be inputs as "Radio" buttons
 			//additonal roads and compare proposals will be checkboxes
 			//opacity slider bar also added
-			$(container).append('<input id = "Road" type = "radio" class = "baseMap" checked><span>Roads</span><br>')
-			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span>Satellite</span><br>')
-			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span>Hybrid</span><br>')
-			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads" unchecked><span>Additional Roads<span><br>')
+			$(container).append('<input id = "Road" type = "radio" class = "baseMap" checked><span id = "baseMap" >Roads</span><br>')
+			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span id = "baseMap">Satellite</span><br>')
+			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span id = "baseMap">Hybrid</span><br>')
+			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads" unchecked><span id = "baseMap">Additional Roads<span><br>')
 			$(container).append('<div id = "compareMaps" class = "compare"><span>Compare Proposal Maps:<span><span id="switch" class = "On"> ON<span></div><br>')
 			$(container).append('<div id = "opacityTitle" class = "opacityTitle">Slide to Change Transparency on Zones</div>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
 			$(container).append('<span class = "opacityTxt">100%</span>')
-			$(container).append('<br><br>')
+			$(container).append('<br>')
 
 			//zone color and name
 			$(container).append('<p class="legendtxt">Buffer Zone</p>');
@@ -399,7 +384,7 @@ function createLegend(roads, earth, hybrid){
 			document.getElementById("Satellite").checked = false;
 			document.getElementById("Hybrid").checked = false;
 			map.removeLayer(Satellite);
-			map.removeLayer(Hybrid);
+			map.removeLayer(hybrid);
 			roads.addTo(map)
 		}
 		else if($(this).attr('id') == 'Satellite') {
@@ -490,6 +475,16 @@ function createLegend(roads, earth, hybrid){
 	})
 
 };
+function turnOn(){
+	$('#switch').removeClass('Off');
+	$('#switch').text('ON');
+	$('#switch').addClass('On');
+}
+function turnOff(){
+	$('#switch').removeClass('On');
+	$('#switch').text('OFF');
+	$('#switch').addClass('Off');
+}
 //set road style
 function roadsStyle(feature) {
 	var color = "#000000" //road color
@@ -592,7 +587,6 @@ function style(feature){
 };
 //popup style for the zones
 function onEachFeature(feature, layer){
-	var parkLabel;
 	var popupContent = ('<p style = "text-align: center";><b>'+ feature.properties.ZONES + '</b></p>');
 	popupContent += '<p>'+feature.properties.Zone_Description+'</p>';
     //bind the popup to the circle marker
