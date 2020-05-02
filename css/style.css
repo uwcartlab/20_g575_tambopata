@@ -114,7 +114,18 @@ button p{
   background-size: cover;
   background-position: center;
   opacity: 0.80;
+  animation: anim .75s ;
 }
+
+@-webkit-keyframes anim {
+    from {opacity: 0;}
+    to {opacity: .80;}
+  }
+
+@keyframes anim {
+    from {opacity: 0;}
+    to {opacity: .80;}
+  }
 
 #overlay {
   position: fixed;
