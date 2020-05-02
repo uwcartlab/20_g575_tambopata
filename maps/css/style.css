@@ -10,6 +10,14 @@ button p{
     margin: 0;
     padding-left: 10px;
 }
+.Off{
+    font-weight: 800;
+    color: #186c3f
+}
+.On{
+    font-weight: 800;
+    color: red
+}
 @media(max-width:50em){ /* Breakpoint only for mobile */
     .navbar1 {
         color: #186c3f;
