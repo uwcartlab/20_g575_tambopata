@@ -70,7 +70,6 @@ button p{
 .navbar1 button {
   background-color: #006d2c;
   border-style: none;
-  /* float: left; */
   display:inline-block;
   color: #f2f2f2;
   text-align: center;
@@ -123,7 +122,7 @@ button p{
 /* The actual popup (appears on top) */
 .popup .popupText {
   visibility: hidden;
-  width: 360px;
+  width: 300%;
   box-shadow: 2px 3px 5px #999;
   background-color:#E7EFEA;
   color: #186C3F;
@@ -134,7 +133,20 @@ button p{
   z-index: 1;
   bottom: 125%;
   left: 0%;
-  margin-left: -150px;
+  margin-left:-100%;
+}
+
+@media(max-width:50em){
+  .popup .popupText{
+    width:250%;
+    margin-left: -100%;
+  }
+}
+@media(max-width:40em){
+  .popup .popupText{
+    width:250%;
+    margin-left: -20%;
+  }
 }
 
 /* Popup arrow under pop-up box*/

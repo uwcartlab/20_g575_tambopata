@@ -42,20 +42,43 @@
 
 		      <div id="basic-desc">
 
-          <p>Jose Herrera and his family moved five years ago to the Tambopata National Reserve in search of new farm land and opportunities. They left Cuzco, a city
+          <!-- <p>Jose Herrera and his family moved five years ago to the Tambopata National Reserve in search of new farm land and opportunities. They left Cuzco, a city
             in the Peruvian Andes, due to land scarcity and unemployment. Immigrants to the Amazon, like Jose and his family, are often referred to as ‘colonists’.
-            Like other colonists, upon his arrival, Jose claimed 30
+            Like other colonists, upon his arrival, Jose claimed 30  -->
             <!--retrieve glossary term Hectares & link to gloassary -->
-            <span class="popup" onclick="popupHec()"><u>hectares</u>
+            <!-- <span class="popup" onclick="popupHec()"><u>hectares</u>
               <span class="popupText" id="myPopup1">A 100 x 100 m unit of land (1 hectare = 2.3 acres).
                 Abbreviated “ha". Most Tambopata farms are ~40 ha.
                   <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
               </span>
             </span>
-            of land along the highway. Every year, Jose and his family plant rice and corn in fields
+          <p>of land along the highway. Every year, Jose and his family plant rice and corn in fields
+           cleared in the forest until the soil becomes ‘tired’ and less productive. Then, they convert the old field to cattle pasture and clear a new field in the
+           forest. They eat most of the food they grow and sell the surplus if they have any.
+          </p> -->
+
+          <!-- beginning paragraph with overlay -->
+          <p>Jose Herrera and his family moved five years ago to the Tambopata National Reserve in search of new farm land and opportunities. They left Cuzco, a city
+            in the Peruvian Andes, due to land scarcity and unemployment. Immigrants to the Amazon, like Jose and his family, are often referred to as ‘colonists’.
+            Like other colonists, upon his arrival, Jose claimed 30 <span class="popup" onclick="on()">hectares</span> of land along the highway. Every year, Jose and his family plant rice and corn in fields
             cleared in the forest until the soil becomes ‘tired’ and less productive. Then, they convert the old field to cattle pasture and clear a new field in the
             forest. They eat most of the food they grow and sell the surplus if they have any.
           </p>
+
+            <!-- example overlay instead of popup-->
+            <div id="overlay" onclick="off()">
+              <div id="text">
+                <img src="farmer.png" alt="Picture of a colonist farmer standing in front of a pasture " width="50%" class="image-center">
+                <b>Hectar:</b> A 100 x 100 m unit of land (1 hectare = 2.3 acres).
+                Abbreviated “ha". Most Tambopata farms are ~40 ha. <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close" style="color:white;">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+
+
 
           <p>Like other poor residents of Tambopata, Jose is worried about his family’s financial future. He hopes someday to buy a truck and sell food in town or
             to local miners. Or, he might convert his whole farm into a pasture and get a job in the city. Some of his neighbors are talking about selling their land
