@@ -194,7 +194,6 @@ button p{
   z-index:2;
   cursor:pointer;
 }
-
 #text{
   position: absolute;
   top:50%;
@@ -204,6 +203,95 @@ button p{
   transform:translate(-50%, -50%);
   -ms-transform: translate(-50%,-50%);
 }
+
+#overlay2 {
+  position:fixed;
+  display:none;
+  width:100%;
+  height:100%;
+  top: 0;
+  left:0;
+  right: 0;
+  bottom:0;
+  background-color: rgba(0,0,0,0.8);
+  z-index:2;
+  cursor:pointer;
+}
+#text2{
+  position: absolute;
+  top:50%;
+  left:50%;
+  font-size: 155%;
+  color:white;
+  transform:translate(-50%, -50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+#overlay3 {
+  position:fixed;
+  display:none;
+  width:100%;
+  height:100%;
+  top: 0;
+  left:0;
+  right: 0;
+  bottom:0;
+  background-color: rgba(0,0,0,0.8);
+  z-index:2;
+  cursor:pointer;
+}
+#text3{
+  position: absolute;
+  top:50%;
+  left:50%;
+  font-size: 155%;
+  color:white;
+  transform:translate(-50%, -50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+/* experimenting with multiple overlays */
+/* div#overlay {
+  position:fixed;
+  display:none;
+  width:100%;
+  height:100%;
+  top: 0;
+  left:0;
+  right: 0;
+  bottom:0;
+  background-color: rgba(0,0,0,0.8);
+  z-index:2;
+  cursor:pointer;
+}
+div#text_1{
+  position: absolute;
+  top:50%;
+  left:50%;
+  font-size: 155%;
+  color:white;
+  transform:translate(-50%, -50%);
+  -ms-transform: translate(-50%,-50%);
+}
+div#text_2{
+  position: absolute;
+  top:50%;
+  left:50%;
+  font-size: 155%;
+  color:white;
+  transform:translate(-50%, -50%);
+  -ms-transform: translate(-50%,-50%);
+}div#text_3{
+  position: absolute;
+  top:50%;
+  left:50%;
+  font-size: 155%;
+  color:white;
+  transform:translate(-50%, -50%);
+  -ms-transform: translate(-50%,-50%);
+} */
+
+
 
 /* Scoll to top button */
 #scrollBtn {

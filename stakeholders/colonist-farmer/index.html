@@ -68,7 +68,6 @@
             <!-- example overlay instead of popup-->
             <div id="overlay" onclick="off()">
               <div id="text">
-                <img src="farmer.png" alt="Picture of a colonist farmer standing in front of a pasture " width="80%" class="image-center">
                 <b>Hectar:</b> A 100 x 100 m unit of land (1 hectare = 2.3 acres).
                 Abbreviated “ha". Most Tambopata farms are ~40 ha. <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
                 <!-- X button, affordance to close pop-up -->
@@ -80,11 +79,11 @@
 
 
 
-          <p>Like other poor residents of Tambopata, Jose is worried about his family’s financial future. He hopes someday to buy a truck and sell food in town or
+          <!-- <p>Like other poor residents of Tambopata, Jose is worried about his family’s financial future. He hopes someday to buy a truck and sell food in town or
             to local miners. Or, he might convert his whole farm into a pasture and get a job in the city. Some of his neighbors are talking about selling their land
-            to oil
+            to oil -->
             <!-- retrieve palm oil description and link  -->
-            <span class="popup" onclick="popupOil()">palm companies,
+            <!-- <span class="popup" onclick="popupOil()">palm companies,
               <span class="popupText" id="myPopup2"><u>Development Officer for Palmas del Peru</u> Mariella works for a leading company in Peru’s growing oil palm industry. Her job is to find new regions in Peru to
                 promote oil palm production which pays big profits to producers. Click
                 <a href="http://localhost:8848/20_g575_tambopata/stakeholders/oil-officer/"target="_blank">Palm Company </a>to learn how Mariella would like to work
@@ -93,9 +92,9 @@
             </span>
 
             and then moving deeper into the forest to claim new farmland. But Jose does not have legal title to his land and doesn’t think he’d
-            be paid much for it. He is a member of the Agrarian Federation
+            be paid much for it. He is a member of the Agrarian Federation -->
             <!-- retrieve Fademad description and link  -->
-            <span class="popup" onclick="popupFad()">(FADEMAD),
+            <!-- <span class="popup" onclick="popupFad()">(FADEMAD),
               <span class="popupText" id="myPopup3">
                 <u>Leader of the Agrarian Federation(FADEMAD):</u> Alan leads FADEMAD, a grassroots political organization that represents
                  ~5000 small farmers in the Madre de Dios region. FADEMAD’s goal is to improve the quality of life of its members,
@@ -110,7 +109,70 @@
             is on the rise. But Jose has no knowledge or experience with tropical tree crops like cacao – he would need training to pursue agroforestry. He also wonders how he
             could survive financially while waiting the five years for the cacao trees to bear fruit. He could always turn to working for his friends in their illegal gold mining
             camp. Gold mining is back-breaking, often dangerous work, but if you’re lucky, you can make a lot of money in a short time.
+          </p> -->
+
+          <!-- experimenting with overlays rather than pop-ups -->
+          <p>Like other poor residents of Tambopata, Jose is worried about his family’s financial future. He hopes someday to buy a truck and sell food in town or
+            to local miners. Or, he might convert his whole farm into a pasture and get a job in the city. Some of his neighbors are talking about selling their land
+            to oil <span class="popup" onclick="on2()">palm companies</span>, and then moving deeper into the forest to claim new farmland. But Jose does not have legal title to his land and doesn’t think he’d
+            be paid much for it. He is a member of the Agrarian Federation <span class="popup" onclick="on3()">(FADEMAD)</span>, a local political organization, and has heard some members talk about transitioning from shifting agriculture to agroforestry. He might even be able to start
+            growing organic cacao (the source of chocolate) and sell it via a local marketing coop that could negotiate a better price. Consumer demand for certified chocolate
+            is on the rise. But Jose has no knowledge or experience with tropical tree crops like cacao – he would need training to pursue agroforestry. He also wonders how he
+            could survive financially while waiting the five years for the cacao trees to bear fruit. He could always turn to working for his friends in their illegal gold mining
+            camp. Gold mining is back-breaking, often dangerous work, but if you’re lucky, you can make a lot of money in a short time.
           </p>
+
+            <!-- retrieve Fademad description and link  -->
+            <!-- <span class="popup" onclick="popupFad()">(FADEMAD),
+              <span class="popupText" id="myPopup3">
+                <b>Leader of the Agrarian Federation(FADEMAD):</b> Alan leads FADEMAD, a grassroots political organization that represents
+                 ~5000 small farmers in the Madre de Dios region. FADEMAD’s goal is to improve the quality of life of its members,
+                 both long-time residents and more-recently settled colonists. Alan believes that poor farmers’ quality of life
+                 depends on a healthy environment. Thus, he tries to defend local farmers AND the forest. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fademad/">FADEMAD </a>to learn how
+                Alan weighs the costs and benefits of land management practices of his varied constituents are interested in pursuing.
+              </span>
+            </span>
+            a local political organization, and has heard some members talk about transitioning from shifting agriculture to agroforestry. He might even be able to start
+            growing organic cacao (the source of chocolate) and sell it via a local marketing coop that could negotiate a better price. Consumer demand for certified chocolate
+            is on the rise. But Jose has no knowledge or experience with tropical tree crops like cacao – he would need training to pursue agroforestry. He also wonders how he
+            could survive financially while waiting the five years for the cacao trees to bear fruit. He could always turn to working for his friends in their illegal gold mining
+            camp. Gold mining is back-breaking, often dangerous work, but if you’re lucky, you can make a lot of money in a short time.
+          </p> -->
+
+          <!-- example overlay instead of popup-->
+          <div id="overlay2" onclick="off2()">
+            <div id="text">
+              <img src="oilpalmofficer.jpg" alt="Picture of a colonist farmer standing in front of a pasture " width="80%" class="image-center">
+              <b>Development Officer for Palmas del Peru</b> <p>Mariella works for a leading company in Peru’s growing oil palm industry. Her job is to find new regions in Peru to
+                promote oil palm production which pays big profits to producers. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/oil-officer/"target="_blank">Palm Company </a>to learn how Mariella would like to work
+                with smallholders to bring economic gains to the area.</p>
+              <!-- X button, affordance to close pop-up -->
+              <button type="button" class="close" aria-label="Close" style="color:white;">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- example overlay instead of popup-->
+          <div id="overlay3" onclick="off3()">
+            <div id="text">
+              <img src="fademad.png" alt="Picture of a colonist farmer standing in front of a pasture " width="80%" class="image-center">
+              <b>Leader of the Agrarian Federation(FADEMAD):</b> Alan leads FADEMAD, a grassroots political organization that represents
+               ~5000 small farmers in the Madre de Dios region. FADEMAD’s goal is to improve the quality of life of its members,
+               both long-time residents and more-recently settled colonists. Alan believes that poor farmers’ quality of life
+               depends on a healthy environment. Thus, he tries to defend local farmers AND the forest. Click
+              <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fademad/">FADEMAD </a>to learn how
+              Alan weighs the costs and benefits of land management practices of his varied constituents are interested in pursuing.
+              <!-- X button, affordance to close pop-up -->
+              <button type="button" class="close" aria-label="Close" style="color:white;">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+
+
 
           </p>Jose and most other FADEMAD members are poor, but they are the largest interest group in the region, and they have strength in numbers. Jose and his fellow
             colonists keep pushing their leaders to take a firm pro-agriculture stand. They know they need financial, technical, and political support to be successful farmers
@@ -133,6 +195,8 @@
           <div class = "iframe-container" align="center" style="margin-bottom:10px;">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/RMf-4BBItz8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
+
+
       <!-- End of Bootstrap Container -->
 		   </div>
 

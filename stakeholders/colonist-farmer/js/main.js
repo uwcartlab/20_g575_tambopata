@@ -20,25 +20,39 @@ function redirect(path){
 //     popup1.classList.toggle("show");
 // };
 
-function popupOil() {
-  var popup2 = document.getElementById("myPopup2");
-    popup2.classList.toggle("show");
-};
-
-function popupFad() {
-  var popup3 = document.getElementById("myPopup3");
-    popup3.classList.toggle("show");
-};
+// function popupOil() {
+//   var popup2 = document.getElementById("myPopup2");
+//     popup2.classList.toggle("show");
+// };
+//
+// function popupFad() {
+//   var popup3 = document.getElementById("myPopup3");
+//     popup3.classList.toggle("show");
+// };
 
 
 // example overlay
 function on(){
   document.getElementById("overlay").style.display = "block";
-}
-
+};
 function off(){
   document.getElementById("overlay").style.display = "none";
-}
+};
+function on2(){
+  document.getElementById("overlay2").style.display = "block"
+};
+function off2(){
+  document.getElementById("overlay2").style.display = "none"
+};
+function on3(){
+  document.getElementById("overlay3").style.display = "block"
+};
+function off3(){
+  document.getElementById("overlay3").style.display = "none"
+};
+
+
+
 
 
 // Jump to top of page, referenced from w3schools.com
