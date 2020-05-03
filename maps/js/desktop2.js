@@ -419,7 +419,7 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span id = "baseMap">Satellite</span><br>')
 			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span id = "baseMap">Hybrid</span><br>')
 			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads" unchecked><span id = "baseMap">Additional Roads<span><br>')
-			$(container).append('<div id = "compareMaps" class = "compare"><span>Compare Proposal Maps:<span><span id="switch" class = "Off"> OFF<span></div><br>')
+			$(container).append('<div id = "compareMaps" class = "compare"><span>Compare Proposal Maps:<span><span id="switch" class = "Off"> UNACTIVE<span></div><br>')
 			$(container).append('<div id = "opacityTitle" class = "opacityTitle">Slide to Change Transparency on Zones</div>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
@@ -565,12 +565,12 @@ function createLegend(roads, earth, hybrid){
 };
 function turnOn(){
 	$('#switch').removeClass('Off');
-	$('#switch').text('ON');
+	$('#switch').text(' ACTIVE');
 	$('#switch').addClass('On');
 }
 function turnOff(){
 	$('#switch').removeClass('On');
-	$('#switch').text('OFF');
+	$('#switch').text(' UNACTIVE');
 	$('#switch').addClass('Off');
 }
 //set road style
@@ -714,7 +714,7 @@ function createAddPOIs(data) {
 }
 //way to getPOIs
 function getRoads() {
-	$.ajax("data/Additional_Roads.geojson", {
+	$.ajax("data/Roads.geojson", {
         dataType: "json",
         success: function(response){
 			createAddRoads(response)

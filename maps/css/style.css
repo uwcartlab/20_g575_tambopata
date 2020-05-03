@@ -187,8 +187,12 @@ html, body, #map {
     margin-left: 10%;
     margin-top: 2%;
 }
-.roads,.compare{
+.roads{
     margin-left: 10%;
+    margin-top: 3%;
+}
+.compare{
+    margin-left: 1%;
     margin-top: 3%;
 }
 
