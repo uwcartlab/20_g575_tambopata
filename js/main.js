@@ -121,6 +121,9 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
+// nav bar active buttons
+// document.getElementById("active_active").style.display='block';
+
 
 // This calls checkVisited on each load
 window.onload = checkVisited();
