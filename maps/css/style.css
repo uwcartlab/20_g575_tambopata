@@ -51,6 +51,16 @@ button p{
 .leaflet-popup-tip-container {
     display: none !important;
 }
+.leaflet-sbs-divider{
+    background-color: #753a10 !important;
+}
+.leaflet-sbs-range::-webkit-slider-thumb{
+    height: 75px !important;
+    width: 25px !important;
+    border-radius: 30% !important;
+    background-color: #D2B48C !important;
+    border: solid #753a10 3px !important;
+}
 #baseMap{
     font-size: 1.25em;
     margin-left: 5px;
