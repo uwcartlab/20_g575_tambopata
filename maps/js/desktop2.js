@@ -42,7 +42,7 @@ function setMap() {
 	
 		switch (zoomLevel) {
 			case 10:
-				tooltip.css('font-size', 24);
+				tooltip.css('font-size', 28);
 				break;
 			case 9:
 				tooltip.css('font-size', 24);
@@ -178,6 +178,22 @@ function createProposals(){
 	swipe = L.control.sideBySide(proposal1_left, proposal4_right);
 	proposal1.addTo(map)
 	$('#proposal1').on('click',function(){
+		var activeList = []
+		$('.proposal').each(function(){
+			var activeCount
+			if($(this).hasClass('active')){
+				activeCount = (this.id)
+				activeCount = activeCount.split("proposal")[1]
+				activeCount = Number(activeCount)
+				activeList.push(activeCount)}
+			})
+		console.log(activeList)
+		if(activeList.length ==2){
+			if(activeList[0]!=1 && activeList[1]!=1){
+				alert("2 Buttons Already Selected!!")
+				return
+			}
+		}
 		map.removeLayer(proposal1)
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
@@ -213,7 +229,23 @@ function createProposals(){
 			}
 		})
 	$('#proposal2').on('click',function(){
+		var activeList = []
+		$('.proposal').each(function(){
+			var activeCount
+			if($(this).hasClass('active')){
+				activeCount = (this.id)
+				activeCount = activeCount.split("proposal")[1]
+				activeCount = Number(activeCount)
+				activeList.push(activeCount)}
+			})
+		if(activeList.length == 2){
+			if(activeList[0]!=2 && activeList[1]!=2){
+				alert("2 Buttons Already Selected!!")
+				return
+			}
+		}
 		map.removeLayer(proposal1)
+		map.removeLayer(proposal2)
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
 			map.removeLayer(proposal2_left);
@@ -251,8 +283,27 @@ function createProposals(){
 		}		
 	})
 	$('#proposal3').on('click',function(){
+		var activeList = []
+		$('.proposal').each(function(){
+			var activeCount
+			if($(this).hasClass('active')){
+				activeCount = (this.id)
+				activeCount = activeCount.split("proposal")[1]
+				activeCount = Number(activeCount)
+				activeList.push(activeCount)}
+			})
+		console.log(activeList)
+		if(activeList.length == 2){
+			if(activeList[0]!=3 && activeList[1]!=3){
+				alert("2 Buttons Already Selected!!")
+				return
+			}
+		}
+		console.log("Button 3 clicked")
 		map.removeLayer(proposal1)
+		map.removeLayer(proposal3)
 		if($(this).hasClass('active')){
+			console.log("Already active, taking it down")
 			$(this).removeClass('active');
 			map.removeLayer(proposal3_left);
 			map.removeLayer(proposal3_right);
@@ -260,6 +311,7 @@ function createProposals(){
 			map.removeControl(swipe);
 			turnOff()
 		}else{
+			console.log("This is not active, determining if it needs a swipe or not")
 			var value;
 			map.removeControl(swipe);
 			$('.proposal').each(function(){
@@ -269,18 +321,22 @@ function createProposals(){
 					value = Number(value)}
 				})
 			if(value == 1){
+				console.log("button 1 is already active, adding swipe")
 				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
 				turnOn()
 				}
 			else if(value == 2){
+				console.log("button 1 is already active, adding swipe")
 				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
 				turnOn()
 				}
 			else if(value == 4){
+				console.log("button 1 is already active, adding swipe")
 				swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
 				turnOn()
 				}
 			else if(value == null){
+				console.log("Nothing is active, just adding proposal 3")
 				proposal3.addTo(map)
 				turnOff()
 				}
@@ -289,6 +345,21 @@ function createProposals(){
 				
 	})
 	$('#proposal4').on('click',function(){
+		var activeList = []
+		$('.proposal').each(function(){
+			var activeCount
+			if($(this).hasClass('active')){
+				activeCount = (this.id)
+				activeCount = activeCount.split("proposal")[1]
+				activeCount = Number(activeCount)
+				activeList.push(activeCount)}
+			})
+		if(activeList.length == 2){
+			if(activeList[0]!=43 && activeList[1]!=4){
+				alert("2 Buttons Already Selected!!")
+				return
+			}
+		}
 		map.removeLayer(proposal1)
 		map.removeLayer(proposal4);
 		if($(this).hasClass('active')){
@@ -328,6 +399,8 @@ function createProposals(){
 						
 	})
 };
+
+
 function createLegend(roads, earth, hybrid){
 	//createing the legend control
 	//roads, earth, and hybrid basemap tilelayers called into this.

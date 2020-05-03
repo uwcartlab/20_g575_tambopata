@@ -78,6 +78,7 @@ L.Control.SideBySide = L.Control.extend({
     var container = this._container = L.DomUtil.create('div', 'leaflet-sbs', map._controlContainer)
 
     this._divider = L.DomUtil.create('div', 'leaflet-sbs-divider', container)
+    
     var range = this._range = L.DomUtil.create('input', 'leaflet-sbs-range', container)
     range.type = 'range'
     range.min = 0
@@ -85,6 +86,7 @@ L.Control.SideBySide = L.Control.extend({
     range.step = 'any'
     range.value = 0.5
     range.style.paddingLeft = range.style.paddingRight = this.options.padding + 'px'
+    range.mouseover = "Swipe Me!!!!!"
     this._addEvents()
     this._updateLayers()
     return this
