@@ -42,10 +42,10 @@ function setMap() {
 	
 		switch (zoomLevel) {
 			case 10:
-				tooltip.css('font-size', "2em");
+				tooltip.css('font-size', 24);
 				break;
 			case 9:
-				tooltip.css('font-size', "2em");
+				tooltip.css('font-size', 24);
 				break;
 		}
 	})
@@ -97,11 +97,11 @@ function createProposals(){
 			$(row).append('<div class="row">');
 			$(row).append('<button id = "proposal1"  type = "button" class="active proposal pr1 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</button>');
 			$(row).append('<button  id = "proposal2" type = "button" class="proposal pr2 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</button>');
-			$(row).append('<button  id = "proposal3" type = "button" class="active proposal pr3 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</button>');
+			$(row).append('<button  id = "proposal3" type = "button" class="proposal pr3 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</button>');
 			$(row).append('<button  id = "proposal4" type = "button" class="proposal pr4 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</button>');
 			$(row).append('</div>');
 			$(row).append('</div>');
-
+			L.DomEvent.disableClickPropagation(row)
 			return row;
 
 		}
@@ -174,12 +174,11 @@ function createProposals(){
         style: style,
         pane: 'right',
 		onEachFeature: onEachFeature,
-    });
-	swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
-	var mainList = [proposal1, proposal2, proposal3, proposal4];
-	var paneList = [proposal1_left, proposal1_right, proposal2_left, proposal2_right, proposal3_left, proposal3_right, proposal4_right]
+	});
+	swipe = L.control.sideBySide(proposal1_left, proposal4_right);
+	proposal1.addTo(map)
 	$('#proposal1').on('click',function(){
-		for(var i in mainList){map.removeLayer(mainList[i])}
+		map.removeLayer(proposal1)
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
 			map.removeLayer(proposal1_left);
@@ -188,7 +187,6 @@ function createProposals(){
 			turnOff()
 		}else{
 			var value;
-			map.removeControl(swipe);
 			$('.proposal').each(function(){
 				if($(this).hasClass('active')){
 					value = (this.id)
@@ -197,26 +195,30 @@ function createProposals(){
 			})
 			if(value == 2){
 				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == 3){
 				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == 4){
 				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == null){
-				proposal1.addTo(map)
+				proposal1.addTo(map);
+				turnOff()
 				}
 			$(this).addClass('active')
-			turnOn()
 			}
 		})
 	$('#proposal2').on('click',function(){
-		for(var i in mainList){map.removeLayer(mainList[i])}
+		map.removeLayer(proposal1)
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
 			map.removeLayer(proposal2_left);
 			map.removeLayer(proposal2_right);
+			map.removeLayer(proposal2);
 			map.removeControl(swipe);
 			turnOff()
 		}else{
@@ -230,26 +232,31 @@ function createProposals(){
 			})
 			if(value == 1){
 				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == 3){
 				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == 4){
 				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == null){
-				proposal2.addTo(map)
+				proposal2.addTo(map);
+				turnOff()
 				}
 			$(this).addClass('active')
-			turnOn()
+			
 		}		
 	})
 	$('#proposal3').on('click',function(){
-		for(var i in mainList){map.removeLayer(mainList[i])}
+		map.removeLayer(proposal1)
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
 			map.removeLayer(proposal3_left);
 			map.removeLayer(proposal3_right);
+			map.removeLayer(proposal3)
 			map.removeControl(swipe);
 			turnOff()
 		}else{
@@ -263,27 +270,32 @@ function createProposals(){
 				})
 			if(value == 1){
 				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == 2){
 				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == 4){
 				swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == null){
 				proposal3.addTo(map)
+				turnOff()
 				}
 			$(this).addClass('active')
-			turnOn()
 			}
 				
 	})
 	$('#proposal4').on('click',function(){
-		for(var i in mainList){map.removeLayer(mainList[i])}
+		map.removeLayer(proposal1)
+		map.removeLayer(proposal4);
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
 			map.removeLayer(proposal4_left);
 			map.removeLayer(proposal4_right);
+			map.removeLayer(proposal4)
 			map.removeControl(swipe);
 			turnOff()
 		}else{
@@ -297,18 +309,21 @@ function createProposals(){
 			})
 			if(value == 1){
 				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == 2){
 				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == 3){
 				swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				turnOn()
 				}
 			else if(value == null){
 				proposal4.addTo(map)
+				turnOff()
 				}
 			$(this).addClass('active')
-			turnOn()
 			}
 						
 	})
@@ -331,7 +346,7 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span id = "baseMap">Satellite</span><br>')
 			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span id = "baseMap">Hybrid</span><br>')
 			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads" unchecked><span id = "baseMap">Additional Roads<span><br>')
-			$(container).append('<div id = "compareMaps" class = "compare"><span>Compare Proposal Maps:<span><span id="switch" class = "On"> ON<span></div><br>')
+			$(container).append('<div id = "compareMaps" class = "compare"><span>Compare Proposal Maps:<span><span id="switch" class = "Off"> OFF<span></div><br>')
 			$(container).append('<div id = "opacityTitle" class = "opacityTitle">Slide to Change Transparency on Zones</div>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider" type="range">');
