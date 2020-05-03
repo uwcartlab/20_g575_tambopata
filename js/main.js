@@ -58,7 +58,7 @@ function overlayShowNext(next){
 		document.getElementById("tambopata-overlay-text").style.display = "none";
 		document.getElementById("glossary-overlay-text").style.display = "none";
 		document.getElementById("events-overlay-text").style.display = "none";
-		
+
 		document.getElementById(prevButton).style.backgroundColor = "#00a642";
 		document.getElementById(prevButton).style.color = "white";
 		document.getElementById("assign-button").style.backgroundColor = "#05f765";
@@ -69,7 +69,7 @@ function overlayShowNext(next){
 		document.getElementById("tambopata-overlay-text").style.display = "block";
 		document.getElementById("glossary-overlay-text").style.display = "none";
 		document.getElementById("events-overlay-text").style.display = "none";
-		
+
 		document.getElementById(prevButton).style.backgroundColor = "#00a642";
 		document.getElementById(prevButton).style.color = "white";
 		document.getElementById("tambopata-button").style.backgroundColor = "#05f765";
@@ -81,27 +81,46 @@ function overlayShowNext(next){
 		document.getElementById("tambopata-overlay-text").style.display = "none";
 		document.getElementById("glossary-overlay-text").style.display = "block";
 		document.getElementById("events-overlay-text").style.display = "none";
-		
+
 		document.getElementById(prevButton).style.backgroundColor = "#00a642";
 		document.getElementById(prevButton).style.color = "white";
 		document.getElementById("glossary-button").style.backgroundColor = "#05f765";
 		document.getElementById("glossary-button").style.color = "black";
 		prevButton = "glossary-button";
-		
+
 	} else {
 		document.getElementById("assign-overlay-text").style.display = "none";
 		document.getElementById("tambopata-overlay-text").style.display = "none";
 		document.getElementById("glossary-overlay-text").style.display = "none";
 		document.getElementById("events-overlay-text").style.display = "block";
-		
+
 		document.getElementById(prevButton).style.backgroundColor = "#00a642";
 		document.getElementById(prevButton).style.color = "white";
 		document.getElementById("events-button").style.backgroundColor = "#05f765";
 		document.getElementById("events-button").style.color = "black";
 		prevButton = "events-button";
-		
+
 	}
 }
+
+// Jump to top of page, referenced from w3schools.com
+//Get the button:
+mybutton = document.getElementById("scrollBtn");
+// When the user scrolls down 300px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+// When the user clicks on the jump to button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
 
 // This calls checkVisited on each load
 window.onload = checkVisited();
