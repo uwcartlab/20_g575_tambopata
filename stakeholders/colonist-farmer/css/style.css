@@ -184,18 +184,19 @@ button p{
 #overlay {
   position:fixed;
   display:none;
-  width:100%;
-  height:100%;
-  top: 0;
+  width:80%;
+  height:80%;
+  top: 10%;
   left:0;
   right: 0;
-  bottom:0;
+  bottom:10%;
   background-color: rgba(0,0,0,0.8);
   z-index:2;
   cursor:pointer;
 }
 #text{
-  position: absolute;
+  /* position: absolute; */
+  position:relative;
   top:50%;
   left:50%;
   font-size: 155%;
@@ -207,12 +208,12 @@ button p{
 #overlay2 {
   position:fixed;
   display:none;
-  width:100%;
-  height:100%;
-  top: 0;
+  width:80%;
+  height:80%;
+  top: 10%;
   left:0;
   right: 0;
-  bottom:0;
+  bottom:10%;
   background-color: rgba(0,0,0,0.8);
   z-index:2;
   cursor:pointer;
@@ -230,12 +231,12 @@ button p{
 #overlay3 {
   position:fixed;
   display:none;
-  width:100%;
-  height:100%;
-  top: 0;
+  width:80%;
+  height:80%;
+  top: 10%;
   left:0;
   right: 0;
-  bottom:0;
+  bottom:10%;
   background-color: rgba(0,0,0,0.8);
   z-index:2;
   cursor:pointer;
