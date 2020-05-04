@@ -483,7 +483,7 @@ function createLegend(roads, earth, hybrid){
 			map.removeLayer(Satellite);
 			map.removeLayer(hybrid);
 			roads.addTo(map)
-			return roadColor
+			updateRoadStyle(roadColor)
 		}
 		else if($(this).attr('id') == 'Satellite') {
 			roadColor = "#ffffff"
@@ -492,7 +492,7 @@ function createLegend(roads, earth, hybrid){
 			map.removeLayer(roads);
 			map.removeLayer(hybrid);
 			earth.addTo(map)
-			return roadColor
+			updateRoadStyle(roadColor)
 		}
 		else if($(this).attr('id') == 'Hybrid') {
 			roadColor = "#ffffff"
@@ -502,7 +502,7 @@ function createLegend(roads, earth, hybrid){
 			// map.removeLayer(earth);
 			earth.addTo(map)
 			hybrid.addTo(map)
-			return roadColor
+			updateRoadStyle(roadColor)
 		}
 	});
 	$('.range-slider').attr({
@@ -588,7 +588,12 @@ function turnOff(){
 	$('#switch').addClass('Off');
 }
 //set road style
-function roadsStyle(feature) {
+function updateRoadStyle(){
+	roadsPOI.setStyle({
+		color: roadColor
+	})
+}
+function roadsStyle() {
 	
  //road color
 //attempting to change color of Additional_Roads geojson based on the basedmap selected
