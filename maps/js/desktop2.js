@@ -15,6 +15,7 @@ var proposal1, proposal2, proposal3, proposal4;
 var view1, view2, view3, view4;
 var roadsPOI;
 var swipe;
+var roadColor = "#000000";
 
 //create the map
 function setMap() {
@@ -476,26 +477,32 @@ function createLegend(roads, earth, hybrid){
 		//checked off. It will also remove the previous basemap and
 		//load in the new one.
 		if ($(this).attr('id') == 'Road'){
+			roadColor = "#000000"
 			document.getElementById("Satellite").checked = false;
 			document.getElementById("Hybrid").checked = false;
 			map.removeLayer(Satellite);
 			map.removeLayer(hybrid);
 			roads.addTo(map)
+			return roadColor
 		}
 		else if($(this).attr('id') == 'Satellite') {
+			roadColor = "#ffffff"
 			document.getElementById("Road").checked = false;
 			document.getElementById("Hybrid").checked = false;
 			map.removeLayer(roads);
 			map.removeLayer(hybrid);
 			earth.addTo(map)
+			return roadColor
 		}
 		else if($(this).attr('id') == 'Hybrid') {
+			roadColor = "#ffffff"
 			document.getElementById("Road").checked = false;
 			document.getElementById("Satellite").checked = false;
 			map.removeLayer(roads);
 			// map.removeLayer(earth);
 			earth.addTo(map)
 			hybrid.addTo(map)
+			return roadColor
 		}
 	});
 	$('.range-slider').attr({
@@ -582,7 +589,8 @@ function turnOff(){
 }
 //set road style
 function roadsStyle(feature) {
-	var color = "#543005" //road color
+	
+ //road color
 //attempting to change color of Additional_Roads geojson based on the basedmap selected
 	//white road is being shown, so its reading the basemap id, but its not updating when a different basemap is seleceted
 	//also, the satellite and hybrid basemaps disappear after a few clicks
@@ -597,7 +605,7 @@ function roadsStyle(feature) {
 		// 	color = "#9B8917";
 		// }
 	return{
-		color: color,
+		color: roadColor,
 		weight: 1,
 		opacity: 1
 	}
