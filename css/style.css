@@ -9,6 +9,9 @@ html {
   display: inherit;
   justify-content: center;
 }
+.fa-map{
+  color: none !important;
+}
 .header{
   background:#006d2c;
   width:100%;
@@ -21,6 +24,9 @@ button p{
   float: right;
   margin: 0;
   padding-left: 10px;
+}
+button{
+  height:70px;
 }
 /* Place the navbar at the top of the page, and make it stick */
 .navbar1 {

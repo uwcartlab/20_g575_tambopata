@@ -582,21 +582,20 @@ function turnOff(){
 }
 //set road style
 function roadsStyle(feature) {
-	var color = "#000000" //road color
-
+	var color = "#543005" //road color
 //attempting to change color of Additional_Roads geojson based on the basedmap selected
 	//white road is being shown, so its reading the basemap id, but its not updating when a different basemap is seleceted
 	//also, the satellite and hybrid basemaps disappear after a few clicks
 
-	// if ($('.baseMap').attr('id') == 'Road') {
-	// 	color = "#ffffff";
-	// }
-	// else if ($('.baseMap').attr('id') == 'Satellite') {
-	// 	color = "#D194B6";
-	// }
-	// else if ($('.baseMap').attr('id') == 'Hybrid') {
-	// 	color = "#9B8917";
-	// }
+		// if ($('.baseMap').attr('id') == 'Road') {
+		// 	color = "#000000" ;
+		// }
+		// else if ($('.baseMap').attr('id') == 'Satellite') {
+		// 	color = "#D194B6";
+		// }
+		// else if ($('.baseMap').attr('id') == 'Hybrid') {
+		// 	color = "#9B8917";
+		// }
 	return{
 		color: color,
 		weight: 1,
@@ -611,44 +610,44 @@ function style(feature){
     var zoneName = feature.properties.ZONES
 	if(zoneName == "Buffer Zone"){ // if it's the buffer zone, make it Powder blue
 	color = "#9B8917";
-	lineWidth = 0.3;
+	lineWidth = 0.1;
 	lineColor = "Black";
 	fillop = opacity
 		}
 		else if(zoneName == "Strict Protection"){
 			color = "#f5aa1c";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Ese’eja and Harakmbut Territories"){
 			color = "#C1A76A";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Wildlands"){
 			color = "#005c50";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Tourism"){
 			color = "#35a649";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
         }
 		else if(zoneName == "Restoration"){
 			color = "#D194B6";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Bahuaja-Sonene National Park"){
 			color = "None";
 			lineWidth = 3;
-			lineColor = "#E5E5E5";
+			lineColor = "#7F7F7F";
 			fillop = 0
 			//can change opacity based on Tanya's suggestion, but would need to change colors based on the basemap used
 			opacity = 1;
@@ -656,19 +655,19 @@ function style(feature){
 		else if(zoneName == "Direct Use"){
 			color = "#59B798";
 			//color = "#125e1d";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
 		}
 		else if(zoneName == "Low Impact Non-Timber Forest Use"){
 			color = "#94c660";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
 		}
 		else if(zoneName == "Community Reserve"){
 			color = "#c4cc5c";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
 		}

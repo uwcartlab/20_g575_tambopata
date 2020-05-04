@@ -3,8 +3,6 @@ function mobile(){
 
 //global variables 
 var map;
-var zones;
-var legend;
 var proposal1_right;
 var proposal2_right;
 var proposal3_right;
@@ -89,7 +87,6 @@ function setMap() {
 	})
     map.createPane('left');
     map.createPane('right');
-    
 
 	var promises = [];
     //promises will use d3 to push the csv and topojson files of Chicago neighborhood boundaries,
@@ -274,9 +271,11 @@ function switchProposals(){
         style: style,
         pane: 'right',
 		onEachFeature: onEachFeature,
-	});
+    });
+    console.log(proposal1_left)
 	swipe = L.control.sideBySide(proposal1_left, proposal4_right);
     proposal1.addTo(map)
+    console.log(swipe)
     console.log("proposal 1 already added")
 	$('#mProposal1').on('click',function(){
 		var activeList = []
@@ -364,7 +363,7 @@ function switchProposals(){
 					value = Number(value)}
 			})
 			if(value == 1){
-				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
+				swipe = L.control.splitMap(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
 			
 				}
 			else if(value == 3){
@@ -384,6 +383,8 @@ function switchProposals(){
 		}		
 	})
 	$('#mProposal3').on('click',function(){
+        map.removeLayer(proposal1)
+		map.removeLayer(proposal3)
 		var activeList = []
 		$('.propM').each(function(){
 			var activeCount
@@ -402,8 +403,7 @@ function switchProposals(){
 			}
 		}
 		console.log("Button 3 clicked")
-		map.removeLayer(proposal1)
-		map.removeLayer(proposal3)
+		
 		if($('#propM3').hasClass('active')){
 			console.log("Already active, taking it down")
 			$('#propM3').removeClass('active');
@@ -424,9 +424,10 @@ function switchProposals(){
 					value = Number(value)}
 				})
 			if(value == 1){
+                map.removeLayer(proposal1)
 				console.log("button 1 is already active, adding swipe")
 				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
-				
+				console.log("swipe added")
 				}
 			else if(value == 2){
 				console.log("button 1 is already active, adding swipe")
@@ -441,7 +442,7 @@ function switchProposals(){
 			else if(value == null){
 				console.log("Nothing is active, just adding proposal 3")
 				proposal3.addTo(map)
-				
+				console.log("JUST proposal 3 was added to map")
 				}
 			$('#propM3').addClass('active')
 			}
@@ -502,10 +503,6 @@ function switchProposals(){
 						
 	})
 }
-// else if ($(this).attr('id') == 'mLegend'){
-//     $('#mLegend').addClass('active');
-//     $(".mLegend").toggle("fast");
-//}
 function createMobileLegend(){
 	//legend will be placed in bottom right of page, but will be dependent off the legend icon button.
 	legend = L.Control.extend({
@@ -532,13 +529,12 @@ function createMobileLegend(){
 			L.DomEvent.disableClickPropagation(legendItems)
 			return legendItems;
 		}
+    });
+
+	map.addControl(new legend());
+	$("#mLegend").click(function() {
+		$(".mLegend").toggle("fast");
 	});
-	//map.addControl(new legend());
-	//when clicking on the zone icon, it will toggle in and out.
-	//right now, the legend will appear on the page by default when loading, this will have to be fixed. 
-	// $("#mLegend").click(function() {
-	// 	$(".mLegend").toggle("fast");
-	// });
 };
 //default road style
 function roadsStyle(feature) {
@@ -563,56 +559,56 @@ function style(feature){
 		}
 		else if(zoneName == "Strict Protection"){
 			color = "#f5aa1c";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Ese’eja and Harakmbut Territories"){
 			color = "#C1A76A";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Wildlands"){
 			color = "#005c50";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Tourism"){
 			color = "#35a649";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
         }
 		else if(zoneName == "Restoration"){
 			color = "#D194B6";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Bahuaja-Sonene National Park"){
 			color = "None";
-			lineWidth = 4;
-			lineColor = "ForestGreen";
+			lineWidth = 3;
+			lineColor = "#7F7F7F";
 			fillop = 0
 		}
 		else if(zoneName == "Direct Use"){
 			color = "#59B798";
 			//color = "#125e1d";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
 		}
 		else if(zoneName == "Low Impact Non-Timber Forest Use"){
 			color = "#94c660";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
 		}
 		else if(zoneName == "Community Reserve"){
 			color = "#c4cc5c";
-			lineWidth = 0.3;
+			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
 		}
