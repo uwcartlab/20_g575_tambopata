@@ -132,7 +132,7 @@ button p{
 /* The actual popup (appears on top) */
 .popup .popupText {
   visibility: hidden;
-  width: 300%;
+  width: 360px;
   box-shadow: 2px 3px 5px #999;
   background-color:#E7EFEA;
   color: #186C3F;
@@ -143,10 +143,10 @@ button p{
   z-index: 1;
   bottom: 125%;
   left: 0%;
-  margin-left:-100%;
+  margin-left:-150px;
 }
 
-@media(max-width:50em){
+/* @media(max-width:50em){
   .popup .popupText{
     width:250%;
     margin-left: -100%;
@@ -157,7 +157,7 @@ button p{
     width:250%;
     margin-left: -20%;
   }
-}
+} */
 
 /* Popup arrow under pop-up box*/
 .popup .popupText::after {
