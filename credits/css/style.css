@@ -1,32 +1,27 @@
-/* Place the navbar at the top of the page, and make it stick */
-.navbar1 {
-  background-color: #006d2c;
-  overflow: hidden;
-  bottom: 0;
-  width: 100%;
-}
-
-/* Style the links inside the navigation bar */
-.navbar1 button {
-  background-color: #006d2c;
-  border-style: none;
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 20px 15px 20px 15px;
-  text-decoration: none;
-  font-size: 20px;
+/* navigation bar */
+.header{
+  background:#006d2c;
+  width:100%;
+  color: white;
+  text-align: left;
+  font-size: 35px;
+  padding: 0px 20px 0px 20px;
 }
 button p{
   float: right;
   margin: 0;
   padding-left: 10px;
 }
-/* Change the color of links on hover */
-.navbar1 button:hover {
-  background-color: #ddd;
-  color: black;
+
+.navButton{
+  height:70px;
+}
+/* Place the navbar at the top of the page, and make it stick */
+.navbar1 {
+  background-color: #006d2c;
+  bottom: 0;
+  width: 100%;
+  font-size: 0;
 }
 @media(max-width:50em){ /* Breakpoint only for mobile */
   .navbar1 {
@@ -51,27 +46,60 @@ button p{
       float: left;
       margin-top: -5px;
     }
-  .navbar1 button.active {
+  .nabvar1 button.active {
       background-color: #4CAF50;
       color: white;
     }
+    /*Tambopata title  */
+  .navbar1 span{
+    display: none;
+  }
+  /* UW logo */
+  .navbar1 a{
+    display:none;
+  }
+  .overlay {
+    visibility: hidden;
+    display:none;
+   }
+
 }
+
+/* Style the links inside the navigation bar */
+
+.navbar1 button {
+  background-color: #006d2c;
+  border-style: none;
+  display:inline-block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 20px 15px 20px 15px;
+  text-decoration: none;
+  font-size: 20px;
+}
+.navbar1 a{
+  float: right;
+  padding: 5px 20px 0px 0px;
+}
+
+/* Change the color of links on hover */
+.navbar1 button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
 /* Add a color to the active/current link */
 .navbar1 button.active {
   background-color: #4CAF50;
   color: white;
 }
 
+
+
 #title {
     padding-top: 10px;
 }
 
-
-.montserrat{
-    font-family: 'Montserrat';
-}
-.lato{
-    font-family: 'Lato';
 }
 .sourceSans{
     font-family: 'Source Sans Pro';
@@ -92,14 +120,14 @@ button p{
 	margin-right: 10px;
 	text-align: center;
 }
-.fa {
+/* .fa {
     margin: 5px;
     font-size: 35px;
     border-radius: 35%;
     width: 20px;
 	margin-bottom: 5px;
 	color: #CFC397;
-}
+} */
 
 li {
 	padding-left: 15px;
