@@ -50,11 +50,18 @@ function setMap() {
 		}
 	})
 	//hybrid has both satellite imagery with labels
-	var hybrid  = L.esri.basemapLayer('ImageryLabels');
+	// var hybrid  = L.esri.basemapLayer('ImageryLabels');
+	// //earth is just satellite imagery
+	// var earth =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	// 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+	// });
+	var hybrid  = L.gridLayer.googleMutant({
+		type: 'hybrid'
+	}) 
 	//earth is just satellite imagery
-	var earth =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-	});
+	var earth = L.gridLayer.googleMutant({
+		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+	})
 	map.createPane('left');
     map.createPane('right');
     getPOIs()
@@ -355,7 +362,7 @@ function createProposals(){
 				activeList.push(activeCount)}
 			})
 		if(activeList.length == 2){
-			if(activeList[0]!=43 && activeList[1]!=4){
+			if(activeList[0]!=4 && activeList[1]!=4){
 				alert("2 Buttons Already Selected!!")
 				return
 			}

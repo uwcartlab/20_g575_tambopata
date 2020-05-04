@@ -31,7 +31,7 @@ $(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-x
 $(bottomNav).append('<button data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="propM proposalM col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></button>');
 
 //create maps function
-function setMap(zones) {
+function setMap() {
     //roads tile layer from ArcGIS online
 	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
@@ -46,7 +46,6 @@ function setMap(zones) {
 	});
 	//removing the zoom control in mobile view. 
 	map.removeControl(map.zoomControl);
-
 	//hybrid has both satellite imagery with labels
 	var hybrid  = L.gridLayer.googleMutant({
 		type: 'hybrid'
@@ -55,7 +54,6 @@ function setMap(zones) {
 	var earth = L.gridLayer.googleMutant({
 		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
 	})
-
 	//roads are called from Additional_Roads.js, where the variable is just roadsPOI = geojson
 	var addRoads = L.geoJson(roadsPOI, {
 		style: roadsStyle //roadStyle function
@@ -72,19 +70,49 @@ function setMap(zones) {
 	}
 	//adding the controls on top left and leaving it out
 	var baseLayers = L.control.layers(baseMaps, vectorLayers, {position: 'topleft', collapsed: true});
-	baseLayers.addTo(map);
+    baseLayers.addTo(map);
+    var parkLabel = new L.marker([-13.5, -69.5], { opacity: 0.01 }); //opacity may be set to zero
+	parkLabel.bindTooltip("Bahuaja-Sonene National Park", {direction: 'center', permanent: true, className: "parkLabel", interactive: false, offset: [0, 0] });
+	parkLabel.addTo(map);
+	map.on('zoomstart', function () {
+		var zoomLevel = map.getZoom();
+		var tooltip = $('.leaflet-tooltip');
+	
+		switch (zoomLevel) {
+			case 10:
+				tooltip.css('font-size', 28);
+				break;
+			case 9:
+				tooltip.css('font-size', 24);
+				break;
+		}
+	})
+    map.createPane('left');
+    map.createPane('right');
+    
 
-	//when loading the page, it will by default load proposal 1
-	var deFault = "data/proposal1.geojson"
-	getZones(deFault)
-	//get the POI points
-	getPOIs()
-	//swith proposals based off which proposal you click on
-	switchProposals()
-	//creates the legend
-	createLegend()
-	//opacity bar is added
-	opacityBar ()
+	var promises = [];
+    //promises will use d3 to push the csv and topojson files of Chicago neighborhood boundaries,
+    promises.push($.getJSON("data/proposal1.geojson"));
+    promises.push($.getJSON("data/proposal2.geojson"));
+    promises.push($.getJSON("data/proposal3.geojson"));
+    promises.push($.getJSON("data/proposal4.geojson"));
+    //list of promises goes and has the callback function be called
+    Promise.all(promises).then(callback);
+
+    //callback brings in the data
+    function callback(data){
+        //these 4 variables list are from the promise list
+        //this will be used for the topojson work.
+        view1 = data[0];
+        view2 = data[1];
+        view3 = data[2];
+        view4 = data[3];
+        switchProposals(view1, view2, view3, view4)
+        opacityBar ()
+		createMobileLegend(roads, earth, hybrid)
+    }
+    getPOIs()
 };
 function opacityBar (){
 	//add the opacity bar control to the map
@@ -112,55 +140,373 @@ function opacityBar (){
 	});
 	//based on slider range, the opacity will change
 	$('.range-sliderM').on('input',function(){
-		zones.setStyle({
-			opacity: this.value,
-			fillOpacity: this.value,
-			animate: "fast",
-		});
-		opacity=this.value
-	});
+        proposal1.setStyle({
+        opacity: this.value,
+        fillOpacity: this.value,
+        animate: "fast",
+        });
+        proposal2.setStyle({
+        opacity: this.value,
+        fillOpacity: this.value,
+        animate: "fast",
+        });
+        proposal3.setStyle({
+        opacity: this.value,
+        fillOpacity: this.value,
+        animate: "fast",
+        });
+        proposal4.setStyle({
+            opacity: this.value,
+            fillOpacity: this.value,
+            animate: "fast",
+            });
+        proposal1_left.setStyle({
+        opacity: this.value,
+        fillOpacity: this.value,
+        animate: "fast",
+        });
+        opacity=this.value
+        proposal2_left.setStyle({
+        opacity: this.value,
+        fillOpacity: this.value,
+        animate: "fast",
+        });
+        opacity=this.value
+        proposal3_left.setStyle({
+            opacity: this.value,
+            fillOpacity: this.value,
+            animate: "fast",
+        });
+        opacity=this.value
+        proposal1_right.setStyle({
+            opacity: this.value,
+            fillOpacity: this.value,
+            animate: "fast",
+            });
+        opacity=this.value
+        opacity=this.value
+        proposal2_right.setStyle({
+            opacity: this.value,
+            fillOpacity: this.value,
+            animate: "fast",
+            });
+        proposal3_right.setStyle({
+            opacity: this.value,
+            fillOpacity: this.value,
+            animate: "fast",
+            });
+        opacity=this.value
+        proposal4_right.setStyle({
+            opacity: this.value,
+            fillOpacity: this.value,
+            animate: "fast",
+            });
+        opacity=this.value
+})
 }
 function switchProposals(){
 	//.proposalM is the class for all 4 proposal map buttons.
-	//whichever button is pressed, this function will be called
-	$('.proposalM').click(function(){
-		//first thing the function does is removes the current 'active' button and will assign the 'active' button to where it is clicked.
-		
-		//if the id is mProposal#, then it will remove the current zone, and call in the zone it is clicked on.
-		if ($(this).attr('id') == 'mProposal1'){
-			$('.propM').removeClass('active');
-			removeZones(zones)
-			var zone = "data/proposal1.geojson";
-			$("#propM1").addClass('active'); //adds the active class to this button
-			getZones(zone);
-		} else if ($(this).attr('id') == 'mProposal2'){
-			$('.propM').removeClass('active');
-			removeZones(zones)
-			var zone = "data/proposal2.geojson";
-			$("#propM2").addClass('active');
-			getZones(zone);
-		}
-		else if ($(this).attr('id') == 'mProposal3'){
-			$('.propM').removeClass('active');
-			removeZones(zones)
-			var zone = "data/proposal3.geojson";
-			$("#propM3").addClass('active');
-			getZones(zone);
-		}
-		else if ($(this).attr('id') == 'mProposal4'){
-			$('.propM').removeClass('active');
-			removeZones(zones)
-			var zone = "data/proposal4.geojson";
-			$("#propM4").addClass('active');
-			getZones(zone);
-		}
-		else if ($(this).attr('id') == 'mLegend'){
-			$('#mLegend').addClass('active');
-			$(".mLegend").toggle("fast");
-		}
+    //whichever button is pressed, this function will be called
+    proposal1 = L.geoJson(view1, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+		onEachFeature: onEachFeature,
 	});
+	proposal2 = L.geoJson(view2, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+		onEachFeature: onEachFeature,
+	});
+	proposal3 = L.geoJson(view3, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+		onEachFeature: onEachFeature,
+	});
+	proposal4 = L.geoJson(view4, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+		onEachFeature: onEachFeature,
+    });
+	proposal1_left = L.geoJson(view1, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'left',
+		onEachFeature: onEachFeature,
+    });
+    proposal2_left = L.geoJson(view2, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'left',
+		onEachFeature: onEachFeature,
+    });
+    proposal3_left = L.geoJson(view3, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'left',
+		onEachFeature: onEachFeature,
+	});
+	proposal4_left = L.geoJson(view4, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'left',
+		onEachFeature: onEachFeature,
+    });
+	proposal1_right = L.geoJson(view1, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'right',
+		onEachFeature: onEachFeature,
+    });
+    proposal2_right = L.geoJson(view2, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'right',
+		onEachFeature: onEachFeature,
+    });
+    proposal3_right = L.geoJson(view3, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'right',
+		onEachFeature: onEachFeature,
+    });
+    proposal4_right = L.geoJson(view4, {
+        //point to layer with the features and the list containing the geoJson attributes
+        style: style,
+        pane: 'right',
+		onEachFeature: onEachFeature,
+	});
+	swipe = L.control.sideBySide(proposal1_left, proposal4_right);
+    proposal1.addTo(map)
+    console.log("proposal 1 already added")
+	$('#mProposal1').on('click',function(){
+		var activeList = []
+		$('.propM').each(function(){
+			var activeCount
+			if($(this).hasClass('active')){
+				activeCount = (this.id)
+				activeCount = activeCount.split("propM")[1]
+				activeCount = Number(activeCount)
+				activeList.push(activeCount)}
+			})
+		console.log(activeList)
+		if(activeList.length ==2){
+			if(activeList[0]!=1 && activeList[1]!=1){
+				alert("2 Buttons Already Selected!!")
+				return
+			}
+		}
+		map.removeLayer(proposal1)
+		if($('#propM1').hasClass('active')){
+			$('#propM1').removeClass('active');
+			map.removeLayer(proposal1_left);
+			map.removeLayer(proposal1_right);
+			map.removeControl(swipe);
+			
+		}else{
+			var value;
+			$('.propM').each(function(){
+				if($(this).hasClass('active')){
+					value = (this.id)
+                    value = value.split("propM")[1]
+					value = Number(value)}
+			})
+			if(value == 2){
+				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
+				
+				}
+			else if(value == 3){
+				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
+				
+				}
+			else if(value == 4){
+				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				
+				}
+			else if(value == null){
+				proposal1.addTo(map);
+				
+				}
+			$('#propM1').addClass('active')
+			}
+		})
+	$('#mProposal2').on('click',function(){
+		var activeList = []
+		$('.propM').each(function(){
+			var activeCount
+			if($(this).hasClass('active')){
+				activeCount = (this.id)
+				activeCount = activeCount.split("propM")[1]
+				activeCount = Number(activeCount)
+				activeList.push(activeCount)}
+			})
+		if(activeList.length == 2){
+			if(activeList[0]!=2 && activeList[1]!=2){
+				alert("2 Buttons Already Selected!!")
+				return
+			}
+		}
+		map.removeLayer(proposal1)
+		map.removeLayer(proposal2)
+		if($('#propM2').hasClass('active')){
+			$('#propM2').removeClass('active');
+			map.removeLayer(proposal2_left);
+			map.removeLayer(proposal2_right);
+			map.removeLayer(proposal2);
+			map.removeControl(swipe);
+		
+		}else{
+			var value;
+			map.removeControl(swipe);
+			$('.propM').each(function(){
+				if($(this).hasClass('active')){
+					value = (this.id)
+					value = value.split("propM")[1]
+					value = Number(value)}
+			})
+			if(value == 1){
+				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
+			
+				}
+			else if(value == 3){
+				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
+			
+				}
+			else if(value == 4){
+				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				
+				}
+			else if(value == null){
+				proposal2.addTo(map);
+				
+				}
+			$('#propM2').addClass('active')
+			
+		}		
+	})
+	$('#mProposal3').on('click',function(){
+		var activeList = []
+		$('.propM').each(function(){
+			var activeCount
+			if($(this).hasClass('active')){
+                activeCount = (this.id)
+				activeCount = activeCount.split("propM")[1]
+                activeCount = Number(activeCount)
+                console.log(activeCount)
+				activeList.push(activeCount)}
+			})
+		console.log(activeList)
+		if(activeList.length == 2){
+			if(activeList[0]!=3 && activeList[1]!=3){
+				alert("2 Buttons Already Selected!!")
+				return
+			}
+		}
+		console.log("Button 3 clicked")
+		map.removeLayer(proposal1)
+		map.removeLayer(proposal3)
+		if($('#propM3').hasClass('active')){
+			console.log("Already active, taking it down")
+			$('#propM3').removeClass('active');
+			map.removeLayer(proposal3_left);
+			map.removeLayer(proposal3_right);
+			map.removeLayer(proposal3)
+			map.removeControl(swipe);
+			
+		}else{
+			console.log("This is not active, determining if it needs a swipe or not")
+			var value;
+			map.removeControl(swipe);
+			$('.propM').each(function(){
+				if($(this).hasClass('active')){
+                    value = (this.id)
+                    console.log(value)
+					value = value.split("propM")[1]
+					value = Number(value)}
+				})
+			if(value == 1){
+				console.log("button 1 is already active, adding swipe")
+				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
+				
+				}
+			else if(value == 2){
+				console.log("button 1 is already active, adding swipe")
+				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
+				
+				}
+			else if(value == 4){
+				console.log("button 1 is already active, adding swipe")
+				swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				
+				}
+			else if(value == null){
+				console.log("Nothing is active, just adding proposal 3")
+				proposal3.addTo(map)
+				
+				}
+			$('#propM3').addClass('active')
+			}
+				
+	})
+	$('#mProposal4').on('click',function(){
+		var activeList = []
+		$('.propM').each(function(){
+			var activeCount
+			if($(this).hasClass('active')){
+				activeCount = (this.id)
+				activeCount = activeCount.split("propM")[1]
+				activeCount = Number(activeCount)
+				activeList.push(activeCount)}
+			})
+		if(activeList.length == 2){
+			if(activeList[0]!=4 && activeList[1]!=4){
+				alert("2 Buttons Already Selected!!")
+				return
+			}
+		}
+		map.removeLayer(proposal1)
+		map.removeLayer(proposal4);
+		if($('#propM4').hasClass('active')){
+			$('#propM4').removeClass('active');
+			map.removeLayer(proposal4_left);
+			map.removeLayer(proposal4_right);
+			map.removeLayer(proposal4)
+			map.removeControl(swipe);
+			
+		}else{
+			var value;
+			map.removeControl(swipe);
+			$('.proposalM').each(function(){
+				if($(this).hasClass('active')){
+					value = (this.id)
+					value = value.split("propM")[1]
+					value = Number(value)}
+			})
+			if(value == 1){
+				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				
+				}
+			else if(value == 2){
+				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				
+				}
+			else if(value == 3){
+				swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
+				
+				}
+			else if(value == null){
+				proposal4.addTo(map)
+				
+				}
+			$('#propM4').addClass('active')
+			}
+						
+	})
 }
-function createLegend(){
+// else if ($(this).attr('id') == 'mLegend'){
+//     $('#mLegend').addClass('active');
+//     $(".mLegend").toggle("fast");
+//}
+function createMobileLegend(){
 	//legend will be placed in bottom right of page, but will be dependent off the legend icon button.
 	legend = L.Control.extend({
         options: {
@@ -187,7 +533,7 @@ function createLegend(){
 			return legendItems;
 		}
 	});
-	map.addControl(new legend());
+	//map.addControl(new legend());
 	//when clicking on the zone icon, it will toggle in and out.
 	//right now, the legend will appear on the page by default when loading, this will have to be fixed. 
 	// $("#mLegend").click(function() {
@@ -279,15 +625,7 @@ function style(feature){
 			pane: 'overlayPane'
 		}
 };
-//called from swithProposals, where the data is the data path of the proposal geoJSON
-function createZones(data){
-    zones = L.geoJson(data, {
-        //point to layer with the features and the list containing the geoJson attributes
-		style: style,
-		onEachFeature: onEachFeature,
-	}).addTo(map);
-	return zones
-};
+
 //onEachFeature is for the popups for the zones
 function onEachFeature(feature, layer){
 	var popupContent = ('<p style = "text-align: center";><b>'+ feature.properties.ZONES + '</b></p>');
@@ -301,10 +639,6 @@ function onEachPOI(feature, layer) {
 	popupContent += '<p>'+feature.properties.infoPOI+'</p>';
 	//bind the popup to the circle marker
     layer.bindPopup(popupContent);
-}
-//removes current zone from map before adding the new selected zone.
-function removeZones(zones){
-	map.removeLayer(zones)
 }
 //create POI from L.geoJson
 function createAddPOIs(data) {
@@ -322,8 +656,5 @@ function getPOIs() {
 		}
 	});
 };
-//using ajax to get zones from the data folder
-//zone is the variable input based on selected proposal
-
 //call the initialize function when the document has loaded
 $(document).ready(setMap);}
