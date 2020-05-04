@@ -15,7 +15,7 @@ var proposal1, proposal2, proposal3, proposal4;
 var view1, view2, view3, view4;
 var roadsPOI;
 var swipe;
-var roadColor = "#000000";
+var roadColor = "#993404";
 
 //create the map
 function setMap() {
@@ -24,7 +24,7 @@ function setMap() {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
 	//create the map with its center coordinates and have roads be default layer.
     map = L.map('map', {
-		center: [-12.9, -69.5],
+		center: [-12.9, -69.7],
 		zoom: 10,
 		minZoom: 9,
 		layers: [roads],
@@ -477,7 +477,7 @@ function createLegend(roads, earth, hybrid){
 		//checked off. It will also remove the previous basemap and
 		//load in the new one.
 		if ($(this).attr('id') == 'Road'){
-			roadColor = "#000000"
+			roadColor = "#993404"
 			document.getElementById("Satellite").checked = false;
 			document.getElementById("Hybrid").checked = false;
 			map.removeLayer(Satellite);
@@ -486,7 +486,7 @@ function createLegend(roads, earth, hybrid){
 			updateRoadStyle(roadColor)
 		}
 		else if($(this).attr('id') == 'Satellite') {
-			roadColor = "#ffffff"
+			roadColor = "#fb9666"
 			document.getElementById("Road").checked = false;
 			document.getElementById("Hybrid").checked = false;
 			map.removeLayer(roads);
@@ -495,7 +495,7 @@ function createLegend(roads, earth, hybrid){
 			updateRoadStyle(roadColor)
 		}
 		else if($(this).attr('id') == 'Hybrid') {
-			roadColor = "#ffffff"
+			roadColor = "#fb9666"
 			document.getElementById("Road").checked = false;
 			document.getElementById("Satellite").checked = false;
 			map.removeLayer(roads);
@@ -611,7 +611,7 @@ function roadsStyle() {
 		// }
 	return{
 		color: roadColor,
-		weight: 1,
+		weight: 1.5,
 		opacity: 1
 	}
 };
