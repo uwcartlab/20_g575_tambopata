@@ -197,7 +197,7 @@ button p{
   position: auto;
   top: 50%;
   left: 10%;
-  font-size: 14px;
+  font-size: 16px;
   color: black;
   padding: 10px;
 }
@@ -207,7 +207,7 @@ button p{
   position: auto;
   top: 50%;
   left: 10%;
-  font-size: 14px;
+  font-size: 16px;
   color: black;
   padding: 10px;
 }
@@ -217,9 +217,13 @@ button p{
   position: auto;
   top: 50%;
   left: 10%;
-  font-size: 14px;
+  font-size: 16px;
   color: black;
   padding: 10px;
+}
+
+#glossTerm {
+	font-size: 18px;
 }
 
 #events-overlay-text {
@@ -227,7 +231,7 @@ button p{
   position: auto;
   top: 50%;
   left: 10%;
-  font-size: 14px;
+  font-size: 16px;
   color: black;
   padding: 10px;
 }
