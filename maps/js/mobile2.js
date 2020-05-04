@@ -14,6 +14,7 @@ var proposal4_right
 var proposal1, proposal2, proposal3, proposal4;
 var view1, view2, view3, view4;
 var swipe;
+var roadColor = "#993404";
 
 //padding for there to be two bottom navigation bars
 $('html').css("padding-bottom","80px");
@@ -22,7 +23,7 @@ var bottomNav = $("<div id = 'navbar2'></div>")
 
 bottomNav.appendTo($("body"));
 //appending the buttons to the html body, not on the actual map.
-$(bottomNav).append('<button id = "mProposal1" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM1" class="propM active"></div>1</button>');
+$(bottomNav).append('<button id = "mProposal1" class="active proposalM col-sm-2.4 col-xs-2.4"><div id = "propM1" class="propM active"></div>1</button>');
 $(bottomNav).append('<button id = "mProposal2" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM2" class="propM"></div>2</button>');
 $(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM3" class="propM"></div>3</button>');
 $(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM4" class="propM"></div>4</button>');
@@ -363,7 +364,7 @@ function switchProposals(){
 					value = Number(value)}
 			})
 			if(value == 1){
-				swipe = L.control.splitMap(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
+				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
 			
 				}
 			else if(value == 3){
@@ -476,7 +477,7 @@ function switchProposals(){
 		}else{
 			var value;
 			map.removeControl(swipe);
-			$('.proposalM').each(function(){
+			$('.propM').each(function(){
 				if($(this).hasClass('active')){
 					value = (this.id)
 					value = value.split("propM")[1]
@@ -539,8 +540,7 @@ function createMobileLegend(){
 //default road style
 function roadsStyle(feature) {
 	return{
-		fillColor: "#000000",
-		color: "#000000",
+		color: roadColor,
 		weight: 1,
 		opacity: 1
 	}
