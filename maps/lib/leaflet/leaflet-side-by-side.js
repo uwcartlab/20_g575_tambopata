@@ -86,6 +86,8 @@ L.Control.SideBySide = L.Control.extend({
     range.step = 'any'
     range.value = 0.5
     range.style.paddingLeft = range.style.paddingRight = this.options.padding + 'px'
+    range.title = "Use Me to Swipe Left or Right!"
+    $(range).attr("data-toggle", "toggle")
     this._addEvents()
     this._updateLayers()
     return this

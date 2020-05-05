@@ -123,6 +123,10 @@ function createProposals(){
 	$('#proposal1').append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
 	$('#proposal3').append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
 	swipe = L.control.sideBySide(overlayLeft.addTo(map), overlayRight.addTo(map)).addTo(map);
+	$('.leaflet-sbs-range').tooltip('show')
+	$('.leaflet-sbs-range').click(function(){
+		$(this).tooltip("dispose");
+	})
 	swipeList = [1, 3]
 	$($('.proposal')).on({
 		click: function(){
@@ -155,6 +159,9 @@ function createProposals(){
 			$('#proposal'+String(swipeList[1])).append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
 			map.removeControl(swipe);
 			swipe = L.control.sideBySide(overlayLeft.addTo(map), overlayRight.addTo(map)).addTo(map);
+			$('.leaflet-sbs-range').click(function(){
+				$(this).tooltip("hide");
+			})
 		}
 	})
 };
@@ -234,7 +241,6 @@ function createLegend(roads, earth, hybrid){
 		//checked off. It will also remove the previous basemap and
 		//load in the new one.
 		if ($(this).attr('id') == 'Road'){
-			roadColor = "#993404"
 			document.getElementById("Satellite").checked = false;
 			document.getElementById("Hybrid").checked = false;
 			map.removeLayer(Satellite);
@@ -244,7 +250,6 @@ function createLegend(roads, earth, hybrid){
 		}
 		else if($(this).attr('id') == 'Satellite') {
 			$(this).tooltip("dispose");
-			roadColor = "#fb9666"
 			document.getElementById("Road").checked = false;
 			document.getElementById("Hybrid").checked = false;
 			map.removeLayer(roads);
@@ -253,7 +258,6 @@ function createLegend(roads, earth, hybrid){
 	
 		}
 		else if($(this).attr('id') == 'Hybrid') {
-			roadColor = "#fb9666"
 			document.getElementById("Road").checked = false;
 			document.getElementById("Satellite").checked = false;
 			map.removeLayer(roads);
