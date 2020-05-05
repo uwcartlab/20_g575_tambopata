@@ -166,11 +166,17 @@ html, body, #map {
 }
 .roads{
     margin-left: 10%;
-    margin-top: 3%;
+    margin-bottom: 8%;
 }
 .compare{
-    margin-left: 1%;
-    margin-top: 3%;
+    margin-left: 10%;
+    margin-bottom: 8%;
+}
+.compareTxt{
+    font-size: 1.25em;
+    margin-left: 5px;
+    font-weight: 800;
+    color: #186c3f
 }
 
 .range-slider{
@@ -211,7 +217,6 @@ html, body, #map {
     width: 50vw;
     top: -15mm;
     left: 50%;
-    background-color: #186c3f;
 }
 .proposalM{
     width: 20%;
@@ -237,6 +242,40 @@ html, body, #map {
     overflow: hidden;
     font-size: 1.5em;
     font-weight: 800;
+}
+
+.leftView{
+    width: 200px;
+    height: 35px;
+    margin-top: 10px;
+    margin-left: 150px;
+    text-align: center;
+    border-style: none;
+    float: left;
+    border: solid #186c3f 2px;
+    color: #186c3f;
+    background-color: #e7efea;
+    overflow: hidden;
+    font-size: 1.5em;
+    font-weight: 800; 
+}
+.rightView{
+    width: 200px;
+    height: 35px;
+    margin-top: 10px;
+    margin-right: 150px;
+    float: right;
+    text-align: center;
+    border-style: none;
+    border: solid #186c3f 2px;
+    color: #186c3f;
+    background-color: #e7efea;
+    overflow: hidden;
+    font-size: 1.5em;
+    font-weight: 800; 
+}
+.fa-check-circle{
+    margin-left: 10px;
 }
 .active, .proposal:hover {
     background-color: #e7efea ;
