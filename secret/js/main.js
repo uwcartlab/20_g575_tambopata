@@ -53,8 +53,8 @@ function drags(dragElement, resizeElement, container) {
         containerWidth = container.outerWidth();
 
     // Set limits
-    minLeft = containerOffset + 10;
-    maxLeft = containerOffset + containerWidth - dragWidth - 10;
+    minLeft = containerOffset + 70;
+    maxLeft = containerOffset + containerWidth - dragWidth - 70;
 
     // Calculate the dragging distance on mousemove.
     dragElement.parents().on("mousemove touchmove", function(e) {
