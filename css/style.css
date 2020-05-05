@@ -57,7 +57,7 @@ button p{
       margin-top: -5px;
     }
   .navbar1 button.active {
-      background-color: #4CAF50;
+      background-color: #00441b;
       color: white;
     }
 		/*Tambopata title  */
@@ -94,7 +94,6 @@ button p{
 /* Change the color of links on hover */
 .navbar1 button:hover {
   background-color: #00441b;
-  /* color: black; */
 }
 
 /* Add a color to the active/current link */
@@ -306,7 +305,7 @@ h2 {
 }
 /* may want to get rid of, will not work on mobile */
 #scrollBtn:hover {
-  background-color: #555; /* Add a dark-grey background on hover */
+  background-color: #00441b; /* Add a dark-green background on hover */
 }
 /* fade in scroll to top button */
 #scrollBtn {
@@ -340,10 +339,6 @@ h2 {
     border-radius: 10px; /* Rounded corners */
     font-size: 12px; /* Increase font size */
   }
-  /* may want to get rid of, will not work on mobile */
-  #scrollBtn:hover {
-    background-color: #555; /* Add a dark-grey background on hover */
-  }
   /* fade in scroll to top button */
   #scrollBtn {
     visibility: visible;
@@ -359,3 +354,4 @@ h2 {
     from {opacity: 0;}
     to {opacity: 2;}
   }
+}
