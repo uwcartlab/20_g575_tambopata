@@ -194,16 +194,18 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<div class="legend" id="strictProtection" ></div>');
 			$(container).append('<p class="legendtxt">Wildlands</p>');
 			$(container).append('<div class="legend" id="wildlands" ></div>');
+			$(container).append('<p class="legendtxt">Ese\'eja and Harakmbut Territories</p>');
+			$(container).append('<div class="legend" id="nativeCommunities" ></div>');
 			$(container).append('<p class="legendtxt">Tourism</p>');
 			$(container).append('<div class="legend" id="Tourism" ></div>');
+			$(container).append('<p class="legendtxt">Low Impact Non-Timber Forest Use</p>');
+			$(container).append('<div class="legend" id="forestUse" ></div>');
 			$(container).append('<p class="legendtxt">Direct Use</p>');
 			$(container).append('<div class="legend" id="directUse" ></div>');
 			$(container).append('<p class="legendtxt">Restoration</p>');
 			$(container).append('<div class="legend" id="Restoration" ></div>');
-			$(container).append('<p class="legendtxt">Ese\'eja and Harakmbut Territories</p>');
-			$(container).append('<div class="legend" id="nativeCommunities" ></div>');
-			$(container).append('<p class="legendtxt">Low Impact Non-Timber Forest Use</p>');
-			$(container).append('<div class="legend" id="forestUse" ></div>');
+			
+			
 			L.DomEvent.disableClickPropagation(container)
             return container;
         }

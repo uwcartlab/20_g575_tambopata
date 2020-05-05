@@ -23,7 +23,7 @@ var bottomNav = $("<div id = 'navbar2'></div>")
 
 bottomNav.appendTo($("body"));
 //appending the buttons to the html body, not on the actual map.
-$(bottomNav).append('<button id = "mProposal1" class="active proposalM col-sm-2.4 col-xs-2.4"><div id = "propM1" class="propM active"></div>1</button>');
+$(bottomNav).append('<button id = "mProposal1" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM1" class="propM active"></div>1</button>');
 $(bottomNav).append('<button id = "mProposal2" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM2" class="propM"></div>2</button>');
 $(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM3" class="propM"></div>3</button>');
 $(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM4" class="propM"></div>4</button>');
@@ -59,13 +59,13 @@ function setMap() {
 	});
 	//listing out the basemaps
 	const baseMaps = {
-		"Roads": roads,
+		"Primary Roads": roads,
 		"Satellite": earth,
 		"Hybrid": hybrid
 	};
 	//vectorLayers are just addRoads
 	const vectorLayers = {
-		"Additional Roads": addRoads
+		"Secondary Roads": addRoads
 	}
 	//adding the controls on top left and leaving it out
 	var baseLayers = L.control.layers(baseMaps, vectorLayers, {position: 'topleft', collapsed: true});

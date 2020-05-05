@@ -117,6 +117,11 @@ button p{
       .navbar1 a{
         display:none;
       }
+      .active, .proposal:hover {
+        background-color: #e7efea ;
+        color: #186c3f;
+        border: none
+      }
   }
  
 /* Style the links inside the navigation bar */
@@ -223,7 +228,7 @@ html, body, #map {
     height: 55px;
     float: left;
     text-align: center;
-    border: solid #186c3f 0.5px;
+    border: none;
     color: #186c3f;
     background-color: #e7efea;;
     overflow: hidden;
@@ -248,7 +253,7 @@ html, body, #map {
     width: 200px;
     height: 35px;
     margin-top: 10px;
-    margin-left: 150px;
+    margin-left: 100px;
     text-align: center;
     border-style: none;
     float: left;
@@ -263,7 +268,7 @@ html, body, #map {
     width: 200px;
     height: 35px;
     margin-top: 10px;
-    margin-right: 150px;
+    margin-right: 100px;
     float: right;
     text-align: center;
     border-style: none;
