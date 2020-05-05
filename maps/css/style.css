@@ -174,7 +174,7 @@ html, body, #map {
 
 #collapseLegend{
     position: absolute;
-    z-index: 99999;
+  
     background-color: #e7efea;
     border: solid #186c3f 1px;
     height: 100px;
@@ -254,6 +254,18 @@ html, body, #map {
     font-size: 1.5em;
     font-weight: 800;
 }
+.proposalM-Legend{
+    width: 20%;
+    height: 55px;
+    float: left;
+    text-align: center;
+    border: none;
+    color: #186c3f;
+    background-color: #e7efea;;
+    overflow: hidden;
+    font-size: 1.5em;
+    font-weight: 800;  
+}
 .proposal{
     width: auto;
     height: 35px;
@@ -325,7 +337,7 @@ html, body, #map {
     bottom: 30px;
     background-color: #e7efea;
     border: solid #186c3f 1px;
-    z-index: 9999999;
+
 }
 #accordion{
     overflow-y: scroll;
