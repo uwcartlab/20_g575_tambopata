@@ -130,6 +130,11 @@ button p{
         border: solid #186c3f 2px;
         box-shadow: 0 8px 6px -6px #186c3f;
       }
+      .propM.active{
+        border: solid #e7efea  2px;
+        padding: 2px;
+        background-color: #186c3f ;
+      }
       .navbar1 span{
         display: none;
       }
@@ -137,11 +142,12 @@ button p{
       .navbar1 a{
         display:none;
       }
-      .propM,.active, .proposal:hover {
+      .proposal:hover {
         background-color: #e7efea ;
         color: #186c3f;
         border: none
       }
+      
   }
 
 /* Style the links inside the navigation bar */
@@ -164,7 +170,6 @@ button p{
 .navbar1 button:hover {
   background-color: #00441b;
 }
-
 /* Add a color to the active/current link */
 .navbar1 button.active {
   background-color: #00441b;

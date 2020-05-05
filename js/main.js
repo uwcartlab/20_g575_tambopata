@@ -54,6 +54,8 @@ function overlayOn(){
 
 // basic switching of overlay content on button press
 function overlayShowNext(next){
+	var overlayDiv = document.getElementById('overlay-div');
+	overlayDiv.scrollTop = 0;
 	if(next == "assign"){
 		document.getElementById("assign-overlay-text").style.display = "block";
 		document.getElementById("tambopata-overlay-text").style.display = "none";
