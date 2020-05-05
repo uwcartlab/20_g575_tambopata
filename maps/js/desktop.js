@@ -54,7 +54,9 @@ function setMap() {
 	map.createPane('left');
 	map.createPane('right');
 	map.createPane('Overlay')
-    getPOIs()
+	getPOIs()
+	
+	
 
 	var promises = [];
     //promises will use d3 to push the csv and topojson files of Chicago neighborhood boundaries,
@@ -73,8 +75,12 @@ function setMap() {
         view2 = data[1];
         view3 = data[2];
 		view4 = data[3];
+
 		createProposals(view1, view2, view3, view4)
 		createLegend(roads, earth, hybrid)
+
+		
+
 	}
 };
 function createProposals(){
@@ -134,12 +140,12 @@ function createProposals(){
 	swipeList = [1, 3]
 	$($('.proposal')).on({
 		click: function(){
+			console.log(opacity)
 			$(this).tooltip("dispose")
 			if(overlay != null){
 				map.removeLayer(overlay)
 			}
 			$(this).tooltip("dispose");
-			console.log(swipeList)
 			$('#proposal'+String(swipeList[0])).text('Proposal '+String(swipeList[0]));
 			$('#proposal'+String(swipeList[1])).text('Proposal '+String(swipeList[1]));
 			map.removeLayer(overlayLeft)
@@ -312,14 +318,12 @@ function createLegend(roads, earth, hybrid){
 			fillOpacity: this.value,
 			animate: "fast"
 		});
-		opacity=this.value
 		overlayRight.setStyle({
 			opacity: this.value,
 			fillOpacity: this.value,
 			animate: "fast"
 		});
 		opacity=this.value
-		return opacity
 	})
 	
 
@@ -335,44 +339,45 @@ function roadsStyle() {
 //styling for the proposal zones
 function style(feature){
 	// sets the style of the zones
-    opacity = opacity;
+	Vopacity = opacity;
+	console.log(Vopacity)
 	var color; // color of the zone
     var zoneName = feature.properties.ZONES
 	if(zoneName == "Buffer Zone"){ // if it's the buffer zone, make it Powder blue
 	color = "#9B8917";
 	lineWidth = 0.1;
 	lineColor = "Black";
-	fillop = opacity
+	fillop = Vopacity
 		}
 		else if(zoneName == "Strict Protection"){
 			color = "#f5aa1c";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = opacity
+			fillop = Vopacity
 		}
 		else if(zoneName == "Ese’eja and Harakmbut Territories"){
 			color = "#C1A76A";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = opacity
+			fillop = Vopacity
 		}
 		else if(zoneName == "Wildlands"){
 			color = "#005c50";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = opacity
+			fillop = Vopacity
 		}
 		else if(zoneName == "Tourism"){
 			color = "#35a649";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = opacity
+			fillop = Vopacity
         }
 		else if(zoneName == "Restoration"){
 			color = "#D194B6";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = opacity
+			fillop = Vopacity
 		}
 		else if(zoneName == "Bahuaja-Sonene National Park"){
 			color = "None";
@@ -387,26 +392,26 @@ function style(feature){
 			//color = "#125e1d";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = opacity;
+			fillop = Vopacity;
 		}
 		else if(zoneName == "Low Impact Non-Timber Forest Use"){
 			color = "#94c660";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = opacity;
+			fillop = Vopacity;
 		}
 		else if(zoneName == "Community Reserve"){
 			color = "#c4cc5c";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = opacity;
+			fillop = Vopacity;
 		}
 		return{
             fillColor: color, // set color according to zone name
             fillOpacity: fillop, //start as partially opaque
 			color: lineColor, // black border
             weight: lineWidth,
-            opacity: opacity
+            opacity: Vopacity
 		}
 };
 //popup style for the zones

@@ -55,10 +55,10 @@ button p{
 }
 @keyframes glow {
     from {
-      box-shadow: 0 0 20px -20px #aef4af;
+      box-shadow: 0 0 10px -10px #aef4af;
     }
     to {
-      box-shadow: 0 0 20px 20px #aef4af;
+      box-shadow: 0 0 10px 10px #aef4af;
     }
   }
 .leaflet-tooltip {
@@ -236,9 +236,9 @@ html, body, #map {
     color: #186c3f;
 }
 .proposal-container{
-    width: 50vw;
+    width: 80vw;
     top: -15mm;
-    left: 50%;
+    left: 15%;
 }
 .proposalM{
     width: 20%;
