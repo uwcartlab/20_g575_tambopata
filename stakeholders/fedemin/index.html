@@ -8,20 +8,41 @@
         <link rel="stylesheet" href="css/style.css">
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
-            <link rel="stylesheet" href="css\bootstrap.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
 
     <body>
       <!-- Navigation bar -->
-      <div class="navbar1" id = "navbar1">
-        <span class="header">Tambopata</span>
+      <!-- <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span> -->
         <!-- Each button calls the basic JS method with the path you want to go to -->
-        <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <!-- <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
         <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
-        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button> -->
         <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <!-- <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
         <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div> -->
+
+      <!-- Each button calls the basic JS method with the path you want to go to -->
+      <div class="navbar1">
+              <span class="header">Tambopata</span>
+        <!-- Assignment will be the About pop-up -->
+        <button class = "navButton" onclick="redirect('../../assignment')"><i class="fa fa-edit fa-lg"></i><p>Assignment</p></button>
+        <button class = "navButton"onclick="redirect('../../')"><i class="fa fa-user fa-lg"></i><p>Stakeholders</p></button>
+        <button class = "navButton"onclick="redirect('../../maps')"><i class="fa fa-map-o fa-lg"></i><p> Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button class = "navButton" onclick="redirect('../../secret')"><svg class="bi bi-lock" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M11.5 8h-7a1 1 0 00-1 1v5a1 1 0 001 1h7a1 1 0 001-1V9a1 1 0 00-1-1zm-7-1a2 2 0 00-2 2v5a2 2 0 002 2h7a2 2 0 002-2V9a2 2 0 00-2-2h-7zm0-3a3.5 3.5 0 117 0v3h-1V4a2.5 2.5 0 00-5 0v3h-1V4z" clip-rule="evenodd"/>
+                </svg><p>Zoning Debrief</p></button>
+        <button class = "navButton" onclick="redirect('../../credits')"><svg class="bi bi-info-circle" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                  <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                  <circle cx="8" cy="4.5" r="1"/>
+                </svg><p>Credits</p></button>
         <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
       </div>
 
@@ -62,28 +83,44 @@
             interests of global northern countries. He asks, "who is polluting more: us
             <!--retrieve pop-up with description and link to gold miner  -->
             <span class="popup" onclick="popupMine()">poor miners
-              <span class="popupText" id="myPopup1"><u>Small-Scale Gold Miner:</u> Pedro is a long-time resident of Tambopata and a gold miner. Given the rising global demand for gold, Pedro thinks it
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Small-Scale Gold Miner</b>
+                <br>Pedro is a long-time resident of Tambopata and a gold miner. Given the rising global demand for gold, Pedro thinks it
                 is impossible to stop mining in Tambopata but he’s also concerned about the impact mining has on his community and environment. Click
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/gold-miner/"target="_blank">Gold Miner </a>to learn about
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/gold-miner/"target="_blank"><b>Gold Miner</b></a> to learn about
                 the future or mining Pedro envisions.
               </span>
             </span>
             , or big rich countries in the North who fill the sky with CO<sub>2</sub>?" He urges his fellow miners to disregard the rules about applying for legal mining
             <!--retrieve glossary term concessions & link to gloassary -->
             <span class="popup" onclick="popupCon()"><u>concessions</u>
-              <span class="popupText" id="myPopup3">A formal permit issued by the government for a certain activity
-              (e.g. mining, logging, ecotourism) for a specified period of time (usually several years, although not
-              permanent).
-                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A formal permit issued by the government for a certain activity
+                (e.g. mining, logging, ecotourism) for a specified period of time (usually several years, although not
+                permanent).
               </span>
             </span>
             These rules are unreasonable and interfere with the basic principle that every Peruvian has the right to mine – after all, mining has historically been part
             of their identity and dignity. He thinks mining is also the best option for
             <!--retrieve pop-up with description and link to community member  -->
             <span class="popup" onclick="popupEse()">local indigenous people
-              <span class="popupText" id="myPopup2"><u>Ese'eja Community Member:</u> Ramon is a member of the Ese’eja Indigenous community with deep ecological knowledge and a
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Ese'eja Community Member</b>
+                <br>Ramon is a member of the Ese’eja Indigenous community with deep ecological knowledge and a
                 strong spiritual connection to Amazonian ecosystems. Over time, the Ese’eja have lost access to many of their sacred sites and to areas they once relied on. Click
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/community-member/"target="_blank">Ese'eja Community Member </a> to understand Ramon’s interests in participatory land management.
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/community-member/"target="_blank"><b>Ese'eja Community Member</b></a> to understand Ramon’s interests in participatory land management.
               </span>
             </span>
             and that roads should be built into their territories to facilitate gold mining. Miguel is confident that mining
@@ -92,7 +129,7 @@
             miners to make any more sacrifices. They are doing back-breaking, dangerous work.
           </p>
         <!-- </div> -->
-
+          <br>
         <!-- 2020 Video: Reforestration -->
         <div class="container" class="arimo" align="center" style="color:#006d2c;">
           <h3>Reforestation in Mining Areas</h3>
@@ -107,10 +144,9 @@
        <div class="container" class="arimo" align="center" style="color:#006d2c;">
          <h3>Additional reading resources are available through your instructor.</h3>
        </div>
-
+       <br>
        <!-- Button to go to top of page, referenced from w3schools.com -->
        <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
-
 
 
         <script src = "lib\jquery-3.4.1.js"></script>
