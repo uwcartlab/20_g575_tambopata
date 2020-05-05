@@ -43,6 +43,24 @@ button p{
 .navButton{
     height:70px;
   }
+
+.tooltip-inner {
+    max-width: 200px;
+    padding: .25rem .5rem;
+    color: #fff;
+    text-align: center;
+    background-color: #186c3f !important;
+    border-radius: .25rem;
+    animation: glow 1s infinite alternate !important;
+}
+@keyframes glow {
+    from {
+      box-shadow: 0 0 20px -20px #aef4af;
+    }
+    to {
+      box-shadow: 0 0 20px 20px #aef4af;
+    }
+  }
 .leaflet-tooltip {
     position: absolute;
     padding: 2px !important;
@@ -78,6 +96,7 @@ button p{
     font-weight: 500;
     color: #186c3f
 }
+
 @media(max-width:50em){ /* Breakpoint only for mobile */
     .navbar1 {
         color: #186c3f;

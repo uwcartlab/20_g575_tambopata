@@ -44,12 +44,6 @@ function setMap() {
 				break;
 		}
 	})
-	//hybrid has both satellite imagery with labels
-	// var hybrid  = L.esri.basemapLayer('ImageryLabels');
-	// //earth is just satellite imagery
-	// var earth =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-	// 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-	// });
 	var hybrid  = L.gridLayer.googleMutant({
 		type: 'hybrid'
 	}) 
@@ -99,7 +93,7 @@ function createProposals(){
 			$(row).append('<button id = "proposal1"  type = "button" class="proposal pr1 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</button>');
 			$(row).append('<button  id = "proposal2" type = "button" class="proposal pr2 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</button>');
 			$(row).append('<button  id = "proposal3" type = "button" class="proposal pr3 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</button>');
-			$(row).append('<button  id = "proposal4" type = "button" class="proposal pr4 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</button><br>');
+			$(row).append('<button  id = "proposal4" data-toggle="tooltip" data-placement="right" title="Click one another proposal to compare the 2 proposals!" type = "button" class="proposal pr4 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</button><br>');
 			$(row).append('<div class = "leftView">LEFT: Proposal 1</div>');
 			$(row).append('<div class = "rightView">RIGHT: Proposal 3</div>');
 			L.DomEvent.disableClickPropagation(row)
@@ -108,7 +102,10 @@ function createProposals(){
 		}
 	});
 	map.addControl(new rowBar());
-
+	$("#proposal4").tooltip({
+		delay: {hide: 50},
+	}).tooltip('show')
+	
 	overlayLeft = L.geoJson(view1, {
 		pane: "left",
         //point to layer with the features and the list containing the geoJson attributes
@@ -129,6 +126,7 @@ function createProposals(){
 	swipeList = [1, 3]
 	$($('.proposal')).on({
 		click: function(){
+			$(this).tooltip("dispose");
 			console.log(swipeList)
 			$('#proposal'+String(swipeList[0])).text('Proposal '+String(swipeList[0]));
 			$('#proposal'+String(swipeList[1])).text('Proposal '+String(swipeList[1]));
@@ -175,13 +173,13 @@ function createLegend(roads, earth, hybrid){
 			//additonal roads and compare proposals will be checkboxes
 			//opacity slider bar also added
 			$(container).append('<input id = "Road" type = "radio" class = "baseMap" checked><span id = "baseMap" >Primary Roads</span><br>')
-			$(container).append('<input id = "Satellite" type = "radio" class = "baseMap"><span id = "baseMap">Satellite</span><br>')
+			$(container).append('<input id = "Satellite" data-toggle="tooltip" data-placement="top" title="Click here to change the base map!" type = "radio" class = "baseMap"><span id = "baseMap">Satellite</span><br>')
 			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span id = "baseMap">Hybrid</span><br>')
 			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads" unchecked><span id = "baseMap">Secondary Roads<span><br>')
 			// $(container).append('<input id = "compare" type = "checkbox" class = "compare" unchecked><span class = "compareTxt">Compare Proposals<span>')
 			$(container).append('<div id = "opacityTitle" class = "opacityTitle">Slide to Change Transparency on Zones</div>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
-			$(container).append('<input class="range-slider" type="range">');
+			$(container).append('<input class="range-slider"  data-toggle="tooltip" data-placement="right" title="Slide to Change the Transparency of the Proposals!" type="range">');
 			$(container).append('<span class = "opacityTxt">100%</span>')
 			$(container).append('<br>')
 
@@ -212,6 +210,12 @@ function createLegend(roads, earth, hybrid){
 	});
     // adds the legend to the map.
 	map.addControl(new LegendControl());
+	$("#Satellite").tooltip({
+		delay: {hide: 50},
+	}).tooltip('show')
+	$(".range-slider").tooltip({
+		delay: {hide: 50},
+	}).tooltip('show')
 	//adding the roads on and off the map
 	$('.roads').on('input',function(){
 		//if checkbox is checked, the roads will be added onto the map
@@ -239,6 +243,7 @@ function createLegend(roads, earth, hybrid){
 
 		}
 		else if($(this).attr('id') == 'Satellite') {
+			$(this).tooltip("dispose");
 			roadColor = "#fb9666"
 			document.getElementById("Road").checked = false;
 			document.getElementById("Hybrid").checked = false;
@@ -263,6 +268,7 @@ function createLegend(roads, earth, hybrid){
 		step: 0.01,
 	});
 	$('.range-slider').on('input',function(){
+		$(this).tooltip("dispose");
 		overlayLeft.setStyle({
 			opacity: this.value,
 			fillOpacity: this.value,
