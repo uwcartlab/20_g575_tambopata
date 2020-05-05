@@ -22,6 +22,7 @@ function checkVisited(){
 	});
 
 	var ls = sessionStorage.getItem('tambopata.visited');
+	console.log(sessionStorage)
 	if (ls != null) {
 		overlayOff();
 	}else{

@@ -9,7 +9,7 @@ var roadsPOI;
 var swipe;
 var swipeList;
 var roadColor = "#a9a9a9";
-var opacity;
+var opacity = 1;
 
 //create the map
 function setMap() {
@@ -52,7 +52,8 @@ function setMap() {
 		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
 	})
 	map.createPane('left');
-    map.createPane('right');
+	map.createPane('right');
+	map.createPane('Overlay')
     getPOIs()
 
 	var promises = [];
@@ -102,9 +103,9 @@ function createProposals(){
 		}
 	});
 	map.addControl(new rowBar());
-	$("#proposal4").tooltip({
-		delay: {hide: 50},
-	}).tooltip('show')
+	// $("#proposal4").tooltip({
+	// 	delay: {hide: 50},
+	// }).tooltip('show')
 	
 	overlayLeft = L.geoJson(view1, {
 		pane: "left",
@@ -123,13 +124,16 @@ function createProposals(){
 	$('#proposal1').append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
 	$('#proposal3').append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
 	swipe = L.control.sideBySide(overlayLeft.addTo(map), overlayRight.addTo(map)).addTo(map);
-	$('.leaflet-sbs-range').tooltip('show')
-	$('.leaflet-sbs-range').click(function(){
-		$(this).tooltip("dispose");
-	})
+	// $('.leaflet-sbs-range').tooltip('show')
+	// $('.leaflet-sbs-range').click(function(){
+	// 	$(this).tooltip("dispose");
+	// })
 	swipeList = [1, 3]
 	$($('.proposal')).on({
 		click: function(){
+			if(overlay != null){
+				map.removeLayer(overlay)
+			}
 			$(this).tooltip("dispose");
 			console.log(swipeList)
 			$('#proposal'+String(swipeList[0])).text('Proposal '+String(swipeList[0]));
@@ -141,6 +145,22 @@ function createProposals(){
 			value = Number(value)
 			swipeList.push(value)
 			swipeList.shift()
+			if(swipeList[0]==swipeList[1]){
+				var justOne = "view"+swipeList[1]
+				overlay = L.geoJson(eval(justOne),{
+					style: style,
+					pane: 'Overlay',
+					oneEachFeature: onEachFeature,
+				}).addTo(map)
+				map.removeControl(swipe);
+				$('.leftView').text('LEFT: Proposal '+String(swipeList[0]));
+				$('#proposal'+String(swipeList[0])).append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
+				$('.rightView').text('RIGHT: Proposal '+String(swipeList[1]));
+				$('#proposal'+String(swipeList[1])).append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
+				$('.leftView').css("display","none");
+				$('.rightView').css("display","none");
+				return
+			}
 			var left = "view"+swipeList[0]
 			var right = "view"+swipeList[1]
 			overlayLeft = L.geoJson(eval(left), {
@@ -162,6 +182,8 @@ function createProposals(){
 			$('.leaflet-sbs-range').click(function(){
 				$(this).tooltip("hide");
 			})
+			$('.leftView').css("display","block");
+			$('.rightView').css("display","block");
 		}
 	})
 };
@@ -183,7 +205,6 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<input id = "Satellite" data-toggle="tooltip" data-placement="top" title="Click here to change the base map!" type = "radio" class = "baseMap"><span id = "baseMap">Satellite</span><br>')
 			$(container).append('<input id = "Hybrid" type = "radio" class = "baseMap"><span id = "baseMap">Hybrid</span><br>')
 			$(container).append('<input id = "pointsOfInterest" type = "checkbox" class = "roads" unchecked><span id = "baseMap">Secondary Roads<span><br>')
-			// $(container).append('<input id = "compare" type = "checkbox" class = "compare" unchecked><span class = "compareTxt">Compare Proposals<span>')
 			$(container).append('<div id = "opacityTitle" class = "opacityTitle">Slide to Change Transparency on Zones</div>')
 			$(container).append('<span class = "opacityTxt" style="margin-left: 10%;">0%</span>');
 			$(container).append('<input class="range-slider"  data-toggle="tooltip" data-placement="right" title="Slide to Change the Transparency of the Proposals!" type="range">');
@@ -209,6 +230,8 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<div class="legend" id="directUse" ></div>');
 			$(container).append('<p class="legendtxt">Restoration</p>');
 			$(container).append('<div class="legend" id="Restoration" ></div>');
+			$(container).append('<p class="legendtxt">Bahuaja-Sonene National Park</p>');
+			$(container).append('<div class="legend" id="nationalPark" ></div>');
 			
 			
 			L.DomEvent.disableClickPropagation(container)
@@ -217,12 +240,12 @@ function createLegend(roads, earth, hybrid){
 	});
     // adds the legend to the map.
 	map.addControl(new LegendControl());
-	$("#Satellite").tooltip({
-		delay: {hide: 50},
-	}).tooltip('show')
-	$(".range-slider").tooltip({
-		delay: {hide: 50},
-	}).tooltip('show')
+	// $("#Satellite").tooltip({
+	// 	delay: {hide: 50},
+	// }).tooltip('show')
+	// $(".range-slider").tooltip({
+	// 	delay: {hide: 50},
+	// }).tooltip('show')
 	//adding the roads on and off the map
 	$('.roads').on('input',function(){
 		//if checkbox is checked, the roads will be added onto the map
@@ -273,6 +296,13 @@ function createLegend(roads, earth, hybrid){
 	});
 	$('.range-slider').on('input',function(){
 		$(this).tooltip("dispose");
+		if(overlay != null){
+			overlay.setStyle({
+				opacity: this.value,
+				fillOpacity: this.value,
+				animate: "fast"
+			})
+		}
 		overlayLeft.setStyle({
 			opacity: this.value,
 			fillOpacity: this.value,
@@ -285,8 +315,9 @@ function createLegend(roads, earth, hybrid){
 			animate: "fast"
 		});
 		opacity=this.value
+		return opacity
 	})
-	return opacity
+	
 
 };
 

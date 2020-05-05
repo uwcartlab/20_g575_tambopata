@@ -77,9 +77,7 @@ button p{
     pointer-events: none;
     box-shadow: 0 0x 0px rgba(0,0,0,0) !important;   
 }
-.leaflet-popup-tip-container {
-    display: none !important;
-}
+
 .leaflet-sbs-divider{
     background-color: #753a10 !important;
 }
@@ -284,7 +282,7 @@ html, body, #map {
     width: 200px;
     height: 35px;
     margin-top: 10px;
-    margin-left: 100px;
+    margin-left: 0px;
     text-align: center;
     border-style: none;
     float: left;
@@ -299,7 +297,7 @@ html, body, #map {
     width: 200px;
     height: 35px;
     margin-top: 10px;
-    margin-right: 100px;
+    margin-right: 0px;
     float: right;
     text-align: center;
     border-style: none;
@@ -372,6 +370,8 @@ html, body, #map {
     margin-left: 55px;
     margin-top: 10px;
     font-size: 1em;
+    color: #186c3f;
+    font-weight: 600
 }
 .legend{
     height: 2vh;
@@ -453,62 +453,12 @@ html, body, #map {
     background-color: #125e1d
 }
 #nationalPark{
-background-color: forestgreen;
-background: repeating-linear-gradient(
+background-color: none;
+/* background: repeating-linear-gradient(
   135deg,
   forestgreen,
   forestgreen 3px,
-  darkgreen 6px
+  darkgreen 6px */
 );
 /* other way to add texture in legend: background-image: url("https://www.transparenttextures.com/patterns/grid-noise.png"); */
-}
-.fa-list-ul:before {
-    content: "\f099";
-}
-.dropup {
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropup button */
-.dropbtn {
-    display: inline-block;
-    background-color: #007bff;
-    color: white;
-    padding: .375rem .75rem;
-    border-radius: .25rem;
-    text-align: center;
-    vertical-align: middle;
-    user-select: none;
-}
-
-/* Dropup menu (Hidden by Default) */
-.dropup-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 300px;
-    box-shadow: 0 1px 8px 2px rgba(0, 0, 0, 0.2);
-    z-index: 50;
-}
-
-/* Links inside the dropup menu */
-.dropup-menu a {
-    color: #000;
-    padding: 10px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Show the dropup menu on hover */
-.dropup:hover .dropup-menu {
-    display: block;
-}
-
-/* Dropup menu Header */
-.dropup-menu .dropup-header {
-    color: #777;
-    font-size: .8rem;
-    padding: 8px 16px;
-}
+ 

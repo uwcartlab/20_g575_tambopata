@@ -136,6 +136,13 @@ function opacityBar (){
 	});
 	$('.range-sliderM').on('input',function(){
 		$(this).tooltip("dispose");
+		if(overlay != null){
+			overlay.setStyle({
+				opacity: this.value,
+				fillOpacity: this.value,
+				animate: "fast"
+			})
+		}
 		overlayLeft.setStyle({
 			opacity: this.value,
 			fillOpacity: this.value,
@@ -150,7 +157,8 @@ function opacityBar (){
 }
 function switchProposals(){
 	map.createPane('left')
-		map.createPane('right')
+	map.createPane('right')
+	map.createPane('Overlay')
 	//.proposalM is the class for all 4 proposal map buttons.
     //whichever button is pressed, this function will be called
     overlayLeft = L.geoJson(view1, {
@@ -172,6 +180,9 @@ function switchProposals(){
 
 	$($('.proposalM')).on({
 		click: function(){
+			if(overlay != null){
+				map.removeLayer(overlay)
+			}
 			for(var i in swipeList){
 				$('#propM'+String(swipeList[i])).removeClass('active')
 			}
@@ -184,6 +195,19 @@ function switchProposals(){
 			value = Number(value)
 			swipeList.push(value)
 			swipeList.shift()
+			if(swipeList[0]==swipeList[1]){
+				var justOne = "view"+swipeList[1]
+				overlay = L.geoJson(eval(justOne),{
+					style: style,
+					pane: 'Overlay',
+					oneEachFeature: onEachFeature,
+				}).addTo(map)
+				map.removeControl(swipe);
+				for(var i in swipeList){
+					$('#propM'+String(swipeList[i])).addClass('active')
+				}
+				return
+			}
 			var left = "view"+swipeList[0]
 			var right = "view"+swipeList[1]
 			overlayLeft = L.geoJson(eval(left), {
