@@ -9,7 +9,7 @@ var roadsPOI;
 var swipe;
 var swipeList;
 var roadColor = "#a9a9a9";
-var opacity = 1;
+var opacity;
 
 //create the map
 function setMap() {
@@ -93,8 +93,8 @@ function createProposals(){
 	
 			$(row).append('<button id = "proposal1"  type = "button" class="proposal pr1 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</button>');
 			$(row).append('<button  id = "proposal2" type = "button" class="proposal pr2 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</button>');
-			$(row).append('<button  id = "proposal3" type = "button" class="proposal pr3 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</button>');
-			$(row).append('<button  id = "proposal4" data-toggle="tooltip" data-placement="right" title="Click one another proposal to compare the 2 proposals!" type = "button" class="proposal pr4 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</button><br>');
+			$(row).append('<button  id = "proposal3" data-toggle="tooltip" data-placement="bottom" title="Double click on Proposal 3 to just view Proposal 3!" type = "button" class="proposal pr3 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</button>');
+			$(row).append('<button  id = "proposal4" data-toggle="tooltip" data-placement="right" title="Click on Proposal 4 to change proposal to comparison between Proposal 3 & 4!" type = "button" class="proposal pr4 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</button><br>');
 			$(row).append('<div class = "leftView">LEFT: Proposal 1</div>');
 			$(row).append('<div class = "rightView">RIGHT: Proposal 3</div>');
 			L.DomEvent.disableClickPropagation(row)
@@ -103,9 +103,12 @@ function createProposals(){
 		}
 	});
 	map.addControl(new rowBar());
-	// $("#proposal4").tooltip({
-	// 	delay: {hide: 50},
-	// }).tooltip('show')
+	$("#proposal4").tooltip({
+		delay: {hide: 50},
+	}).tooltip('show')
+	$("#proposal3").tooltip({
+		delay: {hide: 50},
+	}).tooltip('show')
 	
 	overlayLeft = L.geoJson(view1, {
 		pane: "left",
@@ -131,6 +134,7 @@ function createProposals(){
 	swipeList = [1, 3]
 	$($('.proposal')).on({
 		click: function(){
+			$(this).tooltip("dispose")
 			if(overlay != null){
 				map.removeLayer(overlay)
 			}
