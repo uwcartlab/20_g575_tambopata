@@ -201,9 +201,10 @@ function switchProposals(){
 			if(swipe != null){
 				map.removeControl(swipe)
 			}
-			for(var i in swipeList){
-				$('#propM'+String(swipeList[i])).removeClass('active')
+			for(var v in swipeList){
+				$('#propM'+String(swipeList[v])).empty('.propM','.active')
 			}
+			// $('div').remove('.propM','.active')
 			$(this).tooltip("dispose");
 			console.log(swipeList)
 			map.removeLayer(overlayLeft)
@@ -239,8 +240,9 @@ function switchProposals(){
 				onEachFeature: onEachFeature,
 			}).addTo(map);
 			for(var i in swipeList){
-				$('#propM'+String(swipeList[i])).addClass('active')
+				$('#propM'+String(swipeList[i])).append('<div class="propM active"></div>')
 			}
+			
 			swipe = L.control.sideBySide(overlayLeft, overlayRight).addTo(map);
 		}
 	})
