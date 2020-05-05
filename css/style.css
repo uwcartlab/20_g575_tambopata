@@ -93,13 +93,13 @@ button p{
 
 /* Change the color of links on hover */
 .navbar1 button:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: #00441b;
+  /* color: black; */
 }
 
 /* Add a color to the active/current link */
 .navbar1 button.active {
-  background-color: #4CAF50;
+  background-color: #00441b;
   color: white;
 }
 
