@@ -8,20 +8,40 @@
         <link rel="stylesheet" href="css/style.css">
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
-            <link rel="stylesheet" href="css\bootstrap.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
 
     <body>
       <!-- Navigation bar -->
-      <div class="navbar1" id = "navbar1">
-        <span class="header">Tambopata</span>
+      <!-- <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span> -->
         <!-- Each button calls the basic JS method with the path you want to go to -->
-        <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <!-- <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
         <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
-        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button> -->
         <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <!-- <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
         <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div> -->
+
+      <div class="navbar1">
+              <span class="header">Tambopata</span>
+        <!-- Assignment will be the About pop-up -->
+        <button class = "navButton" onclick="redirect('../../assignment')"><i class="fa fa-edit fa-lg"></i><p>Assignment</p></button>
+        <button class = "navButton"onclick="redirect('../../')"><i class="fa fa-user fa-lg"></i><p>Stakeholders</p></button>
+        <button class = "navButton"onclick="redirect('../../maps')"><i class="fa fa-map-o fa-lg"></i><p> Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button class = "navButton" onclick="redirect('../../secret')"><svg class="bi bi-lock" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M11.5 8h-7a1 1 0 00-1 1v5a1 1 0 001 1h7a1 1 0 001-1V9a1 1 0 00-1-1zm-7-1a2 2 0 00-2 2v5a2 2 0 002 2h7a2 2 0 002-2V9a2 2 0 00-2-2h-7zm0-3a3.5 3.5 0 117 0v3h-1V4a2.5 2.5 0 00-5 0v3h-1V4z" clip-rule="evenodd"/>
+                </svg><p>Zoning Debrief</p></button>
+        <button class = "navButton" onclick="redirect('../../credits')"><svg class="bi bi-info-circle" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                  <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                  <circle cx="8" cy="4.5" r="1"/>
+                </svg><p>Credits</p></button>
         <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
       </div>
 
@@ -46,9 +66,13 @@
             an
             <!--retrieve pop-up with glossary term artisanal miner and link to gloassary -->
             <span class="popup" onclick="popupArt()"><u>'artisanal'</u>
-              <span class="popupText" id="myPopup1">Artisanal mining: small-scale mining preformed by individuals, often on an informal/unofficial basis. technology used
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                Artisanal mining: small-scale mining preformed by individuals, often on an informal/unofficial basis. technology used
                 has lower impact than industrial mining.
-                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
               </span>
             </span>
             miner because he uses only modest equipment. He does not have a formal (legal) mining title or permit. Pedro submitted the initial paperwork
@@ -59,11 +83,17 @@
             and taking turns at guard when they are at the riverbanks. Pedro has many friends in
             <!-- retrieve Fademad description and link  -->
             <span class="popup" onclick="popupFad()">FADEMAD
-              <span class="popupText" id="myPopup2"><u>Leader of the Agrarian Federation(FADEMAD):</u> Alan leads FADEMAD, a grassroots political
-                organization that represents ~5000 small farmers in the Madre de Dios region. FADEMAD’s goal is to improve the quality of life of its members,
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Leader of the Agrarian Federation(FADEMAD)</b>
+                <br>Alan leads FADEMAD, a grassroots political
+                 organization that represents ~5000 small farmers in the Madre de Dios region. FADEMAD’s goal is to improve the quality of life of its members,
                  both long-time residents and more-recently settled colonists. Alan believes that poor farmers’ quality of life
                  depends on a healthy environment. Thus, he tries to defend local farmers AND the forest. Click
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fademad/">FADEMAD </a>to learn how
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fademad/"><b>FADEMAD</b></a> to learn how
                 Alan weighs the costs and benefits of land management practices of his varied constituents are interested in pursuing.
               </span>
             </span>
@@ -71,9 +101,15 @@
             and is also a member of the local Mining Federation
             <!-- retrieve FEDEMIN description and link  -->
             <span class="popup" onclick="popupFed()">(FEDEMIN),
-              <span class="popupText" id="myPopup3"><u>Leader of Mining Federation (FEDEMIN):</u> Miguel is the leader of the local Mining Federation and a gold miner. He is
-                thrilled that gold prices are rising. But he’s troubled that labor conditions for miners in Tambopata have gotten more dangerous in recent years. Click
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fedemin/"target="_blank"> FEDEMIN</a> to learn why Miguel is
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Leader of Mining Federation (FEDEMIN)</b>
+                <br>Miguel is the leader of the local Mining Federation and a gold miner. He is
+                  thrilled that gold prices are rising. But he’s troubled that labor conditions for miners in Tambopata have gotten more dangerous in recent years. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fedemin/"target="_blank"> <b>FEDEMIN</b></a> to learn why Miguel is
                 confident that mining is the best path for local economic development.
               </span>
             </span>
@@ -83,6 +119,7 @@
             disturbed by news reports that mining is contaminating the region’s water and fish, yet he is proud to be a miner. He just wishes he could work independently,
             with no fear of violence, and that he could afford to use lower polluting mining technology.
           </p>
+          <br>
 
           <!-- older video: gold mining family, Manuani  -->
           <div class="container" class="arimo" align="center" style="color:#006d2c;">
@@ -91,6 +128,7 @@
           <div class = "iframe-container" align="center" style="margin-bottom:10px;">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/EymPb8bKFRw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
+          <br>
 
           <!-- older video: gold mining family, Apaylom  -->
           <div class="container" class="arimo" align="center" style="color:#006d2c;">
@@ -99,7 +137,7 @@
           <div class = "iframe-container" align="center" style="margin-bottom:10px;">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/0VzjVuSVcjo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
-
+          <br>
           <!-- New video: Reforestation Video  -->
           <div class="container" class="arimo" align="center" style="color:#006d2c;">
             <h3>Reforestation in Mining Areas</h3>
@@ -114,6 +152,7 @@
     <div class="container" class="arimo" align="center" style="color:#006d2c;">
       <h3>Additional reading resources are available through your instructor.</h3>
     </div>
+    <br>
 
     <!-- Button to go to top of page, referenced from w3schools.com -->
     <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
