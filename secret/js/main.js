@@ -13,6 +13,8 @@ $(document).ready(function(){
     var cur = $(this);
     // Adjust the slider
     var width = cur.width()+'px';
+	var height = cur.height()+'px';
+	$('#slider').css('height', height);
     cur.find('.resize img').css('width', width);
     // Bind dragging events
     drags(cur.find('.handle'), cur.find('.resize'), cur);
@@ -25,6 +27,11 @@ $(window).resize(function(){
     var cur = $(this);
     var width = cur.width()+'px';
     cur.find('.resize img').css('width', width);
+  });
+  $('#slider').each(function(){
+	var cur = $(this);
+	var height = $('.ba-slider').height()+'px';
+	cur.css('height', height);
   });
 });
 
