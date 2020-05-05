@@ -20,6 +20,10 @@ button p{
   margin: 0;
   padding-left: 10px;
 }
+
+.navButton{
+  height:70px;
+}
 /* Place the navbar at the top of the page, and make it stick */
 .navbar1 {
   background-color: #006d2c;
@@ -54,8 +58,6 @@ button p{
       background-color: #4CAF50;
       color: white;
     }
-}
-@media(max-width:80em){
   /* Tambopata title */
   .navbar1 span{
     display: none;
@@ -64,6 +66,10 @@ button p{
   .navbar1 a{
     display:none;
   }
+  .overlay {
+    visibility: hidden;
+    display:none;
+   }
 }
 /* Style the links inside the navigation bar */
 
@@ -123,9 +129,10 @@ button p{
 .popup .popupText {
   visibility: hidden;
   width: 360px;
-  background-color:#969696;
-  color: #fff;
-  text-align: center;
+  box-shadow: 2px 3px 5px #999;
+  background-color:#E7EFEA;
+  color: #186C3F;
+  text-align: left;
   border-radius: 6px;
   padding: 10px 10px;
   position: absolute;
