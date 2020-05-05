@@ -203,13 +203,18 @@ button p{
 }
 
 #tambopata-overlay-text {
-  display: block;
-  position: auto;
   top: 50%;
   left: 10%;
   font-size: 16px;
   color: black;
   padding: 10px;
+}
+
+#locator {
+	height: 10%;
+	width: 70%;
+	float: left;
+	margin-right: 10px;
 }
 
 #glossary-overlay-text {
@@ -234,11 +239,6 @@ button p{
   font-size: 16px;
   color: black;
   padding: 10px;
-}
-
-#locator {
-	height: 500px;
-	width: 100%;
 }
 
 h2 {
