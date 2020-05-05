@@ -17,7 +17,7 @@ var bottomNav = $("<div id = 'navbar2'></div>")
 
 bottomNav.appendTo($("body"));
 //appending the buttons to the html body, not on the actual map.
-$(bottomNav).append('<button id = "mProposal1" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM1" class="propM active"></div>1</button>');
+$(bottomNav).append('<button id = "mProposal1" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM1" class="propM"></div>1</button>');
 $(bottomNav).append('<button id = "mProposal2" data-html="true" data-toggle="tooltip" data-placement="top" title="Tap once to compare between Proposals 1 & 2. <br><br>Tap twice just to view Proposal 2<br>"  class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM2" class="propM"></div>2</button>');
 $(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM3" class="propM"></div>3</button>');
 $(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM4" class="propM"></div>4</button>');
@@ -179,13 +179,27 @@ function switchProposals(){
 		pane: "right",
 		onEachFeature: onEachFeature,
 	});
-	swipe = L.control.sideBySide(overlayLeft.addTo(map), overlayRight.addTo(map)).addTo(map);
+	overlay = L.geoJson(view1,{
+		style: style,
+		pane: 'Overlay',
+		onEachFeature: onEachFeature,
+	}).addTo(map)
 	swipeList = [1, 1]
-
+	$('#propM1').append('<div class="propM active"></div>')
+	$('#propM1').append('<div class="propM active"></div>')
 	$($('.proposalM')).on({
 		click: function(){
 			if(overlay != null){
 				map.removeLayer(overlay)
+			}
+			if(overlay != null){
+				map.removeLayer(overlayLeft)
+			}
+			if(overlay != null){
+				map.removeLayer(overlayLeft)
+			}
+			if(swipe != null){
+				map.removeControl(swipe)
 			}
 			for(var i in swipeList){
 				$('#propM'+String(swipeList[i])).removeClass('active')
@@ -208,7 +222,7 @@ function switchProposals(){
 				}).addTo(map)
 				map.removeControl(swipe);
 				for(var i in swipeList){
-					$('#propM'+String(swipeList[i])).addClass('active')
+					$('#propM'+String(swipeList[i])).append('<div class="propM active"></div>')
 				}
 				return
 			}
@@ -224,14 +238,10 @@ function switchProposals(){
 				pane: 'right',
 				onEachFeature: onEachFeature,
 			}).addTo(map);
-			map.removeControl(swipe);
 			for(var i in swipeList){
 				$('#propM'+String(swipeList[i])).addClass('active')
 			}
 			swipe = L.control.sideBySide(overlayLeft, overlayRight).addTo(map);
-			$('.leaflet-sbs-range').click(function(){
-				$(this).tooltip("hide");
-			})
 		}
 	})
 }
