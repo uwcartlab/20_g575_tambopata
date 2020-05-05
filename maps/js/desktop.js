@@ -97,10 +97,10 @@ function createProposals(){
 			//each button has an id based on proposal number and all have "proposal" class
 			$(row).append('<div class="container-fluid" align = "center">');
 	
-			$(row).append('<button id = "proposal1"  type = "button" class="proposal pr1 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</button>');
-			$(row).append('<button  id = "proposal2" type = "button" class="proposal pr2 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</button>');
-			$(row).append('<button  id = "proposal3" data-toggle="tooltip" data-placement="bottom" title="Double click on Proposal 3 to just view Proposal 3!" type = "button" class="proposal pr3 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</button>');
-			$(row).append('<button  id = "proposal4" data-toggle="tooltip" data-placement="right" title="Click on Proposal 4 to change proposal to comparison between Proposal 3 & 4!" type = "button" class="proposal pr4 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</button><br>');
+			$(row).append('<button  id = "proposal1"  type = "button" class="active proposal pr1 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</button>');
+			$(row).append('<button  id = "proposal2" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Click once to compare between Proposals 1 & 2. <br><br>Click Twice just to view Proposal 2<br>"  type = "button" class="proposal pr2 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</button>');
+			$(row).append('<button  id = "proposal3" type = "button" class="proposal pr3 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</button>');
+			$(row).append('<button  id = "proposal4" type = "button" class="proposal pr4 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 4</button><br>');
 			$(row).append('<div class = "leftView">LEFT: Proposal 1</div>');
 			$(row).append('<div class = "rightView">RIGHT: Proposal 3</div>');
 			L.DomEvent.disableClickPropagation(row)
@@ -109,10 +109,7 @@ function createProposals(){
 		}
 	});
 	map.addControl(new rowBar());
-	$("#proposal4").tooltip({
-		delay: {hide: 50},
-	}).tooltip('show')
-	$("#proposal3").tooltip({
+	$("#proposal2").tooltip({
 		delay: {hide: 50},
 	}).tooltip('show')
 	
@@ -130,14 +127,21 @@ function createProposals(){
 		pane: "right",
 		onEachFeature: onEachFeature,
 	});
+	overlay = L.geoJson(view1,{
+		style: style,
+		pane: 'Overlay',
+		onEachFeature: onEachFeature,
+	}).addTo(map)
 	$('#proposal1').append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
-	$('#proposal3').append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
-	swipe = L.control.sideBySide(overlayLeft.addTo(map), overlayRight.addTo(map)).addTo(map);
+	$('#proposal1').append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
+	$('.leftView').css("display","none");
+	$('.rightView').css("display","none");
+	
 	// $('.leaflet-sbs-range').tooltip('show')
 	// $('.leaflet-sbs-range').click(function(){
 	// 	$(this).tooltip("dispose");
 	// })
-	swipeList = [1, 3]
+	swipeList = [1, 1]
 	$($('.proposal')).on({
 		click: function(){
 			console.log(opacity)
@@ -145,11 +149,22 @@ function createProposals(){
 			if(overlay != null){
 				map.removeLayer(overlay)
 			}
+			if(overlay != null){
+				map.removeLayer(overlayLeft)
+			}
+			if(overlay != null){
+				map.removeLayer(overlayLeft)
+			}
+			if(swipe != null){
+				map.removeControl(swipe)
+			}
 			$(this).tooltip("dispose");
+			$('.proposal').each(function(){
+				if($(this).hasClass('active')){
+					$(this).removeClass('active')
+				}})
 			$('#proposal'+String(swipeList[0])).text('Proposal '+String(swipeList[0]));
 			$('#proposal'+String(swipeList[1])).text('Proposal '+String(swipeList[1]));
-			map.removeLayer(overlayLeft)
-			map.removeLayer(overlayRight)
 			var value = this.id
 			value = value.split("proposal")[1]
 			value = Number(value)
@@ -167,6 +182,8 @@ function createProposals(){
 				$('#proposal'+String(swipeList[0])).append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
 				$('.rightView').text('RIGHT: Proposal '+String(swipeList[1]));
 				$('#proposal'+String(swipeList[1])).append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
+				$('#proposal'+String(swipeList[0])).addClass('active');
+				$('#proposal'+String(swipeList[1])).addClass('active');
 				$('.leftView').css("display","none");
 				$('.rightView').css("display","none");
 				return
@@ -187,11 +204,13 @@ function createProposals(){
 			$('#proposal'+String(swipeList[0])).append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
 			$('.rightView').text('RIGHT: Proposal '+String(swipeList[1]));
 			$('#proposal'+String(swipeList[1])).append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
-			map.removeControl(swipe);
 			swipe = L.control.sideBySide(overlayLeft.addTo(map), overlayRight.addTo(map)).addTo(map);
 			$('.leaflet-sbs-range').click(function(){
 				$(this).tooltip("hide");
 			})
+			for(var i in swipeList){
+				$('#proposal'+String(swipeList[i])).addClass('active')
+			}
 			$('.leftView').css("display","block");
 			$('.rightView').css("display","block");
 		}
@@ -305,6 +324,7 @@ function createLegend(roads, earth, hybrid){
 		step: 0.01,
 	});
 	$('.range-slider').on('input',function(){
+		opacity = this.value
 		$(this).tooltip("dispose");
 		if(overlay != null){
 			overlay.setStyle({
@@ -323,7 +343,7 @@ function createLegend(roads, earth, hybrid){
 			fillOpacity: this.value,
 			animate: "fast"
 		});
-		opacity=this.value
+		
 	})
 	
 
@@ -339,45 +359,44 @@ function roadsStyle() {
 //styling for the proposal zones
 function style(feature){
 	// sets the style of the zones
-	Vopacity = opacity;
-	console.log(Vopacity)
+	console.log(opacity)
 	var color; // color of the zone
     var zoneName = feature.properties.ZONES
 	if(zoneName == "Buffer Zone"){ // if it's the buffer zone, make it Powder blue
 	color = "#9B8917";
 	lineWidth = 0.1;
 	lineColor = "Black";
-	fillop = Vopacity
+	fillop = opacity
 		}
 		else if(zoneName == "Strict Protection"){
 			color = "#f5aa1c";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = Vopacity
+			fillop = opacity
 		}
 		else if(zoneName == "Ese’eja and Harakmbut Territories"){
 			color = "#C1A76A";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = Vopacity
+			fillop = opacity
 		}
 		else if(zoneName == "Wildlands"){
 			color = "#005c50";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = Vopacity
+			fillop = opacity
 		}
 		else if(zoneName == "Tourism"){
 			color = "#35a649";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = Vopacity
+			fillop = opacity
         }
 		else if(zoneName == "Restoration"){
 			color = "#D194B6";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = Vopacity
+			fillop = opacity
 		}
 		else if(zoneName == "Bahuaja-Sonene National Park"){
 			color = "None";
@@ -392,26 +411,26 @@ function style(feature){
 			//color = "#125e1d";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = Vopacity;
+			fillop = opacity;
 		}
 		else if(zoneName == "Low Impact Non-Timber Forest Use"){
 			color = "#94c660";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = Vopacity;
+			fillop = opacity;
 		}
 		else if(zoneName == "Community Reserve"){
 			color = "#c4cc5c";
 			lineWidth = 0.1;
 			lineColor = "Black";
-			fillop = Vopacity;
+			fillop = opacity;
 		}
 		return{
             fillColor: color, // set color according to zone name
             fillOpacity: fillop, //start as partially opaque
 			color: lineColor, // black border
             weight: lineWidth,
-            opacity: Vopacity
+            opacity: opacity
 		}
 };
 //popup style for the zones
