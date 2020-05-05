@@ -51,7 +51,7 @@ button p{
       margin-top: -5px;
     }
   .nabvar1 button.active {
-      background-color: #4CAF50;
+      background-color: #00441b;
       color: white;
     }
 }
@@ -85,13 +85,12 @@ button p{
 
 /* Change the color of links on hover */
 .navbar1 button:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: #00441b;
 }
 
 /* Add a color to the active/current link */
 .navbar1 button.active {
-  background-color: #4CAF50;
+  background-color: #00441b;
   color: white;
 }
 
@@ -124,9 +123,10 @@ button p{
 .popup .popupText {
   visibility: hidden;
   width: 360px;
-  background-color:#969696;
-  color: #fff;
-  text-align: center;
+  box-shadow: 2px 3px 5px #999;
+  background-color:#E7EFEA;
+  color: #186C3F;
+  text-align: left;
   border-radius: 6px;
   padding: 10px 10px;
   position: absolute;
@@ -199,7 +199,7 @@ button p{
 }
 /* may want to get rid of, will not work on mobile */
 #scrollBtn:hover {
-  background-color: #555; /* Add a dark-grey background on hover */
+  background-color: #00441b; /* Add a dark-green background on hover */
 }
 /* fade in scroll to top button */
 #scrollBtn {
@@ -233,10 +233,7 @@ button p{
     border-radius: 10px; /* Rounded corners */
     font-size: 12px; /* Increase font size */
   }
-  /* may want to get rid of, will not work on mobile */
-  #scrollBtn:hover {
-    background-color: #555; /* Add a dark-grey background on hover */
-  }
+
   /* fade in scroll to top button */
   #scrollBtn {
     visibility: visible;
