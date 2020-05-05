@@ -1,7 +1,7 @@
 //function mobile is for mobile view
 function mobile(){
 
-//global variables 
+//global variables
 var map;
 var overlayLeft, overlayRight, overlay;
 var swipeList
@@ -41,12 +41,12 @@ function setMap() {
 		layers: [roads],
 
 	});
-	//removing the zoom control in mobile view. 
+	//removing the zoom control in mobile view.
 	map.removeControl(map.zoomControl);
 	//hybrid has both satellite imagery with labels
 	var hybrid  = L.gridLayer.googleMutant({
 		type: 'hybrid'
-	}) 
+	})
 	//earth is just satellite imagery
 	var earth = L.gridLayer.googleMutant({
 		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
@@ -78,7 +78,7 @@ function setMap() {
 	map.on('zoomstart', function () {
 		var zoomLevel = map.getZoom();
 		var tooltip = $('.leaflet-tooltip');
-	
+
 		switch (zoomLevel) {
 			case 10:
 				tooltip.css('font-size', 28);
@@ -88,7 +88,7 @@ function setMap() {
 				break;
 		}
 	})
- 
+
 
 	var promises = [];
     //promises will use d3 to push the csv and topojson files of Chicago neighborhood boundaries,
@@ -108,7 +108,7 @@ function setMap() {
         view3 = data[2];
 		view4 = data[3];
 		opacityBar ()
-		
+
         switchProposals(view1, view2, view3, view4)
 		createMobileLegend(roads, earth, hybrid)
     }
@@ -218,7 +218,7 @@ function switchProposals(){
 				overlay = L.geoJson(eval(justOne),{
 					style: style,
 					pane: 'Overlay',
-					oneEachFeature: onEachFeature,
+					onEachFeature: onEachFeature,
 				}).addTo(map)
 				map.removeControl(swipe);
 				for(var i in swipeList){

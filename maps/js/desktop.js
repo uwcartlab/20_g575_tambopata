@@ -34,7 +34,7 @@ function setMap() {
 	map.on('zoomstart', function () {
 		var zoomLevel = map.getZoom();
 		var tooltip = $('.leaflet-tooltip');
-	
+
 		switch (zoomLevel) {
 			case 10:
 				tooltip.css('font-size', 28);
@@ -46,7 +46,7 @@ function setMap() {
 	})
 	var hybrid  = L.gridLayer.googleMutant({
 		type: 'hybrid'
-	}) 
+	})
 	//earth is just satellite imagery
 	var earth = L.gridLayer.googleMutant({
 		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
@@ -55,8 +55,8 @@ function setMap() {
 	map.createPane('right');
 	map.createPane('Overlay')
 	getPOIs()
-	
-	
+
+
 
 	var promises = [];
     //promises will use d3 to push the csv and topojson files of Chicago neighborhood boundaries,
@@ -79,7 +79,7 @@ function setMap() {
 		createProposals(view1, view2, view3, view4)
 		createLegend(roads, earth, hybrid)
 
-		
+
 
 	}
 };
@@ -96,7 +96,7 @@ function createProposals(){
 			//adding them onto the .proposal-container div
 			//each button has an id based on proposal number and all have "proposal" class
 			$(row).append('<div class="container-fluid" align = "center">');
-	
+
 			$(row).append('<button  id = "proposal1"  type = "button" class="active proposal pr1 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 1</button>');
 			$(row).append('<button  id = "proposal2" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Click once to compare between Proposals 1 & 2. <br><br>Click Twice just to view Proposal 2<br>"  type = "button" class="proposal pr2 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 2</button>');
 			$(row).append('<button  id = "proposal3" type = "button" class="proposal pr3 col-lg-3 col-md-3 col-sm-3 col-xs-3">Proposal 3</button>');
@@ -112,7 +112,7 @@ function createProposals(){
 	$("#proposal2").tooltip({
 		delay: {hide: 50},
 	}).tooltip('show')
-	
+
 	overlayLeft = L.geoJson(view1, {
 		pane: "left",
         //point to layer with the features and the list containing the geoJson attributes
@@ -136,7 +136,7 @@ function createProposals(){
 	$('#proposal1').append('<i class="fa fa-check-circle fa-lg" aria-hidden="true"></i>');
 	$('.leftView').css("display","none");
 	$('.rightView').css("display","none");
-	
+
 	// $('.leaflet-sbs-range').tooltip('show')
 	// $('.leaflet-sbs-range').click(function(){
 	// 	$(this).tooltip("dispose");
@@ -175,7 +175,7 @@ function createProposals(){
 				overlay = L.geoJson(eval(justOne),{
 					style: style,
 					pane: 'Overlay',
-					oneEachFeature: onEachFeature,
+					onEachFeature: onEachFeature,
 				}).addTo(map)
 				map.removeControl(swipe);
 				$('.leftView').text('LEFT: Proposal '+String(swipeList[0]));
@@ -261,8 +261,8 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<div class="legend" id="Restoration" ></div>');
 			$(container).append('<p class="legendtxt">Bahuaja-Sonene National Park</p>');
 			$(container).append('<div class="legend" id="nationalPark" ></div>');
-			
-			
+
+
 			L.DomEvent.disableClickPropagation(container)
             return container;
         }
@@ -307,7 +307,7 @@ function createLegend(roads, earth, hybrid){
 			map.removeLayer(roads);
 			map.removeLayer(hybrid);
 			earth.addTo(map)
-	
+
 		}
 		else if($(this).attr('id') == 'Hybrid') {
 			document.getElementById("Road").checked = false;
@@ -343,9 +343,9 @@ function createLegend(roads, earth, hybrid){
 			fillOpacity: this.value,
 			animate: "fast"
 		});
-		
+
 	})
-	
+
 
 };
 
