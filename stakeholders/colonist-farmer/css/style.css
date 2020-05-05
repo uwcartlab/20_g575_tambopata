@@ -20,6 +20,11 @@ button p{
   margin: 0;
   padding-left: 10px;
 }
+
+.navButton{
+  height:70px;
+}
+
 /* Place the navbar at the top of the page, and make it stick */
 .navbar1 {
   background-color: #006d2c;
@@ -54,8 +59,6 @@ button p{
       background-color: #4CAF50;
       color: white;
     }
-}
-@media(max-width:80em){
   /* Tambopata Title */
   .navbar1 span{
     display: none;
@@ -64,6 +67,10 @@ button p{
   .navbar1 a{
     display:none;
   }
+  .overlay {
+    visibility: hidden;
+    display:none;
+   }
 }
 /* Style the links inside the navigation bar */
 
@@ -118,14 +125,14 @@ button p{
   cursor: pointer; /*affordance for desktop*/
   color: blue;
 }
-
 /* The actual popup (appears on top) */
 .popup .popupText {
   visibility: hidden;
   width: 360px;
-  background-color:#969696;
-  color: #fff;
-  text-align: center;
+  box-shadow: 2px 3px 5px #999;
+  background-color:#E7EFEA;
+  color: #186C3F;
+  text-align:left;
   border-radius: 6px;
   padding: 10px 10px;
   position: absolute;
@@ -146,109 +153,36 @@ button p{
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
-
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
 }
-
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
   from {opacity: 0;}
   to {opacity: 1;}
 }
-
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity:1 ;}
 }
 
+
+/* embeded video size and placement */
 .iframe-container{
   position: relative;
   width:100%;
   padding-bottom: 56.25%;
   height: 0;
 }
-
 .iframe-container iframe{
   position:absolute;
   top:0;
   left:0;
   width:100%;
   height:100%;
-}
-
-/* Overlay example */
-#overlay {
-  position:fixed;
-  display:none;
-  width:80%;
-  height:80%;
-  top: 10%;
-  left:0;
-  right: 0;
-  bottom:10%;
-  background-color: rgba(0,0,0,0.8);
-  z-index:2;
-  cursor:pointer;
-}
-#text{
-  /* position: absolute; */
-  position:relative;
-  top:50%;
-  left:50%;
-  font-size: 155%;
-  color:white;
-  transform:translate(-50%, -50%);
-  -ms-transform: translate(-50%,-50%);
-}
-
-#overlay2 {
-  position:fixed;
-  display:none;
-  width:80%;
-  height:80%;
-  top: 10%;
-  left:0;
-  right: 0;
-  bottom:10%;
-  background-color: rgba(0,0,0,0.8);
-  z-index:2;
-  cursor:pointer;
-}
-#text2{
-  position: absolute;
-  top:50%;
-  left:50%;
-  font-size: 155%;
-  color:white;
-  transform:translate(-50%, -50%);
-  -ms-transform: translate(-50%,-50%);
-}
-
-#overlay3 {
-  position:fixed;
-  display:none;
-  width:80%;
-  height:80%;
-  top: 10%;
-  left:0;
-  right: 0;
-  bottom:10%;
-  background-color: rgba(0,0,0,0.8);
-  z-index:2;
-  cursor:pointer;
-}
-#text3{
-  position: absolute;
-  top:50%;
-  left:50%;
-  font-size: 155%;
-  color:white;
-  transform:translate(-50%, -50%);
-  -ms-transform: translate(-50%,-50%);
 }
 
 

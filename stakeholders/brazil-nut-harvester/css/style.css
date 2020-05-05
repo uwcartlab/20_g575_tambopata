@@ -146,19 +146,6 @@ button p{
   margin-left:-150px;
 }
 
-/* @media(max-width:50em){
-  .popup .popupText{
-    width:250%;
-    margin-left: -100%;
-  }
-}
-@media(max-width:40em){
-  .popup .popupText{
-    width:250%;
-    margin-left: -20%;
-  }
-} */
-
 /* Popup arrow under pop-up box*/
 .popup .popupText::after {
   content: "";

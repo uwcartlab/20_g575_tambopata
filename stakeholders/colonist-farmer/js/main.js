@@ -12,47 +12,21 @@ function redirect(path){
 }
 
 
-
-// <script>
 // When the user clicks on <div>, open the popup
-// function popupHec() {
-//   var popup1 = document.getElementById("myPopup1");
-//     popup1.classList.toggle("show");
-// };
-
-// function popupOil() {
-//   var popup2 = document.getElementById("myPopup2");
-//     popup2.classList.toggle("show");
-// };
-//
-// function popupFad() {
-//   var popup3 = document.getElementById("myPopup3");
-//     popup3.classList.toggle("show");
-// };
-
-
-// example overlay
-function on(){
-  document.getElementById("overlay").style.display = "block";
-};
-function off(){
-  document.getElementById("overlay").style.display = "none";
-};
-function on2(){
-  document.getElementById("overlay2").style.display = "block"
-};
-function off2(){
-  document.getElementById("overlay2").style.display = "none"
-};
-function on3(){
-  document.getElementById("overlay3").style.display = "block"
-};
-function off3(){
-  document.getElementById("overlay3").style.display = "none"
+function popupHec() {
+  var popup1 = document.getElementById("myPopup1");
+    popup1.classList.toggle("show");
 };
 
+function popupOil() {
+  var popup2 = document.getElementById("myPopup2");
+    popup2.classList.toggle("show");
+};
 
-
+function popupFad() {
+  var popup3 = document.getElementById("myPopup3");
+    popup3.classList.toggle("show");
+};
 
 
 // Jump to top of page, referenced from w3schools.com
