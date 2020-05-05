@@ -8,20 +8,41 @@
         <link rel="stylesheet" href="css/style.css">
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
-            <link rel="stylesheet" href="css\bootstrap.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
 
     <body>
       <!-- Navigation bar -->
-      <div class="navbar1" id = "navbar1">
-        <span class="header">Tambopata</span>
+      <!-- <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span> -->
         <!-- Each button calls the basic JS method with the path you want to go to -->
-        <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <!-- <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
         <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
-        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button> -->
         <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <!-- <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
         <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div> -->
+
+      <!-- Each button calls the basic JS method with the path you want to go to -->
+      <div class="navbar1">
+              <span class="header">Tambopata</span>
+        <!-- Assignment will be the About pop-up -->
+        <button class = "navButton" onclick="redirect('../../assignment')"><i class="fa fa-edit fa-lg"></i><p>Assignment</p></button>
+        <button class = "navButton"onclick="redirect('../../')"><i class="fa fa-user fa-lg"></i><p>Stakeholders</p></button>
+        <button class = "navButton"onclick="redirect('../../maps')"><i class="fa fa-map-o fa-lg"></i><p> Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button class = "navButton" onclick="redirect('../../secret')"><svg class="bi bi-lock" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M11.5 8h-7a1 1 0 00-1 1v5a1 1 0 001 1h7a1 1 0 001-1V9a1 1 0 00-1-1zm-7-1a2 2 0 00-2 2v5a2 2 0 002 2h7a2 2 0 002-2V9a2 2 0 00-2-2h-7zm0-3a3.5 3.5 0 117 0v3h-1V4a2.5 2.5 0 00-5 0v3h-1V4z" clip-rule="evenodd"/>
+                </svg><p>Zoning Debrief</p></button>
+        <button class = "navButton" onclick="redirect('../../credits')"><svg class="bi bi-info-circle" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                  <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                  <circle cx="8" cy="4.5" r="1"/>
+                </svg><p>Credits</p></button>
         <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
       </div>
 
@@ -53,9 +74,14 @@
             Some communities who are now members of FENAMAD, like
             <!--retrieve glossary term Ese’eja & link to ese'eja community member page-->
             <span class="popup" onclick="popupEse()"><u>Ese’eja</u>
-              <span class="popupText" id="myPopup1">The largest group of indigenous people in the region, numbering ~600 today,
-              some estimate ~10,000 before 1890.
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/community-member/"target="_blank"> Ese'eja Community Member</a>
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                The largest group of indigenous people in the region, numbering ~600 today,
+                some estimate ~10,000 before 1890.
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/community-member/"target="_blank"> <b>Ese'eja Community Member</b></a>
               </span>
             </span>
             and Harakmbut communities, managed to win legal recognition of smaller parts of their
@@ -74,9 +100,14 @@
             Agustin is also helping FENAMAD members devise ways in which their communities can be sustainable over the long term. Some FENAMAD members believe
             <!-- retrieve Rainforest Expeditions description and link  -->
             <span class="popup" onclick="popupRE()"><u>ecotourism</u>
-              <span class="popupText" id="myPopup2">A form of nature-based tourism in which tourist impacts on the environment
-              are mitigated.
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/rainforest-expeditions/"target="_blank"> Rainforest Expeditions</a>
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A form of nature-based tourism in which tourist impacts on the environment
+                are mitigated.
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/rainforest-expeditions/"target="_blank"> <b>Rainforest Expeditions</b></a>
               </span>
             </span>
             can be a profitable business for indigenous communities and a source of jobs for individuals. Others, however, see ecotourism as an activity
@@ -88,17 +119,25 @@
             Similarly, FENAMAD members are divided in their opinion of forest carbon projects – like those referred to as
             <!--retrieve glossary term REDD+ & link to gloassary -->
             <span class="popup" onclick="popupREDD()"><u>REDD+</u>
-              <span class="popupText" id="myPopup5">"Reduced Emissions from Deforestation and Forest Degradation", is an
-              incentive-based mechanism for reducing greenhouse gas emissions through improved forest management in developing
-              countries.
-                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+              <span class="popupText" id="myPopup5">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                "Reduced Emissions from Deforestation and Forest Degradation", is an
+                incentive-based mechanism for reducing greenhouse gas emissions through improved forest management in developing countries.
               </span>
             </span>
             (Reduced Emissions from Deforestation and Forest Degradation) and promoted by the Peruvian conservation company
             <!-- retrieve BAM description and link  -->
             <span class="popup" onclick="popupBAM()"><u><i>Bosques Amazónicos</i></u>
-              <span class="popupText" id="myPopup3">A for-profit organization facilitating a REDD+ project in Tambopata. Click
-                <a href="http://www.bosques-amazonicos.com/en/our-projects/redd-in-the-bahuaja-sonene-national-park-and-tambopata-national-reserve"target="_blank"> BAM</a>
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A for-profit organization facilitating a REDD+ project in Tambopata. Click
+                <a href="http://www.bosques-amazonicos.com/en/our-projects/redd-in-the-bahuaja-sonene-national-park-and-tambopata-national-reserve"target="_blank"> <b>BAM</b></a>
                 for more information.
               </span>
             </span>
@@ -113,9 +152,15 @@
             happen, it should directly benefit indigenous peoples. FENAMAD leaders are considering joining the
             <!-- retrieve Fedemin description and link  -->
             <span class="popup" onclick="popupFedemin()">Mining Federation
-              <span class="popupText" id="myPopup4"><u>Leader of Mining Federation (FEDEMIN):</u> Miguel is the leader of the local Mining Federation and a gold miner. He is thrilled that gold prices are rising. But he’s
+              <span class="popupText" id="myPopup4">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Leader of Mining Federation (FEDEMIN)</b>
+                <br>Miguel is the leader of the local Mining Federation and a gold miner. He is thrilled that gold prices are rising. But he’s
                 troubled that labor conditions for miners in Tambopata have gotten more dangerous in recent years. Click
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fedemin/"target="_blank">Fedemin</a> to learn why Miguel is confident that mining is the best path
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/fedemin/"target="_blank"><b>Fedemin</b></a> to learn why Miguel is confident that mining is the best path
                 for local economic development.
               </span>
             </span>
@@ -128,7 +173,7 @@
             Peruvian Amazon.
           </p>
       <!-- </div> -->
-
+          <br>
       <!-- New 2020 Youtube video President of Ese'eja Community at Infierno-->
       <div class="container" class="arimo" align="center" style="color:#006d2c;">
         <h3>President of the Ese'eja Community of Infierno</h3>
@@ -136,7 +181,7 @@
       <div class = "iframe-container" align="center" style="margin-bottom:10px;">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/Z2KYpDSWUlU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-
+      <br>
       <!-- New 2020 Youtube video Ecogourism entrepreneur -->
       <div class="container" class="arimo" align="center" style="color:#006d2c;">
         <h3>Ecotourism Entrepreneur From Infierno Ese'eja Community</h3>
@@ -144,7 +189,7 @@
       <div class = "iframe-container" align="center" style="margin-bottom:10px;">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/CNXXmyaJjQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-
+      <br>
       <!-- Older video: Fenamad Leader Part 1  -->
       <div class="container" class="arimo" align="center" style="color:#006d2c;">
         <h3>FENAMAD Leader: Part 1</h3>
@@ -152,7 +197,7 @@
       <div class = "iframe-container" align="center" style="margin-bottom:10px;">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/WWhyX-k0Ju8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-
+      <br>
       <!-- Older video: Fenamad Leader Part 2  -->
       <div class="container" class="arimo" align="center" style="color:#006d2c;">
         <h3>FENAMAD Leader: Part 2</h3>
@@ -167,7 +212,7 @@
     <div class="container" class="arimo" align="center" style="color:#006d2c;">
       <h3>Additional reading resources are available through your instructor.</h3>
     </div>
-
+    <br>
     <!-- Button to go to top of page, referenced from w3schools.com -->
     <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
 
