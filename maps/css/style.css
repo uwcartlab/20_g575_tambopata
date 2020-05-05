@@ -85,8 +85,9 @@ button p{
     height: 75px !important;
     width: 25px !important;
     border-radius: 30% !important;
-    background-color: #D2B48C !important;
+    background-color: #753a10 !important;
     border: solid #753a10 3px !important;
+    caret-color:#D2B48C !important;
 }
 #baseMap{
     font-size: 1.25em;
@@ -134,7 +135,7 @@ button p{
       .navbar1 a{
         display:none;
       }
-      .active, .proposal:hover {
+      .propM,.active, .proposal:hover {
         background-color: #e7efea ;
         color: #186c3f;
         border: none
@@ -172,9 +173,7 @@ html, body, #map {
 
 #collapseLegend{
     position: absolute;
-  
     background-color: #e7efea;
-    border: solid #186c3f 1px;
     height: 100px;
     width: auto;
     bottom: 0px;
@@ -286,8 +285,8 @@ html, body, #map {
     text-align: center;
     border-style: none;
     float: left;
-    border: solid #186c3f 2px;
-    color: #186c3f;
+    border: solid #e7efea 2px;
+    color: #00441b;
     background-color: #e7efea;
     overflow: hidden;
     font-size: 1.5em;
@@ -301,8 +300,8 @@ html, body, #map {
     float: right;
     text-align: center;
     border-style: none;
-    border: solid #186c3f 2px;
-    color: #186c3f;
+    border: solid #e7efea 2px;
+    color: #00441b;
     background-color: #e7efea;
     overflow: hidden;
     font-size: 1.5em;
@@ -312,9 +311,9 @@ html, body, #map {
     margin-left: 10px;
 }
 .active, .proposal:hover {
-    background-color: #e7efea ;
-    color: #186c3f;
-    border: solid #186c3f 2px;
+    background-color: #00441b ;
+    color: #e7efea;
+    border: solid #00441b 2px;
   }
 .row{
     background-color: #e7efea;
@@ -324,7 +323,6 @@ html, body, #map {
     width: 300px;
     background-color: #e7efea;
     opacity: 0.9;
-    border: solid #186c3f 2px;
     padding: 5px;
 }
 .mLegend{
