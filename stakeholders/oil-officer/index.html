@@ -8,20 +8,40 @@
         <link rel="stylesheet" href="css/style.css">
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
-            <link rel="stylesheet" href="css\bootstrap.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
 
     <body>
       <!-- Navigation bar -->
-      <div class="navbar1" id = "navbar1">
-        <span class="header">Tambopata</span>
+      <!-- <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span> -->
         <!-- Each button calls the basic JS method with the path you want to go to -->
-        <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <!-- <button onclick="redirect('../../assignment')"><img src="../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
         <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
-        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <button onclick="redirect('../../maps')"><img src="../img/map.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button> -->
         <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <!-- <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
         <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div> -->
+
+      <div class="navbar1">
+              <span class="header">Tambopata</span>
+        <!-- Assignment will be the About pop-up -->
+        <button class = "navButton" onclick="redirect('../../assignment')"><i class="fa fa-edit fa-lg"></i><p>Assignment</p></button>
+        <button class = "navButton"onclick="redirect('../../')"><i class="fa fa-user fa-lg"></i><p>Stakeholders</p></button>
+        <button class = "navButton"onclick="redirect('../../maps')"><i class="fa fa-map-o fa-lg"></i><p> Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button class = "navButton" onclick="redirect('../../secret')"><svg class="bi bi-lock" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M11.5 8h-7a1 1 0 00-1 1v5a1 1 0 001 1h7a1 1 0 001-1V9a1 1 0 00-1-1zm-7-1a2 2 0 00-2 2v5a2 2 0 002 2h7a2 2 0 002-2V9a2 2 0 00-2-2h-7zm0-3a3.5 3.5 0 117 0v3h-1V4a2.5 2.5 0 00-5 0v3h-1V4z" clip-rule="evenodd"/>
+                </svg><p>Zoning Debrief</p></button>
+        <button class = "navButton" onclick="redirect('../../credits')"><svg class="bi bi-info-circle" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                  <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                  <circle cx="8" cy="4.5" r="1"/>
+                </svg><p>Credits</p></button>
         <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
       </div>
 
@@ -50,9 +70,12 @@
             Amazon, especially in San Martin and Ucayali. Mariella’s job is to find new regions in Peru to promote oil palm production. In fact, a large area
             <!--retrieve glossary term Hectares & link to gloassary -->
             <span class="popup" onclick="popupHec()"><u>(~1.5 million hectares)</u>
-              <span class="popupText" id="myPopup3">Hectare: A 100 x 100 m unit of land (1 hectare = 2.3 acres).
-                Abbreviated “ha". Most Tambopata farms are ~40 ha.
-                <a href="http://localhost:8848/20_g575_tambopata/"target="_blank">Glossary</a>
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A 100 x 100 m unit of land (1 hectare = 2.3 acres). Abbreviated “ha". Most Tambopata farms are ~40 ha.
               </span>
             </span>
             of Peru is suitable for oil palm production. She hopes to convince people in Tambopata of the advantages of oil palm by pointing
@@ -67,17 +90,27 @@
             committed to transparency and sustainability, and she sees
             <!-- retrieve Sustainable oil palm description and link  ................... Definition needed yet, also needs to be added to glossary-->
             <span class="popup" onclick="popupPalm()"><u>sustainable oil palm production</u>
-              <span class="popupText" id="myPopup1">Description of sustainable oil palm production... coming soon
-                <a href="https://www.palmas.com.pe/sostenibilidad"target="_blank"> Palmas</a>
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                Description of sustainable oil palm production... coming soon
               </span>
             </span>
             as a key way for Tambopata to develop and diversify its economy. <i>Palmas del Peru</i> is looking to partner with
             <!--retrieve pop-up with description and link to colonist farmer  -->
             <span class="popup" onclick="popupFarm()">smallholder farmers,
-              <span class="popupText" id="myPopup2"><u>Colonist Farmer:</u> Jose and his family work hard farming land near the Tambopata National Reserve. Every year, Jose and his family
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Colonist Farmer</b>
+                <br>Jose and his family work hard farming land near the Tambopata National Reserve. Every year, Jose and his family
                 plant rice and corn in fields cleared in the forest until the soil becomes ‘tired’ and less productive. Click
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/colonist-farmer/"target="_blank">Colonist Farmer</a>
-                to learn about the different types of opportunities Jose is entertaining to provide a standard income for his family.
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/colonist-farmer/"target="_blank"><b>Colonist Farmer</b></a> to
+                learn about the different types of opportunities Jose is entertaining to provide a standard income for his family.
               </span>
             </span>
             farming cooperatives, and other third-party suppliers who can commit to not
@@ -91,7 +124,7 @@
             production can give Tambopata a competitive advantage it has never had.
           </p>
       <!-- </div> -->
-
+          <br>
           <!-- 2020 Youtube video: Cacao farmer/agroecology -->
           <div class="container" class="arimo" align="center" style="color:#006d2c;">
             <h3>Cacao Farmer Agroforestry Coordinator</h3>
@@ -106,6 +139,7 @@
     <div class="container" class="arimo" align="center" style="color:#006d2c;">
       <h3>Additional reading resources are available through your instructor.</h3>
     </div>
+    <br>
 
     <!-- Button to go to top of page, referenced from w3schools.com -->
     <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
