@@ -75,7 +75,7 @@ button p{
     -ms-user-select: none;
     user-select: none;
     pointer-events: none;
-    box-shadow: 0 0x 0px rgba(0,0,0,0) !important;   
+    box-shadow: 0 0x 0px rgba(0,0,0,0) !important;
 }
 
 .leaflet-sbs-divider{
@@ -104,10 +104,11 @@ button p{
         width: 100%;
         bottom: 0;
         position: fixed;
+        z-index: 5;
       }
     button p{
         visibility: hidden;
-        padding-left: 30px;
+        /* padding-left: 30px; */
     }
     .navbar1 button {
         background-color: #006d2c;
@@ -117,9 +118,10 @@ button p{
         width: 20%;
         text-align: center;
         float: left;
+        margin-top: -5px;
       }
     .navbar1 button.active {
-        background-color: #4CAF50;
+        background-color: #00441b;
         color: white;
       }
       .active, button:hover {
@@ -141,7 +143,7 @@ button p{
         border: none
       }
   }
- 
+
 /* Style the links inside the navigation bar */
 .navbar1 button {
   background-color: #006d2c;
@@ -153,15 +155,19 @@ button p{
   text-decoration: none;
   font-size: 20px;
 }
+
+.navbar1 a{
+  float: right;
+  padding: 5px 20px 0px 0px;
+}
 /* Change the color of links on hover */
 .navbar1 button:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: #00441b;
 }
 
 /* Add a color to the active/current link */
 .navbar1 button.active {
-  background-color: #4CAF50;
+  background-color: #00441b;
   color: white;
 }
 html, body, #map {
@@ -261,7 +267,7 @@ html, body, #map {
     background-color: #e7efea;;
     overflow: hidden;
     font-size: 1.5em;
-    font-weight: 800;  
+    font-weight: 800;
 }
 .proposal{
     width: auto;
@@ -290,7 +296,7 @@ html, body, #map {
     background-color: #e7efea;
     overflow: hidden;
     font-size: 1.5em;
-    font-weight: 800; 
+    font-weight: 800;
 }
 .rightView{
     width: 200px;
@@ -305,7 +311,7 @@ html, body, #map {
     background-color: #e7efea;
     overflow: hidden;
     font-size: 1.5em;
-    font-weight: 800; 
+    font-weight: 800;
 }
 .fa-check-circle{
     margin-left: 10px;
@@ -459,4 +465,3 @@ background-color: none;
   darkgreen 6px */
 );
 /* other way to add texture in legend: background-image: url("https://www.transparenttextures.com/patterns/grid-noise.png"); */
- 

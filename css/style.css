@@ -171,24 +171,26 @@ button p{
 }
 
 #navbar2 button:hover {
-  background-color: white;
-  color: black;
+  /* background-color: white; */
+	background-color: #00441b;
+  /* color: black; */
+	color: white;
 }
 
 #tambopata-button {
-	background-color: #05f765;
-	color: black;
+	background-color: #00441b;
+	color: white;
 }
 
 #assign-button,#glossary-button,#events-button {
-	background-color: #00a642;
+	background-color: #006d2c;
 	color: white;
 }
 
 #overlay-buttons-close {
 	float: right;
 	padding-left: 5px;
-	background-color: #4CAF50;
+	background-color: #006d2c;
 }
 
 #assign-overlay-text {
