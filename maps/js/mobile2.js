@@ -3,18 +3,12 @@ function mobile(){
 
 //global variables 
 var map;
-var proposal1_right;
-var proposal2_right;
-var proposal3_right;
-var proposal4_right;
-var proposal1_left;
-var proposal2_left;
-var proposal3_left;
-var proposal4_right
-var proposal1, proposal2, proposal3, proposal4;
+var overlayLeft, overlayRight, overlay;
+var swipeList
 var view1, view2, view3, view4;
 var swipe;
 var roadColor = "#993404";
+var opacity = 1;
 
 //padding for there to be two bottom navigation bars
 $('html').css("padding-bottom","80px");
@@ -25,9 +19,9 @@ bottomNav.appendTo($("body"));
 //appending the buttons to the html body, not on the actual map.
 $(bottomNav).append('<button id = "mProposal1" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM1" class="propM active"></div>1</button>');
 $(bottomNav).append('<button id = "mProposal2" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM2" class="propM"></div>2</button>');
-$(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM3" class="propM"></div>3</button>');
+$(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM3" class="propM active "></div>3</button>');
 $(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM4" class="propM"></div>4</button>');
-$(bottomNav).append('<button data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="propM proposalM col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></button>');
+$(bottomNav).append('<button data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="propM col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></button>');
 
 //create maps function
 function setMap() {
@@ -105,9 +99,9 @@ function setMap() {
         view1 = data[0];
         view2 = data[1];
         view3 = data[2];
-        view4 = data[3];
+		view4 = data[3];
+		opacityBar ()
         switchProposals(view1, view2, view3, view4)
-        opacityBar ()
 		createMobileLegend(roads, earth, hybrid)
     }
     getPOIs()
@@ -131,377 +125,79 @@ function opacityBar (){
 	map.addControl(new opacityBar)
 	//slider attributes
 	$('.range-sliderM').attr({
-        max: 1,
-        min: 0,
-        value: 1,
+		max: 1,
+		min: 0,
+		value: 1,
 		step: 0.01,
 	});
-	//based on slider range, the opacity will change
 	$('.range-sliderM').on('input',function(){
-        proposal1.setStyle({
-        opacity: this.value,
-        fillOpacity: this.value,
-        animate: "fast",
-        });
-        proposal2.setStyle({
-        opacity: this.value,
-        fillOpacity: this.value,
-        animate: "fast",
-        });
-        proposal3.setStyle({
-        opacity: this.value,
-        fillOpacity: this.value,
-        animate: "fast",
-        });
-        proposal4.setStyle({
-            opacity: this.value,
-            fillOpacity: this.value,
-            animate: "fast",
-            });
-        proposal1_left.setStyle({
-        opacity: this.value,
-        fillOpacity: this.value,
-        animate: "fast",
-        });
-        opacity=this.value
-        proposal2_left.setStyle({
-        opacity: this.value,
-        fillOpacity: this.value,
-        animate: "fast",
-        });
-        opacity=this.value
-        proposal3_left.setStyle({
-            opacity: this.value,
-            fillOpacity: this.value,
-            animate: "fast",
-        });
-        opacity=this.value
-        proposal1_right.setStyle({
-            opacity: this.value,
-            fillOpacity: this.value,
-            animate: "fast",
-            });
-        opacity=this.value
-        opacity=this.value
-        proposal2_right.setStyle({
-            opacity: this.value,
-            fillOpacity: this.value,
-            animate: "fast",
-            });
-        proposal3_right.setStyle({
-            opacity: this.value,
-            fillOpacity: this.value,
-            animate: "fast",
-            });
-        opacity=this.value
-        proposal4_right.setStyle({
-            opacity: this.value,
-            fillOpacity: this.value,
-            animate: "fast",
-            });
-        opacity=this.value
-})
+		$(this).tooltip("dispose");
+		overlayLeft.setStyle({
+			opacity: this.value,
+			fillOpacity: this.value,
+			animate: "fast"
+		});
+		overlayRight.setStyle({
+			opacity: this.value,
+			fillOpacity: this.value,
+			animate: "fast"
+		});
+	})
 }
 function switchProposals(){
 	//.proposalM is the class for all 4 proposal map buttons.
     //whichever button is pressed, this function will be called
-    proposal1 = L.geoJson(view1, {
+    overlayLeft = L.geoJson(view1, {
+		pane: "left",
         //point to layer with the features and the list containing the geoJson attributes
-        style: style,
+		style: style,
+		opacity: opacity,
 		onEachFeature: onEachFeature,
 	});
-	proposal2 = L.geoJson(view2, {
+	overlayRight = L.geoJson(view3, {
         //point to layer with the features and the list containing the geoJson attributes
-        style: style,
+		style: style,
+		opacity: opacity,
+		pane: "right",
 		onEachFeature: onEachFeature,
 	});
-	proposal3 = L.geoJson(view3, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-		onEachFeature: onEachFeature,
-	});
-	proposal4 = L.geoJson(view4, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-		onEachFeature: onEachFeature,
-    });
-	proposal1_left = L.geoJson(view1, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-        pane: 'left',
-		onEachFeature: onEachFeature,
-    });
-    proposal2_left = L.geoJson(view2, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-        pane: 'left',
-		onEachFeature: onEachFeature,
-    });
-    proposal3_left = L.geoJson(view3, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-        pane: 'left',
-		onEachFeature: onEachFeature,
-	});
-	proposal4_left = L.geoJson(view4, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-        pane: 'left',
-		onEachFeature: onEachFeature,
-    });
-	proposal1_right = L.geoJson(view1, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-        pane: 'right',
-		onEachFeature: onEachFeature,
-    });
-    proposal2_right = L.geoJson(view2, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-        pane: 'right',
-		onEachFeature: onEachFeature,
-    });
-    proposal3_right = L.geoJson(view3, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-        pane: 'right',
-		onEachFeature: onEachFeature,
-    });
-    proposal4_right = L.geoJson(view4, {
-        //point to layer with the features and the list containing the geoJson attributes
-        style: style,
-        pane: 'right',
-		onEachFeature: onEachFeature,
-    });
-    console.log(proposal1_left)
-	swipe = L.control.sideBySide(proposal1_left, proposal4_right);
-    proposal1.addTo(map)
-    console.log(swipe)
-    console.log("proposal 1 already added")
-	$('#mProposal1').on('click',function(){
-		var activeList = []
-		$('.propM').each(function(){
-			var activeCount
-			if($(this).hasClass('active')){
-				activeCount = (this.id)
-				activeCount = activeCount.split("propM")[1]
-				activeCount = Number(activeCount)
-				activeList.push(activeCount)}
-			})
-		console.log(activeList)
-		if(activeList.length ==2){
-			if(activeList[0]!=1 && activeList[1]!=1){
-				alert("2 Buttons Already Selected!!")
-				return
+	swipe = L.control.sideBySide(overlayLeft.addTo(map), overlayRight.addTo(map)).addTo(map);
+	swipeList = [1, 3]
+	$($('.proposalM')).on({
+		click: function(){
+			for(var i in swipeList){
+				$('#propM'+String(swipeList[i])).removeClass('active')
 			}
+			$(this).tooltip("dispose");
+			console.log(swipeList)
+			map.removeLayer(overlayLeft)
+			map.removeLayer(overlayRight)
+			var value = this.id
+			value = value.split("mProposal")[1]
+			value = Number(value)
+			swipeList.push(value)
+			swipeList.shift()
+			var left = "view"+swipeList[0]
+			var right = "view"+swipeList[1]
+			overlayLeft = L.geoJson(eval(left), {
+				style: style,
+				pane: 'left',
+				onEachFeature: onEachFeature,
+			});
+			overlayRight = L.geoJson(eval(right), {
+				style: style,
+				pane: 'right',
+				onEachFeature: onEachFeature,
+			});
+			map.removeControl(swipe);
+			for(var i in swipeList){
+				$('#propM'+String(swipeList[i])).addClass('active')
+			}
+			swipe = L.control.sideBySide(overlayLeft.addTo(map), overlayRight.addTo(map)).addTo(map);
+			$('.leaflet-sbs-range').click(function(){
+				$(this).tooltip("hide");
+			})
 		}
-		map.removeLayer(proposal1)
-		if($('#propM1').hasClass('active')){
-			$('#propM1').removeClass('active');
-			map.removeLayer(proposal1_left);
-			map.removeLayer(proposal1_right);
-			map.removeControl(swipe);
-			
-		}else{
-			var value;
-			$('.propM').each(function(){
-				if($(this).hasClass('active')){
-					value = (this.id)
-                    value = value.split("propM")[1]
-					value = Number(value)}
-			})
-			if(value == 2){
-				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
-				
-				}
-			else if(value == 3){
-				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
-				
-				}
-			else if(value == 4){
-				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-				
-				}
-			else if(value == null){
-				proposal1.addTo(map);
-				
-				}
-			$('#propM1').addClass('active')
-			}
-		})
-	$('#mProposal2').on('click',function(){
-		var activeList = []
-		$('.propM').each(function(){
-			var activeCount
-			if($(this).hasClass('active')){
-				activeCount = (this.id)
-				activeCount = activeCount.split("propM")[1]
-				activeCount = Number(activeCount)
-				activeList.push(activeCount)}
-			})
-		if(activeList.length == 2){
-			if(activeList[0]!=2 && activeList[1]!=2){
-				alert("2 Buttons Already Selected!!")
-				return
-			}
-		}
-		map.removeLayer(proposal1)
-		map.removeLayer(proposal2)
-		if($('#propM2').hasClass('active')){
-			$('#propM2').removeClass('active');
-			map.removeLayer(proposal2_left);
-			map.removeLayer(proposal2_right);
-			map.removeLayer(proposal2);
-			map.removeControl(swipe);
-		
-		}else{
-			var value;
-			map.removeControl(swipe);
-			$('.propM').each(function(){
-				if($(this).hasClass('active')){
-					value = (this.id)
-					value = value.split("propM")[1]
-					value = Number(value)}
-			})
-			if(value == 1){
-				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal2_right.addTo(map)).addTo(map);
-			
-				}
-			else if(value == 3){
-				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
-			
-				}
-			else if(value == 4){
-				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-				
-				}
-			else if(value == null){
-				proposal2.addTo(map);
-				
-				}
-			$('#propM2').addClass('active')
-			
-		}		
-	})
-	$('#mProposal3').on('click',function(){
-        map.removeLayer(proposal1)
-		map.removeLayer(proposal3)
-		var activeList = []
-		$('.propM').each(function(){
-			var activeCount
-			if($(this).hasClass('active')){
-                activeCount = (this.id)
-				activeCount = activeCount.split("propM")[1]
-                activeCount = Number(activeCount)
-                console.log(activeCount)
-				activeList.push(activeCount)}
-			})
-		console.log(activeList)
-		if(activeList.length == 2){
-			if(activeList[0]!=3 && activeList[1]!=3){
-				alert("2 Buttons Already Selected!!")
-				return
-			}
-		}
-		console.log("Button 3 clicked")
-		
-		if($('#propM3').hasClass('active')){
-			console.log("Already active, taking it down")
-			$('#propM3').removeClass('active');
-			map.removeLayer(proposal3_left);
-			map.removeLayer(proposal3_right);
-			map.removeLayer(proposal3)
-			map.removeControl(swipe);
-			
-		}else{
-			console.log("This is not active, determining if it needs a swipe or not")
-			var value;
-			map.removeControl(swipe);
-			$('.propM').each(function(){
-				if($(this).hasClass('active')){
-                    value = (this.id)
-                    console.log(value)
-					value = value.split("propM")[1]
-					value = Number(value)}
-				})
-			if(value == 1){
-                map.removeLayer(proposal1)
-				console.log("button 1 is already active, adding swipe")
-				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
-				console.log("swipe added")
-				}
-			else if(value == 2){
-				console.log("button 1 is already active, adding swipe")
-				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal3_right.addTo(map)).addTo(map);
-				
-				}
-			else if(value == 4){
-				console.log("button 1 is already active, adding swipe")
-				swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-				
-				}
-			else if(value == null){
-				console.log("Nothing is active, just adding proposal 3")
-				proposal3.addTo(map)
-				console.log("JUST proposal 3 was added to map")
-				}
-			$('#propM3').addClass('active')
-			}
-				
-	})
-	$('#mProposal4').on('click',function(){
-		var activeList = []
-		$('.propM').each(function(){
-			var activeCount
-			if($(this).hasClass('active')){
-				activeCount = (this.id)
-				activeCount = activeCount.split("propM")[1]
-				activeCount = Number(activeCount)
-				activeList.push(activeCount)}
-			})
-		if(activeList.length == 2){
-			if(activeList[0]!=4 && activeList[1]!=4){
-				alert("2 Buttons Already Selected!!")
-				return
-			}
-		}
-		map.removeLayer(proposal1)
-		map.removeLayer(proposal4);
-		if($('#propM4').hasClass('active')){
-			$('#propM4').removeClass('active');
-			map.removeLayer(proposal4_left);
-			map.removeLayer(proposal4_right);
-			map.removeLayer(proposal4)
-			map.removeControl(swipe);
-			
-		}else{
-			var value;
-			map.removeControl(swipe);
-			$('.propM').each(function(){
-				if($(this).hasClass('active')){
-					value = (this.id)
-					value = value.split("propM")[1]
-					value = Number(value)}
-			})
-			if(value == 1){
-				swipe = L.control.sideBySide(proposal1_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-				
-				}
-			else if(value == 2){
-				swipe = L.control.sideBySide(proposal2_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-				
-				}
-			else if(value == 3){
-				swipe = L.control.sideBySide(proposal3_left.addTo(map), proposal4_right.addTo(map)).addTo(map);
-				
-				}
-			else if(value == null){
-				proposal4.addTo(map)
-				
-				}
-			$('#propM4').addClass('active')
-			}
-						
 	})
 }
 function createMobileLegend(){

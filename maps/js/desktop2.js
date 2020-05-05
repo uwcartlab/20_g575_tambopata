@@ -286,6 +286,7 @@ function createLegend(roads, earth, hybrid){
 		});
 		opacity=this.value
 	})
+	return opacity
 
 };
 
