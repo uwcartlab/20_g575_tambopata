@@ -3,7 +3,6 @@
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null)
 require('./layout.css')
 require('./range.css')
-
 var mapWasDragEnabled
 var mapWasTapEnabled
 
