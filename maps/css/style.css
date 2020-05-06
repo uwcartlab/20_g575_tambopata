@@ -637,32 +637,34 @@ html, body, #map {
     cursor: pointer;
 }
 #bufferZone{
-    background-color: #527a2b;
-}
-#communityReserve{
     background-color: #b29d77;
 }
-#strictProtection{
+#communityReserve{
     background-color: #f5aa1c;
 }
+#strictProtection{
+    background-color: #004529;
+}
 #wildlands{
-    background-color: #005c50;
+    background-color: #238443;
 }
 #nativeCommunities{
-    background-color: #c4cc5c;
+    background-color: #78c679;
 }
 #Tourism{
-    background-color: #35a649;
+    background-color: #d9f0a3;
 }
 #forestUse{
-    background-color: #94c660;
-}
-#Restoration{
-    background-color: #d87bb1;
+    background-color: #ffffe5;
 }
 #directUse{
-    background-color: #125e1d
+    background-color: #d0d1e6
 }
+#Restoration{
+    background-color: #fc8d59;
+}
+
+
 #nationalPark{
 background-color: none;
 border: 2px solid #31a354
