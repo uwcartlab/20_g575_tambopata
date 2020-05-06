@@ -435,8 +435,8 @@ function style(feature){
 		}
 		else if(zoneName == "Bahuaja-Sonene National Park"){
 			color = "None";
-			lineWidth = 3;
-			lineColor = "#7F7F7F";
+			lineWidth = 4;
+			lineColor = "#31a354";
 			fillop = 0
 			//can change opacity based on Tanya's suggestion, but would need to change colors based on the basemap used
 			
