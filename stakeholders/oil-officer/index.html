@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-            <title>Stakeholders</title>
+            <title>Tambopata | Oil Officer</title>
 
         <link rel="stylesheet" href="css/style.css">
         <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
@@ -18,7 +18,7 @@
         <span class="header">Tambopata</span>
         <!-- Each button calls the basic JS method with the path you want to go to -->
         <button onclick="overlayOn()"><img src="../img/Assignment2.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
-        <button onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button class = "active" onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
         <button onclick="redirect('../../maps')"><img src="../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
         <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
         <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
@@ -164,7 +164,7 @@
           <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
             <!-- need a caption for this photo -->
             <!-- <p class="mb-0">A picture of an Ese’eja indigenous person (blurred to protect anonymity).</p> -->
-            <footer class="blockquote-footer">Photo credit: John Poole, <cite title="Source Title">NPR</cite></footer>
+            <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
           </blockquote>
 
 		      <!-- <div id="basic-desc"> -->
@@ -191,18 +191,8 @@
             She knows that local conservationists fear that some companies will clear primary and secondary natural forests to plant oil palm trees, or that
             companies will buy land from local farmers growing food, thus forcing them to clear forest elsewhere for new agricultural fields. Other opponents
             point out that oil palm plantations need to be large (~1,000 ha) to be profitable. Mariella defends her company on the grounds that they are
-            committed to transparency and sustainability, and she sees
-            <!-- retrieve Sustainable oil palm description and link  ................... Definition needed yet, also needs to be added to glossary-->
-            <span class="popup" onclick="popupPalm()"><u>sustainable oil palm production</u>
-              <span class="popupText" id="myPopup1">
-                <!-- X button, affordance to close pop-up -->
-                <button type="button" class="close" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                Description of sustainable oil palm production... coming soon
-              </span>
-            </span>
-            as a key way for Tambopata to develop and diversify its economy. <i>Palmas del Peru</i> is looking to partner with
+            committed to transparency and sustainability, and she sees sustainable oil palm production as a key way for Tambopata to develop and diversify
+            its economy. <i>Palmas del Peru</i> is looking to partner with
             <!--retrieve pop-up with description and link to colonist farmer  -->
             <span class="popup" onclick="popupFarm()">smallholder farmers,
               <span class="popupText" id="myPopup2">
@@ -213,7 +203,7 @@
                 <b>Colonist Farmer</b>
                 <br>Jose and his family work hard farming land near the Tambopata National Reserve. Every year, Jose and his family
                 plant rice and corn in fields cleared in the forest until the soil becomes ‘tired’ and less productive. Click
-                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/colonist-farmer/"target="_blank"><b>Colonist Farmer</b></a> to
+                <a href="http://localhost:8848/stakeholders/colonist-farmer/"target="_blank"><b>Colonist Farmer</b></a> to
                 learn about the different types of opportunities Jose is entertaining to provide a standard income for his family.
               </span>
             </span>
