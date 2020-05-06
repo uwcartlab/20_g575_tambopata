@@ -142,7 +142,7 @@ button p{
   display: inline-block;
   cursor: pointer; /*affordance for desktop*/
   color: blue;
-}
+} 
 
  /* The actual popup (appears on top) */
  .popup .popupText {
