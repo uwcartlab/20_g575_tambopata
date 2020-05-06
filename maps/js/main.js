@@ -1,7 +1,7 @@
 var pass;
 // basic redirect plus check for password access
 function redirect(path){
-	if(path != '../../secret'){
+	if(path != '../secret'){
 		window.location.href= path;
 	} else {
 		secretAccess(path);
@@ -10,7 +10,7 @@ function redirect(path){
 // check the password against user input
 //  load at start of page because otherwise it wasn't matching because of fetch timing
 function checkVisited(){
-	fetch('../../../img/pass.txt')
+	fetch('../img/pass.txt')
 	.then(response => response.text())
 	.then((data) => {
 	  pass = data;
