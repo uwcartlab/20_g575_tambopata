@@ -417,8 +417,9 @@ html, body, #map {
     min-width: 300px;
     text-align: center;
     font-size: 1.2em;
-    top: 50px;
     left: -10px;
+    top: 50px;
+    margin-bottom: 50px;
     padding: 0px;
     font-weight: 700;
 }
@@ -533,7 +534,7 @@ html, body, #map {
 }
 .leaflet-control-layers,.leaflet-control-layers-toggle{
     background-color: #e7efea !important;
-    top: 45px;
+    /* top: 85px; */
     color: #006d2c;
     border: 0px !important;
 }
