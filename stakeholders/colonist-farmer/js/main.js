@@ -22,7 +22,37 @@ function checkVisited(){
 	.then((data) => {
 	  pass = data;
 	});
+	
+	var container = $(".container").width();
+	var popup2Width = $("#myPopup2").offset().left + $("#myPopup2").width();
+	
+	var diff = Math.ceil(popup2Width - container);
+	
+	//console.log(container);
+	//console.log($("#myPopup2").offset().left);
+	//console.log(popup2Width);
+	//console.log(diff);
+	
+	if(diff > 0){
+		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: ($("#myPopup2").offset().left - diff)});
+	}
 }
+
+$(window).resize(function(){
+	var container = $(".container").width();
+	var popup2Width = $("#myPopup2").offset().left + $("#myPopup2").width();
+	
+	var diff = Math.ceil(popup2Width - container) + 5;
+	
+	//console.log(container);
+	//console.log($("#myPopup2").offset().left);
+	//console.log(popup2Width);
+	//console.log(diff);
+	
+	if(diff > 0){
+		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: ($("#myPopup2").offset().left - diff)});
+	}
+});
 
 function secretAccess(path){
 	var userPass = prompt('Please enter the password your TA has provided');
