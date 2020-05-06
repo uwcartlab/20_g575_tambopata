@@ -82,7 +82,7 @@ button p{
     z-index: 1;
     bottom: 125%;
     left: 0%;
-    margin:0 10% !important;
+    margin:0 10% 0 10% !important;
   }
   .popup .popupText::after {
     display: none !important

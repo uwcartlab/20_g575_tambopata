@@ -33,7 +33,7 @@ button p{
     color: #186c3f
 }
 .parkLabel{
-    font-size: 2.5em;
+    font-size: 2.3em;
     font-weight: 600;
 }
 .swipeMe{
@@ -56,10 +56,10 @@ button p{
 }
 @keyframes glow {
     from {
-      box-shadow: 0 0 10px -10px #aef4af;
+      box-shadow: 0 0 10px -10px #e7efea;
     }
     to {
-      box-shadow: 0 0 10px 10px #aef4af;
+      box-shadow: 0 0 10px 10px #e7efea;
     }
   }
 .leaflet-tooltip {
@@ -98,6 +98,9 @@ button p{
 }
 
 @media(max-width:50em){ /* Breakpoint only for mobile */
+    .parkLabel{
+        font-size: 2em;
+    }
     .navbar1 {
         color: #186c3f;
         overflow: hidden;

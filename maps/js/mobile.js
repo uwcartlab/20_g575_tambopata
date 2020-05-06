@@ -8,7 +8,7 @@ var swipeList
 var view1, view2, view3, view4;
 var swipe;
 var roadColor = "#a9a9a9";
-var opacity = 1;
+var opacity
 
 //padding for there to be two bottom navigation bars
 $('html').css("padding-bottom","80px");
@@ -23,6 +23,7 @@ $(bottomNav).append('<button id = "mProposal3" class="proposalM col-sm-2.4 col-x
 $(bottomNav).append('<button id = "mProposal4" class="proposalM col-sm-2.4 col-xs-2.4"><div id = "propM4" class="propM"></div>4</button>');
 $(bottomNav).append('<button data-toggle="collapse" data-target="#collapseLegend" id = "mLegend" class="propM proposalM-Legend col-sm-2.4 col-xs-2.4"><svg class="bi bi-list-ul" width="1.8em" height="1.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg></button>');
 
+//tooltip popup when you first open the page. Informing the user how to navigate beween proposals
 $("#mProposal2").tooltip({
 	delay: {hide: 50},
 }).tooltip('show')
@@ -33,15 +34,12 @@ function setMap() {
 	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
 
-	
-
-
 	//create the map with its center coordinates and have roads be default layer.
     map = L.map('map', {
 		center: [-13.2, -69.5],
 		zoom: 9,
 		minZoom: 8,
-		attributionControl: false,
+		attributionControl: false, //attribution will be on top of page instead of bottom
 		layers: [roads],
 
 	});
@@ -58,6 +56,7 @@ function setMap() {
 		attribution: "Google Maps"
 	})
 	//roads are called from Additional_Roads.js, where the variable is just roadsPOI = geojson
+	//roadsPane are to make sure the additional roads lay ontop of each proposal on the map.
 	map.createPane('roadsPane');
 	map.getPane('roadsPane').style.zIndex=450;
 	map.getPane('roadsPane').style.pointerEvents = 'none';
@@ -65,9 +64,11 @@ function setMap() {
 		style: roadsStyle, //roadStyle function
 		pane: 'roadsPane',
 	});
+	//control to add attribution and where to have it be on the screen
 	L.control.attribution({
 		position: 'topright'
 	  }).addTo(map);
+
 	//listing out the basemaps
 	const baseMaps = {
 		"Primary Roads": roads,
@@ -80,28 +81,33 @@ function setMap() {
 	}
 	//adding the controls on top left and leaving it out
 	var baseLayers = L.control.layers(baseMaps, vectorLayers, {position: 'topleft', collapsed: true});
-    baseLayers.addTo(map);
-    var parkLabel = new L.marker([-13.5, -69.5], { opacity: 0.01 }); //opacity may be set to zero
+	baseLayers.addTo(map);
+	
+	//Park label is a transparent marker on the map, but used to display the park label on the map the entire time.
+	var parkLabel = new L.marker([-13.5, -69.5], { opacity: 0.01 }); //opacity may be set to zero
+	//parkLabel is the class name to edit the font and style of the map.
 	parkLabel.bindTooltip("Bahuaja-Sonene National Park", {direction: 'center', permanent: true, className: "parkLabel", interactive: false, offset: [0, 0] });
 	parkLabel.addTo(map);
+
+	//zoom controls the size of the font when zooming in and out of the map.
 	map.on('zoomstart', function () {
 		var zoomLevel = map.getZoom();
 		var tooltip = $('.leaflet-tooltip');
 
 		switch (zoomLevel) {
 			case 10:
-				tooltip.css('font-size', 28);
+				tooltip.css('font-size', 24);
 				break;
 			case 9:
-				tooltip.css('font-size', 24);
+				tooltip.css('font-size', 20);
 				break;
 		}
 	})
 
 
-
+	//blank list of promises list
 	var promises = [];
-    //promises will use d3 to push the csv and topojson files of Chicago neighborhood boundaries,
+    //promises helps preload all the geojsons onto the map.
     promises.push($.getJSON("data/proposal1.geojson"));
     promises.push($.getJSON("data/proposal2.geojson"));
     promises.push($.getJSON("data/proposal3.geojson"));
@@ -112,14 +118,18 @@ function setMap() {
     //callback brings in the data
     function callback(data){
         //these 4 variables list are from the promise list
-        //this will be used for the topojson work.
+        //this will be used to add different proposals to the map.
         view1 = data[0];
         view2 = data[1];
         view3 = data[2];
 		view4 = data[3];
+
+		//call the opacity bar function. Creates and implements the transparency of the proposal zones
 		opacityBar ()
 
-        switchProposals(view1, view2, view3, view4)
+		//calls switch proposals in order to view a proposal one by one.
+		switchProposals(view1, view2, view3, view4)
+		//mobile legend created and added onto map legend button
 		createMobileLegend(roads, earth, hybrid)
     }
     getPOIs()
@@ -149,27 +159,29 @@ function opacityBar (){
 		step: 0.01,
 	});
 	$('.range-sliderM').on('input',function(){
-		$(this).tooltip("dispose");
+		//opacity is global, so have this be the value the for all the proposal geojsons
+		opacity = this.value
 		if(overlay != null){
 			overlay.setStyle({
-				opacity: this.value,
-				fillOpacity: this.value,
+				opacity: opacity,
+				fillOpacity: opacity,
 				animate: "fast"
 			})
 		}
 		overlayLeft.setStyle({
-			opacity: this.value,
-			fillOpacity: this.value,
+			opacity: opacity,
+			fillOpacity: opacity,
 			animate: "fast"
 		});
 		overlayRight.setStyle({
-			opacity: this.value,
-			fillOpacity: this.value,
+			opacity: opacity,
+			fillOpacity: opacity,
 			animate: "fast"
 		});
 	})
 }
 function switchProposals(){
+	//add the proposal container to indicate which proposal is being viewed on the map.
 	proposalGuider = L.Control.extend({
         options: {
             position: 'topright'
@@ -177,7 +189,7 @@ function switchProposals(){
         onAdd: function () {
             
 			var proposalContainer = L.DomUtil.create('div', 'mProposal-Container');
-			
+			//left and right divs to indicate which proposal is on which side of the mobile view
 			$(proposalContainer).append('<div class = "mLeftView" </div>');
 			$(proposalContainer).append('<div class = "mRightView" </div>');
 			L.DomEvent.disableClickPropagation(proposalContainer)
@@ -186,12 +198,13 @@ function switchProposals(){
     });
 	map.addControl(new proposalGuider());
 
-
+	//panes need to be created in order to dictate the overlay
+	//left and right pane are for swipe function
 	map.createPane('left')
 	map.createPane('right')
+	//overlay pane just for individual proposals.
 	map.createPane('Overlay')
-	//.proposalM is the class for all 4 proposal map buttons.
-    //whichever button is pressed, this function will be called
+
     overlayLeft = L.geoJson(view1, {
 		pane: "left",
         //point to layer with the features and the list containing the geoJson attributes
@@ -206,21 +219,26 @@ function switchProposals(){
 		pane: "right",
 		onEachFeature: onEachFeature,
 	});
+	//overlay will be added to the map first thing by default
 	overlay = L.geoJson(view1,{
 		style: style,
 		pane: 'Overlay',
 		onEachFeature: onEachFeature,
 	}).addTo(map)
-	
+	//while the left and right views are added to the map, they will not be visibile until two different proposals are being viewed. 
 	$('.mLeftView').css("display","none");
 	$('.mRightView').css("display","none");
 	
-
+	//swipeList default values, this is used to see which proposals are active or not. 
 	swipeList = [1, 1]
+	//appends a div block to the button if it is active
+	//one div for one map on being compared, two on one button for only one proposal being active 
 	$('#propM1').append('<div class="propM active"></div>')
 	$('#propM1').append('<div class="propM active"></div>')
+	//click function for anytime a proposal button is clicked. 
 	$($('.proposalM')).on({
 		click: function(){
+			//if any of the overlay layers are on the map or defined, the function removes them by default before loading the new data on. 
 			if(overlay != null){
 				map.removeLayer(overlay)
 			}
@@ -233,36 +251,54 @@ function switchProposals(){
 			if(swipe != null){
 				map.removeControl(swipe)
 			}
+			//for loop takes away the active div blocks on the previous selected buttons by default.
 			for(var v in swipeList){
 				$('#propM'+String(swipeList[v])).empty('.propM','.active')
 			}
+			//tooltip of proposal 2 is taken down permanently.
 			$(this).tooltip("dispose");
-			console.log(swipeList)
+			//removes another overlay on map
 			map.removeLayer(overlayLeft)
 			map.removeLayer(overlayRight)
+
+			//value is called and finds the id of the button element
 			var value = this.id
+			//strips the number from the id name and then converts it from string to number
 			value = value.split("mProposal")[1]
 			value = Number(value)
+			//pushes value to current list. 
+			//Current list now has 3 items
 			swipeList.push(value)
+			//shift removes the first item on the list, updating the current active proposal numbers. 
 			swipeList.shift()
+
+			//if list contains the same value, it means to go with one overlay instead of two
 			if(swipeList[0]==swipeList[1]){
+				//adds just one proposal to the map
 				var justOne = "view"+swipeList[1]
 				overlay = L.geoJson(eval(justOne),{
 					style: style,
 					pane: 'Overlay',
 					onEachFeature: onEachFeature,
 				}).addTo(map)
+				//removes swipe
 				map.removeControl(swipe);
+				//appends the two active div blocks to the one button
 				for(var i in swipeList){
 					$('#propM'+String(swipeList[i])).append('<div class="propM active"></div>')
 				}
+				//left and right view is now hidden until two proposals are being compared again. 
 				$('.mLeftView').css("display","none");
 				$('.mRightView').css("display","none");
-				
+				//return ends the click function 
 				return
 			}
+			//left and right values are called by concat the view string with the list item number
 			var left = "view"+swipeList[0]
 			var right = "view"+swipeList[1]
+			//eval() function takes the string of the left/right variable and sees if there is a variable already called that.
+			//since we have global variables of view1, view2, view3, and view4, it will go in and take that data
+			//overlayLeft takes left pane, while overlayRight takes right pane.
 			overlayLeft = L.geoJson(eval(left), {
 				style: style,
 				pane: 'left',
@@ -273,12 +309,18 @@ function switchProposals(){
 				pane: 'right',
 				onEachFeature: onEachFeature,
 			}).addTo(map);
+			//both overlays are added to map
+
+			//for loop goes through to update which buttons need the active div block
 			for(var i in swipeList){
 				$('#propM'+String(swipeList[i])).append('<div class="propM active"></div>')
 			}
+			//left and right divs update the label of which proposals are being viewed on which side of the map.
 			$('.mLeftView').text('LEFT: Proposal '+String(swipeList[0]));
 			$('.mRightView').text('RIGHT: Proposal '+String(swipeList[1]));
+			//swipe is added
 			swipe = L.control.sideBySide(overlayLeft, overlayRight).addTo(map);
+			//have the css display property go from hidden to inline
 			$('.mLeftView').css("display","Inline");
 			$('.mRightView').css("display","Inline");
 		}
@@ -312,18 +354,19 @@ function createMobileLegend(){
 		}
     });
 
-	// map.addControl(new legend());
+	//when the legend icon is clicked on the sub-nav bar, this click function is called
 	$("#mLegend").on({
 		click: function(){
+			//if the mLegend class is present, it will remove the legend all together
 			if($('.leaflet-control').hasClass('mLegend')){
 				$("div").remove('.mLegend')
-			}
+			} //if not, it will add the control onto the map. 
 			else{
 				map.addControl(new legend());
 			}
 		}})
 };
-//default road style
+//road style for the secondary roads.
 function roadsStyle(feature) {
 	return{
 		color: roadColor,
@@ -334,7 +377,6 @@ function roadsStyle(feature) {
 //current style for the proposal maps.
 function style(feature){
 	// sets the style of the zones
-    var opacity = 1.0; //default opacity
 	var color; // color of the zone
     var zoneName = feature.properties.ZONES
 	if(zoneName == "Buffer Zone"){ // if it's the buffer zone, make it Powder blue

@@ -62,10 +62,10 @@ function overlayShowNext(next){
 		document.getElementById("glossary-overlay-text").style.display = "none";
 		document.getElementById("events-overlay-text").style.display = "none";
 
-		document.getElementById(prevButton).style.backgroundColor = "#00a642";
+		document.getElementById(prevButton).style.backgroundColor = "#006d2c";
 		document.getElementById(prevButton).style.color = "white";
-		document.getElementById("assign-button").style.backgroundColor = "#05f765";
-		document.getElementById("assign-button").style.color = "black";
+		document.getElementById("assign-button").style.backgroundColor = "#00441b";
+		document.getElementById("assign-button").style.color = "white";
 		prevButton = "assign-button";
 	} else if(next == "tambopata"){
 		document.getElementById("assign-overlay-text").style.display = "none";
@@ -73,10 +73,10 @@ function overlayShowNext(next){
 		document.getElementById("glossary-overlay-text").style.display = "none";
 		document.getElementById("events-overlay-text").style.display = "none";
 
-		document.getElementById(prevButton).style.backgroundColor = "#00a642";
+		document.getElementById(prevButton).style.backgroundColor = "#006d2c";
 		document.getElementById(prevButton).style.color = "white";
-		document.getElementById("tambopata-button").style.backgroundColor = "#05f765";
-		document.getElementById("tambopata-button").style.color = "black";
+		document.getElementById("tambopata-button").style.backgroundColor = "#00441b";
+		document.getElementById("tambopata-button").style.color = "white";
 		prevButton = "tambopata-button";
 	}
 	else if(next == "glossary"){
@@ -85,10 +85,10 @@ function overlayShowNext(next){
 		document.getElementById("glossary-overlay-text").style.display = "block";
 		document.getElementById("events-overlay-text").style.display = "none";
 
-		document.getElementById(prevButton).style.backgroundColor = "#00a642";
+		document.getElementById(prevButton).style.backgroundColor = "#006d2c";
 		document.getElementById(prevButton).style.color = "white";
-		document.getElementById("glossary-button").style.backgroundColor = "#05f765";
-		document.getElementById("glossary-button").style.color = "black";
+		document.getElementById("glossary-button").style.backgroundColor = "#00441b";
+		document.getElementById("glossary-button").style.color = "white";
 		prevButton = "glossary-button";
 
 	} else {
@@ -97,10 +97,10 @@ function overlayShowNext(next){
 		document.getElementById("glossary-overlay-text").style.display = "none";
 		document.getElementById("events-overlay-text").style.display = "block";
 
-		document.getElementById(prevButton).style.backgroundColor = "#00a642";
+		document.getElementById(prevButton).style.backgroundColor = "#006d2c";
 		document.getElementById(prevButton).style.color = "white";
-		document.getElementById("events-button").style.backgroundColor = "#05f765";
-		document.getElementById("events-button").style.color = "black";
+		document.getElementById("events-button").style.backgroundColor = "#00441b";
+		document.getElementById("events-button").style.color = "white";
 		prevButton = "events-button";
 
 	}
