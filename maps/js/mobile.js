@@ -12,8 +12,8 @@ var opacity
 
 //padding for there to be two bottom navigation bars
 $('html').css("padding-bottom","80px");
-//create navbar2 - proposal map buttons
-var bottomNav = $("<div id = 'navbar2'></div>")
+//create navbar3 - proposal map buttons
+var bottomNav = $("<div id = 'navbar3'></div>")
 
 bottomNav.appendTo($("body"));
 //appending the buttons to the html body, not on the actual map.
