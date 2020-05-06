@@ -45,6 +45,7 @@ button p{
     }
   button p{
       visibility: hidden;
+	  display:none;
   }
   .navbar1 button {
       background-color: #006d2c;
