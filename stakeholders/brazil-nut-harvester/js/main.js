@@ -98,6 +98,7 @@ function overlayShowNext(next){
 }
 
 // When the user clicks on <div>, open the popup, referenced from w3schools.com
+// Each pop-up has its own function and ID 
 function popupHec() {
   var popup1 = document.getElementById("myPopup1");
     popup1.classList.toggle("show");
