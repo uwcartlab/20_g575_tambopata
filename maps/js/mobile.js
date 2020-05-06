@@ -204,7 +204,6 @@ function switchProposals(){
 			for(var v in swipeList){
 				$('#propM'+String(swipeList[v])).empty('.propM','.active')
 			}
-			// $('div').remove('.propM','.active')
 			$(this).tooltip("dispose");
 			console.log(swipeList)
 			map.removeLayer(overlayLeft)
@@ -275,10 +274,17 @@ function createMobileLegend(){
 		}
     });
 
-	map.addControl(new legend());
-	$("#mLegend").click(function() {
-		$(".mLegend").toggle("fast");
-	});
+	// map.addControl(new legend());
+	$("#mLegend").on({
+		click: function(){
+			if($('.leaflet-control').hasClass('mLegend')){
+				console.log("its here")
+				$("div").remove('.mLegend')
+			}
+			else{
+				map.addControl(new legend());
+			}
+		}})
 };
 //default road style
 function roadsStyle(feature) {
