@@ -15,7 +15,44 @@ function checkVisited(){
 	.then((data) => {
 	  pass = data;
 	});
+	// checking for popup size to avoid adding extra width to the page
+	var container = $(".container").width();
+	var popup1Width = $("#myPopup1").offset().left + $("#myPopup1").width();
+	var diff = Math.ceil(popup1Width - container);
+	if(diff > 0){
+		$("#myPopup1").offset({top:$("#myPopup1").offset().top, left: ($("#myPopup1").offset().left - diff)});
+	}
+	var popup2Width = $("#myPopup2").offset().left + $("#myPopup2").width();
+	diff = Math.ceil(popup2Width - container);
+	if(diff > 0){
+		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: ($("#myPopup2").offset().left - diff)});
+	}
+	var popup3Width = $("#myPopup3").offset().left + $("#myPopup3").width();
+	diff = Math.ceil(popup3Width - container);
+	if(diff > 0){
+		$("#myPopup3").offset({top:$("#myPopup3").offset().top, left: ($("#myPopup3").offset().left - diff)});
+	}
 }
+
+// when a resize occurs change the values for popup offsets
+$(window).resize(function(){
+	var container = $(".container").width();
+	var popup1Width = $("#myPopup1").offset().left + $("#myPopup1").width();
+	var diff = Math.ceil(popup1Width - container);
+	if(diff > 0){
+		$("#myPopup1").offset({top:$("#myPopup1").offset().top, left: ($("#myPopup1").offset().left - diff)});
+	}
+	var popup2Width = $("#myPopup2").offset().left + $("#myPopup2").width();
+	diff = Math.ceil(popup2Width - container);
+	if(diff > 0){
+		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: ($("#myPopup2").offset().left - diff)});
+	}
+	var popup3Width = $("#myPopup3").offset().left + $("#myPopup3").width();
+	diff = Math.ceil(popup3Width - container);
+	if(diff > 0){
+		$("#myPopup3").offset({top:$("#myPopup3").offset().top, left: ($("#myPopup3").offset().left - diff)});
+	}
+});
 
 function secretAccess(path){
 	var userPass = prompt('Please enter the password your TA has provided');
