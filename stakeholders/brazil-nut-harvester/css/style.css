@@ -1,3 +1,4 @@
+/* bootstrap container */
 .container-fluid {
   max-width: 1000px;
   margin-right: auto;
@@ -7,6 +8,7 @@
   padding-left: 100px;
 }
 
+/* About Assignment pop-up */
 #overlay-img {
   z-index: 2;
   position: fixed;
@@ -164,6 +166,7 @@
 	text-align: center;
 }
 
+/* Tambopata title on Nav bar */
 .header{
   background:#006d2c;
   width:100%;
@@ -285,12 +288,7 @@ button p{
   margin-right: auto;
 }
 
-
-/* #basic-desc {
-  background-color: #c7e9c0;
-} */
-
-/* Popup container */
+/* Popup container for terms and related stakeholders*/
 .popup {
   position: relative;
   display: inline-block;
@@ -298,7 +296,7 @@ button p{
   color: blue;
 }
 
- /* The actual popup (appears on top) */
+ /* pop-up container placement */
  .popup .popupText {
   visibility: hidden;
   width: 360px;
@@ -316,7 +314,7 @@ button p{
 }
 
 
-/* Popup arrow under pop-up box*/
+/* Popup arrow under pop-up container*/
 .popup .popupText::after {
   content: "";
   position: absolute;
@@ -328,14 +326,15 @@ button p{
   border-color: #d5dbd7 transparent transparent transparent;
 }
 
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
+/* clicking anywhere on popup container (hide and show the popup) */
+/* affordance close button added in html  */
 .popup .show {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
 }
 
-/* Add animation (fade in the popup) */
+/* fade in the popup */
 @-webkit-keyframes fadeIn {
   from {opacity: 0;}
   to {opacity: 1;}
@@ -361,24 +360,22 @@ button p{
   height:100%;
 }
 
-
-/* Scoll to top button */
+/* Scoll to top button displays as user scrolls*/
 #scrollBtn {
   display: none;
   position: fixed; /* Fixed/sticky position */
   bottom: 20px; /* Place the button at the bottom of the page */
   right: 30px; /* Place the button 30px from the right */
   z-index: 99; /* Make sure it does not overlap */
-  border: none; /* Remove borders */
-  outline: none; /* Remove outline */
-  background-color: #006d2c; /* Set a background color */
-  color: white; /* Text color */
-  cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
-  border-radius: 10px; /* Rounded corners */
-  font-size: 14px; /* Increase font size */
+  border: none;
+  outline: none;
+  background-color: #006d2c;
+  color: white;
+  cursor: pointer; /* Add a mouse pointer on hover desktop only*/
+  padding: 15px;
+  border-radius: 10px; /* Rounded button corners */
+  font-size: 14px;
 }
-/* may want to get rid of, will not work on mobile */
 #scrollBtn:hover {
   background-color: #00441b; /* Add a dark-green background on hover */
 }
@@ -397,30 +394,30 @@ button p{
   from {opacity: 0;}
   to {opacity: 2;}
 }
-/* scroll button for mobile*/
-@media(max-width:50em){ /* Breakpoint only for mobile */
+/* scroll button for mobile same code as above however slightly different placement*/
+@media(max-width:50em){
   #scrollBtn {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed/sticky position */
-    bottom: 80px; /* Place the button at the bottom of the page */
-    right: 10px; /* Place the button 30px from the right */
-    z-index: 99; /* Make sure it does not overlap */
-    border: none; /* Remove borders */
-    outline: none; /* Remove outline */
-    background-color: #006d2c; /* Set a background color */
-    color: white; /* Text color */
-    cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 10px; /* Some padding */
-    border-radius: 10px; /* Rounded corners */
-    font-size: 12px; /* Increase font size */
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 10px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #006d2c;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 12px;
   }
-  /* fade in scroll to top button */
+
   #scrollBtn {
     visibility: visible;
     -webkit-animation: fadeIn 2s;
     animation: fadeIn 2s;
   }
-  /* Add animation (fade in the popup) */
+
   @-webkit-keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 2;}

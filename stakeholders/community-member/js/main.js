@@ -104,7 +104,7 @@ function overlayShowNext(next){
 	}
 }
 
-// When the user clicks on <div>, open the popup
+// Popup functions
 function popupHec() {
   var popup1 = document.getElementById("myPopup1");
     popup1.classList.toggle("show");
