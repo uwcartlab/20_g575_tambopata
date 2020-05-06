@@ -341,15 +341,27 @@ html, body, #map {
     width: 100%;
     max-width: 350px;
     right: 10px;
-    bottom: 30px;
+    bottom: 35px;
     background-color: #e7efea;
     border: solid #186c3f 1px;
+    overflow:auto;
+    overflow-y: scroll
 
+}
+.leaflet-control-layers,.leaflet-control-layers-toggle{
+    background-color: #e7efea !important;
+    top: 35px;
+    color: #186c3f;
+    border: 0px !important;
+}
+.leaflet-control-layers-expanded{
+    color: #186c3f  !important;
+    font-weight: 700;
 }
 #accordion{
     overflow-y: scroll;
     max-width: 350px;
-    overflow-x: hidden;
+    overflow:auto;
 }
 .mLegendTxt{
     transform: translate(5%, -125%);
@@ -361,10 +373,13 @@ html, body, #map {
 }
 .card-body {
     padding: 0.7rem !important;
+    overflow:auto;
+    overflow-y: scroll
 }
 .card-header{
     background-color: #e7efea;
     height: 25px;
+    border: 0px !important;
 }
 .mLegendItem{
     height: 15px;
@@ -468,5 +483,5 @@ background-color: none;
   forestgreen,
   forestgreen 3px,
   darkgreen 6px */
-);
+
 /* other way to add texture in legend: background-image: url("https://www.transparenttextures.com/patterns/grid-noise.png"); */

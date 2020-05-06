@@ -33,11 +33,15 @@ function setMap() {
 	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
 
+	
+
+
 	//create the map with its center coordinates and have roads be default layer.
     map = L.map('map', {
 		center: [-13.2, -69.5],
 		zoom: 9,
 		minZoom: 8,
+		attributionControl: false,
 		layers: [roads],
 
 	});
@@ -59,6 +63,9 @@ function setMap() {
 		style: roadsStyle, //roadStyle function
 		pane: 'roadsPane',
 	});
+	L.control.attribution({
+		position: 'topright'
+	  }).addTo(map);
 	//listing out the basemaps
 	const baseMaps = {
 		"Primary Roads": roads,
@@ -88,6 +95,7 @@ function setMap() {
 				break;
 		}
 	})
+
 
 
 	var promises = [];
@@ -278,7 +286,6 @@ function createMobileLegend(){
 	$("#mLegend").on({
 		click: function(){
 			if($('.leaflet-control').hasClass('mLegend')){
-				console.log("its here")
 				$("div").remove('.mLegend')
 			}
 			else{
