@@ -278,7 +278,8 @@ h2 {
 
 }
 .gridItem{
-  margin-top: 40px;
+  margin-top: 20px;
+  /* margin-bottom: 40px; */
 }
 .overlay{
   border-radius: 15%;
