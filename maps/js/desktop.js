@@ -153,7 +153,7 @@ function createProposals(){
 				map.removeLayer(overlayLeft)
 			}
 			if(overlay != null){
-				map.removeLayer(overlayLeft)
+				map.removeLayer(overlayRight)
 			}
 			if(swipe != null){
 				map.removeControl(swipe)

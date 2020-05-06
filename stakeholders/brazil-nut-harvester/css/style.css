@@ -7,6 +7,7 @@
   padding-left: 100px;
 }
 
+
 .header{
   background:#006d2c;
   width:100%;
@@ -70,6 +71,25 @@ button p{
     visibility: hidden;
     display:none;
    }
+   .popup .popupText {
+    visibility: hidden;
+    width: 250px !important;
+    max-height: 600px;
+    box-shadow: 2px 3px 5px #999;
+    background-color:#E7EFEA;
+    color: #186C3F;
+    text-align: left;
+    border-radius: 6px;
+    padding: 15px 15px !important;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 0%;
+    margin:0 10% !important;
+  }
+  .popup .popupText::after {
+    display: none !important
+  }
 }
 
 /* Style the links inside the navigation bar */
@@ -124,10 +144,11 @@ button p{
   color: blue;
 }
 
-/* The actual popup (appears on top) */
-.popup .popupText {
+ /* The actual popup (appears on top) */
+ .popup .popupText {
   visibility: hidden;
-  width: 360px;
+  /* width: 360px; */
+  width:350%;
   box-shadow: 2px 3px 5px #999;
   background-color:#E7EFEA;
   color: #186C3F;
@@ -138,8 +159,9 @@ button p{
   z-index: 1;
   bottom: 125%;
   left: 0%;
-  margin-left:-150px;
+  margin-left: -150px;
 }
+
 
 /* Popup arrow under pop-up box*/
 .popup .popupText::after {

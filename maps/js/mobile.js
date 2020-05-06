@@ -49,11 +49,13 @@ function setMap() {
 	map.removeControl(map.zoomControl);
 	//hybrid has both satellite imagery with labels
 	var hybrid  = L.gridLayer.googleMutant({
-		type: 'hybrid'
+		type: 'hybrid',
+		attribution: "Google Maps"
 	})
 	//earth is just satellite imagery
 	var earth = L.gridLayer.googleMutant({
-		type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+		type: 'satellite', // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+		attribution: "Google Maps"
 	})
 	//roads are called from Additional_Roads.js, where the variable is just roadsPOI = geojson
 	map.createPane('roadsPane');
@@ -168,6 +170,23 @@ function opacityBar (){
 	})
 }
 function switchProposals(){
+	proposalGuider = L.Control.extend({
+        options: {
+            position: 'topright'
+        },
+        onAdd: function () {
+            
+			var proposalContainer = L.DomUtil.create('div', 'mProposal-Container');
+			
+			$(proposalContainer).append('<div class = "mLeftView" </div>');
+			$(proposalContainer).append('<div class = "mRightView" </div>');
+			L.DomEvent.disableClickPropagation(proposalContainer)
+			return proposalContainer;
+		}
+    });
+	map.addControl(new proposalGuider());
+
+
 	map.createPane('left')
 	map.createPane('right')
 	map.createPane('Overlay')
@@ -192,6 +211,11 @@ function switchProposals(){
 		pane: 'Overlay',
 		onEachFeature: onEachFeature,
 	}).addTo(map)
+	
+	$('.mLeftView').css("display","none");
+	$('.mRightView').css("display","none");
+	
+
 	swipeList = [1, 1]
 	$('#propM1').append('<div class="propM active"></div>')
 	$('#propM1').append('<div class="propM active"></div>')
@@ -232,6 +256,9 @@ function switchProposals(){
 				for(var i in swipeList){
 					$('#propM'+String(swipeList[i])).append('<div class="propM active"></div>')
 				}
+				$('.mLeftView').css("display","none");
+				$('.mRightView').css("display","none");
+				
 				return
 			}
 			var left = "view"+swipeList[0]
@@ -249,8 +276,11 @@ function switchProposals(){
 			for(var i in swipeList){
 				$('#propM'+String(swipeList[i])).append('<div class="propM active"></div>')
 			}
-			
+			$('.mLeftView').text('LEFT: Proposal '+String(swipeList[0]));
+			$('.mRightView').text('RIGHT: Proposal '+String(swipeList[1]));
 			swipe = L.control.sideBySide(overlayLeft, overlayRight).addTo(map);
+			$('.mLeftView').css("display","Inline");
+			$('.mRightView').css("display","Inline");
 		}
 	})
 }
