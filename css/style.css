@@ -260,6 +260,13 @@ h2 {
   border-radius: 20%;
   object-fit: fill;
 }
+.disclaimerImg{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .stakeholderNames{
   color: #006d2c;
   font-size: 1em;
