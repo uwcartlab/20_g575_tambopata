@@ -1,8 +1,31 @@
-// basic relative redirect until we have a nav-menu
-// since this is a subfolder the method should be passed either '..' to go home or '../SUB_FOLDER_NMAE'
+var pass;
+// basic redirect plus check for password access
 function redirect(path){
-	window.location.href= path;
+	if(path != '../../secret'){
+		window.location.href= path;
+	} else {
+		secretAccess(path);
+	}
 }
+// check the password against user input
+//  load at start of page because otherwise it wasn't matching because of fetch timing
+function checkVisited(){
+	fetch('../../../img/pass.txt')
+	.then(response => response.text())
+	.then((data) => {
+	  pass = data;
+	});
+}
+
+function secretAccess(path){
+	var userPass = prompt('Please enter the password your TA has provided');
+	if(userPass == pass){
+		window.location.href= path;
+	}
+}
+
+// This calls checkVisited on each load
+window.onload = checkVisited();
 
 //if statement determining the map to go into desktop or mobile view.
 if(window.innerWidth > 780){
