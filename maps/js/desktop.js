@@ -304,7 +304,6 @@ function createLegend(roads, earth, hybrid){
 			$(container).append('<p class="legendtxt">Bahuaja-Sonene National Park</p>');
 			$(container).append('<div class="legend" id="nationalPark" ></div>');
 
-
 			L.DomEvent.disableClickPropagation(container)
             return container;
         }
