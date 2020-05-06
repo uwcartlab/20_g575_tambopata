@@ -13,6 +13,7 @@ var opacity;
 
 //create the map
 function setMap() {
+	console.log(opacity)
     //roads tile layer from ArcGIS online
 	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
@@ -69,13 +70,14 @@ function setMap() {
 
     //callback brings in the data
     function callback(data){
+		console.log(opacity)
         //these 4 variables list are from the promise list
         //this will be used for the topojson work.
         view1 = data[0];
         view2 = data[1];
         view3 = data[2];
 		view4 = data[3];
-
+		
 		createProposals(view1, view2, view3, view4)
 		createLegend(roads, earth, hybrid)
 
@@ -115,13 +117,13 @@ function createProposals(){
 
 	overlayLeft = L.geoJson(view1, {
 		pane: "left",
-        //point to layer with the features and the list containing the geoJson attributes
+		//point to layer with the features and the list containing the geoJson attributes
 		style: style,
 		opacity: opacity,
 		onEachFeature: onEachFeature,
 	});
 	overlayRight = L.geoJson(view3, {
-        //point to layer with the features and the list containing the geoJson attributes
+		//point to layer with the features and the list containing the geoJson attributes
 		style: style,
 		opacity: opacity,
 		pane: "right",
@@ -190,6 +192,7 @@ function createProposals(){
 			}
 			var left = "view"+swipeList[0]
 			var right = "view"+swipeList[1]
+			console.log(opacity)
 			overlayLeft = L.geoJson(eval(left), {
 				style: style,
 				pane: 'left',
@@ -269,13 +272,6 @@ function createLegend(roads, earth, hybrid){
 	});
     // adds the legend to the map.
 	map.addControl(new LegendControl());
-	// $("#Satellite").tooltip({
-	// 	delay: {hide: 50},
-	// }).tooltip('show')
-	// $(".range-slider").tooltip({
-	// 	delay: {hide: 50},
-	// }).tooltip('show')
-	//adding the roads on and off the map
 	$('.roads').on('input',function(){
 		//if checkbox is checked, the roads will be added onto the map
 		//if not checked, it will remove the roads
@@ -328,22 +324,22 @@ function createLegend(roads, earth, hybrid){
 		$(this).tooltip("dispose");
 		if(overlay != null){
 			overlay.setStyle({
-				opacity: this.value,
-				fillOpacity: this.value,
+				opacity: opacity,
+				fillOpacity: opacity,
 				animate: "fast"
 			})
 		}
 		overlayLeft.setStyle({
-			opacity: this.value,
-			fillOpacity: this.value,
+			opacity: opacity,
+			fillOpacity: opacity,
 			animate: "fast"
 		});
 		overlayRight.setStyle({
-			opacity: this.value,
-			fillOpacity: this.value,
+			opacity: opacity,
+			fillOpacity: opacity,
 			animate: "fast"
 		});
-
+		return opacity
 	})
 
 
@@ -404,7 +400,7 @@ function style(feature){
 			lineColor = "#7F7F7F";
 			fillop = 0
 			//can change opacity based on Tanya's suggestion, but would need to change colors based on the basemap used
-			opacity = 1;
+			
 		}
 		else if(zoneName == "Direct Use"){
 			color = "#59B798";
@@ -432,6 +428,7 @@ function style(feature){
             weight: lineWidth,
             opacity: opacity
 		}
+	
 };
 //popup style for the zones
 function onEachFeature(feature, layer){
