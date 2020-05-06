@@ -188,7 +188,7 @@ button p{
   color: white;
 }
 html, body, #map {
-    padding-bottom: 33px;
+    padding-bottom: 35px;
     height: 100%;
     width: 100%;
     z-index: 0;
@@ -248,15 +248,11 @@ html, body, #map {
 #navbar2 {
 	position: -webkit-sticky; /* Safari */
 	position: sticky;
-	top: 0px;
 	font-size: 0px;
-	background-color: #006d2c;
-	padding-left: 3px;
+    background-color: #E9ECEF;
 }
 
 #navbar2 button {
-	margin-top: 2px;
-	margin-bottom: 2px;
 	text-decoration: none;
 	border-style: none;
 	margin-left: 0px;
@@ -419,10 +415,10 @@ html, body, #map {
 }
 .mProposal-Container{
     min-width: 300px;
-    max-width: 400px
     text-align: center;
     font-size: 1.2em;
-    left: 0;
+    top: 50px;
+    left: -10px;
     padding: 0px;
     font-weight: 700;
 }
@@ -528,7 +524,6 @@ html, body, #map {
     right: 10px;
     bottom: -10px;
     background-color: #e7efea;
-    border: solid #006d2c 1px;
     overflow:auto;
     overflow-y: scroll
 
@@ -538,7 +533,7 @@ html, body, #map {
 }
 .leaflet-control-layers,.leaflet-control-layers-toggle{
     background-color: #e7efea !important;
-    top: 95px;
+    top: 45px;
     color: #006d2c;
     border: 0px !important;
 }
@@ -565,9 +560,10 @@ html, body, #map {
     overflow-y: scroll;
     font-family: 'Arimo';
     font-size: 1.15em
+    
 }
 .card-header{
-    background-color: #e7efea;
+    background-color: #e7efea!important;
     height: 25px;
     border: 0px !important;
 }
