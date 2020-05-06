@@ -35,6 +35,7 @@ button p{
 .parkLabel{
     font-size: 2.3em;
     font-weight: 600;
+    font-family: "Arimo" !important;
 }
 .swipeMe{
     position: absolute;
@@ -65,6 +66,11 @@ button p{
       box-shadow: 0 0 10px 10px #e7efea;
     }
   }
+.leaflet-popup-content{
+    font-family: 'Arimo';
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+}
 .leaflet-tooltip {
     position: absolute;
     padding: 2px !important;
@@ -211,6 +217,7 @@ html, body, #map {
     background-position: center;
     opacity: 0.80;
     animation: anim .75s ;
+    display: none;
   }
   
   @-webkit-keyframes anim {
@@ -225,7 +232,7 @@ html, body, #map {
   
   #overlay {
     position: fixed;
-    display: block;
+    display: none;
     width: 100%;
     height: 100%;
     top: 0;
@@ -408,6 +415,7 @@ html, body, #map {
     width: 80vw;
     top: -15mm;
     left: 15%;
+    
 }
 .mProposal-Container{
     min-width: 300px;
