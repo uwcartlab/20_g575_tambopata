@@ -13,9 +13,6 @@ button p{
   padding-left: 10px;
 }
 
-/* .navButton{
-  height:70px;
-} */
 /* Place the navbar at the top of the page, and make it stick */
 .navbar1 {
   background-color: #006d2c;
@@ -47,11 +44,12 @@ button p{
       float: left;
       margin-top: -5px;
     }
+  /* dark green when selected */
   .nabvar1 button.active {
       background-color: #4CAF50;
       color: white;
     }
-    /*Tambopata title  */
+  /*Tambopata title  */
   .navbar1 span{
     display: none;
   }
@@ -67,7 +65,6 @@ button p{
 }
 
 /* Style the links inside the navigation bar */
-
 .navbar1 button {
   background-color: #006d2c;
   border-style: none;
@@ -78,6 +75,7 @@ button p{
   text-decoration: none;
   font-size: 20px;
 }
+/* UW logo */
 .navbar1 a{
   float: right;
   padding: 5px 20px 0px 0px;
@@ -263,27 +261,6 @@ button p{
     font-family: 'Arimo';
 }
 
-.fa-twitter {
-    margin-right: 10px;
-    text-align: center;
-}
-.fa-link{
-	margin-right: 5px;
-    text-align: center;
-}
-.fa-envelope{
-	margin-right: 10px;
-	text-align: center;
-}
-/* .fa {
-    margin: 5px;
-    font-size: 35px;
-    border-radius: 35%;
-    width: 20px;
-	margin-bottom: 5px;
-	color: #CFC397;
-} */
-
 li {
 	padding-left: 15px;
 }
@@ -292,23 +269,22 @@ li {
     background-color:
 }
 
-/* Scoll to top button */
+/* Scoll to top button displays as user scrolls*/
 #scrollBtn {
   display: none;
   position: fixed; /* Fixed/sticky position */
   bottom: 20px; /* Place the button at the bottom of the page */
   right: 30px; /* Place the button 30px from the right */
   z-index: 99; /* Make sure it does not overlap */
-  border: none; /* Remove borders */
-  outline: none; /* Remove outline */
-  background-color: #006d2c; /* Set a background color */
-  color: white; /* Text color */
-  cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
-  border-radius: 10px; /* Rounded corners */
-  font-size: 14px; /* Increase font size */
+  border: none;
+  outline: none;
+  background-color: #006d2c;
+  color: white;
+  cursor: pointer; /* Add a mouse pointer on hover desktop only*/
+  padding: 15px;
+  border-radius: 10px; /* Rounded button corners */
+  font-size: 14px;
 }
-/* may want to get rid of, will not work on mobile */
 #scrollBtn:hover {
   background-color: #00441b; /* Add a dark-green background on hover */
 }
@@ -327,30 +303,31 @@ li {
   from {opacity: 0;}
   to {opacity: 2;}
 }
-/* scroll button for mobile*/
-@media(max-width:50em){ /* Breakpoint only for mobile */
+
+/* scroll button for mobile same code as above however slightly different placement*/
+@media(max-width:50em){
   #scrollBtn {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed/sticky position */
-    bottom: 80px; /* Place the button at the bottom of the page */
-    right: 10px; /* Place the button 30px from the right */
-    z-index: 99; /* Make sure it does not overlap */
-    border: none; /* Remove borders */
-    outline: none; /* Remove outline */
-    background-color: #006d2c; /* Set a background color */
-    color: white; /* Text color */
-    cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 10px; /* Some padding */
-    border-radius: 10px; /* Rounded corners */
-    font-size: 12px; /* Increase font size */
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 10px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #006d2c;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 12px;
   }
-  /* fade in scroll to top button */
+
   #scrollBtn {
     visibility: visible;
     -webkit-animation: fadeIn 2s;
     animation: fadeIn 2s;
   }
-  /* Add animation (fade in the popup) */
+
   @-webkit-keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 2;}
