@@ -68,7 +68,21 @@ function setMap() {
 	L.control.attribution({
 		position: 'topright'
 	  }).addTo(map);
-
+	  proposalGuider = L.Control.extend({
+        options: {
+            position: 'topleft'
+        },
+        onAdd: function () {
+            
+			var proposalContainer = L.DomUtil.create('div', 'mProposal-Container');
+			//left and right divs to indicate which proposal is on which side of the mobile view
+			$(proposalContainer).append('<div class = "mLeftView" </div>');
+			$(proposalContainer).append('<div class = "mRightView" </div>');
+			L.DomEvent.disableClickPropagation(proposalContainer)
+			return proposalContainer;
+		}
+    });
+	map.addControl(new proposalGuider());
 	//listing out the basemaps
 	const baseMaps = {
 		"Primary Roads": roads,
@@ -182,21 +196,7 @@ function opacityBar (){
 }
 function switchProposals(){
 	//add the proposal container to indicate which proposal is being viewed on the map.
-	proposalGuider = L.Control.extend({
-        options: {
-            position: 'topleft'
-        },
-        onAdd: function () {
-            
-			var proposalContainer = L.DomUtil.create('div', 'mProposal-Container');
-			//left and right divs to indicate which proposal is on which side of the mobile view
-			$(proposalContainer).append('<div class = "mLeftView" </div>');
-			$(proposalContainer).append('<div class = "mRightView" </div>');
-			L.DomEvent.disableClickPropagation(proposalContainer)
-			return proposalContainer;
-		}
-    });
-	map.addControl(new proposalGuider());
+	
 
 	//panes need to be created in order to dictate the overlay
 	//left and right pane are for swipe function

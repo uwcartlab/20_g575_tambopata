@@ -398,37 +398,37 @@ function style(feature){
 	var color; // color of the zone
     var zoneName = feature.properties.ZONES
 	if(zoneName == "Buffer Zone"){ // if it's the buffer zone, make it Powder blue
-	color = "#9B8917";
+	color = "#b29d77";
 	lineWidth = 0.1;
 	lineColor = "Black";
 	fillop = opacity
 		}
 		else if(zoneName == "Strict Protection"){
-			color = "#f5aa1c";
+			color = "#004529";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Ese’eja and Harakmbut Territories"){
-			color = "#C1A76A";
+			color = "#78c679";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Wildlands"){
-			color = "#005c50";
+			color = "#238443";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Tourism"){
-			color = "#35a649";
+			color = "#d9f0a3";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
         }
 		else if(zoneName == "Restoration"){
-			color = "#D194B6";
+			color = "#fc8d59";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
@@ -442,20 +442,20 @@ function style(feature){
 			
 		}
 		else if(zoneName == "Direct Use"){
-			color = "#59B798";
+			color = "#d0d1e6";
 			//color = "#125e1d";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
 		}
 		else if(zoneName == "Low Impact Non-Timber Forest Use"){
-			color = "#94c660";
+			color = "#ffffe5";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
 		}
 		else if(zoneName == "Community Reserve"){
-			color = "#c4cc5c";
+			color = "#f5aa1c";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;

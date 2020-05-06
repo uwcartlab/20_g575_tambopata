@@ -6,7 +6,7 @@ html {
   max-width: 1000px;
   margin-right: auto;
   margin-left: auto;
-  display: inherit;
+  display: absolute;
   justify-content: center;
 }
 .header{
@@ -258,9 +258,9 @@ h2 {
 
 .img-bground {
   min-width: 100%;
-  min-height: 100%;
-  border-radius: 20%;
-  object-fit: fill;
+  height: auto;
+  border-radius: 15%;
+  object-fit: cover;
 }
 .disclaimerImg{
   margin: 0;
