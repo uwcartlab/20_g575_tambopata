@@ -112,6 +112,7 @@ button p{
       }
     button p{
         visibility: hidden;
+        display:none;
         /* padding-left: 30px; */
     }
     .navbar1 button {
