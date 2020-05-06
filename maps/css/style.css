@@ -250,6 +250,13 @@ html, body, #map {
     top: -15mm;
     left: 15%;
 }
+.mProposal-Container{
+    width: 300px;
+    text-align: center;
+    font-size: 1.2em;
+    padding: 5px;
+    font-weight: 700;
+}
 .proposalM{
     width: 20%;
     height: 55px;
@@ -257,7 +264,7 @@ html, body, #map {
     text-align: center;
     border: none;
     color: #186c3f;
-    background-color: #e7efea;;
+    background-color: #e7efea;
     overflow: hidden;
     font-size: 1.5em;
     font-weight: 800;
@@ -287,7 +294,14 @@ html, body, #map {
     font-size: 1.5em;
     font-weight: 800;
 }
-
+.mLeftView, .mRightView{
+    padding: 10px;
+    background-color: #e7efea;
+    color: #186c3f;
+}
+.mLeftView{
+    border-right: 3px solid #186c3f;
+}
 .leftView{
     width: 200px;
     height: 35px;
@@ -341,16 +355,19 @@ html, body, #map {
     width: 100%;
     max-width: 350px;
     right: 10px;
-    bottom: 35px;
+    bottom: -10px;
     background-color: #e7efea;
     border: solid #186c3f 1px;
     overflow:auto;
     overflow-y: scroll
 
 }
+.arrow::before{
+    border-top-color: #186c3f !important;
+}
 .leaflet-control-layers,.leaflet-control-layers-toggle{
     background-color: #e7efea !important;
-    top: 35px;
+    top: 45px;
     color: #186c3f;
     border: 0px !important;
 }
