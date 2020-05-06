@@ -146,11 +146,12 @@ button p{
   position: auto;
   width: 50%;
   height: 75%;
-  background-color: white;
+  background: #E9ECEF;
   transform: translate(50%,20%);
   -ms-transform: translate(50%,50%);
   overflow-y: auto;
   opacity: 1;
+  font-family: "Arimo";
 }
 
 #navbar2 {
@@ -213,7 +214,7 @@ button p{
 }
 
 #locator {
-	height: 10%;
+	height: 5%;
 	width: 85%;
 	float: left;
 	margin-left: 7.5%
