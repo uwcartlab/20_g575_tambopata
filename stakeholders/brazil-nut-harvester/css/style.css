@@ -22,9 +22,6 @@ button p{
   padding-left: 10px;
 }
 
-/* .navButton{
-  height:70px;
-} */
 /* Place the navbar at the top of the page, and make it stick */
 .navbar1 {
   background-color: #006d2c;
@@ -73,7 +70,7 @@ button p{
    }
    .popup .popupText {
     visibility: hidden;
-    width: 250px !important;
+    width: 230px !important;
     max-height: 600px;
     box-shadow: 2px 3px 5px #999;
     background-color:#E7EFEA;
@@ -132,9 +129,9 @@ button p{
 }
 
 
-#basic-desc {
+/* #basic-desc {
   background-color: #c7e9c0;
-}
+} */
 
 /* Popup container */
 .popup {
@@ -142,13 +139,12 @@ button p{
   display: inline-block;
   cursor: pointer; /*affordance for desktop*/
   color: blue;
-} 
+}
 
  /* The actual popup (appears on top) */
  .popup .popupText {
   visibility: hidden;
-  /* width: 360px; */
-  width:350%;
+  width: 360px;
   box-shadow: 2px 3px 5px #999;
   background-color:#E7EFEA;
   color: #186C3F;
