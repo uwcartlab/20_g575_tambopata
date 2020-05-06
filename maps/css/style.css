@@ -153,6 +153,11 @@ button p{
         color: #006d2c;
         border: none
       }
+      .proposalM:hover {
+        background-color: #e7efea ;
+        color: #006d2c;
+        border: none
+      }
 
   }
 
@@ -258,12 +263,7 @@ html, body, #map {
 	font-size: 18px;
 }
 
-#navbar2 button:hover {
-  /* background-color: white; */
-	background-color: #00441b;
-  /* color: black; */
-	color: white;
-}
+
 
 #tambopata-button {
 	background-color: #00441b;
@@ -372,7 +372,7 @@ html, body, #map {
     font-size: 1.25em;
     margin-left: 5px;
     font-weight: 800;
-    color: #006d2c
+    color: #006d2c;
     font-family: 'Arimo';
 }
 
@@ -418,10 +418,12 @@ html, body, #map {
     left: 15%;
 }
 .mProposal-Container{
-    width: 300px;
+    min-width: 300px;
+    max-width: 400px
     text-align: center;
     font-size: 1.2em;
-    padding: 5px;
+    left: 0;
+    padding: 0px;
     font-weight: 700;
 }
 .proposalM{
@@ -536,7 +538,7 @@ html, body, #map {
 }
 .leaflet-control-layers,.leaflet-control-layers-toggle{
     background-color: #e7efea !important;
-    top: 45px;
+    top: 95px;
     color: #006d2c;
     border: 0px !important;
 }
@@ -560,7 +562,9 @@ html, body, #map {
 .card-body {
     padding: 0.7rem !important;
     overflow:auto;
-    overflow-y: scroll
+    overflow-y: scroll;
+    font-family: 'Arimo';
+    font-size: 1.15em
 }
 .card-header{
     background-color: #e7efea;

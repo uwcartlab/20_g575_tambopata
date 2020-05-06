@@ -184,7 +184,7 @@ function switchProposals(){
 	//add the proposal container to indicate which proposal is being viewed on the map.
 	proposalGuider = L.Control.extend({
         options: {
-            position: 'topright'
+            position: 'topleft'
         },
         onAdd: function () {
             
@@ -349,6 +349,7 @@ function createMobileLegend(){
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseSeven"><div class="mLegendItem" id="forestUse" ></div><p class="mLegendTxt">Low Impact Non-Timber Forest Use</p></a></div><div id="collapseSeven" class="collapse" data-parent="#accordion"><div class="card-body">Only Brazil nut harvest concessions, Brazil nut-related tourism, and subsistence hunting of non-endangered species is allowed.<div></div>');
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseEight"><div class="mLegendItem" id="directUse" ></div><p class="mLegendTxt">Direct Use</p></a></div><div id="collapseEight" class="collapse" data-parent="#accordion"><div class="card-body">Hunting, fishing, and agriculture are allowed. Tourism, and commercial agriculture, mining, and logging are permitted after first conducting an environmental impact assessment, receiving Park Service approval, and obtaining a legal concession.<div></div>');
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseNine"><div class="mLegendItem" id="Restoration" ></div><p class="mLegendTxt">Restoration</p></a></div><div id="collapseNine" class="collapse" data-parent="#accordion"><div class="card-body">A 1 million hectar park off limits to extraction. No new zoning within the park is being officially considered.<div></div>');
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseTen"><div class="mLegendItem" id="nationalPark" ></div><p class="mLegendTxt">Bahuaja-Sonene National Park</p></a></div><div id="collapseTen" class="collapse" data-parent="#accordion"><div class="card-body">A one million hectare park off limits to extraction. No new zoning within the park is being officially considered.<div></div>');
 			L.DomEvent.disableClickPropagation(legendItems)
 			return legendItems;
 		}
@@ -418,7 +419,7 @@ function style(feature){
 		else if(zoneName == "Bahuaja-Sonene National Park"){
 			color = "None";
 			lineWidth = 3;
-			lineColor = "#7F7F7F";
+			lineColor = "#31a354";
 			fillop = 0
 		}
 		else if(zoneName == "Direct Use"){
