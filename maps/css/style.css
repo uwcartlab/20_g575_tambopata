@@ -33,7 +33,7 @@ button p{
     color: #186c3f
 }
 .parkLabel{
-    font-size: 2.5em;
+    font-size: 2.3em;
     font-weight: 600;
 }
 .swipeMe{
@@ -98,6 +98,9 @@ button p{
 }
 
 @media(max-width:50em){ /* Breakpoint only for mobile */
+    .parkLabel{
+        font-size: 2em;
+    }
     .navbar1 {
         color: #186c3f;
         overflow: hidden;
