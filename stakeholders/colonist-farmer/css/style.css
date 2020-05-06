@@ -29,6 +29,9 @@ button p{
   width: 100%;
   font-size: 0;
 }
+#myPopup2 {
+	margin-left: 2%;
+}
 @media(max-width:50em){ /* Breakpoint only for mobile */
   .navbar1 {
       color: #186c3f;
@@ -82,11 +85,14 @@ button p{
     z-index: 1;
     bottom: 125%;
     /* left: 500%; */
-    margin:0 10% !important;
+    /* margin:0 10% !important;
     /* margin:0px -550px 0px 0px; */
   }
   .popup .popupText::after {
-    display: none !important
+    display: none !important;
+  }
+  #myPopup2 {
+		margin-left: -20%;
   }
 }
 
@@ -117,11 +123,9 @@ button p{
   color: white;
 }
 
-
 .arimo{
     font-family: 'Arimo';
 }
-
 
 .image-center{
   display: block;
@@ -165,7 +169,7 @@ button p{
   content: "";
   position: absolute;
   top: 100%;
-  left: 50%;
+  left: 10%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
