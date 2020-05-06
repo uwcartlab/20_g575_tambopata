@@ -248,8 +248,15 @@ button p{
   .popup .popupText::after {
     display: none !important;
   }
+  /* popup placement Palm companies */
   #myPopup2 {
-		margin-left: -20%;
+		margin-left: -5%;
+  }
+  #myPopup1 {
+		margin-left: -5%;
+  }
+  #myPopup3 {
+		margin-left: -100%;
   }
 }
 
