@@ -31,8 +31,6 @@ function checkVisited(){
 }
 
 function secretAccess(path){
-	console.log(pass);
-
 	var userPass = prompt('Please enter the password your TA has provided');
 	if(userPass == pass){
 		window.location.href= path;

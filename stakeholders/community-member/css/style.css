@@ -21,6 +21,163 @@ button p{
   padding-left: 10px;
 }
 
+#overlay-img {
+  z-index: 2;
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../../img/river.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.80;
+  animation: anim .75s ;
+}
+
+@-webkit-keyframes anim {
+    from {opacity: 0;}
+    to {opacity: .80;}
+  }
+
+@keyframes anim {
+    from {opacity: 0;}
+    to {opacity: .80;}
+  }
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+}
+
+#overlay-div {
+  position: auto;
+  width: 50%;
+  height: 75%;
+  background: #E9ECEF;
+  transform: translate(50%,20%);
+  -ms-transform: translate(50%,50%);
+  overflow-y: auto;
+  opacity: 1;
+  font-family: "Arimo";
+}
+
+#navbar2 {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0px;
+	font-size: 0px;
+	background-color: #006d2c;
+	padding-left: 3px;
+}
+
+#navbar2 button {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	text-decoration: none;
+	border-style: none;
+	margin-left: 0px;
+	font-size: 18px;
+}
+
+#navbar2 button:hover {
+  /* background-color: white; */
+	background-color: #00441b;
+  /* color: black; */
+	color: white;
+}
+
+#tambopata-button {
+	background-color: #00441b;
+	color: white;
+}
+
+#assign-button,#glossary-button,#events-button {
+	background-color: #006d2c;
+	color: white;
+}
+
+#overlay-buttons-close {
+	float: right;
+	padding-left: 5px;
+	background-color: #006d2c;
+}
+
+#assign-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+#assign-overlay-text h2 {
+	text-align: center;
+}
+
+#tambopata-overlay-text {
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+#tambopata-overlay-text h2 {
+	text-align: center;
+}
+
+#locator {
+	height: 5%;
+	width: 85%;
+	float: left;
+	margin-left: 7.5%
+}
+
+#glossary-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+#glossary-overlay-text h2 {
+	text-align: center;
+}
+
+#glossTerm {
+	font-size: 18px;
+}
+
+#events-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+#events-overlay-text h2 {
+	text-align: center;
+}
+
 .navButton{
   height:70px;
 }

@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-            <title>Tambopata | Oil Officer</title>
+<!-- This document holds the code for the about popup so that it is easily copied to any new pages-->
 
-        <link rel="stylesheet" href="css/style.css">
-        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
-        <link rel="stylesheet" href="css\bootstrap.min.css"/>
-
-    </head>
-
-    <body>
-      <!-- Navigation bar -->
-      <div class="navbar1" id = "navbar1">
-        <span class="header">Tambopata</span>
-        <!-- Each button calls the basic JS method with the path you want to go to -->
-        <button onclick="overlayOn()"><img src="../img/Assignment2.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
-        <button class = "active" onclick="redirect('../../')"><img src="../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
-        <button onclick="redirect('../../maps')"><img src="../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
-        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
-        <button onclick="redirect('../../secret')"><img src="../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
-        <button onclick="redirect('../../credits')"><img src="../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
-        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
-      </div>
-
-	<div id="overlay-img"></div>
+<div id="overlay-img"></div>
 	<div id="overlay">
 		<div id="overlay-div">
 			<div class="navbar2" id="navbar2">
@@ -149,98 +123,234 @@
 		</div>
 	</div>
 
-      <!-- Page Title -->
-      <div class="jumbotron jumbotron">
-        <div class="container-fluid" align="center" style="color:#006d2c">
-          <h1 class="display-4">Development Officer of <i>Palmas del Peru</i> (a Peruvian oil palm company)</h1>
-        </div>
-      </div>
+<div id="container-for-js">
+// global for keeping track of previous button
+var prevButton = "tambopata-button";
 
-      <!-- Stakeholder Description contents-->
-      <div class = "container" class="arimo" align="justify" style="margin-bottom:30px;">
+// if they hit the close button then hide the overlay
+function overlayOff(){
+	document.documentElement.style.overflow = "auto";
+	document.getElementById("overlay").style.display = "none";
+	document.getElementById("overlay-img").style.display = "none";
+}
+// same but show on assign click
+function overlayOn(){
+	document.documentElement.style.overflow = "hidden";
+	document.getElementById("overlay").style.display = "block";
+	document.getElementById("overlay-img").style.display = "block";
+}
 
-        <!-- image and photo credit -->
-          <img src="oilpalmofficer.jpg" alt=" " width="50%" class="image-center">
-          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
-            <!-- need a caption for this photo -->
-            <!-- <p class="mb-0">A picture of an Ese’eja indigenous person (blurred to protect anonymity).</p> -->
-            <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
-          </blockquote>
+// basic switching of overlay content on button press
+function overlayShowNext(next){
+	var overlayDiv = document.getElementById('overlay-div');
+	overlayDiv.scrollTop = 0;
+	if(next == "assign"){
+		document.getElementById("assign-overlay-text").style.display = "block";
+		document.getElementById("tambopata-overlay-text").style.display = "none";
+		document.getElementById("glossary-overlay-text").style.display = "none";
+		document.getElementById("events-overlay-text").style.display = "none";
 
-		      <!-- <div id="basic-desc"> -->
+		document.getElementById(prevButton).style.backgroundColor = "#006d2c";
+		document.getElementById(prevButton).style.color = "white";
+		document.getElementById("assign-button").style.backgroundColor = "#00441b";
+		document.getElementById("assign-button").style.color = "white";
+		prevButton = "assign-button";
+	} else if(next == "tambopata"){
+		document.getElementById("assign-overlay-text").style.display = "none";
+		document.getElementById("tambopata-overlay-text").style.display = "block";
+		document.getElementById("glossary-overlay-text").style.display = "none";
+		document.getElementById("events-overlay-text").style.display = "none";
 
-          <p>
-            Mariella Silva works for <i>Palmas del Peru</i>, a leading company in Peru’s growing oil palm industry. Oil palm production is booming in the Peruvian
-            Amazon, especially in San Martin and Ucayali. Mariella’s job is to find new regions in Peru to promote oil palm production. In fact, a large area
-            <!--retrieve glossary term Hectares & link to gloassary -->
-            <span class="popup" onclick="popupHec()"><u>(~1.5 million hectares)</u>
-              <span class="popupText" id="myPopup3">
-                <!-- X button, affordance to close pop-up -->
-                <button type="button" class="close" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                A 100 x 100 m unit of land (1 hectare = 2.3 acres). Abbreviated “ha". Most Tambopata farms are ~40 ha.
-              </span>
-            </span>
-            of Peru is suitable for oil palm production. She hopes to convince people in Tambopata of the advantages of oil palm by pointing
-            to the high global demand for palm oil and the big profits made by producers in other areas. Although oil palm producers have been criticized for
-            displacing smallholder farmers, Mariella’s company is committed to working <i>with</i> smallholders.
-          </p>
+		document.getElementById(prevButton).style.backgroundColor = "#006d2c";
+		document.getElementById(prevButton).style.color = "white";
+		document.getElementById("tambopata-button").style.backgroundColor = "#00441b";
+		document.getElementById("tambopata-button").style.color = "white";
+		prevButton = "tambopata-button";
+	}
+	else if(next == "glossary"){
+		document.getElementById("assign-overlay-text").style.display = "none";
+		document.getElementById("tambopata-overlay-text").style.display = "none";
+		document.getElementById("glossary-overlay-text").style.display = "block";
+		document.getElementById("events-overlay-text").style.display = "none";
 
-          <p>
-            She knows that local conservationists fear that some companies will clear primary and secondary natural forests to plant oil palm trees, or that
-            companies will buy land from local farmers growing food, thus forcing them to clear forest elsewhere for new agricultural fields. Other opponents
-            point out that oil palm plantations need to be large (~1,000 ha) to be profitable. Mariella defends her company on the grounds that they are
-            committed to transparency and sustainability, and she sees sustainable oil palm production as a key way for Tambopata to develop and diversify
-            its economy. <i>Palmas del Peru</i> is looking to partner with
-            <!--retrieve pop-up with description and link to colonist farmer  -->
-            <span class="popup" onclick="popupFarm()">smallholder farmers,
-              <span class="popupText" id="myPopup2">
-                <!-- X button, affordance to close pop-up -->
-                <button type="button" class="close" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <b>Colonist Farmer</b>
-                <br>Jose and his family work hard farming land near the Tambopata National Reserve. Every year, Jose and his family
-                plant rice and corn in fields cleared in the forest until the soil becomes ‘tired’ and less productive. Click
-                <a href="http://localhost:8848/stakeholders/colonist-farmer/"target="_blank"><b>Colonist Farmer</b></a> to
-                learn about the different types of opportunities Jose is entertaining to provide a standard income for his family.
-              </span>
-            </span>
-            farming cooperatives, and other third-party suppliers who can commit to not
-            using slash-and-burn techniques when clearing their land, and who can promise to avoid areas with high conservation value when choosing where to
-            develop new oil palm plantations on their lands. In exchange, Mariella is confident that her company can offer a price premium for farmers’ sustainable
-            oil palm production. Her company is also looking for land to purchase to develop its own plantations, and she believes her company’s larger size can
-            optimize efficiency in their use of resources such as land, water, and energy. She is also confident that her company could attract investors to build
-            a local oil palm processing plant, a necessary factor in successful oil palm cultivation. Last, Mariella’s company is a member of the Round Table on
-            Sustainable Oil and is committed to ensuring that its crude palm oil production is traceable to its plantations and the smallholder producers they work
-            with. That way it’s sustainability pledges can be externally assessed by anyone interested. In short, Mariella is confident that sustainable oil palm
-            production can give Tambopata a competitive advantage it has never had.
-          </p>
-      <!-- </div> -->
-          <br>
-          <!-- 2020 Youtube video: Cacao farmer/agroecology -->
-          <div class="container" class="arimo" align="center" style="color:#006d2c;">
-            <h3>Cacao Farmer Agroforestry Coordinator</h3>
-          </div>
-          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/RMf-4BBItz8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-    <!-- end of bootstrap container -->
-		</div>
+		document.getElementById(prevButton).style.backgroundColor = "#006d2c";
+		document.getElementById(prevButton).style.color = "white";
+		document.getElementById("glossary-button").style.backgroundColor = "#00441b";
+		document.getElementById("glossary-button").style.color = "white";
+		prevButton = "glossary-button";
 
-    <!-- Additional Reading Resources -->
-    <div class="container" class="arimo" align="center" style="color:#006d2c;">
-      <h3>Additional reading resources are available through your instructor.</h3>
-    </div>
-    <br>
+	} else {
+		document.getElementById("assign-overlay-text").style.display = "none";
+		document.getElementById("tambopata-overlay-text").style.display = "none";
+		document.getElementById("glossary-overlay-text").style.display = "none";
+		document.getElementById("events-overlay-text").style.display = "block";
 
-    <!-- Button to go to top of page, referenced from w3schools.com -->
-    <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+		document.getElementById(prevButton).style.backgroundColor = "#006d2c";
+		document.getElementById(prevButton).style.color = "white";
+		document.getElementById("events-button").style.backgroundColor = "#00441b";
+		document.getElementById("events-button").style.color = "white";
+		prevButton = "events-button";
 
-        <script src = "lib\jquery-3.4.1.js"></script>
-        <script type= "text/javascript" src="js/main.js"></script>
-        <script src = "lib\bootstrap.min.js"></script>
-            <script src = "lib\bootstrap.bundle.min.js"></script>
-    </body>
-</html>
+	}
+}
+</div>
+
+<div id="container-for-css">
+#overlay-img {
+  z-index: 2;
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../img/river.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.80;
+  animation: anim .75s ;
+}
+
+@-webkit-keyframes anim {
+    from {opacity: 0;}
+    to {opacity: .80;}
+  }
+
+@keyframes anim {
+    from {opacity: 0;}
+    to {opacity: .80;}
+  }
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+}
+
+#overlay-div {
+  position: auto;
+  width: 50%;
+  height: 75%;
+  background: #E9ECEF;
+  transform: translate(50%,20%);
+  -ms-transform: translate(50%,50%);
+  overflow-y: auto;
+  opacity: 1;
+  font-family: "Arimo";
+}
+
+#navbar2 {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0px;
+	font-size: 0px;
+	background-color: #006d2c;
+	padding-left: 3px;
+}
+
+#navbar2 button {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	text-decoration: none;
+	border-style: none;
+	margin-left: 0px;
+	font-size: 18px;
+}
+
+#navbar2 button:hover {
+  /* background-color: white; */
+	background-color: #00441b;
+  /* color: black; */
+	color: white;
+}
+
+#tambopata-button {
+	background-color: #00441b;
+	color: white;
+}
+
+#assign-button,#glossary-button,#events-button {
+	background-color: #006d2c;
+	color: white;
+}
+
+#overlay-buttons-close {
+	float: right;
+	padding-left: 5px;
+	background-color: #006d2c;
+}
+
+#assign-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+#assign-overlay-text h2 {
+	text-align: center;
+}
+
+#tambopata-overlay-text {
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+#tambopata-overlay-text h2 {
+	text-align: center;
+}
+
+#locator {
+	height: 5%;
+	width: 85%;
+	float: left;
+	margin-left: 7.5%
+}
+
+#glossary-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+#glossary-overlay-text h2 {
+	text-align: center;
+}
+
+#glossTerm {
+	font-size: 18px;
+}
+
+#events-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+#events-overlay-text h2 {
+	text-align: center;
+}
+</div>
+
