@@ -22,11 +22,19 @@ function checkVisited(){
 	if(diff > 0){
 		$("#myPopup1").offset({top:$("#myPopup1").offset().top, left: ($("#myPopup1").offset().left - diff)});
 	}
+	var popup1Left = $("#myPopup1").offset().left;
+	if(popup1Left < 0){
+		$("#myPopup1").offset({top:$("#myPopup1").offset().top, left: 10});
+	}
 	var popup2Width = $("#myPopup2").offset().left + $("#myPopup2").width();
 	diff = Math.ceil(popup2Width - container);
 	if(diff > 0){
 		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: ($("#myPopup2").offset().left - diff)});
-	)
+	}
+	var popup2Left = $("#myPopup2").offset().left;
+	if(popup2Left < 0){
+		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: 10});
+	}
 }
 
 // when a resize occurs change the values for popup offsets
@@ -37,10 +45,18 @@ $(window).resize(function(){
 	if(diff > 0){
 		$("#myPopup1").offset({top:$("#myPopup1").offset().top, left: ($("#myPopup1").offset().left - diff)});
 	}
+	var popup1Left = $("#myPopup1").offset().left;
+	if(popup1Left < 0){
+		$("#myPopup1").offset({top:$("#myPopup1").offset().top, left: 10});
+	}
 	var popup2Width = $("#myPopup2").offset().left + $("#myPopup2").width();
 	diff = Math.ceil(popup2Width - container);
 	if(diff > 0){
 		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: ($("#myPopup2").offset().left - diff)});
+	}
+	var popup2Left = $("#myPopup2").offset().left;
+	if(popup2Left < 0){
+		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: 10});
 	}
 });
 
