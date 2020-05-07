@@ -381,7 +381,7 @@ function style(feature){
 	var color; // color of the zone
     var zoneName = feature.properties.ZONES
 	if(zoneName == "Buffer Zone"){ // if it's the buffer zone, make it Powder blue
-	color = "#b29d77";
+	color = "#4d412b";
 	lineWidth = 0.3;
 	lineColor = "Black";
 	fillop = opacity
@@ -436,7 +436,7 @@ function style(feature){
 			fillop = opacity;
 		}
 		else if(zoneName == "Community Reserve"){
-			color = "#f5aa1c";
+			color = "#a87007";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
