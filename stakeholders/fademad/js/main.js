@@ -22,15 +22,27 @@ function checkVisited(){
 	if(diff > 0){
 		$("#myPopup1").offset({top:$("#myPopup1").offset().top, left: ($("#myPopup1").offset().left - diff)});
 	}
+	var popup1Left = $("#myPopup1").offset().left;
+	if(popup1Left < 0){
+		$("#myPopup1").offset({top:$("#myPopup1").offset().top, left: 10});
+	}
 	var popup2Width = $("#myPopup2").offset().left + $("#myPopup2").width();
 	diff = Math.ceil(popup2Width - container);
 	if(diff > 0){
 		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: ($("#myPopup2").offset().left - diff)});
 	}
+	var popup2Left = $("#myPopup2").offset().left;
+	if(popup2Left < 0){
+		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: 10});
+	}
 	var popup3Width = $("#myPopup3").offset().left + $("#myPopup3").width();
 	diff = Math.ceil(popup3Width - container);
 	if(diff > 0){
 		$("#myPopup3").offset({top:$("#myPopup3").offset().top, left: ($("#myPopup3").offset().left - diff)});
+	}
+	var popup3Left = $("#myPopup3").offset().left;
+	if(popup3Left < 0){
+		$("#myPopup3").offset({top:$("#myPopup3").offset().top, left: 10});
 	}
 
 	var popup4Width = $("#myPopup4").offset().left + $("#myPopup4").width();
@@ -38,20 +50,36 @@ function checkVisited(){
 	if(diff > 0){
 		$("#myPopup4").offset({top:$("#myPopup4").offset().top, left: ($("#myPopup4").offset().left - diff)});
 	}
+	var popup4Left = $("#myPopup4").offset().left;
+	if(popup4Left < 0){
+		$("#myPopup4").offset({top:$("#myPopup4").offset().top, left: 10});
+	}
 	var popup5Width = $("#myPopup5").offset().left + $("#myPopup5").width();
 	diff = Math.ceil(popup5Width - container);
 	if(diff > 0){
 		$("#myPopup5").offset({top:$("#myPopup5").offset().top, left: ($("#myPopup5").offset().left - diff)});
+	}
+	var popup5Left = $("#myPopup5").offset().left;
+	if(popup5Left < 0){
+		$("#myPopup5").offset({top:$("#myPopup5").offset().top, left: 10});
 	}
 	var popup6Width = $("#myPopup6").offset().left + $("#myPopup6").width();
 	diff = Math.ceil(popup6Width - container);
 	if(diff > 0){
 		$("#myPopup6").offset({top:$("#myPopup6").offset().top, left: ($("#myPopup6").offset().left - diff)});
 	}
+	var popup6Left = $("#myPopup6").offset().left;
+	if(popup6Left < 0){
+		$("#myPopup6").offset({top:$("#myPopup6").offset().top, left: 10});
+	}
 	var popup7Width = $("#myPopup7").offset().left + $("#myPopup7").width();
 	diff = Math.ceil(popup7Width - container);
 	if(diff > 0){
 		$("#myPopup7").offset({top:$("#myPopup7").offset().top, left: ($("#myPopup7").offset().left - diff)});
+	}
+	var popup7Left = $("#myPopup7").offset().left;
+	if(popup7Left < 0){
+		$("#myPopup7").offset({top:$("#myPopup7").offset().top, left: 10});
 	}
 }
 
@@ -63,15 +91,27 @@ $(window).resize(function(){
 	if(diff > 0){
 		$("#myPopup1").offset({top:$("#myPopup1").offset().top, left: ($("#myPopup1").offset().left - diff)});
 	}
+	var popup1Left = $("#myPopup1").offset().left;
+	if(popup1Left < 0){
+		$("#myPopup1").offset({top:$("#myPopup1").offset().top, left: 10});
+	}
 	var popup2Width = $("#myPopup2").offset().left + $("#myPopup2").width();
 	diff = Math.ceil(popup2Width - container);
 	if(diff > 0){
 		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: ($("#myPopup2").offset().left - diff)});
 	}
+	var popup2Left = $("#myPopup2").offset().left;
+	if(popup2Left < 0){
+		$("#myPopup2").offset({top:$("#myPopup2").offset().top, left: 10});
+	}
 	var popup3Width = $("#myPopup3").offset().left + $("#myPopup3").width();
 	diff = Math.ceil(popup3Width - container);
 	if(diff > 0){
 		$("#myPopup3").offset({top:$("#myPopup3").offset().top, left: ($("#myPopup3").offset().left - diff)});
+	}
+	var popup3Left = $("#myPopup3").offset().left;
+	if(popup3Left < 0){
+		$("#myPopup3").offset({top:$("#myPopup3").offset().top, left: 10});
 	}
 
 	var popup4Width = $("#myPopup4").offset().left + $("#myPopup4").width();
@@ -79,20 +119,36 @@ $(window).resize(function(){
 	if(diff > 0){
 		$("#myPopup4").offset({top:$("#myPopup4").offset().top, left: ($("#myPopup4").offset().left - diff)});
 	}
+	var popup4Left = $("#myPopup4").offset().left;
+	if(popup4Left < 0){
+		$("#myPopup4").offset({top:$("#myPopup4").offset().top, left: 10});
+	}
 	var popup5Width = $("#myPopup5").offset().left + $("#myPopup5").width();
 	diff = Math.ceil(popup5Width - container);
 	if(diff > 0){
 		$("#myPopup5").offset({top:$("#myPopup5").offset().top, left: ($("#myPopup5").offset().left - diff)});
+	}
+	var popup5Left = $("#myPopup5").offset().left;
+	if(popup5Left < 0){
+		$("#myPopup5").offset({top:$("#myPopup5").offset().top, left: 10});
 	}
 	var popup6Width = $("#myPopup6").offset().left + $("#myPopup6").width();
 	diff = Math.ceil(popup6Width - container);
 	if(diff > 0){
 		$("#myPopup6").offset({top:$("#myPopup6").offset().top, left: ($("#myPopup6").offset().left - diff)});
 	}
+	var popup6Left = $("#myPopup6").offset().left;
+	if(popup6Left < 0){
+		$("#myPopup6").offset({top:$("#myPopup6").offset().top, left: 10});
+	}
 	var popup7Width = $("#myPopup7").offset().left + $("#myPopup7").width();
 	diff = Math.ceil(popup7Width - container);
 	if(diff > 0){
 		$("#myPopup7").offset({top:$("#myPopup7").offset().top, left: ($("#myPopup7").offset().left - diff)});
+	}
+	var popup7Left = $("#myPopup7").offset().left;
+	if(popup7Left < 0){
+		$("#myPopup7").offset({top:$("#myPopup7").offset().top, left: 10});
 	}
 });
 
