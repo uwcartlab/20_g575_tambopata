@@ -231,7 +231,7 @@ button p{
    .popup .popupText {
     visibility: hidden;
     width: 230px !important;
-    max-height: 600px;
+    max-height: 1000px;
     box-shadow: 2px 3px 5px #999;
     background-color:#E7EFEA;
     color: #186C3F;
@@ -310,9 +310,8 @@ button p{
   z-index: 1;
   bottom: 125%;
   left: 0%;
-  margin-left: -150px;
+  margin-left: -100px;
 }
-
 
 /* Popup arrow under pop-up container*/
 .popup .popupText::after {
