@@ -12,7 +12,6 @@ var opacity;
 
 //create the map
 function setMap() {
-	console.log(opacity)
     //roads tile layer from ArcGIS online
 	var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
@@ -448,7 +447,7 @@ function style(feature){
 			fillop = opacity;
 		}
 		else if(zoneName == "Low Impact Non-Timber Forest Use"){
-			color = "#ffffe5";
+			color = "#dadac0";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;

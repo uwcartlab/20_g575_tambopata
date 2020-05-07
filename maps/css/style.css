@@ -57,6 +57,7 @@ button p{
     border-radius: .25rem;
     font-family: 'Arimo' !important;
     animation: glow 1s infinite alternate !important;
+    z-index: 10 !important;
 }
 @keyframes glow {
     from {
@@ -252,6 +253,7 @@ html, body, #map {
     overflow-y: auto;
     opacity: 1;
     font-family: "Arimo";
+    z-index: 999999;
   }
   
   #navbar2 {
@@ -659,7 +661,7 @@ html, body, #map {
     background-color: #d9f0a3;
 }
 #forestUse{
-    background-color: #ffffe5;
+    background-color: #dadac0;
 }
 #directUse{
     background-color: #d0d1e6
