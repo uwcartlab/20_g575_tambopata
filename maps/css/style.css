@@ -254,6 +254,10 @@ html, body, #map {
     font-family: "Arimo";
   }
   
+  #overlay-div h2 {
+	  text-align: center;
+  }
+  
   #navbar2 {
       position: -webkit-sticky; /* Safari */
       position: sticky;
