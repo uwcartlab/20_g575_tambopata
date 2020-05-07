@@ -647,10 +647,10 @@ html, body, #map {
     cursor: pointer;
 }
 #bufferZone{
-    background-color: #b29d77;
+    background-color: #4d412b;
 }
 #communityReserve{
-    background-color: #f5aa1c;
+    background-color: #a87007;
 }
 #strictProtection{
     background-color: #004529;
@@ -677,9 +677,5 @@ html, body, #map {
 
 #nationalPark{
 background-color: none;
-border: 2px solid #31a354
-/* background: repeating-linear-gradient(
-  135deg,
-  forestgreen,
-  forestgreen 3px,
-  darkgreen 6px */
+border: 2px solid #31a354;
+}
