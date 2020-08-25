@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+            <title>Tambopata | Wildlife Ecologist</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+            <link rel="stylesheet" href="css\bootstrap.min.css"/>
+    </head>
+
+    <body>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../../')"><img src="../../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button class = "active" onclick="redirect('../../../stakeholders')"><img src="../../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../../maps')"><img src="../../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../../secret')"><img src="../../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <button onclick="redirect('../../../credits')"><img src="../../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div>
+    <!-- About Tambopata/Assignment  -->
+
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Widlife Ecologist</h1>
+        </div>
+      </div>
+
+      <!-- Stakeholder Description container-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <div class = "row">
+          <div class = "col-md-6 col-sm-12 col-xs-12">
+        <!-- image and photo credit -->
+          <img src="ecologist.jpg" alt="picture of a wildlife ecologist standing in front of the base of a very large tree" width="85%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
+          </blockquote>
+          </div>
+          <div class = "col-md-6 col-sm-12 col-xs-12">
+		      <!-- Stakeholder description with popups for glossary terms and links to other stakeholders -->
+          <p>
+            Dr. Natalia Ortiz is a Peruvian scientist who studies the ecology of Giant River Otters (<i>Pteronura brasiliensis</i>) in Tambopata, one of the last
+            strongholds for this endangered species. She thinks giant otters are magical animals – for one, they are enormous (up to 6 feet long) and live
+            in tight-knit social groups that collectively raise pups. They fish cooperatively and are very playful. As top predators, they require large areas
+            of intact ecosystems to survive. Natalia is deeply worried that the giant otters in Tambopata are threatened by the same human activities that have
+            wiped the species out from other parts of the Amazon. Mining and agriculture are the worst threats, but giant otter populations are also highly
+            sensitive to hunting and to overfishing, which is depleting fish stocks in the rivers they call home. Moreover, her research shows that the decline
+            of giant river otters signals that many of Tambopata’s natural aquatic habitats are in trouble. The draining of wetlands and lakes for mining and
+            agriculture threatens many species, and it also releases significant amounts of carbon.
+          </p>
+        </div>
+        <div class = "col-md-12 col-sm-12 col-xs-12">
+          <p>
+            Natalia is aware that tourists pay a lot of money to see giant river otters, but she also knows that more local people in more places need to benefit
+            from
+            <!--retrieve glossary term Eco-tourism & link to gloassary -->
+            <span class="popup" onclick="popupEco()"><u>ecotourism</u>
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A form of nature-based tourism in which tourist impacts on the environment are mitigated.
+                <a href="http://localhost:8848/stakeholders/rainforest-expeditions/"target="_blank"> <b>Rainforest Expeditions</b></a>
+              </span>
+            </span>
+            in order for communities to protect the environmental conditions necessary to sustain viable populations of otters. It also might be
+            possible to justify the conservation of palm swamps (an important habitat for giant otters) because they yield <i>Mauritia flexuosa</i> fruits (aguaje), a popular
+            fruit sold in Amazonian towns. But hunting and fishing in the swamps would have to be strictly controlled for otters and other wildlife to persist. Or perhaps
+            another way to sustain otter habitat is by protecting the forest through forest carbon projects that pay environmental stewards like
+            <!--retrieve pop-up with description and link to Brazil Nut harvester  -->
+            <span class="popup" onclick="popupNut()">Brazil nut harvesters
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Brazil Nut Harvester</b>
+                <br>Maria is a Brazil nut harvester and her livelihood depends on access to the old growth forests.
+                Brazil nut trees take decades to start producing nuts and cannot be cultivated in plantations. Click
+                <a href="http://localhost:8848/stakeholders/brazil-nut-harvester/"target="_blank"><b>Brazil Nut Harvester</b></a> to learn how Maria is engaging with other stakeholders
+                to address the changing landscape.
+              </span>
+            </span>
+            to conserve their land. Last, she has tried to convince people to save otter habitat as a means to protect the sources of clean drinking water. Ultimately she
+            is troubled when people describe wild animals simply as ‘resources’ or rely only on utilitarian arguments. She sees otters, other wildlife, and natural forests
+            as having deep intrinsic value, deserving protection beyond human interests. She sees hope in the rising concern for environmental protection among Peruvian
+            citizens, including those living in large cities like Lima. She is fighting to protect wildlife for all Peruvians, including future generations.
+          </p>
+        </div>
+      </div>
+          <br>
+        
+      <!-- 2020 Video: Reforestration -->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h2><u>Related Short Videos</u></h2>
+          <br>
+        <h3>Reforestation in Mining Areas</h3>
+      </div>
+      <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/NKflSNuJ68s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br>
+
+      <!-- New 2020 Youtube video Ecogourism entrepreneur -->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>Ecotourism Entrepreneur From Infierno Ese'eja Community</h3>
+      </div>
+      <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/CNXXmyaJjQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br>
+
+      <!-- 2020 Youtube video Brazil Nut Harvester-->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>Brazil Nut Harvester & Tourism Entrepreneur</h3>
+      </div>
+      <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Q43OWclfPHw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br>
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>Overview of Tambopata Community (1996, 28 minutes) </h3>
+      </div>
+      <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/bz7HzmlcXH0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br>
+     <!-- Additional Reading Resources -->
+     <div class="container" class="arimo" align="center" style="color:#006d2c;">
+      <h3>Additional reading resources are available through your instructor.</h3>
+    </div>
+    <br><br>
+
+
+    <div align = "left">
+      <i>The stakeholders are fictitious but based on real people from Tambopata (see <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>credits</b></a>).
+      <br>
+      Las imágenes, nombres y notas biográficas son ficticias pero basadas en actores reales de Tambopata
+      (ver <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>créditos</b></a>).</i>
+    </div>
+    <!-- End of Bootstrap Container -->
+  </div>
+  <div class = "copyright">
+		<a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+			<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+		</a>
+		<br />This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+	</div>
+    <!-- Button to go to top of page, referenced from w3schools.com -->
+    <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
+    </body>
+</html>

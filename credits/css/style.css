@@ -7,12 +7,27 @@
   font-size: 35px;
   padding: 0px 20px 0px 20px;
 }
+#footer {
+  text-align: left;
+  float: left;
+  overflow: hidden;
+  margin-left: 10px;
+  font-size: 0.8em;
+}
+.v1{
+  color: #006d2c
+}
+
 button p{
   float: right;
   margin: 0;
   padding-left: 10px;
 }
-
+.copyright{
+  width: 10%;
+  font-family: 'Arimo';
+  font-size: 0.8em
+}
 /* Place the navbar at the top of the page, and make it stick */
 .navbar1 {
   background-color: #006d2c;
@@ -21,6 +36,13 @@ button p{
   font-size: 0;
 }
 @media(max-width:50em){ /* Breakpoint only for mobile */
+  .copyright{
+    margin-bottom: 80px;
+    width: 50%;
+  }
+  footer{
+    margin-bottom: 70px;
+  }
   .navbar1 {
       color: #186c3f;
       overflow: hidden;

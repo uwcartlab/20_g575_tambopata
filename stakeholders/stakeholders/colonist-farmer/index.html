@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+            <title>Tambopata | Colonist Farmer</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+
+    </head>
+
+    <body>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../../')"><img src="../../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button class = "active" onclick="redirect('../../../stakeholders')"><img src="../../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../../maps')"><img src="../../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../../secret')"><img src="../../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <button onclick="redirect('../../../credits')"><img src="../../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div>
+
+
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Colonist Farmer</h1>
+        </div>
+      </div>
+
+      <!-- Stakeholder Description container-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <div class = "row">
+          <div class = "col-md-7 col-sm-12 col-xs-12">
+        <!-- image and photo credit -->
+          <img src="colonistFarmer.jpg" alt="Picture of a colonist farmer standing in front of a pasture " width="70%" class = "image-center" >
+          <blockquote class="blockquote" align="center" style="margin-bottom:10px;">
+            <footer class="blockquote-footer"><i>Photo credit: Yoly Gutierrez, </i><cite title="Source Title"><i>CIFOR</i></cite></footer>
+          </blockquote>
+          </div>
+
+          <div class = "col-md-5 col-sm-12 col-xs-12">
+          <!-- start of description with pop-ups through out for glossary terms and links to other stakeholders -->
+          <p>Luisa Herrera and her family moved five years ago to the Tambopata National Reserve in search of new farm land and opportunities. They left Cuzco, a city
+            in the Peruvian Andes, due to land scarcity and unemployment. Immigrants to the Amazon, like Luisa and her family, are often referred to as ‘colonists’.
+            Like other colonists, upon her arrival, Luisa claimed 30
+            <!--retrieve glossary term Hectares -->
+            <span class="popup" onclick="popupHec()"><u>hectares</u>
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A 100 x 100 m unit of land (1 hectare = 2.3 acres). Abbreviated “ha". Most Tambopata farms are ~40 ha.
+              </span>
+            </span>
+           of land along the highway. Every year, Luisa and her family plant rice and corn in fields
+           cleared in the forest until the soil becomes ‘tired’ and less productive. Then, they convert the old field to cattle pasture and clear a new field in the
+           forest. They eat most of the food they grow and sell the surplus if they have any.
+          </p>
+        </div>
+        <div class = "col-md-12 col-sm-12 col-xs-12">
+          <p>Like other poor residents of Tambopata, Luisa is worried about her family’s financial future. She hopes someday to buy a truck and sell food in town or
+            to local miners. Or, she might convert her whole farm into a pasture and get a job in the city. Some of her neighbors are talking about selling their land
+            to oil
+            <!-- retrieve palm oil description and link  -->
+            <span class="popup" onclick="popupOil()">oil palm companies,
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Development Officer for Palmas del Peru</b>
+                <br>Mariella works for a leading company in Peru’s growing oil palm industry. Her job is to find new regions in Peru to
+                promote oil palm production which pays big profits to producers. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/oil-officer/"target="_blank"><b>Oil Palm Company</b></a> to learn how Mariella would like to work
+                with smallholders to bring economic gains to the area.
+              </span>
+            </span>
+
+            and then moving deeper into the forest to claim new farmland. But Luisa does not have legal title to her land and doesn’t think she’d
+            be paid much for it. She is a member of the Agrarian Federation
+            <!-- retrieve Fademad description and link  -->
+            <span class="popup" onclick="popupFad()">(FADEMAD),
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Leader of the Agrarian Federation (FADEMAD)</b>
+                <br>Alan leads FADEMAD, a grassroots political organization that represents
+                 ~5000 small farmers in the Madre de Dios region. Alan believes that poor farmers’ quality of life
+                 depends on a healthy environment. Thus, he tries to defend local farmers AND the forest. Click
+                <a href="http://localhost:8848/stakeholders/fademad/"target="_blank"><b>FADEMAD</b></a> to learn how
+                Alan weighs the costs and benefits of land management practices of his varied constituents are interested in pursuing.
+              </span>
+            </span>
+            a local political organization, and has heard some members talk about transitioning from shifting agriculture to agroforestry. SHe might even be able to start
+            growing organic cacao (the source of chocolate) and sell it via a local marketing coop that could negotiate a better price. Consumer demand for certified chocolate
+            is on the rise. But Luisa has no knowledge or experience with tropical tree crops like cacao – she would need training to pursue agroforestry. She also wonders how he
+            could survive financially while waiting the five years for the cacao trees to bear fruit. She could always turn to working for her friends in their illegal gold mining
+            camp. Gold mining is back-breaking, often dangerous work, but if you’re lucky, you can make a lot of money in a short time.
+          </p>
+
+          </p>Luisa and most other FADEMAD members are poor, but they are the largest interest group in the region, and they have strength in numbers. Luisa and her fellow
+            colonists keep pushing their leaders to take a firm pro-agriculture stand. They know they need financial, technical, and political support to be successful farmers
+            in Tambopata.
+          </p>
+
+          <br>
+        </div>
+        </div>
+          <!-- 2020 Video: Reforestration -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h2><u>Related Short Videos</u></h2>
+          <br>
+            <h3>Reforestation in Mining Areas</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/NKflSNuJ68s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <!-- 2020 Youtube video: Cacao farmer/agroecology -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Cacao Farmer Agroforestry Coordinator</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/RMf-4BBItz8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Overview of Tambopata Community (1996, 28 minutes) </h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/bz7HzmlcXH0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+      <!-- Additional Reading Resources -->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>Additional reading resources are available through your instructor.</h3>
+      </div>
+      <br><br>
+      <div align = "left">
+				<i>The stakeholders are fictitious but based on real people from Tambopata (see <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>credits</b></a>).
+				<br>
+				Las imágenes, nombres y notas biográficas son ficticias pero basadas en actores reales de Tambopata
+				(ver <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>créditos</b></a>).</i>
+      </div>
+      <!-- End of Bootstrap Container -->
+      </div>
+
+
+
+      <div class = "copyright">
+        <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+          <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+        </a>
+        <br />This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+      </div>
+       <!-- Button to go to top of page, referenced from w3schools.com -->
+       <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+      
+
+      <script src = "lib\jquery-3.4.1.js"></script>
+    	<script type= "text/javascript" src="js/main.js"></script>
+  		<script src = "lib\bootstrap.min.js"></script>
+          <script src = "lib\bootstrap.bundle.min.js"></script>
+    </body>
+</html>

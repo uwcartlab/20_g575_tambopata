@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+            <title>Tambopata | FEDEMIN</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+
+
+    </head>
+
+    <body>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../../')"><img src="../../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button class = "active" onclick="redirect('../../../stakeholders')"><img src="../../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../../maps')"><img src="../../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../../secret')"><img src="../../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <button onclick="redirect('../../../credits')"><img src="../../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div>
+
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Leader of the Mining Federation (FEDEMIN)</h1>
+        </div>
+      </div>
+
+      <!-- Stakeholder Description Container-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <div class = "row">
+          <div class = "col-md-6 col-sm-12 col-xs-12">
+        <!-- image and photo credit -->
+          <img src="Fedemin.jpg" alt="Picture of a mining leader standing in front of a blue lunch counter" width="85%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
+          </blockquote>
+        </div>
+        <div class = "col-md-6 col-sm-12 col-xs-12">
+          <!-- Stakeholder descriptin with popups for glossary terms and links to other stakeholders -->
+          <p>
+            Miguel Yallico is disgusted by the poverty he sees in Tambopata, especially because he knows there are millions of dollars of gold lying buried in the
+            region’s soils. Miguel mines gold in three places in Tambopata, but like 90 percent of local miners, he operates illegally. He is not afraid of punishment
+            because Peru’s government agencies lack personnel to fully enforce mining regulations. Besides, Miguel has many powerful connections, and he usually gets
+            advance warning when an enforcement event is imminent.
+          </p>
+
+          <p>
+            Miguel is thrilled that gold prices are rising and more people are coming to Tambopata to strike it rich. But he’s troubled that labor conditions for miners
+            in Tambopata have gotten more dangerous in recent years. Corruption and violence have soared, and he directly blames the Peruvian government and its Ministry
+            of Energy and Mines. He argues that the high cost of the  Ministry’s mining permit process, the slowness of the bureaucracy, and the endless red tape make
+            local miners resort to working illegally.
+          </p>
+        </div>
+        <div class = "col-md-12 col-sm-12 col-xs-12">
+          <p>
+            Miguel’s fiery public speeches decrying the government and opposing environmental regulations have made him popular and politically powerful. When asked
+            about the environmental impacts of mining, he fights back. He accuses environmentalists of indifference to the poor and of being beholden to hegemonic
+            interests of global northern countries. He asks, "who is polluting more: us
+            <!--retrieve pop-up with description and link to gold miner  -->
+            <span class="popup" onclick="popupMine()">poor miners,
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Small-Scale Gold Miner</b>
+                <br>Pedro is a long-time resident of Tambopata and a gold miner. Given the rising global demand for gold, Pedro thinks it
+                is impossible to stop mining in Tambopata but he’s also concerned about the impact mining has on his community and environment. Click
+                <a href="http://localhost:8848/stakeholders/gold-miner/"target="_blank"><b>Gold Miner</b></a> to learn about
+                the future or mining Pedro envisions.
+              </span>
+            </span>
+             or big rich countries in the North who fill the sky with CO<sub>2</sub>?" He urges his fellow miners to disregard the rules about applying for legal mining
+            <!--retrieve glossary term concessions & link to gloassary -->
+            <span class="popup" onclick="popupCon()"><u>concessions</u>
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A formal permit issued by the government for a certain activity
+                (e.g. mining, logging, ecotourism) for a specified period of time (usually several years, although not
+                permanent).
+              </span>
+            </span>
+            These rules are unreasonable and interfere with the basic principle that every Peruvian has the right to mine – after all, mining has historically been part
+            of their identity and dignity. He thinks mining is also the best option for
+            <!--retrieve pop-up with description and link to community member  -->
+            <span class="popup" onclick="popupEse()">local indigenous people
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Ese'eja Community Member</b>
+                <br>Ramon is a member of the Ese’eja Indigenous community with deep ecological knowledge and a
+                strong spiritual connection to Amazonian ecosystems. Over time, the Ese’eja have lost access to many of their sacred sites and to areas they once relied on. Click
+                <a href="http://localhost:8848/20_g575_tambopata/stakeholders/community-member/"target="_blank"><b>Ese'eja Community Member</b></a> to understand Ramon’s interests in participatory land management.
+              </span>
+            </span>
+            and that roads should be built into their territories to facilitate gold mining. Miguel is confident that mining
+            is the best path for local economic development. As the region becomes more prosperous, environmental problems can be addressed, e.g. trees can be planted
+            in areas damaged by mining. In the meantime, if any environmentalist wants to pay for more sustainable mining equipment, that’s fine, just don’t ask the poor
+            miners to make any more sacrifices. They are doing back-breaking, dangerous work.
+          </p>
+        </div>
+          <br>
+        </div>
+        <!-- 2020 Video: Reforestration -->
+        <div class="container" class="arimo" align="center" style="color:#006d2c;">
+          <h2><u>Related Short Video</u></h2>
+          <br>
+          <h3>Reforestation in Mining Areas</h3>
+        </div>
+        <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/NKflSNuJ68s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      <!-- Additional Reading Resources -->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>Additional reading resources are available through your instructor.</h3>
+      </div>
+      <br><br>
+      <div align = "left">
+				<i>The stakeholders are fictitious but based on real people from Tambopata (see <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>credits</b></a>).
+				<br>
+				Las imágenes, nombres y notas biográficas son ficticias pero basadas en actores reales de Tambopata
+				(ver <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>créditos</b></a>).</i>
+      </div>
+      <!-- End of Bootstrap Container -->
+      </div>
+       <br>
+       <div class = "copyright">
+        <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+          <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+        </a>
+        <br />This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+      </div>
+       <!-- Button to go to top of page, referenced from w3schools.com -->
+       <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+
+
+
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
+    </body>
+</html>

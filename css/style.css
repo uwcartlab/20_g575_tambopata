@@ -1,12 +1,49 @@
-html {
-	overflow: hidden;
+html, body {
+	overflow-x: hidden;
 }
 
-.container-stakeholder {
+.img-map{
+  width: 90%
+}
+.tab{
+  font-size: 20px;
+  font-family: 'Arimo';
+}
+#footer {
+  text-align: left;
+  float: left;
+  overflow: hidden;
+  margin-left: 10px;
+  font-size: 0.8em;
+}
+.v1{
+  color: #006d2c;
+}
+.rowHover{
+  background: #006d2c;
+}
+.aboutDiv{
+  color: white;
+  height: 45px;
+  padding: 5px;
+  font-family: 'Arimo';
+  font-size: 1.25em;
+  text-decoration: none;
+  justify-content: center;
+}
+.aboutLinks{
+  color: white;
+  justify-content: center;
+  text-decoration: none;
+}
+.container-landing-page {
+  width: auto;
   max-width: 1000px;
+  padding-right: 15px;
+  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  display: absolute;
+  display:relative;
   justify-content: center;
 }
 .header{
@@ -16,6 +53,10 @@ html {
   text-align: left;
   font-size: 35px;
   padding: 0px 20px 0px 20px;
+}
+h3{
+  font-size: 1.25em !important;
+  font-family: 'Arimo';
 }
 button p{
   float: right;
@@ -32,8 +73,16 @@ button p{
   width: 100%;
 	font-size: 0;
 }
-
+.copyright{
+  width: 10%;
+  font-family: 'Arimo';
+  font-size: 0.8em
+}
 @media(max-width:50em){ /* Breakpoint only for mobile */
+  .copyright{
+    margin-bottom: 80px;
+    width: 50%;
+  }
   .navbar1 {
       color: #186c3f;
       overflow: hidden;
@@ -76,7 +125,10 @@ button p{
 
 }
 /* Style the links inside the navigation bar */
-
+ul, .paragraph{
+  font-family: 'Arimo';
+  font-size: 1.2em
+}
 .navbar1 button {
   background-color: #006d2c;
   border-style: none;
@@ -93,10 +145,13 @@ button p{
 }
 
 /* Change the color of links on hover */
-.navbar1 button:hover {
+.navbar1 button:hover, .rowHover:hover{
   background-color: #00441b;
+  text-decoration: none;
 }
-
+.aboutLink:hover{
+  text-decoration: none;
+}
 /* Add a color to the active/current link */
 .navbar1 button.active {
   background-color: #00441b;
@@ -194,60 +249,24 @@ button p{
 	padding-left: 5px;
 	background-color: #006d2c;
 }
-
-#assign-overlay-text {
-  display: none;
-  position: auto;
-  top: 50%;
-  left: 10%;
-  font-size: 16px;
-  color: black;
-  padding: 10px;
-}
-
-#tambopata-overlay-text {
-  top: 50%;
-  left: 10%;
-  font-size: 16px;
-  color: black;
-  padding: 10px;
-}
-
-#locator {
-	height: 5%;
-	width: 85%;
-	float: left;
-	margin-left: 7.5%
-}
-
-#glossary-overlay-text {
-  display: none;
-  position: auto;
-  top: 50%;
-  left: 10%;
-  font-size: 16px;
-  color: black;
-  padding: 10px;
-}
-
-#glossTerm {
-	font-size: 18px;
-}
-
-#events-overlay-text {
-  display: none;
-  position: auto;
-  top: 50%;
-  left: 10%;
-  font-size: 16px;
-  color: black;
-  padding: 10px;
-}
-
 h2 {
     text-align: center;
 }
-
+.arimo{
+  font-family: 'Arimo' !important;
+}
+.header-bar{
+  margin-top: 5px;
+  height: 3px;
+  width: 100%;
+  background-color: #006d2c;
+  filter: drop-shadow(0 0 2px white);
+}
+.aboutHeaders{
+  color: #006d2c;
+  font-size: 3em;
+  font-family: 'Arimo';
+}
 .heading {
 	color: #006d2c;
 	font-size: 1.755em;
@@ -255,53 +274,40 @@ h2 {
 	padding: 20px 0 20px 0;
 	background-color: #e9ecef;
 }
+.masthead {
+  background-image: url("../img/RiverBanner.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+  min-height: 500px;
+  opacity: 0.95
+}
+.masthead h1{
+  color: #e5f5f9;
+  text-shadow: -2px 2px 0 #006d2c, 2px 2px 0 #006d2c, 2px -2px 0 #006d2c, -2px -2px 0 #006d2c,-4px 4px 0 rgba(255,255,255,0.4), 4px 4px 0 rgba(255,255,255,0.4), 4px -4px 0 rgba(255,255,255,0.4), -4px -4px 0 rgba(255,255,255,0.4), 0 0 20px white, 0 0 15px white, 0 0 5px white;
+  font-size: 4em;
+}
 
-.img-bground {
-  min-width: 100%;
-  height: auto;
-  border-radius: 15%;
-  object-fit: cover;
+.masthead h2{
+  color: #e5f5f9;
+  text-shadow: -2px 2px 0 #006d2c, 2px 2px 0 #006d2c, 2px -2px 0 #006d2c, -2px -2px 0 #006d2c,-4px 4px 0 rgba(255,255,255,0.4), 4px 4px 0 rgba(255,255,255,0.4), 4px -4px 0 rgba(255,255,255,0.4), -4px -4px 0 rgba(255,255,255,0.4), 0 0 20px white, 0 0 15px white, 0 0 5px white;
+  font-size: 2.5em;
 }
-.disclaimerImg{
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.stakeholderNames{
-  color: #006d2c;
-  font-size: 1em;
-  font-weight: 600;
-  margin-top: 10px;
-  word-wrap: break-word;
 
-}
-.gridItem{
-  margin-top: 20px;
-  /* margin-bottom: 40px; */
-}
-.overlay{
-  border-radius: 15%;
-  width: auto;
-  height: auto;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  transition: .2s ease;
-  opacity: 0;
-  background-color: rgba(51, 196, 109, 0.4);
-}
-.image-container {
+.iframe-container{
   position: relative;
+  width:100%;
+  padding-bottom: 56.25%;
+  height: 0;
 }
-.overlay:hover {
-  opacity: 1;
+.iframe-container iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
 }
-
-
 /* Scoll to top button */
 #scrollBtn {
   display: none;

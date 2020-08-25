@@ -21,13 +21,6 @@ function checkVisited(){
 	  pass = data;
 	});
 
-	var ls = sessionStorage.getItem('tambopata.visited');
-	console.log(sessionStorage)
-	if (ls != null) {
-		overlayOff();
-	}else{
-		sessionStorage.setItem('tambopata.visited', "visited")
-	}
 }
 
 function secretAccess(path){
@@ -35,19 +28,6 @@ function secretAccess(path){
 	if(userPass == pass){
 		window.location.href= path;
 	}
-}
-
-// if they hit the close button then hide the overlay
-function overlayOff(){
-	document.documentElement.style.overflow = "auto";
-	document.getElementById("overlay").style.display = "none";
-	document.getElementById("overlay-img").style.display = "none";
-}
-// same but show on assign click
-function overlayOn(){
-	document.documentElement.style.overflow = "hidden";
-	document.getElementById("overlay").style.display = "block";
-	document.getElementById("overlay-img").style.display = "block";
 }
 
 // basic switching of overlay content on button press
@@ -116,11 +96,7 @@ function scrollFunction() {
     mybutton.style.display = "none";
   }
 }
-// When the user clicks on the jump to button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
+
 
 // nav bar active buttons
 // document.getElementById("active_active").style.display='block';

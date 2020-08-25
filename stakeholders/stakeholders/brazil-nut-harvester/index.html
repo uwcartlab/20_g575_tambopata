@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+            <title>Tambopata | Brazil Nut Harvester</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+
+    </head>
+
+    <body>
+    <!-- Navigation bar -->
+    <div class="navbar1" id = "navbar1">
+      <span class="header">Tambopata</span>
+      <!-- Each button calls the basic JS method with the path you want to go to -->
+      <button onclick="redirect('../../../')"><img src="../../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+      <button class = "active" onclick="redirect('../../../stakeholders')"><img src="../../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+      <button onclick="redirect('../../../maps')"><img src="../../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+      <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+      <button onclick="redirect('../../../secret')"><img src="../../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+      <button onclick="redirect('../../../credits')"><img src="../../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+      <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+    </div>
+
+    <!-- Page Title -->
+    <div class="jumbotron jumbotron">
+      <div class="container-fluid" align="center" style="color:#006d2c">
+        <h1 class="display-4">Brazil Nut Harvester</h1>
+      </div>
+    </div>
+
+    <!-- Stakeholder Description container-->
+    <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+      <div class = "row">
+        <div class = "col-md-6 col-sm-12 col-xs-12">
+      <!-- image and photo credit -->
+        <img src="brazilnut.png" alt="Brazil Nut Harvester" width="75%" class="image-center">
+        <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+          <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
+        </blockquote>
+        </div>
+
+        <div class = "col-md-6 col-sm-12 col-xs-12">
+      <!-- Start of Description with inserted pop-ups for glossary terms and identifying other stakeholders -->
+				<p>
+          Maria Silva has harvested Brazil nuts since she was a child. Her family holds a 40-year
+          <!--retrieve glossary term concessions & link to gloassary -->
+          <span class="popup" onclick="popupCon()"><u>concession</u>
+            <span class="popupText" id="myPopup5">
+              <!-- X button, affordance to close pop-up -->
+              <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              A formal permit issued by the government for a certain activity (e.g. mining, logging, ecotourism)
+              for a specified period of time (usually several years, although not permanent).
+            </span>
+          </span>
+
+          for harvesting Brazil nuts in 500
+
+          <!--retrieve glossary term Hectares & link to gloassary -->
+           <span class="popup" onclick="popupHec()"><u>hectares</u>
+             <span class="popupText" id="myPopup1">
+               <!-- X button, affordance to close pop-up -->
+               <button type="button" class="close" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+               A 100 x 100 m unit of land (1 hectare = 2.3 acres).
+               Abbreviated “ha". Most Tambopata farms are ~40 ha.
+             </span>
+           </span>
+
+          of old growth forest in the northeastern
+          part of the Tambopata National Reserve. As a member of the local Agrarian Federation
+
+          <!-- retrieve Fademad description and link  -->
+          <span class="popup" onclick="popupFad()">(FADEMAD),
+            <span class="popupText" id="myPopup2">
+              <!-- X button, affordance to close pop-up -->
+              <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <b>Leader of the Agrarian Federation(FADEMAD)</b>
+              <br>Alan leads FADEMAD, a grassroots political organization that represents
+              ~5000 small farmers in the Madre de Dios region. Alan believes that poor farmers’ quality of life
+              depends on a healthy environment. Thus, he tries to defend local farmers AND the forest. Click
+              <a href="http://localhost:8848/stakeholders/fademad/"><b>FADEMAD</b></a> to learn how
+              Alan weighs the costs and benefits of land management practices of his varied constituents are interested in pursuing.
+            </span>
+          </span>
+
+          Maria strongly believes that local poor citizens should have priority to use natural resources
+          in the Reserve, but they must do so sustainably. Her livelihood depends on access to the old growth
+          forests that contain large Brazil nut trees. These trees take decades to start producing nuts and
+          cannot be cultivated in plantations. The most productive trees are over a century old and more than
+          ten stories high. By law, Brazil nut trees cannot be felled, but they are commonly cleared during
+          agriculture or mining.
+        </p>
+        </div>
+        <div class = "col-md-12 col-sm-12 col-xs-12">
+        <p>
+          Brazil nut harvesting is hard work. Brazil nut trees are dispersed across the forest. Thus,
+          Maria must walk a wide area to gather the cannonball-like seed pods that fall from each Brazil nut
+          tree. Even though it’s labor intensive, most environmentalists believe Brazil nut harvesting is one
+          of the most sustainable ways for local poor people to make money off the forest. Brazil nut trees are also a
+
+          <!--retrieve pop-up with description and link to wildlife ecologist  -->
+          <span class="popup" onclick="popupWE()">keystone species.
+            <span class="popupText" id="myPopup3">
+              <!-- X button, affordance to close pop-up -->
+              <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <b>Wildlife Ecologist</b> Dr. Natalia Ortiz is a Peruvian scientist who studies the ecology of Giant River Otters
+              in Tambopata. She is fighting to protect wildlife for all Peruvians, including future generations. Click
+              <a href="http://localhost:8848/stakeholders/wildlife-ecologist/"target="_blank"><b>Wildlife Ecologist</b></a> to
+              learn how Dr. Ortiz views conservation work as an important aspect for the success of this region of Peru.
+            </span>
+          </span>
+        </p>
+
+        <p>
+          Maria fears that mining and agriculture will destroy these forests and, ultimately, her family’s livelihood. But she’s also
+          worried that she can’t make enough money only harvesting Brazil nuts, especially given the rudimentary infrastructure available
+          for transporting and processing the nuts. Thus, Maria is exploring other options.
+        </p>
+
+        <p>
+          Some Brazil nut harvesters are trying to attract tourists to pay for the experience of harvesting Brazil nuts, and the sons and
+          daughters of some Brazil nut harvesters already have jobs in tourism Maria has also learned
+          that <u>outside</u> the Reserve, some Brazil nut harvesters are partnering with
+
+          <!--retrieve pop-up with description and link to Big Timber  -->
+          <span class="popup" onclick="popupLog()">loggers
+            <span class="popupText" id="myPopup4">
+              <!-- X button, affordance to close pop-up -->
+              <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <b>Owner of Peruvian Logging Company</b>
+              <br>Vicente owns Madera Grande, a large Peruvian logging company. He’s eager to expand his logging company’s operations. Click
+              <a href="http://localhost:8848/stakeholders/logging-owner/"target="_blank"><b>Logging</b></a> to
+              learn how Vicente is working with other interest groups to make logging profitable and sustainable business practice in the Tambopata region.
+            </span>
+          </span>
+
+          who claim to be using methods that extract timber without damaging Brazil nut trees. Logging is currently not allowed in the Brazil nut
+          in the Reserve, but some Brazil nut harvesters think it would be a good way to add value to the standing forest
+          and help compete against mining or agriculture. Other Brazil nut harvesters suspect loggers will seriously damage
+          the forest. Last, Maria has heard that some other Brazil nut harvesters have signed contracts with a
+          Peruvian conservation company, <a href="http://www.bosques-amazonicos.com/en/our-projects/redd-in-concessions-of-brazil-nuts-in-madre-de-dios-peru"target="_blank"><i>Bosques Amazónicos</i></a>,
+          to be paid for protecting forest and planting Brazil nut tree seedlings in their concessions. The company
+          has also promised to build a Brazil nut processing plant. The payments come from a forest carbon fund
+          associated with global climate change mitigation efforts known as
+
+          <!--retrieve glossary term REDD+ & link to gloassary -->
+          <span class="popup" onclick="popupREDD()"><u>REDD+</u>.
+            <span class="popupText" id="myPopup6">
+              <!-- X button, affordance to close pop-up -->
+              <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              "Reduced Emissions from Deforestation and Forest Degradation", is an
+              incentive-based mechanism for reducing greenhouse gas emissions through improved forest management in developing countries.
+            </span>
+          </span>
+
+           Maria thinks these are all promising opportunities; but, above all, what Brazil nut harvesters lack the most is access
+          to a better Brazil nut processing plant.
+        </p>
+        <br>
+      </div>
+      </div>
+        <!-- 2020 Youtube video Brazil Nut Harvester-->
+        <div class="container" class="arimo" align="center" style="color:#006d2c;">
+          <h2><u>Related Short Videos</u></h2>
+          <br>
+          <h3>Brazil Nut Harvester & Tourism Entrepreneur</h3>
+        </div>
+        <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/Q43OWclfPHw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br>
+
+        <!-- 2020 Youtube video: Cacao farmer/agroecology -->
+        <div class="container" class="arimo" align="center" style="color:#006d2c;">
+          <h3>Cacao Farmer Agroforestry Coordinator</h3>
+        </div>
+        <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/RMf-4BBItz8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br>
+
+        <!-- older video: Tourguide -->
+        <div class="container" class="arimo" align="center" style="color:#006d2c;">
+          <h3>Tambopata Tour Guide</h3>
+        </div>
+        <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/IYEJDUwigec" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br>
+
+        <div class="container" class="arimo" align="center" style="color:#006d2c;">
+          <h3>Overview of Tambopata Community (1996, 28 minutes) </h3>
+        </div>
+        <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/bz7HzmlcXH0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br>
+      
+      <!-- Additional Reading Resources -->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>Additional reading resources are available through your instructor.</h3>
+      </div>
+      <br><br>
+      <div align = "left">
+				<i>The stakeholders are fictitious but based on real people from Tambopata (see <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>credits</b></a>).
+				<br>
+				Las imágenes, nombres y notas biográficas son ficticias pero basadas en actores reales de Tambopata
+				(ver <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>créditos</b></a>).</i>
+      </div>
+      <!-- End of Bootstrap Container -->
+    </div>
+    <div class = "copyright">
+      <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+      </a>
+      <br />This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+    </div>
+      
+      
+  
+      <!-- Button to go to top of page, referenced from w3schools.com -->
+      <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+
+
+    <script src = "lib\jquery-3.4.1.js"></script>
+		<script type= "text/javascript" src="js/main.js"></script>
+		<script src = "lib\bootstrap.min.js"></script>
+        <script src = "lib\bootstrap.bundle.min.js"></script>
+    </body>
+</html>

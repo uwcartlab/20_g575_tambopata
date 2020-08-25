@@ -1,0 +1,352 @@
+html, body {
+	overflow-x: hidden;
+}
+#footer {
+  text-align: left;
+  float: left;
+  overflow: hidden;
+  margin-left: 10px;
+  font-size: 0.8em;
+}
+.v1{
+  color: #006d2c
+}
+.disclaimer{
+  color: black;
+  font-size: 1em;
+}
+
+.youTube{
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #006d2c;
+  font-size: 1.5em;
+  font-family: 'Arimo';
+}
+.youTube:hover{
+  color: #006d2c;
+  font-weight: 800;
+  text-decoration: none;
+}
+.container-stakeholder {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  display: absolute;
+  justify-content: center;
+}
+.header{
+  background:#006d2c;
+  width:100%;
+  color: white;
+  text-align: left;
+  font-size: 35px;
+  padding: 0px 20px 0px 20px;
+}
+button p{
+  float: right;
+  margin: 0;
+  padding-left: 10px;
+}
+.navButton{
+  height:70px;
+}
+/* Place the navbar at the top of the page, and make it stick */
+.navbar1 {
+  background-color: #006d2c;
+  bottom: 0;
+  width: 100%;
+	font-size: 0;
+}
+.copyright{
+  width: 10%;
+  font-family: 'Arimo';
+  font-size: 0.8em
+}
+@media(max-width:50em){ /* Breakpoint only for mobile */
+  .copyright{
+    margin-bottom: 80px;
+    width: 50%;
+  }
+  .youTube{
+    font-size: 1.2em;
+    padding: 10px 0;
+    width: 70%;
+    font-weight: 600;
+  }
+  footer{
+    margin-bottom: 70px;
+  }
+  .navbar1 {
+      color: #186c3f;
+      overflow: hidden;
+      height: 60px;
+      width: 100%;
+      bottom: 0;
+      position: fixed;
+      z-index: 5;
+    }
+  button p{
+      visibility: hidden;
+	  display:none;
+  }
+  .navbar1 button {
+      background-color: #006d2c;
+      display: block;
+      color: #f2f2f2;
+      border: solid #f2f2f2 1px;
+      width: 20%;
+      text-align: center;
+      float: left;
+      margin-top: -5px;
+    }
+  .navbar1 button.active {
+      background-color: #00441b;
+      color: white;
+    }
+		/*Tambopata title  */
+  .navbar1 span{
+    display: none;
+  }
+	/* UW logo */
+  .navbar1 a{
+    display:none;
+  }
+  .overlay {
+    visibility: hidden;
+    display:none;
+   }
+
+}
+/* Style the links inside the navigation bar */
+
+.navbar1 button {
+  background-color: #006d2c;
+  border-style: none;
+  display:inline-block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 20px 15px 20px 15px;
+  text-decoration: none;
+  font-size: 20px;
+}
+.navbar1 a{
+  float: right;
+  padding: 5px 20px 0px 0px;
+}
+
+/* Change the color of links on hover */
+.navbar1 button:hover {
+  background-color: #00441b;
+}
+
+/* Add a color to the active/current link */
+.navbar1 button.active {
+  background-color: #00441b;
+  color: white;
+}
+
+@-webkit-keyframes anim {
+    from {opacity: 0;}
+    to {opacity: .80;}
+  }
+
+@keyframes anim {
+    from {opacity: 0;}
+    to {opacity: .80;}
+  }
+
+
+#tambopata-button {
+	background-color: #00441b;
+	color: white;
+}
+
+#assign-button,#glossary-button,#events-button {
+	background-color: #006d2c;
+	color: white;
+}
+
+#overlay-buttons-close {
+	float: right;
+	padding-left: 5px;
+	background-color: #006d2c;
+}
+
+#assign-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+#tambopata-overlay-text {
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+#locator {
+	height: 5%;
+	width: 85%;
+	float: left;
+	margin-left: 7.5%
+}
+
+#glossary-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+#glossTerm {
+	font-size: 18px;
+}
+
+#events-overlay-text {
+  display: none;
+  position: auto;
+  top: 50%;
+  left: 10%;
+  font-size: 16px;
+  color: black;
+  padding: 10px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.heading {
+	color: #006d2c;
+	font-size: 1.755em;
+	font-weight: 600;
+	padding: 20px 0 20px 0;
+	background-color: #e9ecef;
+}
+
+.img-bground {
+  min-width: 100%;
+  height: auto;
+  border-radius: 15%;
+  object-fit: cover;
+}
+.disclaimerImg{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.stakeholderNames{
+  color: #006d2c;
+  font-size: 1em;
+  font-weight: 600;
+  margin-top: 10px;
+  word-wrap: break-word;
+
+}
+.gridItem{
+  margin-top: 20px;
+  /* margin-bottom: 40px; */
+}
+.overlay{
+  border-radius: 15%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: .2s ease;
+  opacity: 0;
+  background-color: rgba(51, 196, 109, 0.4);
+}
+.image-container {
+  position: relative;
+}
+.overlay:hover {
+  opacity: 1;
+}
+
+
+/* Scoll to top button */
+#scrollBtn {
+  display: none;
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #006d2c; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 14px; /* Increase font size */
+}
+/* may want to get rid of, will not work on mobile */
+#scrollBtn:hover {
+  background-color: #00441b; /* Add a dark-green background on hover */
+}
+/* fade in scroll to top button */
+#scrollBtn {
+  visibility: visible;
+  -webkit-animation: fadeIn 2s;
+  animation: fadeIn 2s;
+}
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 2;}
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 2;}
+}
+/* scroll button for mobile*/
+@media(max-width:50em){ /* Breakpoint only for mobile */
+  #scrollBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 80px; /* Place the button at the bottom of the page */
+    right: 10px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #006d2c; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 10px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 12px; /* Increase font size */
+  }
+  /* fade in scroll to top button */
+  #scrollBtn {
+    visibility: visible;
+    -webkit-animation: fadeIn 2s;
+    animation: fadeIn 2s;
+  }
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 2;}
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 2;}
+  }
+}

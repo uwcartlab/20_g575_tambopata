@@ -1,0 +1,23 @@
+ORIGINAL COLORS
+
+Buffer Zone: #4d412b
+Community Reserve: #a87007
+Native Communities: #78c679
+Restoration: #fc8d59
+Strict Protection: #004529
+Wildlands: #238443
+Tourism: #d9f0a3
+Forest Use: #dadac0
+Direct Use: #d0d1e6
+
+PROPOSED COLORS
+
+Buffer Zone: #6fd0d3
+Community Reserve: #296bc2
+Native Communities: #c45791
+Restoration: #f1b6da
+Strict Protection: #004529
+Wildlands: #238443
+Tourism: #78c679
+Forest Use: #d9f0a3
+Direct Use: red

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+            <title>Tambopata |  Rainforest Expeditions</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+            <link rel="stylesheet" href="css\bootstrap.min.css"/>
+    </head>
+
+    <body>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../../')"><img src="../../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button class = "active" onclick="redirect('../../../stakeholders')"><img src="../../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../../maps')"><img src="../../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../../secret')"><img src="../../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <button onclick="redirect('../../../credits')"><img src="../../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div>
+
+    <!-- About Tambopata/Assignment Overlay -->
+	  <div id="overlay-img"></div>
+	<div id="overlay">
+		<div id="overlay-div">
+			<div class="navbar2" id="navbar2">
+				<button id="tambopata-button" onclick="overlayShowNext('tambopata')">About Tambopata</button>
+				<button id="assign-button" onclick="overlayShowNext('assign')">About Assignment</button>
+				<button id="glossary-button" onclick="overlayShowNext('glossary')">Glossary</button>
+				<button id="events-button" onclick="overlayShowNext('events')">Key Events</button>
+
+				<button onclick="overlayOff()" id="overlay-buttons-close">X</button>
+			</div>
+			<div id="assign-overlay-text">
+				<h2>What's this assignment about?</h2>
+				<br>
+				<p>
+					Participatory zoning initiatives are underway in scores of protected areas in the tropics where forests are rich, but people are poor. Ideally, participatory zoning promises to
+					<ul>
+						<li>Balance conservation and development goals at the landscape scale</li>
+						<li>Bring competing interest groups together to negotiate rules and create a shared sense of landscape</li>
+						<li>Encourage greater stakeholder buy-in and avoid costly top-down enforcement</li>
+					</ul>
+				</p>
+				<p>
+					In this exercise, you will assume the role of a real-life stakeholder from Tambopata. Based on your stakeholder’s interests, you will define your land-use priorities for TNR, find allies, and negotiate with your opponents
+					as you collectively negotiate and vote on one of four zoning proposal maps created in the local participatory planning process. In thinking about which map should guide land use activities in Tambopata’s future,
+					consider the following: Why do your interests deserve priority? What kinds of activities will generate income without destroying biodiversity? Does your character have special interest in a certain area, e.g. the fertile,
+					gold-rich and scenic riversides? Which areas have old-growth forests? Conversely, which areas are already deforested? Which activities are taking place up-stream from your character’s areas of interest?
+				</p><p>
+					You will advocate for your stakeholder’s vision for Tambopata by participating in a role-played roundtable and writing a position paper. At the roundtable and in the paper,
+					you will identify the map you think best matches your character’s priorities, and (most importantly) defend your character’s position using <b>moral</b>, <b>environmental</b> and/or <b>economic</b> arguments:
+				</p><p>
+					<u><b>Moral Arguments:</u></b> Who should benefit from Tambopata’s forests and why? The area's original indigenous inhabitants? Or the largest group, namely small-scale farmers of mixed ancestry,
+					some of whom have lived in Tambopata for decades, others only a few years? Which kinds of land use activities can offer security for Tambopata’s residents?
+					Do Tambopata's forests and wildlife deserve protection apart from human economic concerns?
+				</p><p>
+					<u><b>Environmental Arguments:</u></b> What land uses are most likely to maintain biodiversity and/or other ecosystem services? How can environmentally destructive practices be mitigated?
+					Why should certain activities be conducted in certain areas of TNR (e.g. where does old-growth forest persist? Where has forest already been cleared?
+					Which areas are up/down stream? Which areas are closer to the Bahuaja-Sonene National Park?)?
+				</p><p>
+					<u><b>Economic Arguments:</u></b> Tambopata is poor. What kind of economic activities should have priority? Why? Which kinds of land use activities can generate capital and taxes to improve Tambopata’s services?
+				</p>
+				<br>
+				<p>
+				<b>Instructors:</b> If you are interested in using this assignment, contact <a href="mailto:naughton@geography.wisc.edu">naughton@geography.wisc.edu</a> for a teacher’s guide.
+				</p>
+			</div>
+			<div id="tambopata-overlay-text">
+				<h2>Tambopata, Peru: <br>Protecting forests and empowering local communities</h2>
+				<br>
+				<p>
+					The Tambopata National Reserve (TNR) was created in 1990 to protect one of the most biologically diverse and least disturbed forests on the planet. The region is also home to indigenous people, like the Ese’eja,
+					who see their very survival threatened by development. Many other local residents see Tambopata as a poor region of Peru that contains untapped reserves of timber, gold, and farmland.
+				</p><p>
+					To balance biodiversity protection with economic development, officials are promoting participatory zoning of the 272,000 hectares of land within TNR.
+					Leading this zoning exercise is Peru’s Ministry of the Environment. The Ministry has invited local stakeholder groups to propose zoning maps and promote their map at a public roundtable.
+					The consensus map selected at the roundtable will guide future management.
+					<img id="locator" src="../img/locatormap-trim4.png" alt="Locator map for Tambopata, Peru.">
+				</p>
+
+			</div>
+			<div id="glossary-overlay-text">
+				<h2>Glossary of useful terms</h2>
+				<p>
+					<p><u><div id="glossTerm">Madre de Dios:</div></u> (Literally “Mother of God”) the name of the 8.5 million ha Department (region) surrounding Tambopata. It is the least populated area in Peru (~ 1 person/km2).</p>
+					<p><u><div id="glossTerm">Hectare:</div></u> A 100 x 100 m unit of land (1 hectare = 2.3 acres). Abbreviated “ha". Most Tambopata farms are ~40 ha.</p>
+					<p><u><div id="glossTerm">Puerto Maldonado:</div></u> The largest city (~90,000) in Madre de Dios. It has doubled in size in the last 10 yrs.</p>
+					<p><u><div id="glossTerm">SERNANP:</div></u> The National Service for Natural Protected Areas is the govt. agency in charge of parks, reserves, wildlife and     forests. It is part of Peru’s Ministry of Environment.</p>
+					<p><u><div id="glossTerm">Castañeros:</div></u> People who harvest castañas (Brazil nuts). Madre de Dios holds nearly 30% of the world’s supply.</p>
+					<p><u><div id="glossTerm">Ese’eja:</div></u> The largest group of indigenous people in the region, numbering ~600 today, some estimate ~10,000 before 1890.</p>
+					<p><u><div id="glossTerm">Artisanal mining:</div></u> Small-scale mining performed by individuals, often on an informal/unofficial basis. Technology used has lower impact than industrial mining.</p>
+					<p><u><div id="glossTerm">Industrial mining:</div></u> Large scale, high-capital mining activities typically require a formal concession.</p>
+					<p><u><div id="glossTerm">Reduced-impact logging:</div></u> A logging practice designed to cause the least ecological impact on forests possible. Ideally informed     by studies of local ecosystem dynamics.</p>
+					<p><u><div id="glossTerm">Concession:</div></u> A formal permit issued by the government for a certain activity (e.g. mining, logging, ecotourism) for a specified     period of time (usually several years, although not permanent).</p>
+					<p><u><div id="glossTerm">REDD+:</div></u> "Reduced Emissions from Deforestation and Forest Degradation", is an incentive-based mechanism for reducing greenhouse gas emissions through improved forest management in developing countries.</p>
+					<p><u><div id="glossTerm">Bosques Amazónicos (BAM):</div></u> A for-profit organization facilitating a REDD project in Tambopata.</p>
+					<p><u><div id="glossTerm">Nature-based tourism:</div></u> Any form of tourism based on natural attractions.</p>
+					<p><u><div id="glossTerm">Ecotourism:</div></u> A form of nature-based tourism in which tourist impacts on the environment are mitigated.</p>
+
+				</p>
+			</div>
+			<div id="events-overlay-text">
+				<h2>Key events in the history of Tambopata, Peru</h2>
+				<br>
+				<p>
+					<b>1890-1915:</b> The global demand for rubber leads companies to penetrate the forests of Tambopata to tap rubber trees. These companies bring the first wave of colonists, diseases, and market economies to the region.
+				</p>
+
+				<p>
+					<b>1930:</b> People begin to extract Brazil nuts from Tambopata for international markets. Small-scale gold mining begins.
+				</p>
+
+				<p>
+					<b>1990s:</b> The Tambopata Candamo Reserve Zone (TCRZ) is created as a temporary reserve on 1.5 million hectares, including uninhabited forests and areas settled by ~6000 people. The local farmers’
+					federation FADEMAD and a local conservation group, Conservation Internacional-Peru (CI-Peru), work together to classify land in the region according to its agricultural potential and create a national park
+					(“Bahuaja-Sonene”) (see VIDEO “Return to Tambopata”).
+				</p>
+
+				<p>
+					<b>Late 1990s, early 2000’s:</b> Participatory mapping and zoning exercises resume.
+				</p>
+
+				<p>
+					<b>2000:</b> The Peruvian Congress passes a new Sustainable Forestry Law. A moratorium is temporarily placed on logging in the Peruvian Amazon due to “destructive, corrupt, and wasteful” practices.
+					 Local loggers revolt and burn government vehicles and confiscated timber. They demand to log forests and to dissolve the TCRZ. The protestors set up a roadblock near the airport.
+					 One person killed, offices burned. After three days, anti-riot police from Lima squelch the protest with tear gas and arrests. INRENA lifts the logging moratorium.
+				</p>
+
+				<p>
+					<b>2008:</b>  As global economic crisis sets in, gold prices soar, and a gold rush brings tens of thousands of Peruvians to Tambopata.
+				</p>
+
+				<p>
+					<b>2012:</b> SERNANP uses an emergency decree to halt mining within the Tambopata Reserve. Public riots break out. The National Federation of Miners of Peru strikes and burns government buildings.
+					Six people die in the ensuing conflict. The decree stands. Peru’s military evicts most of the miners from the Reserve. Mining continues (illegally) in the proposed Buffer Zone.
+				</p>
+
+				<p>
+					<b>2020:</b> Mining conflicts continue to this day…
+				</p>
+			</div>
+		</div>
+	</div>
+
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Co-Founder of Rainforest Expeditions</h1>
+        </div>
+      </div>
+
+      <!-- Stakeholder Description container-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <div class = "row">
+          <div class = "col-md-6 col-sm-12 col-xs-12">
+        <!-- image and photo credit -->
+          <img src="expeditions.png" alt="Picture of Rainforest Expeditions owner" width="100%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
+          </blockquote>
+        </div>
+        <div class = "col-md-6 col-sm-12 col-xs-12">
+		      <!-- Stakeholder description with popups for glossary terms and links to other stakeholders -->
+          <p>
+            Oscar Perez is a Peruvian who is passionate about biodiversity conservation but believes that saving the rainforest must be profitable to be successful.
+            To this end, he built Rainforest Expeditions, a high-end
+            <!--retrieve glossary term Eco-tourism & link to gloassary -->
+            <span class="popup" onclick="popupEco()"><u>ecotourism</u>
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A form of nature-based tourism in which tourist impacts on the environment are mitigated.
+              </span>
+            </span>
+            company that is committed to sharing revenue with indigenous peoples living in
+            the forest. Oscar’s company built a luxurious lodge in the
+            <!--retrieve glossary term Ese’eja & link to gloassary -->
+            <span class="popup" onclick="popupEse()"><u>Ese’eja Indigenous Territory</u>
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                The largest group of indigenous people in the region, numbering ~600 today, some estimate ~10,000 before 1890.
+                <a href="http://localhost:8848/stakeholders/community-member/"target="_blank"> <b>Ese'eja</b></a>
+              </span>
+            </span>
+            of Infierno (with permission from the Ese’eja leaders). The lodge, called “Posada Amazonas,” has received international awards for its partnership model
+            of co-ownership with the Ese’eja community.
+          </p>
+
+          <p>
+            The strategic alliance between Rainforest Expeditions and the Ese’eja Infierno community has had great success as well as challenges. The Infierno community
+            and the company co-manage the lodge and share the lodge’s profits. Several Infierno community members (as well as some family members of
+            <!--retrieve pop-up with description and link to Brazil Nut harvester  -->
+            <span class="popup" onclick="popupNut()">Brazil Nut harvesters)
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Brazil Nut Harvester</b>
+                <br>Maria is a Brazil nut harvester and her livelihood depends on access to the old growth forests.
+                Brazil nut trees take decades to start producing nuts and cannot be cultivated in plantations. Click
+                <a href="http://localhost:8848/stakeholders/brazil-nut-harvester/"target="_blank"><b>Brazil Nut Harvester</b></a> to learn how Maria is engaging with other stakeholders
+                to address the changing landscape.
+              </span>
+            </span>
+            have full-time jobs at the lodge. Perez has taken the time to train Ese’eja employees, and some have gone on to start their own independent lodges.
+          </p>
+        </div>
+        <div class = "col-md-12 col-sm-12 col-xs-12">
+          <p>
+            However, there have also been challenges. Some Ese’eja families used their share of the tourism profits to expand their agricultural fields near the lodge.
+            One of his biggest headaches is that some Ese’eja individuals insist on hunting in their territory, which makes it very difficult for tourists to see wildlife
+            when they are on tours. Oscar is even more worried and angry about the surge in illegal mining activities along the rivers in the Reserve. His tourists complain
+            when they see mining along rivers and in the forest. They paid to visit pristine Amazon forest! He hopes recent crackdowns by the Peruvian military will
+            discourage mining but fears that miners will take over the Buffer Zone area and re-enter the Reserve.
+          </p>
+
+          <p>
+            Ultimately, Oscar is optimistic that tourism will continue to grow in Tambopata and play a significant role in protecting forests and providing jobs.
+          </p>
+        </div>
+      </div>
+          <br>
+
+          <!-- New 2020 Youtube video President of Ese'eja Community at Infierno-->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h2><u>Related Short Videos</u></h2>
+          <br>
+            <h3>President of the Ese'eja Community of Infierno</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Z2KYpDSWUlU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <!-- New 2020 Youtube video Ecogourism entrepreneur -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Ecotourism Entrepreneur From Infierno Ese'eja Community</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/CNXXmyaJjQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <!-- 2020 Youtube video Brazil Nut Harvester-->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Brazil Nut Harvester & Tourism Entrepreneur</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Q43OWclfPHw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <!-- older video: Tourguide -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Tambopata Tour Guide</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/IYEJDUwigec" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Overview of Tambopata Community (1996, 28 minutes) </h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/bz7HzmlcXH0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+        <!-- Additional Reading Resources -->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>Additional reading resources are available through your instructor.</h3>
+      </div>
+      <br><br>
+      <div align = "left">
+				<i>The stakeholders are fictitious but based on real people from Tambopata (see <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>credits</b></a>).
+				<br>
+				Las imágenes, nombres y notas biográficas son ficticias pero basadas en actores reales de Tambopata
+				(ver <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>créditos</b></a>).</i>
+      </div>
+      <!-- End of Bootstrap Container -->
+    </div>
+        <br>
+        <div class = "copyright">
+          <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+          </a>
+          <br />This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+        </div>
+        <!-- Button to go to top of page, referenced from w3schools.com -->
+        <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+
+
+
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
+    </body>
+</html>

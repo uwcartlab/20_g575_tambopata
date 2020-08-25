@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+            <title>Tambopata | Oil Officer</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+
+    </head>
+
+    <body>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../../')"><img src="../../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button class = "active" onclick="redirect('../../../stakeholders')"><img src="../../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../../maps')"><img src="../../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../../secret')"><img src="../../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <button onclick="redirect('../../../credits')"><img src="../../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div>
+
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Development Officer of <i>Palmas del Peru</i> (a Peruvian oil palm company)</h1>
+        </div>
+      </div>
+
+      <!-- Stakeholder Description container-->
+	  <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+		<div class = "row">
+		<div class = "col-md-6 col-sm-12 col-xs-12">
+        <!-- image and photo credit -->
+          <img src="oilpalmofficer.jpg" alt=" " width="70%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <!-- need a caption for this photo -->
+            <!-- <p class="mb-0">A picture of an Ese’eja indigenous person (blurred to protect anonymity).</p> -->
+            <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
+		  </blockquote>
+		  </div>
+		  <div class = "col-md-6 col-sm-12 col-xs-12">
+		      <!-- Stakeholder description with popups for glossary terms and links to other stakeholders -->
+          <p>
+            Mariella Silva works for <i>Palmas del Peru</i>, a leading company in Peru’s growing oil palm industry. Oil palm production is booming in the Peruvian
+            Amazon, especially in San Martin and Ucayali. Mariella’s job is to find new regions in Peru to promote oil palm production. In fact, a large area
+            <!--retrieve glossary term Hectares & link to gloassary -->
+            <span class="popup" onclick="popupHec()"><u>(~1.5 million hectares)</u>
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A 100 x 100 m unit of land (1 hectare = 2.3 acres). Abbreviated “ha". Most Tambopata farms are ~40 ha.
+              </span>
+            </span>
+            of Peru is suitable for oil palm production. She hopes to convince people in Tambopata of the advantages of oil palm by pointing
+            to the high global demand for palm oil and the big profits made by producers in other areas. Although oil palm producers have been criticized for
+            displacing smallholder farmers, Mariella’s company is committed to working <i>with</i> smallholders.
+		  </p>
+		  </div>
+		  <div class = "col-md-12 col-sm-12 col-xs-12">
+          <p>
+            She knows that local conservationists fear that some companies will clear primary and secondary natural forests to plant oil palm trees, or that
+            companies will buy land from local farmers growing food, thus forcing them to clear forest elsewhere for new agricultural fields. Other opponents
+            point out that oil palm plantations need to be large (~1,000 ha) to be profitable. Mariella defends her company on the grounds that they are
+            committed to transparency and sustainability, and she sees sustainable oil palm production as a key way for Tambopata to develop and diversify
+            its economy. <i>Palmas del Peru</i> is looking to partner with
+            <!--retrieve pop-up with description and link to colonist farmer  -->
+            <span class="popup" onclick="popupFarm()">smallholder farmers,
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Colonist Farmer</b>
+                <br>Jose and his family work hard farming land near the Tambopata National Reserve. Every year, Jose and his family
+                plant rice and corn in fields cleared in the forest until the soil becomes ‘tired’ and less productive. Click
+                <a href="http://localhost:8848/stakeholders/colonist-farmer/"target="_blank"><b>Colonist Farmer</b></a> to
+                learn about the different types of opportunities Jose is entertaining to provide a standard income for his family.
+              </span>
+            </span>
+            farming cooperatives, and other third-party suppliers who can commit to not
+            using slash-and-burn techniques when clearing their land, and who can promise to avoid areas with high conservation value when choosing where to
+            develop new oil palm plantations on their lands. In exchange, Mariella is confident that her company can offer a price premium for farmers’ sustainable
+            oil palm production. Her company is also looking for land to purchase to develop its own plantations, and she believes her company’s larger size can
+            optimize efficiency in their use of resources such as land, water, and energy. She is also confident that her company could attract investors to build
+            a local oil palm processing plant, a necessary factor in successful oil palm cultivation. Last, Mariella’s company is a member of the Round Table on
+            Sustainable Oil and is committed to ensuring that its crude palm oil production is traceable to its plantations and the smallholder producers they work
+            with. That way it’s sustainability pledges can be externally assessed by anyone interested. In short, Mariella is confident that sustainable oil palm
+            production can give Tambopata a competitive advantage it has never had.
+		  </p>
+		</div>
+		</div>
+          <br>
+          <!-- 2020 Youtube video: Cacao farmer/agroecology -->
+		  <div class="container" class="arimo" align="center" style="color:#006d2c;">
+			<h2><u>Related Short Video</u></h2>
+          <br>
+            <h3>Cacao Farmer Agroforestry Coordinator</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/RMf-4BBItz8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+     <!-- Additional Reading Resources -->
+	 <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>Additional reading resources are available through your instructor.</h3>
+      </div>
+      <br><br>
+      <div align = "left">
+				<i>The stakeholders are fictitious but based on real people from Tambopata (see <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>credits</b></a>).
+				<br>
+				Las imágenes, nombres y notas biográficas son ficticias pero basadas en actores reales de Tambopata
+				(ver <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>créditos</b></a>).</i>
+      </div>
+      <!-- End of Bootstrap Container -->
+      </div>
+    <br>
+
+  <div class = "copyright">
+    <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+      <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+    </a>
+    <br />This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+  </div>
+  <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+    <!-- Button to go to top of page, referenced from w3schools.com -->
+	
+	
+
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
+    </body>
+</html>

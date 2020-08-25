@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+            <title>Tambopata | Logging Owner</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+
+    <body>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../../')"><img src="../../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button class = "active" onclick="redirect('../../../stakeholders')"><img src="../../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../../maps')"><img src="../../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../../secret')"><img src="../../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <button onclick="redirect('../../../credits')"><img src="../../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div>
+
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Owner of Peruvian Logging Company, Madera Grand (Big Timber)</h1>
+        </div>
+      </div>
+
+      <!-- Stakeholder Description container-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <div class = "row">
+          <div class = "col-md-6 col-sm-12 col-xs-12">
+        <!-- image and photo credit -->
+          <img src="Logger.jpg" alt="picture of the owner of a Peruvian logging company, sitting in a chair" width="90%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
+          </blockquote>
+        </div>
+        <div class = "col-md-6 col-sm-12 col-xs-12">
+		      <!-- Stakeholder description with popups for glossary terms and links to other stakeholders -->
+          <p>
+            Vicente Molino owns Madera Grande, a large Peruvian logging company. He knows that there are still valuable timber trees in Tambopata, particularly
+            in forests far from roads and rivers, and also in eastern Tambopata in the territories of the indigenous
+            <!--retrieve glossary term Ese’eja & link to gloassary -->
+            <span class="popup" onclick="popupEse()"><u>Ese’eja</u>
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                The largest group of indigenous people in the region, numbering ~600 today, some estimate ~10,000 before 1890.
+                <a href="http://localhost:8848/stakeholders/community-member/"target="_blank"> <b>Ese'eja</b></a>
+              </span>
+            </span>
+            and Harakmbut peoples. He’s eager to expand his logging company’s operations into these areas, where he knows large profits can be made. For example,
+            one single big-leaf mahogany (<i>Swietenia macrophylla</i>) tree can be worth >$10,000.
+          </p>
+        
+        
+          <p>
+            Vicente knows logging in Peru has a bad reputation: from ecological destruction to corruption and human rights issues, the logging sector has been
+            accused of many offenses. He is appalled by reports that some illegal loggers looking to illicitly log trees without a legal
+            <!--retrieve glossary term concessions & link to gloassary -->
+            <span class="popup" onclick="popupCon()"><u>concession</u>
+              <span class="popupText" id="myPopup6">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A formal permit issued by the government for a certain activity (e.g. mining, logging, ecotourism) for a specified period of time (usually several years, although not permanent).
+              </span>
+            </span>
+            murdered indigenous people and other activists who were trying to save forests from the chainsaw. He also hates that there is significant crime and corruption
+            in the logging sector. 
+          </p>
+        </div>
+        <div class = "col-md-12 col-sm-12 col-xs-12">    
+          <p>        
+            The Peruvian government struggles to adequately monitor logging concessions, and concession owners are known to take advantage
+            of this and extract more than their quota, or log without permission. He gets angry when trees are stolen from his concession. But ultimately, he
+            believes that legal logging under an adequately managed concessionary system has the potential to be the most profitable of forest extraction activities,
+            and also sustainable.
+          </p>
+        
+        
+
+          <p>
+            Certainly, selective logging is more ‘forest-friendly’ than agriculture or gold mining. He is proud of his company’s work to promote
+            <!--retrieve glossary term Reduced Impact Logging & link to gloassary -->
+            <span class="popup" onclick="popupLog()"><u>Reduced Impact Logging</u>
+              <span class="popupText" id="myPopup5">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A logging practice designed to cause the least ecological impact on forests possible. Ideally informed by studies of local ecosystem dynamics.
+              </span>
+            </span>
+            (RIL, also known as Natural Forest Management). Vicente sells timber from RIL sites under the SmartWood certification program, which allows
+            him to get a better price for the timber and eases the extra costs.
+          </p>
+
+          <p>
+            Vicente is also interested in collaborating with
+            <!--retrieve pop-up with description and link to Brazil Nut harvester  -->
+            <span class="popup" onclick="popupNut()">Brazil nut harvesters.
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Brazil Nut Harvester</b>
+                <br>Maria is a Brazil nut harvester and her livelihood depends on access to the old growth
+                forests. Brazil nut trees take decades to start producing nuts and cannot be cultivated in plantations. Click
+                <a href="http://localhost:8848/stakeholders/brazil-nut-harvester/"target="_blank"> <b>Brazil Nut Harvester</b></a>
+                to learn how Maria is engaging with other stakeholders to address the changing landscape.
+              </span>
+            </span>
+            He is confident that the valuable timber trees can be extracted from forests
+            without harming Brazil nut harvests, and he knows fine timber is worth far more than Brazil nuts. He’s also interested in working with forest carbon
+            projects, like those referred to as
+            <!--retrieve glossary term REDD+ & link to gloassary -->
+            <span class="popup" onclick="popupREDD()"><u>REDD+</u>
+              <span class="popupText" id="myPopup4">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                "Reduced Emissions from Deforestation and Forest Degradation", is an
+                incentive-based mechanism for reducing greenhouse gas emissions through improved forest management in developing countries.
+              </span>
+            </span>
+            (Reduced Emissions from Deforestation and Forest Degradation) and promoted by the Peruvian conservation company
+            <!-- retrieve BAM description and link  -->
+            <span class="popup" onclick="popupBAM()"><u><i>Bosques Amazónicos</i></u>.
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A for-profit organization facilitating a REDD+ project in Tambopata. Click
+                <a href="http://www.bosques-amazonicos.com/en/our-projects/redd-in-the-bahuaja-sonene-national-park-and-tambopata-national-reserve"target="_blank"> <b>BAM</b></a>
+                for more information.
+              </span>
+            </span>
+            These projects connect concessionaires (the people who hold logging concessions) to profits from forest carbon offsets markets.
+            Concessionaires receive payments for reforesting degraded areas and protecting some old growth on their concessions because this improves carbon
+            storage (sequestration). He is certain that it is possible to log a forest without destroying all the biodiversity or releasing too much carbon. To be
+            clear, though, he thinks large companies like his are the best positioned to carry out Reduced Impact Logging. His company can afford to employ experts
+            in low impact extraction and forest restoration. Moreover, the larger the area of the logging concession, the more feasible it is to log less intensively.
+          </p>
+        </div>
+      </div>
+          <br>
+          <!-- older youtube video, Logger -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h2><u>Related Short Video</u></h2>
+          <br>
+            <h3>Timber Operator</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/PZiHGh6AOwc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+    <!-- Additional Reading Resources -->
+    <div class="container" class="arimo" align="center" style="color:#006d2c;">
+      <h3>Additional reading resources are available through your instructor.</h3>
+    </div>
+    <br><br>
+    <div align = "left">
+      <i>The stakeholders are fictitious but based on real people from Tambopata (see <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>credits</b></a>).
+      <br>
+      Las imágenes, nombres y notas biográficas son ficticias pero basadas en actores reales de Tambopata
+      (ver <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>créditos</b></a>).</i>
+    </div>
+    <!-- End of Bootstrap Container -->
+    </div>
+    <div class = "copyright">
+      <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+      </a>
+      <br />This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+    </div>
+    <!-- Button to go to top of page, referenced from w3schools.com -->
+    <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+
+
+
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
+    </body>
+</html>

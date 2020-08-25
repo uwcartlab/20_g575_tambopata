@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+            <title>Tambopata | Gold Miner</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+
+    </head>
+
+    <body>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../../')"><img src="../../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button class = "active" onclick="redirect('../../../stakeholders')"><img src="../../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../../maps')"><img src="../../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../../secret')"><img src="../../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <button onclick="redirect('../../../credits')"><img src="../../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div>
+
+
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Small-Scale Gold Miner</h1>
+        </div>
+      </div>
+
+      <!-- Stakeholder Description container-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <div class = "row">
+          <div class = "col-md-6 col-sm-12 col-xs-12">
+        <!-- image and photo credit -->
+          <img src="miner.png" alt="Picture of a gold miner in front of a riverbank" width="80%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
+          </blockquote>
+        </div>
+        <div class = "col-md-6 col-sm-12 col-xs-12">
+          <!-- Stakeholder description with popups for glossary terms and links to other stakeholders -->
+          <p>
+            Elena Gomez is a long-time resident of Tambopata and a gold miner who has been mining the banks of the Malinowski river for 20 years. Elena first turned
+            to gold mining when her family was in an economic crisis and she desperately needed to make some cash fast. Like many of her mining friends, she calls himself
+            an
+            <!--retrieve pop-up with glossary term artisanal miner and link to gloassary -->
+            <span class="popup" onclick="popupArt()"><u>'artisanal'</u>
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                Artisanal mining: small-scale mining preformed by individuals, often on an informal/unofficial basis. technology used
+                has lower impact than industrial mining.
+              </span>
+            </span>
+            miner because she uses only modest equipment. She does not have a formal (legal) mining title or permit. Elena submitted the initial paperwork
+            for a permit to Peru’s Ministry of Energy and Mines, but she can’t afford to pay for the environmental impact assessment a legal permit would require. 
+            <br><br>
+            As a result, Elena, like the vast majority of the miners she knows, works at the margins of the law. Since Elena has been operating illegally, the military has
+            destroyed her mining equipment twice as part of their crackdown on illegal mining in the region. Now she must work for another miner who buys bigger equipment
+            with the aid of crime syndicates. She is alarmed by increasing violence in mining areas and sees that other old-timer artisanal miners are arming themselves
+            and taking turns at guard when they are at the riverbanks. 
+        </div>
+        <div class = "col-md-12 col-sm-12 col-xs-12">
+            Elena has many friends in
+            <!-- retrieve Fademad description and link  -->
+            <span class="popup" onclick="popupFad()">FADEMAD
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Leader of the Agrarian Federation(FADEMAD)</b>
+                <br>Alan leads FADEMAD, a grassroots political
+                 organization that represents ~5000 small farmers in the Madre de Dios region. FADEMAD’s goal is to improve the quality of life of its members,
+                 both long-time residents and more-recently settled colonists. Alan believes that poor farmers’ quality of life
+                 depends on a healthy environment. Thus, she tries to defend local farmers AND the forest. Click
+                <a href="http://localhost:8848/stakeholders/fademad/"><b>FADEMAD</b></a> to learn how
+                Alan weighs the costs and benefits of land management practices of her varied constituents are interested in pursuing.
+              </span>
+            </span>
+
+            and is also a member of the local Mining Federation
+            <!-- retrieve FEDEMIN description and link  -->
+            <span class="popup" onclick="popupFed()">(FEDEMIN),
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Leader of Mining Federation (FEDEMIN)</b>
+                <br>Miguel is the leader of the local Mining Federation and a gold miner. He is
+                  thrilled that gold prices are rising. But he’s troubled that labor conditions for miners in Tambopata have gotten more dangerous in recent years. Click
+                <a href="http://localhost:8848/stakeholders/fedemin/"target="_blank"> <b>FEDEMIN</b></a> to learn why Miguel is
+                confident that mining is the best path for local economic development.
+              </span>
+            </span>
+            an organization that is fighting for the rights of miners. Mining has grown in Tambopata in recent years, and larger-scale miners have begun to push artisanal
+            miners as well as farmers off their land with threats of violence. Given the rising global demand for gold, Elena thinks it is impossible to stop mining in
+            Tambopata and that the government should focus on regulating the activity and helping local residents benefit from the activity instead of outsiders. Elena is
+            disturbed by news reports that mining is contaminating the region’s water and fish, yet she is proud to be a miner. She just wishes she could work independently,
+            with no fear of violence, and that she could afford to use lower polluting mining technology.
+          </p>
+          <br>
+        </div>
+        </div>
+          <!-- older video: gold mining family, Manuani  -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h2><u>Related Short Videos</u></h2>
+          <br>
+            <h3>Gold Mining: Manuani Family</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/EymPb8bKFRw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <!-- older video: gold mining family, Apaylom  -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Gold Mining: Apaylam Family</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/0VzjVuSVcjo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+          <!-- New video: Reforestation Video  -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Reforestation in Mining Areas</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/NKflSNuJ68s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+     <!-- Additional Reading Resources -->
+     <div class="container" class="arimo" align="center" style="color:#006d2c;">
+      <h3>Additional reading resources are available through your instructor.</h3>
+    </div>
+    <br><br>
+    <div align = "left">
+      <i>The stakeholders are fictitious but based on real people from Tambopata (see <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>credits</b></a>).
+      <br>
+      Las imágenes, nombres y notas biográficas son ficticias pero basadas en actores reales de Tambopata
+      (ver <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>créditos</b></a>).</i>
+    </div>
+    <!-- End of Bootstrap Container -->
+    </div>
+    <div class = "copyright">
+      <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+      </a>
+      <br />This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+    </div>
+    <!-- Button to go to top of page, referenced from w3schools.com -->
+    <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+
+
+
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
+    </body>
+</html>

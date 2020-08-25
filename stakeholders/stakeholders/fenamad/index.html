@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+            <title>Tambopata | FENAMAD</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+
+
+    </head>
+
+    <body>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../../')"><img src="../../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button class = "active" onclick="redirect('../../../stakeholders')"><img src="../../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../../maps')"><img src="../../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../../secret')"><img src="../../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <button onclick="redirect('../../../credits')"><img src="../../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div>
+
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Leader of the Federation of Native Peoples (FENAMAD)</h1>
+        </div>
+      </div>
+
+      <!-- Stakeholder Description container-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <div class = "row">
+          <div class = "col-md-6 col-sm-12 col-xs-12">
+        <!-- image and photo credit -->
+          <img src="fenamad.gif" alt="Picture of a FENAMAD leader sitting in front of a map and looking at a laptop screen " width="70%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
+          </blockquote>
+        </div>
+        <div class = "col-md-6 col-sm-12 col-xs-12">
+		      <!-- Stakeholder description with popups for glossary terms and links to other stakeholders -->
+          <p>
+            Agustin Achuni leads FENAMAD, a grassroots political organization of indigenous peoples. FENAMAD’s mission is to defend indigenous ancestral lands
+            from outside interests and gain authority to manage their legally recognized territories as they choose. Many indigenous communities in this region
+            of the Amazon lost large tracts of their original ancestral lands due to Peru’s land reform policies in the 1970s.
+          </p>
+
+          <p>
+            Some communities who are now members of FENAMAD, like
+            <!--retrieve glossary term Ese’eja & link to ese'eja community member page-->
+            <span class="popup" onclick="popupEse()"><u>Ese’eja</u>
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                The largest group of indigenous people in the region, numbering ~600 today,
+                some estimate ~10,000 before 1890.
+                <a href="http://localhost:8848/stakeholders/community-member/"target="_blank"> <b>Ese'eja Community Member</b></a>
+              </span>
+            </span>
+            and Harakmbut communities, managed to win legal recognition of smaller parts of their
+            ancestral territories. These communities now have legal communal titles but have lost access to many of their sacred sites and to the areas in which
+            they relied on for traditional hunting, fishing, and gathering.
+          </p>
+          </div>
+          <div class = "col-md-12 col-sm-12 col-xs-12">
+          <p>
+            As leader of FENAMAD, Agustin is deeply frustrated by the political marginalization of indigenous peoples, and his strongest priority is to regain
+            indigenous control of ancestral lands. He believes that the entire Tambopata National Reserve and Bahuaja-Sonene Park belong to the Ese’eja, the Harakmbut,
+            and other ethnic groups in the region. He also thinks that Peru’s Park Service should co-manage these protected areas in partnership with the Ese’eja,
+            Harakmbut, and other native groups.
+          </p>
+
+          <p>
+            Agustin is also helping FENAMAD members devise ways in which their communities can be sustainable over the long term. Some FENAMAD members believe
+            <!-- retrieve Rainforest Expeditions description and link  -->
+            <span class="popup" onclick="popupRE()"><u>ecotourism</u>
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A form of nature-based tourism in which tourist impacts on the environment
+                are mitigated.
+                <a href="http://localhost:8848/stakeholders/rainforest-expeditions/"target="_blank"> <b>Rainforest Expeditions</b></a>
+              </span>
+            </span>
+            can be a profitable business for indigenous communities and a source of jobs for individuals. Others, however, see ecotourism as an activity
+            that commercializes their traditional culture and inequitably distributes the work and the financial benefits involved. Plus, some critics argue that
+            tourism and wildlife hunting are simply not compatible.
+          </p>
+
+          <p>
+            Similarly, FENAMAD members are divided in their opinion of forest carbon projects – like those referred to as
+            <!--retrieve glossary term REDD+ & link to gloassary -->
+            <span class="popup" onclick="popupREDD()"><u>REDD+</u>
+              <span class="popupText" id="myPopup5">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                "Reduced Emissions from Deforestation and Forest Degradation", is an
+                incentive-based mechanism for reducing greenhouse gas emissions through improved forest management in developing countries.
+              </span>
+            </span>
+            (Reduced Emissions from Deforestation and Forest Degradation) and promoted by the Peruvian conservation company
+            <!-- retrieve BAM description and link  -->
+            <span class="popup" onclick="popupBAM()"><u><i>Bosques Amazónicos</i></u>
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A for-profit organization facilitating a REDD+ project in Tambopata. Click
+                <a href="http://www.bosques-amazonicos.com/en/our-projects/redd-in-the-bahuaja-sonene-national-park-and-tambopata-national-reserve"target="_blank"> <b>BAM</b></a>
+                for more information.
+              </span>
+            </span>
+            – that promise to pay indigenous communities not to cut forest on their land for many years. However, other FENAMAD members strongly oppose forest carbon projects,
+            arguing that yet again indigenous communities have had little say in how these REDD+ projects are designed and managed.
+          </p>
+
+          <p>
+            Gold mining has brought about another tension within FENAMAD’s constituency. Many FENAMAD members now work as gold miners. Harakmbut people are intensively
+            mining for gold within their Kotsimba Territory and keeping all other miners out. Meanwhile, the Ese’eja people living in the Infierno Territory do not
+            permit any mining on their lands, but they extract gold from neighboring regions. Agustin is pained by his people’s poverty and thinks that if mining must
+            happen, it should directly benefit indigenous peoples. FENAMAD leaders are considering joining the
+            <!-- retrieve Fedemin description and link  -->
+            <span class="popup" onclick="popupFedemin()">Mining Federation
+              <span class="popupText" id="myPopup4">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Leader of Mining Federation (FEDEMIN)</b>
+                <br>Miguel is the leader of the local Mining Federation and a gold miner. He is thrilled that gold prices are rising. But he’s
+                troubled that labor conditions for miners in Tambopata have gotten more dangerous in recent years. Click
+                <a href="http://localhost:8848/stakeholders/fedemin/"target="_blank"><b>Fedemin</b></a> to learn why Miguel is confident that mining is the best path
+                for local economic development.
+              </span>
+            </span>
+            in their public protests against the Peruvian government’s newly imposed mining restrictions.
+          </p>
+
+          <p>
+            Agustin is also under heavy pressure from some FENAMAD members to help them stop illegal logging by commercial operators on native lands. He is still
+            grieving and furious about the fact that illegal loggers murdered indigenous leaders who were trying to defend their forests in other parts of the
+            Peruvian Amazon.
+          </p>
+        </div>
+        </div>
+          <br>
+      <!-- New 2020 Youtube video President of Ese'eja Community at Infierno-->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h2><u>Related Short Videos</u></h2>
+          <br>
+        <h3>President of the Ese'eja Community of Infierno</h3>
+      </div>
+      <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Z2KYpDSWUlU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br>
+      <!-- New 2020 Youtube video Ecogourism entrepreneur -->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>Ecotourism Entrepreneur From Infierno Ese'eja Community</h3>
+      </div>
+      <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/CNXXmyaJjQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br>
+      <!-- Older video: Fenamad Leader Part 1  -->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>FENAMAD Leader: Part 1</h3>
+      </div>
+      <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/WWhyX-k0Ju8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br>
+      <!-- Older video: Fenamad Leader Part 2  -->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>FENAMAD Leader: Part 2</h3>
+      </div>
+      <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/4XfGL6KkJJU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    <!-- Additional Reading Resources -->
+    <div class="container" class="arimo" align="center" style="color:#006d2c;">
+      <h3>Additional reading resources are available through your instructor.</h3>
+    </div>
+    <br><br>
+    <div align = "left">
+      <i>The stakeholders are fictitious but based on real people from Tambopata (see <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>credits</b></a>).
+      <br>
+      Las imágenes, nombres y notas biográficas son ficticias pero basadas en actores reales de Tambopata
+      (ver <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>créditos</b></a>).</i>
+    </div>
+    <!-- End of Bootstrap Container -->
+    </div>
+    <br>
+    <div class = "copyright">
+      <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+      </a>
+      <br />This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+    </div>
+    <!-- Button to go to top of page, referenced from w3schools.com -->
+    <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+
+
+
+        <script src = "lib\jquery-3.4.1.js"></script>
+        <script type= "text/javascript" src="js/main.js"></script>
+        <script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
+    </body>
+</html>

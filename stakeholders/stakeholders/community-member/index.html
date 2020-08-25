@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+            <title>Tambopata | Community Member</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../../')"><img src="../../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button class = "active" onclick="redirect('../../../stakeholders')"><img src="../../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../../maps')"><img src="../../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../../secret')"><img src="../../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <button onclick="redirect('../../../credits')"><img src="../../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div>
+
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Indigenous Ese'eja Community Member</h1>
+        </div>
+      </div>
+
+      <!-- Stakeholder Description Container-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <div class = "row">
+          <div class = "col-md-6 col-sm-12 col-xs-12">
+        <!-- image and photo credit -->
+          <img src="eseeja.jpg" alt="A picture of an Ese’eja indigenous person " width="75%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
+          </blockquote>
+        </div>
+
+        <div class = "col-md-6 col-sm-12 col-xs-12">
+          <!-- stakeholder description starts here with pop-ups glossary terms and links to other stakeholders  -->
+          <p>Ramon Mishaja is from the
+          <!--retrieve glossary term Ese’eja & link to gloassary -->
+          <span class="popup" onclick="popupEse()">
+            <u>Ese’eja Indigenous Territory of Infierno,</u>
+            <span class="popupText" id="myPopup6">
+              <!-- X button, affordance to close pop-up -->
+              <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            The largest group of indigenous people in the region, numbering ~600 today, some estimate ~10,000 before 1890.
+            </span>
+          </span>
+            an indigenous community with recognized land rights lying adjacent to the Tambopata National Reserve. The Ese’eja were originally
+            a nomadic community living in the region around Tambopata for centuries. They have deep ecological knowledge and a strong spiritual
+            connection to Amazonian ecosystems. Though individual communities like the one at Infierno won legal communal
+            title to certain lands in 1974, the Ese’eja have lost access to many of their sacred sites and to areas they
+            once relied on for hunting, fishing, and gathering. Today the Ese’eja Indigenous Territory of Infierno covers
+            only 9,558
+            <!--retrieve glossary term Hectares & link to gloassary -->
+            <span class="popup" onclick="popupHec()"><u>hectares,</u>
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A 100 x 100 m unit of land (1 hectare = 2.3 acres). Abbreviated “ha". Most Tambopata farms are ~40 ha.
+              </span>
+            </span>
+             an area significantly smaller than their original homeland.
+          </p>
+        </div>
+        <div class = "col-md-12 col-sm-12 col-xs-12">
+          <p>Ramon’s primary concern is that his people are losing rights to their ancestral lands. Like other Ese’eja, he’s
+            unhappy that the Peruvian government and other outsiders are making decisions about their ancestral lands without
+            consulting leaders in the Federation of Native Peoples
+            <!-- retrieve Fademad description and link  -->
+            <span class="popup" onclick="popupFad()">(FADEMAD).
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Leader of the Agrarian Federation(FADEMAD):</b>
+                 <br>Alan leads FADEMAD, a grassroots political organization that represents ~5000 small farmers in the Madre de Dios region. FADEMAD’s goal is to improve the quality of life of its members,
+                 both long-time residents and more-recently settled colonists. Alan believes that poor farmers’ quality of life
+                 depends on a healthy environment. Thus, he tries to defend local farmers AND the forest. Click
+                <a href="http://localhost:8848/stakeholders/fademad/"target="_blank"><b>FADEMAD</b></a> to learn how
+                Alan weighs the costs and benefits of land management practices of his varied constituents are interested in pursuing.
+              </span>
+            </span>
+
+             Ramon is adamant that indigenous people should control their own destiny.
+          </p>
+
+          <p> He is also thinking about different ways that his home Ese’eja community in Infierno can secure more income. His
+            community has an
+            <!--retrieve glossary term Eco-tourism & link to gloassary -->
+            <span class="popup" onclick="popupEco()"><u>eco-tourism</u>
+              <span class="popupText" id="myPopup7">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A form of nature-based tourism in which tourist impacts on the environment are mitigated.
+              </span>
+            </span>
+             partnership with the tourism company
+            <!-- retrieve Rainforest Expeditions description and link  -->
+            <span class="popup" onclick="popupRE()"><i>Rainforest Expeditions</i>.
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Co-Founder of Rainforest Expeditions:</b>
+                <br>Oscar is passionate about biodiversity conservation but believes that
+                saving the rainforest must be profitable to be successful. To this end, he built Rainforest Expeditions, a high-end ecotourism company. Click
+                <a href="http://localhost:8848/stakeholders/rainforest-expeditions/"target="_blank"> <b>Rainforest Expeditions</b></a> to learn how Oscar
+                collaborates with other interest groups to conserve the rainforest and bring economic support to the area while grappling with other challenges in
+                participatory land use management.
+              </span>
+            </span>
+            The Ese’eja own the tourism lodge built by the company in Infierno, and <i>Rainforest Expeditions</i> handles the marketing and management. Together,
+            they share the profits. Some of Ramon’s relatives have good jobs working at the lodge, but other Ese’eja distrust
+            tourism companies to equitably share tourism revenue. They think it might be better to follow the example of the
+            Harakmbut indigenous community living in an indigenous territory called Kotzimba (also adjacent to the Tambopata National Reserve).
+            Harakmbut residents are mining gold throughout their territory using heavy machinery and mercury. Although the damage
+            is severe, they have become wealthy from mining. Alternatively, Ramon has heard rumors about forest carbon projects
+            associated with an international climate change mitigation mechanism known as
+            <!--retrieve glossary term REDD+ & link to gloassary -->
+            <span class="popup" onclick="popupREDD()"><u>REDD+</u>
+              <span class="popupText" id="myPopup4">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                Reduced Emissions from Deforestation and Forest Degradation, is an incentive-based mechanism for reducing greenhouse gas emissions through improved forest management in developing countries.
+              </span>
+            </span>
+            (Reduced Emissions from Deforestation and Forest Degradation).
+            <!-- retrieve BAM description and link  -->
+            <span class="popup" onclick="popupBAM()"><u><i>Bosques Amazónicos</i></u>,
+              <span class="popupText" id="myPopup5">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A for-profit organization facilitating a REDD+ project in Tambopata. Click
+                <a href="http://www.bosques-amazonicos.com/en/our-projects/redd-in-the-bahuaja-sonene-national-park-and-tambopata-national-reserve"target="_blank"> <b>BAM</b></a>
+                for more information.
+              </span>
+            </span>
+            a Peruvian conservation company, has REDD projects that pay communities to
+            store carbon in the forests of Tambopata National Reserve, but he does not know the contract conditions or if the contract
+            will benefit native communities. Meanwhile, Ramon is troubled by reports that a third Tambopata-adjacent Ese’eja Indigenous
+            territory to the east (Palma Real) has suffered invasions by outside miners and loggers, some of whom are violent.
+          </p>
+          <br>
+        </div>
+        </div>
+          <!-- New 2020 Youtube video President of Ese'eja Community at Infierno-->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h2><u>Related Short Videos</u></h2>
+          <br>
+            <h3>President of the Ese'eja Community of Infierno</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Z2KYpDSWUlU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <!-- New 2020 Youtube video Ecogourism entrepreneur -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Ecotourism Entrepreneur From Infierno Ese'eja Community</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/CNXXmyaJjQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <!-- Older video: Fenamad Leader Part 1  -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>FENAMAD Leader: Part 1</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/WWhyX-k0Ju8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <!-- Older video: Fenamad Leader Part 2  -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>FENAMAD Leader: Part 2</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/4XfGL6KkJJU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>Additional reading resources are available through your instructor.</h3>
+      </div>
+      <br><br>
+      <div align = "left">
+				<i>The stakeholders are fictitious but based on real people from Tambopata (see <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>credits</b></a>).
+				<br>
+				Las imágenes, nombres y notas biográficas son ficticias pero basadas en actores reales de Tambopata
+				(ver <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>créditos</b></a>).</i>
+      </div>
+      <!-- End of Bootstrap Container -->
+      </div>
+      <br>
+      <div class = "copyright">
+        <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+          <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+        </a>
+        <br />This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+      </div>
+      <!-- Button to go to top of page, referenced from w3schools.com -->
+      <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+
+
+        <script src = "lib\jquery-3.4.1.js"></script>
+    		<script type= "text/javascript" src="js/main.js"></script>
+    		<script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
+    </body>
+</html>

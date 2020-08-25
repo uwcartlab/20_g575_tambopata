@@ -178,3 +178,289 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+function main(){
+  var map, corridor, finalProposal;
+  if(window.innerWidth > 780){
+    finalMapDesktop()
+  }else{
+    finalMapMobile()
+  }
+  
+  function finalMapDesktop(){
+    var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
+    //create the map with its center coordinates and have roads be default layer.
+    map = L.map('finalMap', {
+    center: [-12.9, -69.8],
+    zoom: 10,
+    minZoom: 10,
+    maxZoom: 10,
+    dragging: true,
+    layers: [roads],
+    maxBounds: ([
+      [-11.9,-68.2],
+      [-13.8, -71.3]
+    ])
+    });
+    map.removeControl(map.zoomControl);
+    getTitle()
+    getFinalProposal()
+    addLegend(corridor)
+  }
+  function finalMapMobile(){
+    var roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'});
+    //create the map with its center coordinates and have roads be default layer.
+    map = L.map('finalMap', {
+    center: [-12.9, -69.7],
+    zoom: 10,
+    minZoom: 9,
+    maxZoom: 10,
+    dragging: true,
+    attributionControl: false,
+    layers: [roads],
+    maxBounds: ([
+      [-11.7,-68.5],
+      [-13.9, -71]
+    ])
+    });
+    map.removeControl(map.zoomControl);
+    L.control.attribution({
+      position: 'topright'
+      }).addTo(map);
+    console.log(map.getBounds())
+    getMobileTitle()
+    getFinalProposal()
+    addMobileLegend()
+    addCorridorCheck()
+  }
+  function getTitle(){
+    var title = L.control({position: 'topleft'})
+
+    title.onAdd = function (map){
+      var div = L.DomUtil.create('div','mapTitle');
+      div.innerHTML = 
+      '<p class = "title" >Official Map*</p>'
+      return div;
+    }
+    title.addTo(map);
+  }
+  function getMobileTitle(){
+    var title = L.control({position: 'topleft'})
+
+    title.onAdd = function (map){
+      var div = L.DomUtil.create('div','mapTitleMobile');
+      div.innerHTML = 
+      '<p class = "mTitle" >Official Map*</p>'
+      return div;
+    }
+    title.addTo(map);
+  }
+  function addCorridorCheck(){
+    var check = L.control({position: 'topright'});
+  
+    check.onAdd = function (map){
+      var div = L.DomUtil.create('div','mChecker');
+  
+      div.innerHTML = 
+      '<input id = "mMiningCorridor" type = "checkbox" class = "corridor" unchecked><span class = "mCheck">Turn On/Off Mining Corridor</span>'
+      L.DomEvent.disableClickPropagation(div);
+      return div;
+    }
+    check.addTo(map);
+    $('.corridor').on('input',function(){
+      if(document.getElementById("mMiningCorridor").checked == true){
+      getCorridor()
+    } else if(document.getElementById("mMiningCorridor").checked == false){
+      removeCorridor(corridor)
+    }
+  });
+  }
+  function addMobileLegend(){
+    var legend = L.control({position: 'bottomleft'});
+  
+    legend.onAdd = function (map) {
+    
+      var div = L.DomUtil.create('div', 'row mInfo'),
+        legendList = [{"ZONE": "Mining Corridor", "Color":"#d8b365"},
+        {"ZONE": "Buffer Zone","Color": "#6fd0d3"},
+        {"ZONE": "Ese’eja and Harakmbut Territories","Color": "#c45791"},
+        {"ZONE": "Restoration","Color": "#f1b6da"},
+        {"ZONE": "Strict Protection","Color": "#1b7739"},
+        {"ZONE": "Tourism","Color": "#c2e699"},
+        {"ZONE": "Low Impact Non-Timber Forest Use","Color": "#ffae42"}]
+      
+    
+        div.innerHTML  = 
+        '<div class = "col-4"><i style="background:' + legendList[0].Color + '"></i>'+legendList[0].ZONE+'</div>'+
+        '<div class = "col-4"><i style="background:' + legendList[1].Color + '"></i>'+legendList[1].ZONE+'</div>'+
+        '<div class = "col-4"><i style="background:' + legendList[3].Color + '"></i>'+legendList[3].ZONE+'</div>'+
+        '<div class="w-100"></div>'+
+        '<div class = "col-4"><i style="background:' + legendList[4].Color + '"></i>'+legendList[4].ZONE+'</div>'+
+        '<div class = "col-8"><i style="background:' + legendList[2].Color + '"></i>'+legendList[2].ZONE+'</div>'+
+        '<div class="w-100"></div>'+
+        '<div class = "col-4"><i style="background:' + legendList[5].Color + '"></i>'+legendList[5].ZONE+'</div>'+
+        '<div class = "col-8"><i style="background:' + legendList[6].Color + '"></i>'+legendList[6].ZONE+'</div>'
+      
+      L.DomEvent.disableClickPropagation(div);
+      return div;
+    };	
+    legend.addTo(map);
+    
+  }
+  function corridorStyle(){
+      return{
+        fillColor: "#d8b365",
+        fillOpacity: 1,
+        color: "black",
+        weight: 0.5,
+        opacity: 1
+    }
+  }
+  function style(feature){
+    //opacity is also brought in here
+    // sets the style of the zones
+    var color; // color of the zone
+    var zoneName = feature.properties.ZONES
+    var opacity = 1
+    if(zoneName == "Buffer Zone"){ // if it's the buffer zone, make it Powder blue
+    color = "#6fd0d3";
+    lineWidth = 0.1;
+    lineColor = "Black";
+    fillop = opacity
+      }
+      else if(zoneName == "Strict Protection"){
+        color = "#1b7739";
+        lineWidth = 0.1;
+        lineColor = "Black";
+        fillop = opacity
+      }
+      else if(zoneName == "Ese’eja and Harakmbut Territories"){
+        color = "#c45791";
+        lineWidth = 0.1;
+        lineColor = "Black";
+        fillop = opacity
+      }
+      else if(zoneName == "Wildlands"){
+        color = "#65b366";
+        lineWidth = 0.1;
+        lineColor = "Black";
+        fillop = opacity
+      }
+      else if(zoneName == "Tourism"){
+        color = "#c2e699";
+        lineWidth = 0.1;
+        lineColor = "Black";
+        fillop = opacity
+          }
+      else if(zoneName == "Restoration"){
+        color = "#f1b6da";
+        lineWidth = 0.1;
+        lineColor = "Black";
+        fillop = opacity
+      }
+      else if(zoneName == "Bahuaja-Sonene National Park"){
+        color = "None";
+        lineWidth = 3;
+        lineColor = "#6e926e";
+        fillop = 0
+        //can change opacity based on Tanya's suggestion, but would need to change colors based on the basemap used
+        
+      }
+      else if(zoneName == "Direct Use"){
+        color = "#e13d37";
+        //color = "#125e1d";
+        lineWidth = 0.1;
+        lineColor = "Black";
+        fillop = opacity;
+      }
+      else if(zoneName == "Low Impact Non-Timber Forest Use"){
+        color = "#ffae42";
+        lineWidth = 0.1;
+        lineColor = "Black";
+        fillop = opacity;
+      }
+      else if(zoneName == "Community Reserve"){
+        color = "#296bc2";
+        lineWidth = 0.1;
+        lineColor = "Black";
+        fillop = opacity;
+      }
+      return{
+              fillColor: color, // set color according to zone name
+              fillOpacity: fillop, //start as partially opaque
+        color: lineColor, // black border
+              weight: lineWidth,
+              opacity: opacity
+      }
+    
+  };
+  function addLegend(){
+    var legend = L.control({position: 'bottomleft'});
+  
+    legend.onAdd = function (map) {
+  
+      var div = L.DomUtil.create('div', 'info legend'),
+          legendList = [{"ZONE": "Mining Corridor", "Color":"#d8b365"},
+          {"ZONE": "Buffer Zone","Color": "#6fd0d3"},
+          {"ZONE": "Ese’eja and Harakmbut Territories","Color": "#c45791"},
+          {"ZONE": "Restoration","Color": "#f1b6da"},
+          {"ZONE": "Strict Protection","Color": "#1b7739"},
+          {"ZONE": "Tourism","Color": "#c2e699"},
+          {"ZONE": "Low Impact Non-Timber Forest Use","Color": "#ffae42"}]
+  
+      div.innerHTML = 
+      '<div class = "checker" ><input id = "MiningCorridor" type = "checkbox" class = "corridor" unchecked><span class = "check">Turn On/Off Mining Corridor</span></div><br>'+
+      '<div><i style="background:' + legendList[0].Color + '"></i><div class = "mining">'+legendList[0].ZONE+'</div></div>' +
+      '<p class = "zoneTitle">Zone Categories</p><br>'
+              
+      for (var i  in legendList) {
+        if(i > 0){
+          div.innerHTML +=
+              '<div class = "item"><div class = "item"><i style="background:' + legendList[i].Color + '"></i></div><div>'+legendList[i].ZONE+'</div></div>'
+    }}
+    L.DomEvent.disableClickPropagation(div);
+      return div;
+    };
+  
+  legend.addTo(map);
+  $('.corridor').on('input',function(){
+    if(document.getElementById("MiningCorridor").checked == true){
+      getCorridor()
+    } else if(document.getElementById("MiningCorridor").checked == false){
+      removeCorridor(corridor)
+    }
+  });
+  }
+  function getCorridor() {
+    $.ajax("data/CorridorMine.geojson", {
+      dataType: "json",
+      success: function(response){
+        createCorridor(response)
+      }
+    }); 
+  };
+  function getFinalProposal() {
+    $.ajax("data/FinalProposal.geojson", {
+      dataType: "json",
+      success: function(response){
+        createFinalProposal(response)
+      }
+    });
+  };
+  function createFinalProposal(data){
+    finalProposal= L.geoJson(data,{
+      style: style
+    }).addTo(map)
+    return finalProposal
+  }
+  function createCorridor(data){
+   corridor = L.geoJson(data,{
+      style: corridorStyle
+    }).addTo(map) 
+    return corridor
+  }
+  function removeCorridor(corridor){
+    map.removeLayer(corridor)
+  }}
+  main()

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+            <title>Tambopata | FADEMAD</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css\bootstrap-grid.min.css"/>
+        <link rel="stylesheet" href="css\bootstrap.min.css"/>
+
+    </head>
+
+    <body>
+      <!-- Navigation bar -->
+      <div class="navbar1" id = "navbar1">
+        <span class="header">Tambopata</span>
+        <!-- Each button calls the basic JS method with the path you want to go to -->
+        <button onclick="redirect('../../../')"><img src="../../img/Assignment.png" width="30" height="30" class="d-inline-block align-top" alt=""><p>Assignment</p></button>
+        <button class = "active" onclick="redirect('../../../stakeholders')"><img src="../../img/person.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Stakeholders</p></button>
+        <button onclick="redirect('../../../maps')"><img src="../../img/map2.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Proposals</p></button>
+        <!-- Secrets page will have a pop-up with an input form to request password from instructor -->
+        <button onclick="redirect('../../../secret')"><img src="../../img/lock.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Zoning Debrief</p></button>
+        <button onclick="redirect('../../../credits')"><img src="../../img/info.png" width="30" height="30" class="d-inline-block align-top"alt=""><p>Credits</p></button>
+        <a><img src="outline-flush-UWlogo-print.png" height="55"></a>
+      </div>
+
+      <!-- Page Title -->
+      <div class="jumbotron jumbotron">
+        <div class="container-fluid" align="center" style="color:#006d2c">
+          <h1 class="display-4">Leader of Agrarian Federation (FADEMAD)</h1>
+        </div>
+      </div>
+
+      <!-- Stakeholder Description container-->
+      <div class = "container" class="arimo" align="left" style="margin-bottom:30px;">
+        <div class = "row">
+          <div class = "col-md-6 col-sm-12 col-xs-12">
+        <!-- image and photo credit -->
+          <img src="fademad.png" alt="Picture of a person in a forested area, looking up towards the forest canopy" width="90%" class="image-center">
+          <blockquote class="blockquote" align="center" style="margin-bottom:20px;">
+            <footer class="blockquote-footer"><i>Photo credit: John Poole, </i><cite title="Source Title"><i>NPR</i></cite></footer>
+          </blockquote>
+        </div>
+        <div class = "col-md-6 col-sm-12 col-xs-12">
+          <!-- Stakeholder description with popups for glossary terms and links to other stakeholders -->
+          <p>
+            Alan Moreno leads FADEMAD, a grassroots political organization that represents ~5000 small farmers in the
+            <!--retrieve pop-up with glossary term Madre de Dios and link to gloassary -->
+            <span class="popup" onclick="popupMadre()"><u>Madre de Dios</u>
+              <span class="popupText" id="myPopup4">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                Madre de Dios: (literally “Mother of God”) the name of the 8.5 million ha Department (region)
+                surrounding Tambopata. It is the least populated area in Peru (~ 1 person/km2).
+              </span>
+            </span>
+             region. FADEMAD’s goal is to improve the quality of life of its members, both long-time residents and more-recently settled colonists.
+          </p>
+
+          <p>
+            Alan believes that poor farmers’ quality of life depends on a healthy environment. Thus, he tries to defend local farmers AND the forest. He grew up
+            in the Amazon, as did his father and grandfather. He’s proud of his farm. He’s planted a wide variety of crops together in a way that protects the soil,
+            includes trees, and attracts wildlife. He thinks this form of agriculture (called agroforestry) is the best hope for protecting the environment while
+            also providing local citizens food and income. As the leader of FADEMAD, he has worked closely with conservationists to help farmers learn about agroforestry.
+          </p>
+        </div>
+        <div class = "col-md-12 col-sm-12 col-xs-12">
+
+          <p>
+            He’s also intrigued by new opportunities for local poor farmers to earn extra income by selling certain crops–especially cacao–under a certification system.
+            Growing cacao can be a lot of work for very little money, but if cacao could be sold under a certification scheme, this could create a sustainable source
+            of income for Tambopata’s farmers.
+          </p>
+
+          <p>
+            He is also proud of the
+            <!--retrieve pop-up with description and link to Brazile Nut Harvester  -->
+            <span class="popup" onclick="popupNut()">Brazil nut harvesters
+              <span class="popupText" id="myPopup1">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Brazil Nut Harvester</b>
+                <br>Maria is a Brazil nut harvester and her livelihood depends on access to the old growth
+                forests. Brazil nut trees take decades to start producing nuts and cannot be cultivated in plantations. Click
+                <a href="http://localhost:8848/stakeholders/brazil-nut-harvester/"target="_blank"><b>Brazil Nut Harvester</b></a> to learn how Maria is engaging with
+                other stakeholders to address the changing landscape.
+              </span>
+            </span>
+             in FADEMAD. They have a special connection to the forest. Alan is growing worried as other members of FADEMAD
+            are becoming more powerful, particularly
+            <!--retrieve pop-up with description and link to colonist farmer  -->
+            <span class="popup" onclick="popupFarm()">colonist farmers,
+              <span class="popupText" id="myPopup2">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Colonist Farmer</b>
+                <br>Jose and his family work hard farming land near the Tambopata National Reserve. Every year,
+                Jose and his family plant rice and corn in fields cleared in the forest until the soil becomes ‘tired’ and less productive. Click
+                <a href="http://localhost:8848/stakeholders/colonist-farmer/"target="_blank"><b>Colonist Farmer</b></a> to learn about the
+                different types of opportunities Jose is entertaining to provide a standard income for his family.
+              </span>
+            </span>
+             many of whom are more interested in monoculture agriculture, mining, and cattle. To save his
+            political career, Alan recently tried to display a more pro-agriculture stance and publicly announced that local farmers’ rights must take priority over
+            biodiversity.
+          </p>
+
+          <p>
+            Alan knows that many FADEMAD members also work as
+            <!--retrieve pop-up with description and link to gold miner  -->
+            <span class="popup" onclick="popupMine()">gold miners
+              <span class="popupText" id="myPopup3">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <b>Small-Scale Gold Miner</b>
+                <br>Pedro is a long-time resident of Tambopata and a gold miner. Given the rising global demand for gold, Pedro thinks it
+                is impossible to stop mining in Tambopata but he’s also concerned about the impact mining has on his community and environment. Click
+                <a href="http://localhost:8848/stakeholders/gold-miner/"target="_blank"><b>Gold Miner</b></a> to learn about
+                the future or mining Pedro envisions.
+              </span>
+            </span>
+            to supplement their farming income. But he is disturbed by the devastating impact of mining
+            on the forest and water supplies. He is troubled by reports that some miners are threatening local farmers with violence, demanding access to gold lying
+            beneath their lands.
+          </p>
+
+          <p>
+            Alan and his fellow FADEMAD members are wary of forest carbon projects–like those referred to as
+            <!--retrieve glossary term REDD+ & link to gloassary -->
+            <span class="popup" onclick="popupREDD()"><u>REDD+</u>
+              <span class="popupText" id="myPopup6">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                Reduced Emissions from Deforestation and Forest Degradation, is an incentive-based mechanism for reducing greenhouse gas emissions through improved forest management in developing countries.
+              </span>
+            </span>
+            (Reduced Emissions from Deforestation and Forest Degradation)– that promise to pay farmers not to clear forest on their
+            land for many years. He questions whether the extra money will be enough for farmers to tie up parts of their land in
+            lengthy conservation contracts. After all, what does a poor farmer have to offer her growing children but her land? However, Alan
+            <i>is</i> interested in carbon projects that pay farmers to adopt agroforestry, including cacao agroforestry systems.
+          </p>
+
+          <p>
+            Last, although Alan believes
+            <!--retrieve glossary term Eco-tourism & link to gloassary -->
+            <span class="popup" onclick="popupEco()"><u>ecotourism</u>
+              <span class="popupText" id="myPopup7">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                A form of nature-based tourism in which tourist impacts on the environment are mitigated.
+              </span>
+            </span>
+            mainly benefits private companies and some
+            <!--retrieve glossary term Ese’eja & link to gloassary -->
+            <span class="popup" onclick="popupEse()"><u>Ese’eja indigenous communities</u>,
+              <span class="popupText" id="myPopup5">
+                <!-- X button, affordance to close pop-up -->
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                The largest group of indigenous people in the region, numbering ~600 today, some estimate ~10,000 before 1890.
+              </span>
+            </span>
+            he does see promise in ‘agro-tourism’.
+            Some Brazil nut harvesters hope to make money charging tourists for the experience to harvest Brazil nuts.
+          </p>
+        </div>
+          <br>
+
+          <!-- 2020 Video: Reforestration -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h2><u>Related Short Videos</u></h2>
+          <br>
+            <h3>Reforestation in Mining Areas</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/NKflSNuJ68s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <!-- 2020 Youtube video: Cacao farmer/agroecology -->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Cacao Farmer Agroforestry Coordinator</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/RMf-4BBItz8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+
+          <!-- 2020 Youtube video Brazil Nut Harvester-->
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Brazil Nut Harvester & Tourism Entrepreneur</h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Q43OWclfPHw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+          <br>
+
+          <div class="container" class="arimo" align="center" style="color:#006d2c;">
+            <h3>Overview of Tambopata Community (1996, 28 minutes) </h3>
+          </div>
+          <div class = "iframe-container" align="center" style="margin-bottom:10px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/bz7HzmlcXH0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <br>
+      <!-- Additional Reading Resources -->
+      <div class="container" class="arimo" align="center" style="color:#006d2c;">
+        <h3>Additional reading resources are available through your instructor.</h3>
+      </div>
+      <br><br>
+      <div align = "left">
+				<i>The stakeholders are fictitious but based on real people from Tambopata (see <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>credits</b></a>).
+				<br>
+				Las imágenes, nombres y notas biográficas son ficticias pero basadas en actores reales de Tambopata
+				(ver <a class = "disclaimer" href = "../../../credits/index.html#disclaimer"><b>créditos</b></a>).</i>
+      </div>
+      <!-- End of Bootstrap Container -->
+      </div>
+      <br>
+
+      </div>
+      <div class = "copyright">
+        <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+          <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+        </a>
+        <br />This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+      </div>
+      <!-- Button to go to top of page, referenced from w3schools.com -->
+      <button onclick="topFunction()" id="scrollBtn" title="Go to top">Top</button>
+
+
+        <script src = "lib\jquery-3.4.1.js"></script>
+    		<script type= "text/javascript" src="js/main.js"></script>
+    		<script src = "lib\bootstrap.min.js"></script>
+            <script src = "lib\bootstrap.bundle.min.js"></script>
+    </body>
+</html>

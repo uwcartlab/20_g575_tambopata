@@ -1,14 +1,27 @@
 //function mobile is for mobile view
 function mobile(){
+//ls checks to see if user has visted the page or not.
+var ls = sessionStorage.getItem('tambopata.visited');
 
+//if not visited, the tutorial video modal will appear. Otherwise, it will not open when you open the proposals page.
+if (ls == null) {
+	$(window).on('load',function(){
+		$('#tutorialModal').modal('show');
+	});
+}else{
+	sessionStorage.setItem('tambopata.visited', "visited")
+	overlayOff()
+}
 //global variables
 var map;
 var overlayLeft, overlayRight, overlay;
 var swipeList
 var view1, view2, view3, view4;
 var swipe;
+//set the road color for the additional roads
 var roadColor = "#a9a9a9";
-var opacity
+var opacity;
+var TNR;
 
 //padding for there to be two bottom navigation bars
 $('html').css("padding-bottom","80px");
@@ -37,24 +50,18 @@ function setMap() {
 	//create the map with its center coordinates and have roads be default layer.
     map = L.map('map', {
 		center: [-13.2, -69.5],
-		zoom: 9,
+		zoom: 8,
 		minZoom: 8,
 		attributionControl: false, //attribution will be on top of page instead of bottom
 		layers: [roads],
 
 	});
+	
 	//removing the zoom control in mobile view.
 	map.removeControl(map.zoomControl);
-	//hybrid has both satellite imagery with labels
-	var hybrid  = L.gridLayer.googleMutant({
-		type: 'hybrid',
-		attribution: "Google Maps"
-	})
-	//earth is just satellite imagery
-	var earth = L.gridLayer.googleMutant({
-		type: 'satellite', // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
-		attribution: "Google Maps"
-	})
+
+	var earth = L.esri.basemapLayer('Imagery')
+	var hybrid = L.esri.basemapLayer('ImageryTransportation')
 	//roads are called from Additional_Roads.js, where the variable is just roadsPOI = geojson
 	//roadsPane are to make sure the additional roads lay ontop of each proposal on the map.
 	map.createPane('roadsPane');
@@ -66,9 +73,10 @@ function setMap() {
 	});
 	//control to add attribution and where to have it be on the screen
 	L.control.attribution({
-		position: 'topright'
+		position: 'topright',
+		// prefix: '<a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> This work is licensed under a <a target = "_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>',
 	  }).addTo(map);
-	  proposalGuider = L.Control.extend({
+	var proposalGuider = L.Control.extend({
         options: {
             position: 'topleft'
         },
@@ -81,13 +89,53 @@ function setMap() {
 			L.DomEvent.disableClickPropagation(proposalContainer)
 			return proposalContainer;
 		}
-    });
+	});
+	//control for the proposal map pdf link.
 	map.addControl(new proposalGuider());
+	var pdf = L.Control.extend({
+        options: {
+            position: 'topleft'
+        },
+        onAdd: function () {
+            
+			var pdfButton = L.DomUtil.create('button', 'pdfButton');
+			$(pdfButton).append('<i class="fa fa-download fa-2x" aria-hidden="true"></i>')
+			L.DomEvent.disableClickPropagation(pdfButton)
+			return pdfButton;
+		}
+	});
+	map.addControl(new pdf());
+
+	//control for the tutorial video link to be added
+	var tutorial = L.Control.extend({
+        options: {
+            position: 'topleft'
+        },
+        onAdd: function () {
+            
+			var tutorialButton = L.DomUtil.create('button', 'Mtutorial');
+			$(tutorialButton).append('<i class="fa fa-play fa-lg" aria-hidden="true"></i>')
+			$(tutorialButton).addClass('btn')
+			//toggle attributes to work with Bootstrap v4.
+			$(tutorialButton).attr('data-toggle','modal')
+			$(tutorialButton).attr('href','#tutorialModal')
+			L.DomEvent.disableClickPropagation(tutorialButton)
+			return tutorialButton;
+		}
+	});
+	map.addControl(new tutorial());
+	//open the pdf map to a new page.
+	$($('.pdfButton')).on({
+		click: function(){
+			window.open("data/TambopataProposalMaps.pdf","_blank")
+		}
+	})
 	//listing out the basemaps
+	var hybridGroup = L.layerGroup([hybrid, earth])
 	const baseMaps = {
 		"Primary Roads": roads,
 		"Satellite": earth,
-		"Hybrid": hybrid
+		"Hybrid": hybridGroup
 	};
 	//vectorLayers are just addRoads
 	const vectorLayers = {
@@ -110,10 +158,10 @@ function setMap() {
 
 		switch (zoomLevel) {
 			case 10:
-				tooltip.css('font-size', 24);
+				tooltip.css('font-size', 18);
 				break;
 			case 9:
-				tooltip.css('font-size', 20);
+				tooltip.css('font-size', 14);
 				break;
 		}
 	})
@@ -145,7 +193,9 @@ function setMap() {
 		switchProposals(view1, view2, view3, view4)
 		//mobile legend created and added onto map legend button
 		createMobileLegend(roads, earth, hybrid)
-    }
+	}
+	//calls the TNR geojson and the POI geojson to be added onto the map.
+	getTNR()
     getPOIs()
 };
 function opacityBar (){
@@ -159,7 +209,7 @@ function opacityBar (){
 			var sliderDiv = L.DomUtil.create('div','mSlider ui-slider-vertical')
 			$(sliderDiv).append('<span class = "opacityTxtM" style = "margin-left: 10px;">0%</span>');
 			$(sliderDiv).append('<input class="range-sliderM" type="range">');
-			$(sliderDiv).append('<span class = "opacityTxtM">100%</span>');
+			$(sliderDiv).append('<span class = "opacityTxtM" style = "margin-left: -10px;">100%</span>');
 			L.DomEvent.disableClickPropagation(sliderDiv)
 			return sliderDiv;
 		}
@@ -337,19 +387,22 @@ function createMobileLegend(){
 			//mLegend contains the all the legend buttons inside
 			var legendItems = L.DomUtil.create('div', 'mLegend');
 			//accordion is used to have the data be collapsable
+			$(legendItems).append('<div class = "lineItem"><div class="mNationalPark" id="NationalPark" ></div><p class = "lineLegend">Bahuaja-Sonene National Park</p></div>')
+			$(legendItems).append('<div class = "lineItem"><div class="mTNRboundary" id="TNR" ></div><p class = "lineLegend">Tambopata National Reservek</p></div>')
+			$(legendItems).append('<div class = "mZoneHeader">Zone Categories</div>')
 			var accordion = $("<div id = 'accordion'></div>")
 			accordion.appendTo($(legendItems));
 			//each button has a card header which is used to collapse in the accordion, the legend box item, the zone type, and the zone description.
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseOne"><div class="mLegendItem" id="bufferZone" ></div><p class="mLegendTxt">Buffer Zone</p></a></div><div id="collapseOne" class="collapse" data-parent="#accordion"><div class="card-body">This zone is meant to buffer the Tambopata National Reserve from the negative environmental impacts of human activities in the surrounding area. Any activity is allowed in the Buffer Zone provided it does not harm the Tambopata Reserve. Mining, and commercial agriculture, logging, or tourism must first conduct an environmental impact assessment, receive approval from the Peruvian Park Service, and obtain a legal concession before initiating approved activities. No government agency is officially designated with monitoring and managing the buffer zone.</div></div>');
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseTwo"><div class="mLegendItem" id="communityReserve" ></div><p class="mLegendTxt">Community Reserve</p></a></div><div id="collapseTwo" class="collapse" data-parent="#accordion"><div class="card-body">A zoning category invented and promoted by a group of local citizens involved in the participatory zoning process. It was not originally part of the formal zoning options presented to the roundtable by the Peruvian government. As proposed, this zone would allow all activities permitted in the buffer zone but only by local Tambopata residents.</div></div>');
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseFive"><div class="mLegendItem" id="nativeCommunities" ></div><p class="mLegendTxt">Ese\'eja and Harakmbut Territories</p></a></div><div id="collapseFive" class="collapse" data-parent="#accordion"><div class="card-body">Only Ese’eja and Harakmbut peoples have right to reside in this zone and use the land as they wish, including for agriculture. They can also hunt, fish, and harvest forest resources. Local Ese’eja and Harakmbut residents can mine, log and/or run tourism businesses if they have appropriate concession permits.<div></div>');
+			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseNine"><div class="mLegendItem" id="Restoration" ></div><p class="mLegendTxt">Restoration</p></a></div><div id="collapseNine" class="collapse" data-parent="#accordion"><div class="card-body">A 1 million hectar park off limits to extraction. No new zoning within the park is being officially considered.<div></div>');
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseThree"><div class="mLegendItem" id="strictProtection" ></div><p class="mLegendTxt">Strict Protection</p></a></div><div id="collapseThree" class="collapse" data-parent="#accordion"><div class="card-body">No human use, no roads, no buildings allowed.<div></div>');
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseFour"><div class="mLegendItem" id="wildlands" ></div><p class="mLegendTxt">Wildlands</p></a></div><div id="collapseFour" class="collapse" data-parent="#accordion"><div class="card-body">Similar restrictions to Strict Protection Zone with one exception: Ese’eja and Harakmbut indigenous peoples are allowed to hunt, fish, and collect non-timber forest products for subsistence.<div></div>');
-			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseFive"><div class="mLegendItem" id="nativeCommunities" ></div><p class="mLegendTxt">Ese\'eja and Harakmbut Territories</p></a></div><div id="collapseFive" class="collapse" data-parent="#accordion"><div class="card-body">Only Ese’eja and Harakmbut peoples have right to reside in this zone and use the land as they wish, including for agriculture. They can also hunt, fish, and harvest forest resources. Local Ese’eja and Harakmbut residents can mine, log and/or run tourism businesses if they have appropriate concession permits.<div></div>');
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseSix"><div class="mLegendItem" id="Tourism" ></div><p class="mLegendTxt">Tourism</p></a></div><div id="collapseSix" class="collapse" data-parent="#accordion"><div class="card-body">Tourism operators can operate in this zone with appropriate concession permit. Tourism lodges, cabins, and paths are allowed. Hunting and non-timber forest extraction are also allowed for subsistence or commercial purposes but only with appropriate permit. However, hunting endangered species is strictly forbidden (for everyone, including indigenous peoples).</div></div>');
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseSeven"><div class="mLegendItem" id="forestUse" ></div><p class="mLegendTxt">Low Impact Non-Timber Forest Use</p></a></div><div id="collapseSeven" class="collapse" data-parent="#accordion"><div class="card-body">Only Brazil nut harvest concessions, Brazil nut-related tourism, and subsistence hunting of non-endangered species is allowed.<div></div>');
 			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseEight"><div class="mLegendItem" id="directUse" ></div><p class="mLegendTxt">Direct Use</p></a></div><div id="collapseEight" class="collapse" data-parent="#accordion"><div class="card-body">Hunting, fishing, and agriculture are allowed. Tourism, and commercial agriculture, mining, and logging are permitted after first conducting an environmental impact assessment, receiving Park Service approval, and obtaining a legal concession.<div></div>');
-			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseNine"><div class="mLegendItem" id="Restoration" ></div><p class="mLegendTxt">Restoration</p></a></div><div id="collapseNine" class="collapse" data-parent="#accordion"><div class="card-body">A 1 million hectar park off limits to extraction. No new zoning within the park is being officially considered.<div></div>');
-			$(accordion).append('<div class="card"><div class="card-header"><a class="card-link" data-toggle="collapse" href="#collapseTen"><div class="mLegendItem" id="nationalPark" ></div><p class="mLegendTxt">Bahuaja-Sonene National Park</p></a></div><div id="collapseTen" class="collapse" data-parent="#accordion"><div class="card-body">A one million hectare park off limits to extraction. No new zoning within the park is being officially considered.<div></div>');
+			
 			L.DomEvent.disableClickPropagation(legendItems)
 			return legendItems;
 		}
@@ -375,43 +428,52 @@ function roadsStyle(feature) {
 		opacity: 1
 	}
 };
+function tnrStyle(){
+	return{
+		fillColor: "Black", // set color according to zone name
+        fillOpacity: 0,
+		color: "Black",
+		weight: 3,
+		opacity: 1
+	}
+};
 //current style for the proposal maps.
 function style(feature){
 	// sets the style of the zones
 	var color; // color of the zone
     var zoneName = feature.properties.ZONES
 	if(zoneName == "Buffer Zone"){ // if it's the buffer zone, make it Powder blue
-	color = "#4d412b";
+	color = "#6fd0d3";
 	lineWidth = 0.3;
 	lineColor = "Black";
 	fillop = opacity
 		}
 		else if(zoneName == "Strict Protection"){
-			color = "#004529";
+			color = "#1b7739";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Ese’eja and Harakmbut Territories"){
-			color = "#78c679";
+			color = "#c45791";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Wildlands"){
-			color = "#238443";
+			color = "#65b366";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
 		}
 		else if(zoneName == "Tourism"){
-			color = "#d9f0a3";
+			color = "#c2e699";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
         }
 		else if(zoneName == "Restoration"){
-			color = "#fc8d59";
+			color = "#f1b6da";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity
@@ -419,24 +481,24 @@ function style(feature){
 		else if(zoneName == "Bahuaja-Sonene National Park"){
 			color = "None";
 			lineWidth = 3;
-			lineColor = "#31a354";
+			lineColor = "#6e926e";
 			fillop = 0
 		}
 		else if(zoneName == "Direct Use"){
-			color = "#d0d1e6";
+			color = "#e13d37";
 			//color = "#125e1d";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
 		}
 		else if(zoneName == "Low Impact Non-Timber Forest Use"){
-			color = "#dadac0";
+			color = "#ffae42";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
 		}
 		else if(zoneName == "Community Reserve"){
-			color = "#a87007";
+			color = "#296bc2";
 			lineWidth = 0.1;
 			lineColor = "Black";
 			fillop = opacity;
@@ -464,12 +526,31 @@ function onEachPOI(feature, layer) {
 	//bind the popup to the circle marker
     layer.bindPopup(popupContent);
 }
+function createTNR(data){
+	map.createPane('tnrPane');
+	map.getPane('tnrPane').style.zIndex=500;
+	map.getPane('tnrPane').style.pointerEvents = 'none';
+
+	TNR = L.geoJson(data, {
+		style: tnrStyle,
+		pane: 'tnrPane'
+	}).addTo(map);
+	return TNR;
+}
 //create POI from L.geoJson
 function createAddPOIs(data) {
 	layerPOI = L.geoJson(data, {
 		onEachFeature: onEachPOI
 	}).addTo(map);
 	return layerPOI;
+}
+function getTNR(){
+	$.ajax("data/TNR_Boundary.geojson",{
+		dataType: "json",
+		success: function(response){
+			createTNR(response)
+		}
+	})
 }
 //using ajax to get POI from data folder
 function getPOIs() {
@@ -480,5 +561,9 @@ function getPOIs() {
 		}
 	});
 };
+function overlayOff(){
+	document.documentElement.style.overflow = "auto";
+	document.getElementById("tutorialModal").style.display = "none";
+}
 //call the initialize function when the document has loaded
 $(document).ready(setMap);}
